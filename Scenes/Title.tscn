@@ -1,0 +1,186 @@
+[gd_scene load_steps=17 format=3 uid="uid://mohl4xx1a4e7"]
+
+[ext_resource type="Script" uid="uid://d4arbng163mog" path="res://Scenes/title.gd" id="1_3nchw"]
+[ext_resource type="Texture2D" uid="uid://bconwelbkojxs" path="res://Images/System/OpeningAnimation.png" id="1_x5apk"]
+[ext_resource type="AudioStream" uid="uid://dll6atjh53y6u" path="res://Audio/TitleAmbience.ogg" id="2_mo6op"]
+[ext_resource type="AudioStream" uid="uid://c02q5iwqjf581" path="res://Audio/StartUpFissInSound.ogg" id="3_pm7xt"]
+[ext_resource type="Texture2D" uid="uid://cn5hji7snksgh" path="res://Images/System/TitleScreen.png" id="4_l05l7"]
+[ext_resource type="Texture2D" uid="uid://bs2tkm26lhehx" path="res://Images/System/startUp.png" id="5_um85v"]
+[ext_resource type="Texture2D" uid="uid://divgerr4l0aeh" path="res://Images/System/startDown.png" id="6_064l6"]
+[ext_resource type="Texture2D" uid="uid://d3t7dcpfqqauo" path="res://Images/System/editUp.png" id="10_n556k"]
+[ext_resource type="Texture2D" uid="uid://c5sjpdgsicrjd" path="res://Images/System/editDown.png" id="11_b4ema"]
+
+[sub_resource type="Animation" id="Animation_3g0cn"]
+resource_name = "Opening"
+length = 2.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OpeningAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6, 0.7, 0.8, 0.9, 1, 1.2, 1.3, 1.4, 1.45, 1.5, 1.55, 1.6, 1.65, 1.7, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpeningAnimation:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.4, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Interface:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.4, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"playPulsing"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_gosbg"]
+resource_name = "PulsingEnergy"
+length = 3.0
+loop_mode = 1
+step = 0.05
+
+[sub_resource type="Animation" id="Animation_eqpnn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OpeningAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OpeningAnimation:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Interface:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ud6yn"]
+_data = {
+&"Opening": SubResource("Animation_3g0cn"),
+&"PulsingEnergy": SubResource("Animation_gosbg"),
+&"RESET": SubResource("Animation_eqpnn")
+}
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4wsi7"]
+polygon = PackedVector2Array(20, 63, 46, 29, 80, 19, 177, 19, 214, 29, 240, 66, 220, 98, 203, 107, 171, 113, 90, 112, 48, 105, 33, 87)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7sp10"]
+polygon = PackedVector2Array(930.678, 256.794, 930.678, 276.263, 856.837, 302.22, 819.22, 301.293)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ahgx3"]
+polygon = PackedVector2Array(334, 328, 379, 326, 273, 260, 217, 257)
+
+[node name="Title" type="Node2D"]
+script = ExtResource("1_3nchw")
+
+[node name="OpeningAnimation" type="Sprite2D" parent="."]
+position = Vector2(540, 270)
+texture = ExtResource("1_x5apk")
+hframes = 4
+vframes = 4
+
+[node name="StartUpAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ud6yn")
+}
+autoplay = "Opening"
+
+[node name="AmbienceSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_mo6op")
+autoplay = true
+
+[node name="StartUpFissInSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_pm7xt")
+autoplay = true
+
+[node name="Interface" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+
+[node name="TitleBackgroundImage" type="Sprite2D" parent="Interface"]
+position = Vector2(481, 269)
+texture = ExtResource("4_l05l7")
+
+[node name="StartGameTouchScreenButton" type="TouchScreenButton" parent="Interface"]
+position = Vector2(343, 393)
+texture_normal = ExtResource("5_um85v")
+texture_pressed = ExtResource("6_064l6")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Interface/StartGameTouchScreenButton"]
+occluder = SubResource("OccluderPolygon2D_4wsi7")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Interface"]
+scale = Vector2(0.717756, 1.07868)
+occluder = SubResource("OccluderPolygon2D_7sp10")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Interface"]
+occluder = SubResource("OccluderPolygon2D_ahgx3")
+
+[node name="EitMode" type="Node2D" parent="."]
+
+[node name="EditButton" type="TouchScreenButton" parent="EitMode"]
+position = Vector2(73, 298)
+rotation = -0.20944
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("10_n556k")
+texture_pressed = ExtResource("11_b4ema")
+
+[connection signal="pressed" from="Interface/StartGameTouchScreenButton" to="." method="_on_touch_screen_button_pressed"]
+[connection signal="released" from="Interface/StartGameTouchScreenButton" to="." method="_on_touch_screen_button_released"]
+[connection signal="pressed" from="EitMode/EditButton" to="." method="_on_edit_button_pressed"]
+[connection signal="released" from="EitMode/EditButton" to="." method="_on_edit_button_released"]

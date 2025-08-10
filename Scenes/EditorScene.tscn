@@ -1,0 +1,437 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjia6u4vknq5j"]
+
+[ext_resource type="Script" uid="uid://bxri82jvx1d0h" path="res://Scenes/editor_scene.gd" id="1_7wjnq"]
+[ext_resource type="Texture2D" uid="uid://bt0bp8t3qcmio" path="res://Images/System/UINegateButtonUp.png" id="2_rtl7q"]
+[ext_resource type="Texture2D" uid="uid://dwawsget0rhi5" path="res://Images/System/UINegateButtonDown.png" id="3_4sk8l"]
+
+[node name="EditorScene" type="Node2D"]
+script = ExtResource("1_7wjnq")
+
+[node name="ExitScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(926, 1)
+scale = Vector2(0.708333, 0.625)
+texture_normal = ExtResource("2_rtl7q")
+texture_pressed = ExtResource("3_4sk8l")
+
+[node name="MainEditorInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="MainEditorInterface"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 464.0
+offset_right = 920.0
+offset_bottom = 501.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.400698, 0.400698, 0.400698, 1)
+
+[node name="TabBar" type="TabBar" parent="MainEditorInterface"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 504.0
+offset_right = 920.0
+offset_bottom = 495.0
+current_tab = 0
+tab_count = 3
+tab_0/title = "Attribites"
+tab_1/title = "Effects"
+tab_2/title = "Abilities"
+
+[node name="AttributesPanel" type="Panel" parent="MainEditorInterface"]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 504.0
+
+[node name="Title" type="Label" parent="MainEditorInterface/AttributesPanel"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 78.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.443684, 0.375095, 1)
+text = "Attributes"
+
+[node name="AddButton" type="Button" parent="MainEditorInterface/AttributesPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 223.0
+offset_right = 266.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.404555, 0, 1)
+text = "ADD"
+
+[node name="DeleteButton" type="Button" parent="MainEditorInterface/AttributesPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 379.0
+offset_top = 1.0
+offset_right = 422.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.487756, 1.02879e-06, 3.36915e-07, 1)
+text = "DELETE"
+
+[node name="PreviousButton" type="Button" parent="MainEditorInterface/AttributesPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 539.0
+offset_top = 1.0
+offset_right = 660.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0.678352, 0.000346638, 0.678347, 1)
+theme_override_colors/font_focus_color = Color(0.678431, 0, 0.678431, 1)
+theme_override_colors/font_pressed_color = Color(0.417417, 0.000120375, 0.417414, 1)
+text = "<- PREVIOUS"
+
+[node name="NextButton" type="Button" parent="MainEditorInterface/AttributesPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 660.0
+offset_right = 764.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0.678352, 0.000346638, 0.678347, 1)
+theme_override_colors/font_focus_color = Color(0.678431, 0, 0.678431, 1)
+theme_override_colors/font_pressed_color = Color(0.417417, 0.000120375, 0.417414, 1)
+text = "NEXT ->"
+
+[node name="Panel" type="Panel" parent="MainEditorInterface/AttributesPanel"]
+modulate = Color(0, 0, 1, 1)
+layout_mode = 0
+offset_top = 31.0
+offset_right = 960.0
+offset_bottom = 504.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainEditorInterface/AttributesPanel"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 177.0
+offset_bottom = 504.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainEditorInterface/AttributesPanel/ScrollContainer"]
+layout_mode = 2
+
+[node name="OKButton" type="Button" parent="MainEditorInterface/AttributesPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 857.0
+offset_top = 472.0
+offset_right = 961.0
+offset_bottom = 503.0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_focus_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_pressed_color = Color(0.509287, 0.509286, 0.509286, 1)
+text = "OK"
+
+[node name="CancelButton" type="Button" parent="MainEditorInterface/AttributesPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 743.0
+offset_top = 472.0
+offset_right = 847.0
+offset_bottom = 503.0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_focus_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_pressed_color = Color(0.509287, 0.509286, 0.509286, 1)
+text = "Cancel"
+
+[node name="InputPanel" type="Control" parent="MainEditorInterface/AttributesPanel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="nameLabel" type="Label" parent="MainEditorInterface/AttributesPanel/InputPanel"]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 88.0
+offset_right = 275.0
+offset_bottom = 111.0
+text = "Name:"
+
+[node name="LineEdit" type="LineEdit" parent="MainEditorInterface/AttributesPanel/InputPanel/nameLabel"]
+layout_mode = 0
+offset_left = 66.0
+offset_right = 415.0
+offset_bottom = 31.0
+
+[node name="valueLabel" type="Label" parent="MainEditorInterface/AttributesPanel/InputPanel"]
+offset_left = 223.0
+offset_top = 143.0
+offset_right = 275.0
+offset_bottom = 166.0
+text = "Value:"
+
+[node name="LineEdit" type="LineEdit" parent="MainEditorInterface/AttributesPanel/InputPanel/valueLabel"]
+offset_left = 66.0
+offset_right = 415.0
+offset_bottom = 31.0
+
+[node name="dataType" type="Label" parent="MainEditorInterface/AttributesPanel/InputPanel"]
+offset_left = 223.0
+offset_top = 205.0
+offset_right = 305.0
+offset_bottom = 228.0
+text = "Data Type:"
+
+[node name="ItemList" type="ItemList" parent="MainEditorInterface/AttributesPanel/InputPanel/dataType"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 23.0
+offset_right = 415.0
+offset_bottom = 139.0
+select_mode = 1
+item_count = 4
+item_0/text = "String"
+item_1/text = "Integer"
+item_2/text = "Float"
+item_3/text = "Boolean"
+
+[node name="iconLabel" type="Label" parent="MainEditorInterface/AttributesPanel/InputPanel"]
+offset_left = 223.0
+offset_top = 368.0
+offset_right = 275.0
+offset_bottom = 391.0
+text = "Icon:"
+
+[node name="LineEdit" type="LineEdit" parent="MainEditorInterface/AttributesPanel/InputPanel/iconLabel"]
+offset_left = 66.0
+offset_right = 415.0
+offset_bottom = 31.0
+
+[node name="TextureRect" type="TextureRect" parent="MainEditorInterface/AttributesPanel/InputPanel/iconLabel"]
+layout_mode = 0
+offset_left = 419.0
+offset_right = 459.0
+offset_bottom = 40.0
+
+[node name="Messages" type="Label" parent="MainEditorInterface/AttributesPanel"]
+layout_mode = 0
+offset_left = 223.0
+offset_top = 472.0
+offset_right = 743.0
+offset_bottom = 495.0
+
+[node name="EffectsPanel" type="Panel" parent="MainEditorInterface"]
+visible = false
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 504.0
+
+[node name="Title" type="Label" parent="MainEditorInterface/EffectsPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0.854902, 0, 1)
+text = "Effects"
+
+[node name="AddButton" type="Button" parent="MainEditorInterface/EffectsPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 223.0
+offset_right = 266.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.404555, 0, 1)
+text = "ADD"
+
+[node name="DeleteButton" type="Button" parent="MainEditorInterface/EffectsPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 379.0
+offset_top = 1.0
+offset_right = 422.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.487756, 1.02879e-06, 3.36915e-07, 1)
+text = "DELETE"
+
+[node name="PreviousButton" type="Button" parent="MainEditorInterface/EffectsPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 539.0
+offset_top = 1.0
+offset_right = 660.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0.678352, 0.000346638, 0.678347, 1)
+theme_override_colors/font_focus_color = Color(0.678431, 0, 0.678431, 1)
+theme_override_colors/font_pressed_color = Color(0.417417, 0.000120375, 0.417414, 1)
+text = "<- PREVIOUS"
+
+[node name="NextButton" type="Button" parent="MainEditorInterface/EffectsPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 660.0
+offset_right = 764.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0.678352, 0.000346638, 0.678347, 1)
+theme_override_colors/font_focus_color = Color(0.678431, 0, 0.678431, 1)
+theme_override_colors/font_pressed_color = Color(0.417417, 0.000120375, 0.417414, 1)
+text = "NEXT ->"
+
+[node name="Panel" type="Panel" parent="MainEditorInterface/EffectsPanel"]
+modulate = Color(0.171499, 0.375813, 0.364778, 1)
+layout_mode = 0
+offset_top = 31.0
+offset_right = 960.0
+offset_bottom = 504.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainEditorInterface/EffectsPanel"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 177.0
+offset_bottom = 504.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainEditorInterface/EffectsPanel/ScrollContainer"]
+layout_mode = 2
+
+[node name="OKButton" type="Button" parent="MainEditorInterface/EffectsPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 857.0
+offset_top = 472.0
+offset_right = 961.0
+offset_bottom = 503.0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_focus_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_pressed_color = Color(0.509287, 0.509286, 0.509286, 1)
+text = "OK"
+
+[node name="CancelButton" type="Button" parent="MainEditorInterface/EffectsPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 743.0
+offset_top = 472.0
+offset_right = 847.0
+offset_bottom = 503.0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_focus_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_pressed_color = Color(0.509287, 0.509286, 0.509286, 1)
+text = "Cancel"
+
+[node name="AbilitiesPanel" type="Panel" parent="MainEditorInterface"]
+visible = false
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 504.0
+
+[node name="Title" type="Label" parent="MainEditorInterface/AbilitiesPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.19921, 0.428185, 1, 1)
+text = "Abilitites"
+
+[node name="AddButton" type="Button" parent="MainEditorInterface/AbilitiesPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 223.0
+offset_right = 266.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.404555, 0, 1)
+text = "ADD"
+
+[node name="DeleteButton" type="Button" parent="MainEditorInterface/AbilitiesPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 379.0
+offset_top = 1.0
+offset_right = 422.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.487756, 1.02879e-06, 3.36915e-07, 1)
+text = "DELETE"
+
+[node name="PreviousButton" type="Button" parent="MainEditorInterface/AbilitiesPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 539.0
+offset_top = 1.0
+offset_right = 660.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0.678352, 0.000346638, 0.678347, 1)
+theme_override_colors/font_focus_color = Color(0.678431, 0, 0.678431, 1)
+theme_override_colors/font_pressed_color = Color(0.417417, 0.000120375, 0.417414, 1)
+text = "<- PREVIOUS"
+
+[node name="NextButton" type="Button" parent="MainEditorInterface/AbilitiesPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 660.0
+offset_right = 764.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0.678352, 0.000346638, 0.678347, 1)
+theme_override_colors/font_focus_color = Color(0.678431, 0, 0.678431, 1)
+theme_override_colors/font_pressed_color = Color(0.417417, 0.000120375, 0.417414, 1)
+text = "NEXT ->"
+
+[node name="Panel" type="Panel" parent="MainEditorInterface/AbilitiesPanel"]
+modulate = Color(0.263728, 0.338056, 0.464249, 1)
+layout_mode = 0
+offset_top = 31.0
+offset_right = 960.0
+offset_bottom = 504.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainEditorInterface/AbilitiesPanel"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 177.0
+offset_bottom = 504.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainEditorInterface/AbilitiesPanel/ScrollContainer"]
+layout_mode = 2
+
+[node name="OKButton" type="Button" parent="MainEditorInterface/AbilitiesPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 857.0
+offset_top = 472.0
+offset_right = 961.0
+offset_bottom = 503.0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_focus_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_pressed_color = Color(0.509287, 0.509286, 0.509286, 1)
+text = "OK"
+
+[node name="CancelButton" type="Button" parent="MainEditorInterface/AbilitiesPanel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 743.0
+offset_top = 472.0
+offset_right = 847.0
+offset_bottom = 503.0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_focus_color = Color(0.890196, 0.890196, 0.890196, 1)
+theme_override_colors/font_pressed_color = Color(0.509287, 0.509286, 0.509286, 1)
+text = "Cancel"
+
+[connection signal="pressed" from="ExitScreenButton" to="." method="_on_exit_screen_button_pressed"]
+[connection signal="released" from="ExitScreenButton" to="." method="_on_exit_screen_button_released"]
+[connection signal="tab_changed" from="MainEditorInterface/TabBar" to="." method="_on_tab_bar_tab_changed"]
+[connection signal="button_up" from="MainEditorInterface/AttributesPanel/AddButton" to="." method="attribute_on_add_button_button_up"]
+[connection signal="button_up" from="MainEditorInterface/AttributesPanel/OKButton" to="." method="attribute_on_ok_button_button_up"]

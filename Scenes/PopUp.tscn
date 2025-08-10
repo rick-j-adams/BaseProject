@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhss6tu0euo55"]
+
+[ext_resource type="Script" uid="uid://dr8xc3c780q7l" path="res://Scenes/pop_up.gd" id="1_1gylm"]
+[ext_resource type="Texture2D" uid="uid://c2ekachehdadb" path="res://Images/System/UIPopUpBackground.png" id="2_ylabo"]
+[ext_resource type="Texture2D" uid="uid://6aqgr5x6ek5i" path="res://Images/System/UIConfirmButtonUp.png" id="3_kxlpa"]
+[ext_resource type="Texture2D" uid="uid://vkspbwtxkap3" path="res://Images/System/UIConfirmButtonDown.png" id="4_5h1ah"]
+[ext_resource type="Texture2D" uid="uid://bt0bp8t3qcmio" path="res://Images/System/UINegateButtonUp.png" id="5_2lpcc"]
+[ext_resource type="Texture2D" uid="uid://dwawsget0rhi5" path="res://Images/System/UINegateButtonDown.png" id="6_xouvv"]
+
+[node name="PopUp" type="Node2D"]
+script = ExtResource("1_1gylm")
+
+[node name="UiPopUpBackground" type="Sprite2D" parent="."]
+position = Vector2(540, 270)
+texture = ExtResource("2_ylabo")
+
+[node name="YesButton" type="TouchScreenButton" parent="."]
+position = Vector2(380, 250)
+texture_normal = ExtResource("3_kxlpa")
+texture_pressed = ExtResource("4_5h1ah")
+
+[node name="NoButton" type="TouchScreenButton" parent="."]
+position = Vector2(650, 250)
+texture_normal = ExtResource("5_2lpcc")
+texture_pressed = ExtResource("6_xouvv")
+
+[connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="released" from="YesButton" to="." method="_on_yes_button_released"]
+[connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="released" from="NoButton" to="." method="_on_no_button_released"]

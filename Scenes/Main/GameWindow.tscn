@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://5fgib33nmcje"]
+
+[ext_resource type="Script" uid="uid://brbmtqsnngjj4" path="res://Scenes/Main/game_window.gd" id="1_dbpy3"]
+
+[node name="GameWindow" type="Node2D"]
+script = ExtResource("1_dbpy3")
