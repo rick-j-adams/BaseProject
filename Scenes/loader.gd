@@ -12,6 +12,7 @@ var currentloadState = LOAD_STATES.SCENES
 	"editorScene" : "res://Scenes/EditorScene.tscn",
 	"popUp" : "res://Scenes/PopUp.tscn",
 	"gameWindow" : "res://Scenes/Main/GameWindow.tscn",
+	"credits" : "res://Scenes/Credits.tscn",
 }
 
 @onready var loadMapImages :Dictionary  = {

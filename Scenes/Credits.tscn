@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://br0224m7q0wu1"]
+
+[ext_resource type="Script" uid="uid://cfskhock21beq" path="res://Scenes/credits.gd" id="1_iynit"]
+[ext_resource type="Texture2D" uid="uid://bt0bp8t3qcmio" path="res://Images/System/UINegateButtonUp.png" id="3_uy3b0"]
+[ext_resource type="AudioStream" uid="uid://c02q5iwqjf581" path="res://Audio/StartUpFissInSound.ogg" id="4_3hr06"]
+[ext_resource type="Texture2D" uid="uid://dwawsget0rhi5" path="res://Images/System/UINegateButtonDown.png" id="4_iynit"]
+[ext_resource type="Texture2D" uid="uid://cn5hji7snksgh" path="res://Images/System/TitleScreen.png" id="5_6n0gi"]
+
+[sub_resource type="Animation" id="Animation_iynit"]
+resource_name = "credits"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("crawl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1500)]
+}
+
+[sub_resource type="Animation" id="Animation_f64u0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("crawl:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lpub1"]
+_data = {
+&"RESET": SubResource("Animation_f64u0"),
+&"credits": SubResource("Animation_iynit")
+}
+
+[node name="Credits" type="Node2D"]
+script = ExtResource("1_iynit")
+
+[node name="StartUpFissInSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3hr06")
+autoplay = true
+
+[node name="Interface" type="Node2D" parent="."]
+
+[node name="TitleBackgroundImage" type="Sprite2D" parent="Interface"]
+position = Vector2(481, 269)
+texture = ExtResource("5_6n0gi")
+
+[node name="BackButton" type="TouchScreenButton" parent="."]
+position = Vector2(911, 1)
+texture_normal = ExtResource("3_uy3b0")
+texture_pressed = ExtResource("4_iynit")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lpub1")
+}
+autoplay = "credits"
+
+[node name="crawl" type="Node2D" parent="."]
+
+[node name="LicenseLabel" type="RichTextLabel" parent="crawl"]
+offset_left = 229.0
+offset_top = 537.0
+offset_right = 760.0
+offset_bottom = 2681.0
+text = "A Game by Rick and Eb Adams
+"
+
+[connection signal="released" from="BackButton" to="." method="_on_back_button_released"]

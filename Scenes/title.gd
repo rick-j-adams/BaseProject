@@ -23,3 +23,7 @@ func _on_edit_button_pressed() -> void:
 
 func _on_edit_button_released() -> void:
 	Globals.transitionTo("editorScene")
+
+
+func _on_credits_touch_screen_button_released() -> void:
+	Globals.transitionTo("credits")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://mohl4xx1a4e7"]
+[gd_scene load_steps=19 format=3 uid="uid://mohl4xx1a4e7"]
 
 [ext_resource type="Script" uid="uid://d4arbng163mog" path="res://Scenes/title.gd" id="1_3nchw"]
 [ext_resource type="Texture2D" uid="uid://bconwelbkojxs" path="res://Images/System/OpeningAnimation.png" id="1_x5apk"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cn5hji7snksgh" path="res://Images/System/TitleScreen.png" id="4_l05l7"]
 [ext_resource type="Texture2D" uid="uid://bs2tkm26lhehx" path="res://Images/System/startUp.png" id="5_um85v"]
 [ext_resource type="Texture2D" uid="uid://divgerr4l0aeh" path="res://Images/System/startDown.png" id="6_064l6"]
+[ext_resource type="Texture2D" uid="uid://by742fqw1knp8" path="res://Images/System/UIExclaimUp.png" id="8_me1mv"]
+[ext_resource type="Texture2D" uid="uid://8py6xthw7344" path="res://Images/System/UIExclaimDown.png" id="9_epiv6"]
 [ext_resource type="Texture2D" uid="uid://d3t7dcpfqqauo" path="res://Images/System/editUp.png" id="10_n556k"]
 [ext_resource type="Texture2D" uid="uid://c5sjpdgsicrjd" path="res://Images/System/editDown.png" id="11_b4ema"]
 
@@ -171,6 +173,12 @@ occluder = SubResource("OccluderPolygon2D_7sp10")
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="Interface"]
 occluder = SubResource("OccluderPolygon2D_ahgx3")
 
+[node name="CreditsTouchScreenButton" type="TouchScreenButton" parent="Interface"]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(912, 0)
+texture_normal = ExtResource("8_me1mv")
+texture_pressed = ExtResource("9_epiv6")
+
 [node name="EitMode" type="Node2D" parent="."]
 
 [node name="EditButton" type="TouchScreenButton" parent="EitMode"]
@@ -182,5 +190,6 @@ texture_pressed = ExtResource("11_b4ema")
 
 [connection signal="pressed" from="Interface/StartGameTouchScreenButton" to="." method="_on_touch_screen_button_pressed"]
 [connection signal="released" from="Interface/StartGameTouchScreenButton" to="." method="_on_touch_screen_button_released"]
+[connection signal="released" from="Interface/CreditsTouchScreenButton" to="." method="_on_credits_touch_screen_button_released"]
 [connection signal="pressed" from="EitMode/EditButton" to="." method="_on_edit_button_pressed"]
 [connection signal="released" from="EitMode/EditButton" to="." method="_on_edit_button_released"]
