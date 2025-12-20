@@ -9,6 +9,10 @@
 
 extends Node
 
+const RESOURCE_CLAZZ = preload("res://Scripts/AllResources.gd")
+const RESOURCE_FILE_PATH = "res://Data/AllResources.res"
+var allResources:AllResources = RESOURCE_CLAZZ.new()
+
 const prime1:int = 7919
 const prime2:int = 6997
 const prime3:int = 5869
@@ -89,6 +93,21 @@ func playInterfaceAudio(localPostion: Vector2, audioName: String) -> void:
 			interfaceAudio.stream =  audio
 			interfaceAudio.play()
 		
-		
+
+func saveResources() -> void:
+	var result = ResourceSaver.save(allResources, RESOURCE_FILE_PATH)
+	print("save result = "+str(result))
+
+func loadResources() -> void:
+	if ResourceLoader.exists(RESOURCE_FILE_PATH):
+		allResources = ResourceLoader.load(RESOURCE_FILE_PATH)
+		if allResources is AllResources:
+			print("loaded allShips")
+			print(allResources.allAttributes.size())
+		else:
+			print("new ")
+			allResources=AllResources.new()
+
+
 
 	

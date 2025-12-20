@@ -17,6 +17,39 @@ var currentloadState = LOAD_STATES.SCENES
 @onready var loadMapImages :Dictionary  = {
 	"yes" : "res://Images/System/UIConfirmButtonUp.png",
 	"no" : "res://Images/System/UINegateButtonUp.png",
+	"blacksquare" : "res://Images/Icons/blacksquare.png",
+	"heart" : "res://Images/Icons/heart.png",
+	"ICONheart" : "res://Images/Icons/heart.png",
+	"ICONalarm" : "res://Images/Icons/alarm.png",
+	"ICONarrow1" : "res://Images/Icons/arrow1.png",
+	"ICONarrow2" : "res://Images/Icons/arrow2.png",
+	"ICONcomet" : "res://Images/Icons/comet.png",
+	"ICONdot" : "res://Images/Icons/dot.png",
+	"ICONdown" : "res://Images/Icons/down.png",
+	"ICONfan" : "res://Images/Icons/fan.png",
+	"ICONgear1" : "res://Images/Icons/gear1.png",
+	"ICONgear2" : "res://Images/Icons/gear2.png",
+	"ICONgear3" : "res://Images/Icons/gear3.png",
+	"ICONland" : "res://Images/Icons/land.png",
+	"ICONlaunch" : "res://Images/Icons/launch.png",
+	"ICONleft" : "res://Images/Icons/left.png",
+	"ICONlightning" : "res://Images/Icons/lightning.png",
+	"ICONlowdial" : "res://Images/Icons/lowdial.png",
+	"ICONmaxdial" : "res://Images/Icons/maxdial.png",
+	"ICONquestion" : "res://Images/Icons/quetion.png",
+	"ICONradar" : "res://Images/Icons/radar.png",
+	"ICONright" : "res://Images/Icons/right.png",
+	"ICONshell" : "res://Images/Icons/shell.png",
+	"ICONshield" : "res://Images/Icons/shield.png",
+	"ICONspanner" : "res://Images/Icons/spanner.png",
+	"ICONspeach" : "res://Images/Icons/speach.png",
+	"ICONspeed" : "res://Images/Icons/speed.png",
+	"ICONstamp" : "res://Images/Icons/stamp.png",
+	"ICONstar" : "res://Images/Icons/star.png",
+	"ICONtarget" : "res://Images/Icons/target.png",
+	"ICONthink" : "res://Images/Icons/think.png",
+	"ICONup" : "res://Images/Icons/up.png",
+
 }
 
 @onready var loadMapAudio :Dictionary  = {
@@ -77,6 +110,7 @@ func doFinished():
 	nextStage()
 
 func doDone():
+	Globals.loadResources()
 	queue_free()
 	
 func _process(delta: float) -> void:
