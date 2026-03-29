@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bh3r86m58hk68"]
+
+[ext_resource type="Script" uid="uid://bdwtaj18t4ecv" path="res://Scenes/Characters/actor.gd" id="1_fgplc"]
+[ext_resource type="Texture2D" uid="uid://brjx8f355nupd" path="res://Images/Character/testcharacter.png" id="2_pg0j5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_58iqs"]
+radius = 8.06226
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l4175"]
+radius = 19.0263
+
+[node name="Actor" type="Node2D"]
+script = ExtResource("1_fgplc")
+
+[node name="Actor" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actor"]
+position = Vector2(18, 19)
+shape = SubResource("CircleShape2D_58iqs")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Actor"]
+position = Vector2(-20, 19)
+shape = SubResource("CircleShape2D_58iqs")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Actor"]
+position = Vector2(-1, 8)
+shape = SubResource("CircleShape2D_l4175")
+
+[node name="Sprite2D" type="Sprite2D" parent="Actor"]
+texture = ExtResource("2_pg0j5")
+
+[node name="RayCast2DBack" type="RayCast2D" parent="Actor/Sprite2D"]
+position = Vector2(-24, 19)
+target_position = Vector2(0, 14)
+
+[node name="RayCast2DFront" type="RayCast2D" parent="Actor/Sprite2D"]
+position = Vector2(22, 21)
+target_position = Vector2(0, 12)
+
+[node name="Camera2D" type="Camera2D" parent="Actor"]

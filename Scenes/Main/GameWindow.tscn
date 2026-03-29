@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://5fgib33nmcje"]
+[gd_scene load_steps=3 format=3 uid="uid://5fgib33nmcje"]
 
 [ext_resource type="Script" uid="uid://brbmtqsnngjj4" path="res://Scenes/Main/game_window.gd" id="1_dbpy3"]
+[ext_resource type="PackedScene" uid="uid://bf0if5w2l0v7k" path="res://Scenes/TestLevel/TestLevel.tscn" id="2_x77s8"]
 
 [node name="GameWindow" type="Node2D"]
 script = ExtResource("1_dbpy3")
+
+[node name="TestLevel" parent="." instance=ExtResource("2_x77s8")]

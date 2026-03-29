@@ -9,6 +9,8 @@
 
 extends Node
 
+const GRAVITY := 100.0
+
 const RESOURCE_CLAZZ = preload("res://Scripts/AllResources.gd")
 const RESOURCE_FILE_PATH = "res://Data/AllResources.res"
 var allResources:AllResources = RESOURCE_CLAZZ.new()
