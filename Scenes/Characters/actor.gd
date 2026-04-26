@@ -101,7 +101,7 @@ func rampPush() -> void:
 	var direction := getDirectionOfTravel()
 	var speed: float = abs(actor.velocity.x)
 	print("speed: ", speed)
-	if speed >100:
+	if speed >500:
 		actor.velocity.x += direction * 1800
 
 		actor.velocity.y = direction * -1800

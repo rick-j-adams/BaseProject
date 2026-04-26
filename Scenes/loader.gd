@@ -13,6 +13,8 @@ var currentloadState = LOAD_STATES.SCENES
 	"popUp" : "res://Scenes/PopUp.tscn",
 	"gameWindow" : "res://Scenes/Main/GameWindow.tscn",
 	"credits" : "res://Scenes/Credits.tscn",
+	"sparkEffect" :"res://Images/Character/SparkEffects.tscn",
+	"test" :"res://Scenes/TestLevel/TestLevel.tscn",
 }
 
 @onready var loadMapImages :Dictionary  = {

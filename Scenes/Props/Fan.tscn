@@ -1,0 +1,145 @@
+[gd_scene load_steps=11 format=3 uid="uid://dik1hc88oxcxa"]
+
+[ext_resource type="Texture2D" uid="uid://bfl4w3ikkhrkh" path="res://Images/Props/Fan.png" id="1_8d8lm"]
+[ext_resource type="Script" uid="uid://brv0isev4usg3" path="res://Scenes/Props/fan.gd" id="1_okt4w"]
+
+[sub_resource type="Animation" id="Animation_okt4w"]
+resource_name = "Fan"
+length = 0.79
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.701961),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_d0a23"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qvtni"]
+resource_name = "Birth"
+length = 0.79
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1009, 0.200715, 0.30053, 0.4036, 0.502331, 0.602146, 0.700876),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 14, 13, 12, 11, 10, 9, 8]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.733333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"turnOn"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_xxghu"]
+resource_name = "Off"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_lpwxo"]
+resource_name = "Broken"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qvtni"]
+_data = {
+&"Birth": SubResource("Animation_qvtni"),
+&"Broken": SubResource("Animation_lpwxo"),
+&"Fan": SubResource("Animation_okt4w"),
+&"Off": SubResource("Animation_xxghu"),
+&"RESET": SubResource("Animation_d0a23")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxghu"]
+size = Vector2(109, 81)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lpwxo"]
+size = Vector2(108, 1319)
+
+[node name="Fan" type="Node2D"]
+script = ExtResource("1_okt4w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("1_8d8lm")
+hframes = 4
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qvtni")
+}
+autoplay = "Birth"
+
+[node name="BuildArea" type="Area2D" parent="."]
+
+[node name="ShapeCollisionShape2D" type="CollisionShape2D" parent="BuildArea"]
+position = Vector2(-1.5, -30.5)
+shape = SubResource("RectangleShape2D_xxghu")
+
+[node name="BlowArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlowArea"]
+position = Vector2(-1, -649.5)
+shape = SubResource("RectangleShape2D_lpwxo")
+
+[connection signal="body_entered" from="BuildArea" to="." method="_on_build_area_body_entered"]
+[connection signal="body_exited" from="BuildArea" to="." method="_on_build_area_body_exited"]
+[connection signal="body_entered" from="BlowArea" to="." method="_on_blow_area_body_entered"]
+[connection signal="body_exited" from="BlowArea" to="." method="_on_blow_area_body_exited"]

@@ -42,7 +42,7 @@ func _physics_process(delta):
 		velocity = tangent * speed 
 
 		# Jump
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("ui_up"):
 			velocity.y = JUMP_VELOCITY
 
 		# # Visual tilt only

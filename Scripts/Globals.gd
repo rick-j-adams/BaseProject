@@ -16,6 +16,8 @@ const RESOURCE_CLAZZ = preload("res://Scripts/AllResources.gd")
 const RESOURCE_FILE_PATH = "res://Data/AllResources.res"
 var allResources:AllResources = RESOURCE_CLAZZ.new()
 
+var sparkEffectScene:Sprite2D = null
+
 const prime1:int = 7919
 const prime2:int = 6997
 const prime3:int = 5869
@@ -47,7 +49,7 @@ func get_next_rand() -> int:
 		randomPointer=0
 	return number
 	
-func get_rand_between(min_val, max_val) -> float:
+func get_rand_between(min_val :float, max_val :float) -> float:
 	var diff:float = float(max_val) -float( min_val)
 	var next_random:int = get_next_rand()
 	var change_by:float = float(next_random)/float(100)
@@ -64,8 +66,20 @@ func get_random_four() -> int:
 	
 func get_random_five() -> int:
 	var number:int = get_next_rand()
-	return number%5
-	
+	return number%5	
+
+func moveSparkEffect(position:Vector2, rotation:float, flipX:bool, animationName:String):
+	if sparkEffectScene == null:
+		sparkEffectScene = sceneMap.get("sparkEffect").instantiate()
+		if sparkEffectScene != null and mainScene != null:
+			mainScene.add_child(sparkEffectScene)
+
+	if sparkEffectScene != null:
+		var sparkAnimationPlayer :AnimationPlayer = sparkEffectScene.get_node("AnimationPlayer")
+		sparkEffectScene.global_position = position
+		sparkEffectScene.rotation = rotation
+		sparkEffectScene.flip_h = flipX
+		sparkAnimationPlayer.play(animationName)
 
 func transitionTo(newSceneName:String):
 	if transitionMask !=null:
