@@ -10,6 +10,8 @@ class_name Dydimo
 @onready var rayFacing :RayCast2D = $RayCast2DFacing
 @onready var rayFacingBack :RayCast2D = $RayCast2DFacingBack
 @onready var camera :Camera2D = $Camera2D
+@onready var underside :RPoint = $RPoint
+
 
 @onready var teleportRightRay :RayCast2D = $RayCast2DTeleportRight
 @onready var teleportLeftRay :RayCast2D = $RayCast2DTeleportLeft
@@ -31,6 +33,7 @@ enum STATES {BIRTH, IDLE, WALKING, RUNNING, PREJUMP, JUMPING, FALLING, BLOWING}
 var state : STATES = STATES.BIRTH
 
 var currentAnimation : String = "Birth"
+var lastAnimation : String = ""
 var wasOnFloor : bool = true
 
 # var currentSpeed : float = 0
@@ -60,6 +63,8 @@ var buildableArea : Node2D = null
 var blowUp : bool = false
 var lastBlowUp : bool = false
 
+var bitCounter : int = 0	
+
 func _ready() -> void:
 	add_to_group("actor")
 	animationPlayer.play(currentAnimation)
@@ -68,9 +73,6 @@ func _ready() -> void:
 	# animationTree.active = true
 
 func doAnimation(onFloor: bool):
-	#print("currentAnimation = " + currentAnimation)
-	
-
 	match state:
 		STATES.BIRTH:
 			currentAnimation = "Birth"
@@ -78,7 +80,6 @@ func doAnimation(onFloor: bool):
 				changeState(STATES.IDLE)
 			
 		STATES.IDLE:
-			print("Idle Animation")
 			if animationPlayer.is_playing() == false:
 				if currentAnimation=="Walk":
 					currentAnimation = "WalkStop"
@@ -91,7 +92,6 @@ func doAnimation(onFloor: bool):
 					else:
 						currentAnimation = "Default"
 		STATES.WALKING:
-			print("WALK Animation")
 			if animationPlayer.is_playing() == false:
 				if onFloor:
 					if currentAnimation == "WalkStart":
@@ -109,20 +109,15 @@ func doAnimation(onFloor: bool):
 					else:
 						currentAnimation = "Rising"
 		STATES.RUNNING:
-			print("RUN Animation")
-
 			currentAnimation = "Run"
 		STATES.JUMPING:
-			print("JUMP Animation")
 			currentAnimation = "Jump"
 		STATES.BLOWING:
-			print("BLOW Animation")
 			if animationPlayer.is_playing() == false:
 				if currentAnimation == "ParashootOpen":
 					currentAnimation = "Parashootfloat"
 					
 		STATES.FALLING:
-			print("FALL Animation")
 			if onFloor:
 				if currentAnimation == "Falling" or currentAnimation == "Rising":
 						currentAnimation = "Land"
@@ -142,20 +137,19 @@ func doAnimation(onFloor: bool):
 					if currentAnimation == "Land":
 						changeState(STATES.IDLE)
 						currentAnimation = "Default"
-			# else:
-			# 	currentAnimation = "Falling"
-	# print("currentAnimation = " + currentAnimation)	
 	
 	if blowUp and (currentAnimation == "ParashootOpen"):
 		if animationPlayer.is_playing() == false:
 			currentAnimation = "Parashootfloat"
 	if not blowUp and (currentAnimation == "ParashootOpen" or currentAnimation == "Parashootfloat"):
 		currentAnimation = "ParashootClose"
-	if currentAnimation ==	"Falling" or currentAnimation =="Rising":
-		if not blowUp and  onFloor:
+	if currentAnimation == "Falling" or currentAnimation == "Rising":
+		if not blowUp and onFloor:
 			currentAnimation = "Land"
-	print("Playing Animation: " + currentAnimation)
-	animationPlayer.play(currentAnimation)
+	
+	if currentAnimation != lastAnimation or not animationPlayer.is_playing():
+		animationPlayer.play(currentAnimation)
+		lastAnimation = currentAnimation
 
 func changeState(newState: STATES):
 	#print("curstate:"+str(state)+"::"+"new state:"+str(newState) )
@@ -243,6 +237,7 @@ func calcAcceleration(delta: float, direction: float, currentSpeed: float, onFlo
 func decelerate(delta: float, direction: float, currentSpeed: float , onFloor: bool = true):
 	if onFloor and currentSpeed > 0:	
 		Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "StartSpark")
+		#Globals.createPuff(underside.global_position)
 
 	var localMaxSpeed: float = maxSpeed
 	if speedBoost:
@@ -320,10 +315,15 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_released("ui_down"):
 		if buildableArea !=null:
 			buildableArea.repair()
+		#for testing purposes
+		var bitPosition: Vector2 = global_position
+		bitPosition.y = bitPosition.y - 128
+		Globals.createBit(bitPosition)
+		
 		#wallRide = !wallRide
 		#doTeleport()
 		#print("Teleport: " + str(telePorter))
-
+	#Globals.createPuff(global_position)
 	if nextToWall() and wallRide and (rotation_degrees < -45 or rotation_degrees > 45):	
 		floor_max_angle = 100
 	else:
@@ -337,7 +337,7 @@ func _process(delta: float) -> void:
 		if currentJumpForce>=jumpPower:
 				var changedJumpForce: float = (jumpPower / maxJumpChargeTime) * delta
 				currentJumpForce = currentJumpForce + (changedJumpForce)
-	
+	#print(global_position)
 	doBlowUp(delta)
 	doForces(delta)
 	doAnimation(isNowOnFloor)
@@ -446,7 +446,8 @@ func doJump(isNowOnFloor: bool):
 		if jetPack:
 			#print("Jet Pack Activated")
 			currentJumpForce = jumpPower / 2
-		print(rotation_degrees)	
+		
+		#print(rotation_degrees)	
 		springing = false
 		if rotation_degrees >= 45 or rotation_degrees <= -45:
 			currentJumpForce = currentJumpForce/2
@@ -510,7 +511,7 @@ func doRotate(delta: float):
 			rotation_degrees=rotation_degrees+90.0*delta
 	if wallRide:
 		if nextToWall():
-			print("Wall Ride Rotation:" + str(rotation_degrees))
+			#print("Wall Ride Rotation:" + str(rotation_degrees))
 			if rotation_degrees<90:
 				rotation_degrees=rotation_degrees-90.0*delta
 			if rotation_degrees>90:

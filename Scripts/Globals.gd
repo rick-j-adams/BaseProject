@@ -42,6 +42,14 @@ var randomNumbers :Array = [47 ,22 ,67 ,83 ,82 ,36 ,2 ,89 ,98 ,42 ,70 ,60 ,53 ,9
 var sectionRandomer : int = 11621
 var subSectionRandomer : int = 17377
 
+var puffPool : Array = []
+var maxPuffPoolSize : int = 32
+var puffMachine :PuffMachine = null
+
+var bitPool : Array = []
+var maxBitPoolSize : int = 32
+#var bitMachine :PuffMachine = null
+
 func get_next_rand() -> int:
 	var number:int = randomNumbers[randomPointer]
 	randomPointer=randomPointer+1
@@ -68,6 +76,36 @@ func get_random_five() -> int:
 	var number:int = get_next_rand()
 	return number%5	
 
+func setUpPuffPool() -> void:
+	for i in range(maxPuffPoolSize):
+		var puff:Node = sceneMap.get("puffEffect").instantiate()
+		puffPool.append(puff)
+		if mainScene != null:
+			mainScene.add_child(puff)
+		
+func createPuff(position:Vector2) -> void:
+	if puffPool.size() == 0:
+		setUpPuffPool()
+	for puff in puffPool:
+		if not puff.visible:
+			puff.setAndRelease(position)
+			return
+
+func setUpBitPool() -> void:
+	for i in range(maxBitPoolSize):
+		var bit:Node = sceneMap.get("bit").instantiate()
+		bitPool.append(bit)
+		if mainScene != null:
+			mainScene.add_child(bit)
+
+func createBit(position:Vector2) -> void:
+	if bitPool.size() == 0:
+		setUpBitPool()
+	for bit in bitPool:
+		if not bit.isOn:
+			bit.moveBit(position)
+			return
+
 func moveSparkEffect(position:Vector2, rotation:float, flipX:bool, animationName:String):
 	if sparkEffectScene == null:
 		sparkEffectScene = sceneMap.get("sparkEffect").instantiate()
@@ -80,6 +118,18 @@ func moveSparkEffect(position:Vector2, rotation:float, flipX:bool, animationName
 		sparkEffectScene.rotation = rotation
 		sparkEffectScene.flip_h = flipX
 		sparkAnimationPlayer.play(animationName)
+
+func movePuffMachine(setPosition:Vector2, setCooldown: float, setDuration: float):
+	if puffMachine == null:
+		puffMachine = sceneMap.get("puffMachine").instantiate()
+		if puffMachine != null and mainScene != null:
+			mainScene.add_child(puffMachine)
+
+	if puffMachine != null:
+		if not puffMachine.isOn:
+			puffMachine.createPuffMMachine(setPosition, setCooldown, setDuration)
+
+
 
 func transitionTo(newSceneName:String):
 	if transitionMask !=null:

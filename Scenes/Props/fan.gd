@@ -19,6 +19,8 @@ func _ready():
 func repair():
 	if isBroken:
 		isBroken = false
+		Globals.createPuff(global_position)
+		Globals.movePuffMachine(global_position, 0.05, 1)
 		animationPlayer.play("Birth")
 
 func turnOn():

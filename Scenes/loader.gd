@@ -14,6 +14,9 @@ var currentloadState = LOAD_STATES.SCENES
 	"gameWindow" : "res://Scenes/Main/GameWindow.tscn",
 	"credits" : "res://Scenes/Credits.tscn",
 	"sparkEffect" :"res://Images/Character/SparkEffects.tscn",
+	"puffEffect" :"res://Scenes/Effects/Puff.tscn",
+	"puffMachine" :"res://Scenes/Effects/PuffMachine.tscn",
+	"bit" :"res://Scenes/Props/Bit.tscn",
 	"test" :"res://Scenes/TestLevel/TestLevel.tscn",
 }
 

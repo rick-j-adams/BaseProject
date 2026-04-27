@@ -1239,7 +1239,8 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_vva6v"]
 tile_size = Vector2i(64, 64)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 terrain_set_0/mode = 1
 terrain_set_0/terrain_0/name = "FLOORS"
 terrain_set_0/terrain_0/color = Color(0.501961, 0.968627, 0.25098, 1)
@@ -3490,6 +3491,8 @@ tile_set = SubResource("TileSet_xw7kl")
 
 [node name="Dydimo" parent="." instance=ExtResource("8_840qq")]
 position = Vector2(213, 205)
+wallRide = true
+chute = true
 
 [node name="Floor" type="TileMapLayer" parent="."]
 position = Vector2(24, -5)

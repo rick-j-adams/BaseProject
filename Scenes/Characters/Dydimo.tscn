@@ -1,8 +1,9 @@
-[gd_scene load_steps=38 format=3 uid="uid://dcgmiqmop582s"]
+[gd_scene load_steps=39 format=3 uid="uid://dcgmiqmop582s"]
 
 [ext_resource type="Script" uid="uid://c8u8jsmwudb1d" path="res://Scenes/Characters/dydimo.gd" id="1_2324m"]
 [ext_resource type="Texture2D" uid="uid://d1fac0jajjh2h" path="res://Images/Character/DydimoSpriteSheet.png" id="1_tvnxl"]
 [ext_resource type="Texture2D" uid="uid://byp1lcmdh00nm" path="res://Images/System/light1920.png" id="3_m0oep"]
+[ext_resource type="Script" uid="uid://dbbrhmyet7xy6" path="res://Scenes/point.gd" id="4_eblft"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2324m"]
 radius = 28.0713
@@ -741,3 +742,8 @@ target_position = Vector2(26.2312, -1.98105)
 [node name="RayCast2DFacingBack" type="RayCast2D" parent="."]
 position = Vector2(-42, 59)
 target_position = Vector2(-23, 6)
+
+[node name="RPoint" type="Node2D" parent="."]
+position = Vector2(-8, 75)
+script = ExtResource("4_eblft")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"

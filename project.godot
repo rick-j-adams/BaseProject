@@ -34,6 +34,10 @@ mouse_cursor/custom_image="res://Images/System/mousePointer.png"
 
 pointing/emulate_touch_from_mouse=true
 
+[layer_names]
+
+2d_physics/layer_16="none"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
