@@ -318,7 +318,8 @@ func _process(delta: float) -> void:
 		#for testing purposes
 		var bitPosition: Vector2 = global_position
 		bitPosition.y = bitPosition.y - 128
-		Globals.createBit(bitPosition)
+		#Globals.createBit(bitPosition)
+		#Globals.moveBitMachine(global_position, 0.1, 1.0)
 		
 		#wallRide = !wallRide
 		#doTeleport()

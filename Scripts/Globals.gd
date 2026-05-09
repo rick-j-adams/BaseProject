@@ -26,6 +26,7 @@ var editMode : bool = true
 
 var mainScene  : Node = null
 var mainCamera : Camera2D = null
+var hud: Node = null
 
 var transitionMask : TransistionMask = null
 var interfaceAudio : AudioStreamPlayer2D = null
@@ -48,7 +49,7 @@ var puffMachine :PuffMachine = null
 
 var bitPool : Array = []
 var maxBitPoolSize : int = 32
-#var bitMachine :PuffMachine = null
+var bitMachine :BitMachine = null
 
 func get_next_rand() -> int:
 	var number:int = randomNumbers[randomPointer]
@@ -75,6 +76,10 @@ func get_random_four() -> int:
 func get_random_five() -> int:
 	var number:int = get_next_rand()
 	return number%5	
+
+func nsfHud() -> void:
+	if hud != null:
+		return hud.nsf()
 
 func setUpPuffPool() -> void:
 	for i in range(maxPuffPoolSize):
@@ -129,6 +134,16 @@ func movePuffMachine(setPosition:Vector2, setCooldown: float, setDuration: float
 		if not puffMachine.isOn:
 			puffMachine.createPuffMMachine(setPosition, setCooldown, setDuration)
 
+func moveBitMachine(setPosition:Vector2, setCooldown: float, setDuration: float):
+	if bitMachine == null:
+		bitMachine = sceneMap.get("bitMachine").instantiate()
+		if bitMachine != null and mainScene != null:
+			mainScene.add_child(bitMachine)
+
+	if bitMachine != null:
+		if not bitMachine.isOn:
+			bitMachine.createBitMachine(setPosition, setCooldown, setDuration)
+
 
 
 func transitionTo(newSceneName:String):
@@ -159,7 +174,20 @@ func playInterfaceAudio(localPostion: Vector2, audioName: String) -> void:
 		if audioName != null:
 			interfaceAudio.stream =  audio
 			interfaceAudio.play()
-		
+
+func getGameProperyNoDefault(propertyName:String) -> Variant:
+	var value:Variant = allResources.gamesValues.get(propertyName)
+	return value
+
+func getGamePropery(propertyName:String) -> Variant:
+	var value:Variant = allResources.gamesValues.get(propertyName)
+	if value == null:
+		value = 0
+		allResources.gamesValues[propertyName] = value
+	return value
+
+func setGamePropery(propertyName:String, value:Variant) -> void:
+	allResources.gamesValues[propertyName] = value
 
 func saveResources() -> void:
 	var result = ResourceSaver.save(allResources, RESOURCE_FILE_PATH)

@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=3 uid="uid://dl0yna6w7oumh"]
+
+[ext_resource type="Script" uid="uid://cx1lri5blrvbn" path="res://Scenes/Props/box.gd" id="1_4ldmk"]
+[ext_resource type="Texture2D" uid="uid://331i87c5hygu" path="res://Images/Props/Box.png" id="2_eqnyj"]
+
+[sub_resource type="Animation" id="Animation_s7byj"]
+resource_name = "Die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_4ldmk"]
+resource_name = "Hit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_146c4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_uijwu"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mdbn4"]
+_data = {
+&"Die": SubResource("Animation_s7byj"),
+&"Hit": SubResource("Animation_4ldmk"),
+&"RESET": SubResource("Animation_146c4"),
+&"idle": SubResource("Animation_uijwu")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ldmk"]
+size = Vector2(62, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqnyj"]
+size = Vector2(53, 16)
+
+[node name="Box" type="Node2D"]
+script = ExtResource("1_4ldmk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_eqnyj")
+hframes = 3
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mdbn4")
+}
+autoplay = "idle"
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(3, -2)
+shape = SubResource("RectangleShape2D_4ldmk")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2.5, -38)
+shape = SubResource("RectangleShape2D_eqnyj")
+
+[node name="RemoveAfter" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="RemoveAfter" to="." method="_on_remove_after_timeout"]

@@ -15,6 +15,7 @@ class_name Bit
 const OUT_OFF_WAY : Vector2 = Vector2(-1000000000, -1000000000)
 const FLY_ANIMATION = "Fly"
 const WAIT_ANIMATION = "Wait"
+const BITS = "bits"
 
 var maxSpeed : float = 800.0
 
@@ -85,7 +86,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				Globals.createPuff(global_position)
 				Globals.moveSparkEffect(global_position, 0, false, "VolumeBloom")
 				stand_by()
-				body.bitCounter += 1
+				var bits = Globals.getGamePropery(BITS)
+				# if bits == null:
+				# 	bits = 0
+				bits += 1
+				Globals.setGamePropery(BITS, bits)
 				#print("Bit Counter: ", body.bitCounter)
 
 

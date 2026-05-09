@@ -5,3 +5,4 @@ extends Resource
 @export var allEffects:Dictionary = {}
 @export var allAbilitities:Dictionary = {}
 @export var worldAttributes:Dictionary = {}
+@export var gamesValues:Dictionary = {}

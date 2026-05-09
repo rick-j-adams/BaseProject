@@ -7,6 +7,9 @@ extends Node2D
 @onready var sprite :Sprite2D = $Sprite2D
 @onready var animationPlayer :AnimationPlayer = $AnimationPlayer
 
+const BITS = "bits"
+var repairCostInBits : int = 10
+
 func _ready():
 	if isOn:
 		animationPlayer.play("Fan")
@@ -18,11 +21,16 @@ func _ready():
 
 func repair():
 	if isBroken:
-		isBroken = false
-		Globals.createPuff(global_position)
-		Globals.movePuffMachine(global_position, 0.05, 1)
-		animationPlayer.play("Birth")
-
+		var bits = Globals.getGamePropery(BITS)
+		if bits >= repairCostInBits:
+			Globals.setGamePropery(BITS, bits - repairCostInBits)
+			isBroken = false
+			Globals.createPuff(global_position)
+			Globals.movePuffMachine(global_position, 0.05, 1)
+			animationPlayer.play("Birth")
+		else:
+			Globals.nsfHud()
+			
 func turnOn():
 	if not isBroken:
 		isOn = true
