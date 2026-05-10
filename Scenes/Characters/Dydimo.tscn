@@ -747,3 +747,8 @@ target_position = Vector2(-23, 6)
 position = Vector2(-8, 75)
 script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="UPoint" type="Node2D" parent="."]
+position = Vector2(9, -71)
+script = ExtResource("4_eblft")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"

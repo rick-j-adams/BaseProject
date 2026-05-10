@@ -1,10 +1,15 @@
 extends Node2D
 
-class_name Fan
+class_name Buildable
 
+enum BuildableType {
+	FAN,
+	TELEPORTER
+}
+
+@export var buildableType: BuildableType = BuildableType.TELEPORTER
 @export var isOn := false	
 @export var isBroken :bool = true
-# @export var repairCost :int = 10
 
 @onready var sprite :Sprite2D = $Sprite2D
 @onready var animationPlayer :AnimationPlayer = $AnimationPlayer
@@ -12,11 +17,11 @@ class_name Fan
 
 
 const BITS = "bits"
-@export var repairCostInBits : float = 10
+@export var repairCostInBits : float = 5
 
 func _ready():
 	if isOn:
-		animationPlayer.play("Fan")
+		animationPlayer.play("Idle")
 	else:
 		if isBroken:
 			animationPlayer.play("Broken")
@@ -28,11 +33,8 @@ func repair(setPosition: Vector2):
 		var bits = Globals.getGamePropery(BITS)
 		if bits >= repairCostInBits:
 			Globals.moveBitPayMachine(setPosition, global_position,repairCostInBits)		
-			
-
 			startBuildTimer.wait_time = 0.2*repairCostInBits
-			startBuildTimer.start()
-			
+			startBuildTimer.start()	
 		else:
 			Globals.nsfHud(repairCostInBits)
 		
@@ -40,26 +42,13 @@ func repair(setPosition: Vector2):
 func turnOn():
 	if not isBroken:
 		isOn = true
-		animationPlayer.play("Fan")
-
-func _on_blow_area_body_exited(body:Node2D) -> void:
-	if body.is_in_group("actor"):
-		if body is Dydimo:
-			if isOn and not isBroken and body.chute:
-				body.blowUp = false
-
-func _on_blow_area_body_entered(body:Node2D) -> void:
-	if body.is_in_group("actor"):
-		if body is Dydimo:
-			if isOn and not isBroken and body.chute:
-				body.blowUp = true
+		animationPlayer.play("Idle")
 
 
 func _on_build_area_body_exited(body:Node2D) -> void:
 	if body.is_in_group("actor"):
 		if body is Dydimo:
 			body.buildableArea = null
-
 
 
 func _on_start_build_timer_timeout() -> void:
@@ -69,9 +58,32 @@ func _on_start_build_timer_timeout() -> void:
 	Globals.createPuff(global_position)
 	Globals.movePuffMachine(global_position, 0.05, 1)
 	if Globals.closeTo(global_position):
-		Globals.mainCharacter.blowUp = true
+		setUseable()
 
 func _on_build_area_body_entered(body:Node2D) -> void:
 	if body.is_in_group("actor"):
 		if body is Dydimo:
 			body.buildableArea = self
+
+func setUseable():
+	if !animationPlayer.is_playing():
+		animationPlayer.play("Ready")
+	if buildableType == BuildableType.TELEPORTER:
+		Globals.mainCharacter.canTeleport = true
+
+func setUnUseable():
+	animationPlayer.play("Idle")
+	if buildableType == BuildableType.TELEPORTER:
+		Globals.mainCharacter.canTeleport = false
+
+func _on_use_area_body_entered(body:Node2D) -> void:
+	if body.is_in_group("actor"):
+		if body is Dydimo:
+			if isOn and not isBroken :				
+				setUseable()
+
+func _on_use_area_body_exited(body:Node2D) -> void:
+	if body.is_in_group("actor"):
+		if body is Dydimo:
+			if isOn and not isBroken:
+				setUnUseable()

@@ -50,7 +50,20 @@ var puffMachine :PuffMachine = null
 var bitPool : Array = []
 var maxBitPoolSize : int = 32
 var bitMachine :BitMachine = null
+var bitPayMachine :BitPayMachine = null
 
+var lastPosition: Vector2 = Vector2.ZERO
+var mainCharacter = null
+
+func setMainCharacter(character):
+	mainCharacter = character
+
+func closeTo(position: Vector2) -> bool:
+	if position.distance_to(Globals.lastPosition) < 100:
+		return  true
+	else:
+		return false
+	
 func get_next_rand() -> int:
 	var number:int = randomNumbers[randomPointer]
 	randomPointer=randomPointer+1
@@ -77,9 +90,9 @@ func get_random_five() -> int:
 	var number:int = get_next_rand()
 	return number%5	
 
-func nsfHud() -> void:
+func nsfHud(amount: float) -> void:
 	if hud != null:
-		return hud.nsf()
+		hud.nsf(amount)
 
 func setUpPuffPool() -> void:
 	for i in range(maxPuffPoolSize):
@@ -109,6 +122,14 @@ func createBit(position:Vector2) -> void:
 	for bit in bitPool:
 		if not bit.isOn:
 			bit.moveBit(position)
+			return
+	
+func createBitPay(position:Vector2, destination:Vector2) -> void:
+	if bitPool.size() == 0:
+		setUpBitPool()
+	for bit in bitPool:
+		if not bit.isOn:
+			bit.moveBitPayment(position, destination)
 			return
 
 func moveSparkEffect(position:Vector2, rotation:float, flipX:bool, animationName:String):
@@ -144,7 +165,15 @@ func moveBitMachine(setPosition:Vector2, setCooldown: float, setDuration: float)
 		if not bitMachine.isOn:
 			bitMachine.createBitMachine(setPosition, setCooldown, setDuration)
 
+func moveBitPayMachine(setPosition:Vector2, setDestination: Vector2, amountToPay: float):
+	if bitPayMachine == null:
+		bitPayMachine = sceneMap.get("bitPayMachine").instantiate()
+		if bitPayMachine != null and mainScene != null:
+			mainScene.add_child(bitPayMachine)
 
+	if bitPayMachine != null:
+		if not bitPayMachine.isOn:
+			bitPayMachine.createBitPayMachine(setPosition, setDestination, amountToPay)
 
 func transitionTo(newSceneName:String):
 	if transitionMask !=null:

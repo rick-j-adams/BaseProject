@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://bf0if5w2l0v7k"]
+[gd_scene load_steps=27 format=4 uid="uid://bf0if5w2l0v7k"]
 
 [ext_resource type="Texture2D" uid="uid://bxujlxx188ne4" path="res://Images/Tiles/plates8x8-small.png" id="3_1nb57"]
 [ext_resource type="Texture2D" uid="uid://bpt2tjdv68nqi" path="res://Images/Tiles/mask.png" id="3_fnepx"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://clnsmfvcelws5" path="res://Images/Backgrounds/rubbish/bigrubbish.png" id="8_csnxk"]
 [ext_resource type="Texture2D" uid="uid://dppnkjebo58vj" path="res://Images/Tiles/Wall64x128.png" id="9_csnxk"]
 [ext_resource type="Texture2D" uid="uid://cc5cg13h3nner" path="res://Images/test.png" id="12_840qq"]
+[ext_resource type="PackedScene" uid="uid://buoa4mtfneu4r" path="res://Scenes/Props/Buildable.tscn" id="13_rw1vm"]
 [ext_resource type="PackedScene" uid="uid://dik1hc88oxcxa" path="res://Scenes/Props/Fan.tscn" id="13_s6xme"]
 [ext_resource type="PackedScene" uid="uid://dl0yna6w7oumh" path="res://Scenes/Props/Box.tscn" id="14_0hfpu"]
 
@@ -3492,7 +3493,9 @@ tile_set = SubResource("TileSet_xw7kl")
 
 [node name="Dydimo" parent="." instance=ExtResource("8_840qq")]
 position = Vector2(213, 205)
-wallRide = true
+doubleJump = true
+wallRide = false
+telePorter = true
 chute = true
 
 [node name="Floor" type="TileMapLayer" parent="."]
@@ -3624,3 +3627,13 @@ position = Vector2(-360, 1424)
 
 [node name="Box8" parent="." instance=ExtResource("14_0hfpu")]
 position = Vector2(-361, 1367)
+
+[node name="Fan10" parent="." instance=ExtResource("13_rw1vm")]
+
+[node name="Buildable" parent="." instance=ExtResource("13_rw1vm")]
+position = Vector2(2561, 259)
+
+[node name="Buildable2" parent="." instance=ExtResource("13_rw1vm")]
+position = Vector2(3027, 260)
+isOn = true
+isBroken = false

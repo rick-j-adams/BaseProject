@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bea41qjpgfh6f"]
+
+[ext_resource type="Script" uid="uid://ddnddpvq5kbbj" path="res://Scenes/Effects/bit_pay_machine.gd" id="1_mwi2b"]
+
+[node name="BitPayMachine" type="Node2D"]
+script = ExtResource("1_mwi2b")
+
+[node name="CoolDownPay" type="Timer" parent="."]
+
+[node name="DurationPay" type="Timer" parent="."]
+
+[connection signal="timeout" from="CoolDownPay" to="." method="_on_cool_down_pay_timeout"]
+[connection signal="timeout" from="DurationPay" to="." method="_on_duration_pay_timeout"]

@@ -17,6 +17,7 @@ var currentloadState = LOAD_STATES.SCENES
 	"puffEffect" :"res://Scenes/Effects/Puff.tscn",
 	"puffMachine" :"res://Scenes/Effects/PuffMachine.tscn",
 	"bitMachine" :"res://Scenes/Effects/BitMachine.tscn",
+	"bitPayMachine" :"res://Scenes/Effects/BitPayMachine.tscn",
 	"bit" :"res://Scenes/Props/Bit.tscn",
 	"test" :"res://Scenes/TestLevel/TestLevel.tscn",
 }

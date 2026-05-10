@@ -14,6 +14,7 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 		if not destroyed:
 			if body is Dydimo:			
 				destroy()
+				body.yForce -= 1000
 				
 
 func destroy():

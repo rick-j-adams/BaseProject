@@ -3,11 +3,15 @@ extends CanvasLayer
 const BITS = "bits"
 
 var BASE_SIZE : float = 36.0
-var INCREMENT_SIZE : float = 4.0
+var INCREMENT_SIZE : float = 20
 
+# var maxHealthSize : float = 10.0
 
 @onready var animationPlayer :AnimationPlayer = $AnimationPlayer
-@onready var bealthBar: ColorRect = $HealthBar
+@onready var healthBar: ColorRect = $HealthBar
+@onready var maxHealthBar: ColorRect = $MaxHealth
+@onready var payBar: ColorRect = $PayBar
+
 
 func _ready():
 	Globals.hud = self
@@ -19,8 +23,15 @@ func _ready():
 func _process(delta: float) -> void:
 	var bits = Globals.getGameProperyNoDefault(BITS)
 	var size = BASE_SIZE + (bits * INCREMENT_SIZE)
-	bealthBar.size = Vector2(size, bealthBar.size.y)
+	var maxHealthSize = BASE_SIZE + (10 * INCREMENT_SIZE) #TODO replace with max health
+	healthBar.size = Vector2(size, healthBar.size.y)
+	if maxHealthBar.size.x < maxHealthSize:
+		maxHealthBar.size.x = maxHealthBar.size.x + (INCREMENT_SIZE * delta) 
+	if maxHealthBar.size.x > maxHealthSize:
+		maxHealthBar.size.x = maxHealthSize
 
-func nsf() -> void:
+func nsf(amount: float) -> void:
+	var maxPaySize = BASE_SIZE + (amount * INCREMENT_SIZE)
+	payBar.size = Vector2(maxPaySize, payBar.size.y)
 	animationPlayer.play("NSF")
 	
