@@ -309,6 +309,14 @@ func _process(delta: float) -> void:
 		var bitPosition: Vector2 = global_position
 		bitPosition.y -= 128
 
+	if Input.is_action_just_released("ui_select"):
+		print("SELECT")
+		if zap:
+			Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "Zap")
+		if bigZap:
+			Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "BigZap")
+
+
 	# Allow steep surfaces to act as walkable floor when wall riding
 	if nextToWall() and wallRide and (rotation_degrees < -45 or rotation_degrees > 45):
 		floor_max_angle = deg_to_rad(100)

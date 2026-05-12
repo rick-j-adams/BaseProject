@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1ui4fob7e0xk"]
+
+[ext_resource type="Texture2D" uid="uid://cx4mjenbhmmmh" path="res://Images/Icons/right.png" id="1_ktoyk"]
+[ext_resource type="Texture2D" uid="uid://cx27efuhm485j" path="res://Images/Icons/left.png" id="2_20pe5"]
+[ext_resource type="Texture2D" uid="uid://bna7qjjsfjmaw" path="res://Images/Icons/up.png" id="3_51u1d"]
+[ext_resource type="Texture2D" uid="uid://b8y7t1127ee4x" path="res://Images/Icons/down.png" id="4_2ssy2"]
+[ext_resource type="Texture2D" uid="uid://depwhr3rgci3v" path="res://Images/Icons/target.png" id="5_kkn4d"]
+
+[node name="TouchOne" type="CanvasLayer"]
+
+[node name="Node2D" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+
+[node name="TouchScreenButtonRight" type="TouchScreenButton" parent="Node2D"]
+position = Vector2(808, 87)
+scale = Vector2(4.59375, 10.5625)
+texture_normal = ExtResource("1_ktoyk")
+texture_pressed = ExtResource("1_ktoyk")
+passby_press = true
+action = "ui_right"
+
+[node name="TouchScreenButtonLeft" type="TouchScreenButton" parent="Node2D"]
+position = Vector2(2, 86)
+scale = Vector2(4.84375, 10.75)
+texture_normal = ExtResource("2_20pe5")
+texture_pressed = ExtResource("2_20pe5")
+passby_press = true
+action = "ui_left"
+
+[node name="TouchScreenButtonUp" type="TouchScreenButton" parent="Node2D"]
+position = Vector2(294, 6)
+scale = Vector2(12.0625, 4.71875)
+texture_normal = ExtResource("3_51u1d")
+texture_pressed = ExtResource("3_51u1d")
+passby_press = true
+action = "ui_up"
+
+[node name="TouchScreenButtonDown" type="TouchScreenButton" parent="Node2D"]
+position = Vector2(284, 378)
+scale = Vector2(12.1563, 4.90625)
+texture_normal = ExtResource("4_2ssy2")
+texture_pressed = ExtResource("4_2ssy2")
+passby_press = true
+action = "ui_down"
+
+[node name="TouchScreenButtonAcept" type="TouchScreenButton" parent="Node2D"]
+position = Vector2(294, 179)
+scale = Vector2(11.9063, 5.6875)
+texture_normal = ExtResource("5_kkn4d")
+texture_pressed = ExtResource("5_kkn4d")
+passby_press = true
+action = "ui_select"
