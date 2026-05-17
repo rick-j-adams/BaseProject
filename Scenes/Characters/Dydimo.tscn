@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dcgmiqmop582s"]
+[gd_scene load_steps=43 format=3 uid="uid://dcgmiqmop582s"]
 
 [ext_resource type="Script" uid="uid://c8u8jsmwudb1d" path="res://Scenes/Characters/dydimo.gd" id="1_2324m"]
 [ext_resource type="Texture2D" uid="uid://d1fac0jajjh2h" path="res://Images/Character/DydimoSpriteSheet.png" id="1_tvnxl"]
@@ -349,6 +349,30 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(-7, 59)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite2D:vframes")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
 
 [sub_resource type="Animation" id="Animation_exiak"]
 resource_name = "Rising"
@@ -655,10 +679,123 @@ tracks/0/keys = {
 "values": [64, 65, 66]
 }
 
+[sub_resource type="Animation" id="Animation_elto3"]
+resource_name = "Damage"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0494175, 0.100356, 0.149013, 0.19843, 0.250889, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jkwsk"]
+resource_name = "Normal"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rfbml"]
+resource_name = "Magenet"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00228081, 0.0666667, 0.133333, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [95, 94, 93, 92, 91]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:flip_v")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fo3bt"]
+resource_name = "MagenetOff"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.000760269, 0.0666667, 0.133333, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [95, 94, 93, 92, 91]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:flip_v")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ifd3n"]
 _data = {
 &"BackReturn": SubResource("Animation_0xxwq"),
 &"Birth": SubResource("Animation_q8jek"),
+&"Damage": SubResource("Animation_elto3"),
 &"Death1": SubResource("Animation_m0oep"),
 &"Death2": SubResource("Animation_eblft"),
 &"Default": SubResource("Animation_vurtd"),
@@ -670,6 +807,9 @@ _data = {
 &"Land": SubResource("Animation_cyxe7"),
 &"LookDown": SubResource("Animation_y3oah"),
 &"LookUp": SubResource("Animation_blff5"),
+&"Magenet": SubResource("Animation_rfbml"),
+&"MagenetOff": SubResource("Animation_fo3bt"),
+&"Normal": SubResource("Animation_jkwsk"),
 &"ParaShootClose": SubResource("Animation_wqkuy"),
 &"ParashootOpen": SubResource("Animation_h2vex"),
 &"Parashootfloat": SubResource("Animation_ejsp3"),
@@ -696,6 +836,7 @@ floor_snap_length = 10.0
 script = ExtResource("1_2324m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
 texture = ExtResource("1_tvnxl")
 hframes = 10
 vframes = 10
@@ -730,7 +871,7 @@ position = Vector2(-41, 58)
 target_position = Vector2(0, 35)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(11, -34)
+position = Vector2(559, -266)
 energy = 0.5
 texture = ExtResource("3_m0oep")
 
@@ -752,3 +893,21 @@ metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 position = Vector2(9, -71)
 script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="DyingTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="BirthTimer" type="Timer" parent="."]
+
+[node name="MagTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="DyingTimer" to="." method="_on_dying_timer_timeout"]
+[connection signal="timeout" from="BirthTimer" to="." method="_on_birth_timer_timeout"]
+[connection signal="timeout" from="MagTimer" to="." method="_on_mag_timer_timeout"]

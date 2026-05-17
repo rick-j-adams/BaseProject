@@ -12,23 +12,30 @@ class_name Dydimo
 @onready var camera :Camera2D = $Camera2D
 @onready var underside :RPoint = $RPoint
 @onready var upperside :RPoint = $UPoint
+@onready var hitTimer :Timer = $HitTimer
+@onready var dyingTimer :Timer = $DyingTimer
+@onready var birthTimer :Timer = $BirthTimer
+@onready var magnetTimer :Timer = $MagTimer
 
+
+
+const BITS = "bits"
 
 @onready var teleportRightRay :RayCast2D = $RayCast2DTeleportRight
 @onready var teleportLeftRay :RayCast2D = $RayCast2DTeleportLeft
 
-@export var zap : bool = false
-@export var bigZap : bool = false
-@export var doubleJump : bool = false #done
-@export var jetPack : bool = false #done
-@export var wallRide : bool = true # done - for now
-@export var telePorter : bool = false
-@export var healthPack : bool = false
-@export var bigHealthPack : bool = false
-@export var chute : bool = false
-@export var magnet : bool = false
+# @export var zap : bool = false
+# @export var bigZap : bool = false
+# @export var doubleJump : bool = false #done
+# @export var jetPack : bool = false #done
+# @export var wallRide : bool = true # done - for now
+# @export var telePorter : bool = false
+# @export var healthPack : bool = false
+# @export var bigHealthPack : bool = false
+# @export var chute : bool = false
+# @export var magnet : bool = false # done
 @export var security : bool = false
-@export var speedBoost : bool = false #done
+# @export var speedBoost : bool = false #done
 
 enum STATES {BIRTH, IDLE, WALKING, RUNNING, PREJUMP, JUMPING, FALLING, BLOWING}
 var state : STATES = STATES.BIRTH
@@ -63,8 +70,12 @@ var buildableArea : Node2D = null
 var blowUp : bool = false
 var lastBlowUp : bool = false
 var canTeleport : bool = false
+var invulnerable : bool = false
+var dying : bool = false
+var birthing : bool = true
+var magneting:	 bool = false
 
-var bitCounter : int = 0
+var magnetCounter : int = 0
 
 # ─── helpers ──────────────────────────────────────────────────────────────────
 
@@ -76,21 +87,42 @@ func nextToWall() -> bool:
 
 # True once the character has rotated far enough to be gripping a wall.
 func isOnWallRide() -> bool:
-	return wallRide and nextToWall() and (rotation_degrees >= 45.0 or rotation_degrees <= -45.0)
+	return Globals.getBoolGamePropery("wallRide") and nextToWall() and (rotation_degrees >= 45.0 or rotation_degrees <= -45.0)
 
 # ─── ready ────────────────────────────────────────────────────────────────────
 
 func _ready() -> void:
-	
 	add_to_group("actor")
-	animationPlayer.play(currentAnimation)
+	# animationPlayer.play(currentAnimation)
 	Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "BirthSpark")
 	Globals.setMainCharacter(self)
+	startBirth()
+	
+
+func startBirth():
+	birthing = true
+	var bits = Globals.getGamePropery(BITS)
+	bits = 1
+	Globals.setGamePropery(BITS, bits)
+	birthTimer.start()
 	state = STATES.BIRTH
+	currentAnimation  = "Birth"
+	animationPlayer.play(currentAnimation)
+
 
 # ─── animation ────────────────────────────────────────────────────────────────
 
 func doAnimation(onFloor: bool):
+	if not inControl():
+		return
+	# if currentAnimation == "Damage":
+	# 	if animationPlayer.is_playing() != false:
+	# 		lastAnimation = currentAnimation	
+	# 	else:
+	# 		animationPlayer.play("Normal")
+	# 		currentAnimation = "Default"	
+	# 	return
+		
 	match state:
 		STATES.BIRTH:
 			currentAnimation = "Birth"
@@ -123,7 +155,7 @@ func doAnimation(onFloor: bool):
 							currentAnimation = "ParashootOpen"
 						else:
 							currentAnimation = "Parashootfloat"
-					elif jetPack:
+					elif Globals.getBoolGamePropery("jetPack"):
 						currentAnimation = "Falling"
 					else:
 						currentAnimation = "Rising"
@@ -185,7 +217,8 @@ func changeState(newState: STATES):
 			currentAnimation = "WalkStart"
 		if state == STATES.WALKING and newState == STATES.IDLE:
 			currentAnimation = "WalkStop"
-			Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "StopSpark")
+			if magnetCounter <=0 :
+				Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "StopSpark")
 		if state == STATES.IDLE and newState == STATES.PREJUMP:
 			currentAnimation = "Spring"
 			currentJumpForce = 0.0
@@ -202,7 +235,7 @@ func changeState(newState: STATES):
 		if state == STATES.JUMPING and newState == STATES.FALLING:
 			currentAnimation = "Falling"
 		if state == STATES.WALKING and newState == STATES.FALLING:
-			currentAnimation = "Falling" if jetPack else "Rising"
+			currentAnimation = "Falling" if Globals.getBoolGamePropery("jetPack") else "Rising"
 		if state == STATES.IDLE and newState == STATES.FALLING:
 			currentAnimation = "Rising"
 		if state == STATES.JUMPING and newState == STATES.PREJUMP:
@@ -232,7 +265,7 @@ func calcAcceleration(delta: float, direction: float, currentSpeed: float, onFlo
 	else:
 		var localAcceleration: float = acceleration
 		var localMaxSpeed: float = maxSpeed
-		if speedBoost:
+		if Globals.getBoolGamePropery("speedBoost"):
 			localAcceleration *= 1.5
 			localMaxSpeed *= 1.5
 		if not onFloor:
@@ -250,7 +283,7 @@ func decelerate(delta: float, direction: float, currentSpeed: float, onFloor: bo
 		Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "StartSpark")
 
 	var localMaxSpeed: float = maxSpeed
-	if speedBoost:
+	if Globals.getBoolGamePropery("speedBoost"):
 		localMaxSpeed *= 1.5
 	var appliedRatio: float = clamp(1.0 - (currentSpeed / localMaxSpeed), 0.0, 1.0)
 	var appliedBreakForce: float = breakForce
@@ -277,13 +310,13 @@ func _process(delta: float) -> void:
 	var isNowOnFloor: bool = isOnFloor()
 	interaction = false
 
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("ui_right") and inControl():
 		changeState(STATES.WALKING)
 		changeDirection(false)
 		calcAcceleration(delta, 1, currentSpeed, isNowOnFloor)
 		interaction = true
 
-	elif Input.is_action_pressed("ui_left"):
+	elif Input.is_action_pressed("ui_left") and inControl():
 		changeState(STATES.WALKING)
 		changeDirection(true)
 		calcAcceleration(delta, -1, currentSpeed, isNowOnFloor)
@@ -292,38 +325,39 @@ func _process(delta: float) -> void:
 	else:
 		decelerate(delta, sign(xForce), currentSpeed, isNowOnFloor)
 
-	if Input.is_action_just_pressed("ui_up"):
-		if isNowOnFloor or (doubleJump and jumpCounter < 2) or jetPack:
+	if Input.is_action_just_pressed("ui_up") and inControl():
+		if isNowOnFloor or (Globals.getBoolGamePropery("doubleJump") and jumpCounter < 2) or Globals.getBoolGamePropery("jetPack"):
 			changeState(STATES.PREJUMP)
 			springing = true
 			interaction = true
 
-	if Input.is_action_just_released("ui_up"):
+	if Input.is_action_just_released("ui_up") and inControl():
 		doJump(isNowOnFloor)
 		interaction = true
 
-	if Input.is_action_just_released("ui_down"):
+	if Input.is_action_just_released("ui_down") and inControl():
 		if buildableArea != null:
 			buildableArea.repair(upperside.global_position)
 		doTeleport()
 		var bitPosition: Vector2 = global_position
 		bitPosition.y -= 128
+		# takeDamage(2.0, underside.global_position)
 
-	if Input.is_action_just_released("ui_select"):
+	if Input.is_action_just_released("ui_select") and inControl():
 		print("SELECT")
-		if zap:
+		if Globals.getBoolGamePropery("zap"):
 			Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "Zap")
-		if bigZap:
+		if Globals.getBoolGamePropery("biZap"):
 			Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "BigZap")
 
 
 	# Allow steep surfaces to act as walkable floor when wall riding
-	if nextToWall() and wallRide and (rotation_degrees < -45 or rotation_degrees > 45):
+	if nextToWall() and Globals.getBoolGamePropery("wallRide") and (rotation_degrees < -45 or rotation_degrees > 45):
 		floor_max_angle = deg_to_rad(100)
 	else:
 		floor_max_angle = deg_to_rad(50)
 
-	if not interaction and wallRide:
+	if not interaction and Globals.getBoolGamePropery("wallRide"):
 		floor_max_angle = deg_to_rad(50)
 
 	if springing:
@@ -383,10 +417,13 @@ func doForces(delta: float):
 			velocity.x = -wallPressForce
 			velocity.y = xForce
 	else:
-		yForce += Globals.GRAVITY * delta
+		if magnetCounter>0 :
+			yForce -= Globals.GRAVITY * delta
+		else:
+			yForce += Globals.GRAVITY * delta
 
 		# Push character away from walls when wallRide is disabled
-		if not wallRide and nextToWall() and (not isOnFloor() or rotation_degrees >= 45 or rotation_degrees <= -45):
+		if not Globals.getBoolGamePropery("wallRide") and nextToWall() and (not isOnFloor() or rotation_degrees >= 45 or rotation_degrees <= -45):
 			if rayFacing.is_colliding():
 				xForce -= 20
 			else:
@@ -400,7 +437,7 @@ func doForces(delta: float):
 # ─── rotation ─────────────────────────────────────────────────────────────────
 
 func doRotate(delta: float):
-	var maxRotation: float = 90.0 if wallRide else 45.0
+	var maxRotation: float = 90.0 if Globals.getBoolGamePropery("wallRide") else 45.0
 
 	# ── slope rotation from floor rays ──────────────────────────────────────
 	if rayFront.is_colliding() and not rayBack.is_colliding():
@@ -421,7 +458,7 @@ func doRotate(delta: float):
 	# ── wall ride: drive rotation TOWARD ±90° ───────────────────────────────
 	# rayFacing   → detects the RIGHT wall → target +90°
 	# rayFacingBack → detects the LEFT wall  → target -90°
-	if wallRide and nextToWall():
+	if Globals.getBoolGamePropery("wallRide") and nextToWall():
 		if rayFacing.is_colliding() and not rayFacingBack.is_colliding():
 			# Right wall — rotate toward +90°
 			if rotation_degrees < 90.0:
@@ -439,13 +476,13 @@ func doRotate(delta: float):
 # ─── jump ─────────────────────────────────────────────────────────────────────
 
 func doJump(isNowOnFloor: bool):
-	if isNowOnFloor or (doubleJump and jumpCounter < 1) or jetPack:
-		if doubleJump and jumpCounter < 2:
+	if isNowOnFloor or (Globals.getBoolGamePropery("doubleJump") and jumpCounter < 1) or Globals.getBoolGamePropery("jetPack"):
+		if Globals.getBoolGamePropery("doubleJump") and jumpCounter < 2:
 			currentJumpForce = jumpPower
 			if (!isNowOnFloor):
 				Globals.moveSparkEffect(underside.global_position, rotation, sprite.flip_h, "Smoke")
 
-		if jetPack:
+		if Globals.getBoolGamePropery("jetPack"):
 			currentJumpForce = jumpPower / 2
 		if (!isNowOnFloor):
 				Globals.moveSparkEffect(underside.global_position, rotation, sprite.flip_h, "RedBloom")
@@ -462,8 +499,10 @@ func doJump(isNowOnFloor: bool):
 				xForce += currentJumpForce  # pushes left
 			else:
 				xForce -= currentJumpForce  # pushes right
-
-		yForce = currentJumpForce
+		if magnetCounter >0:
+			yForce = -currentJumpForce
+		else:
+			yForce = currentJumpForce
 		jumpCounter += 1
 		currentJumpForce = 0.0
 		changeState(STATES.JUMPING)
@@ -480,8 +519,7 @@ func doBlowUp(delta: float):
 # ─── teleport ─────────────────────────────────────────────────────────────────
 
 func doTeleport():
-	telePorter = true
-	if telePorter and canTeleport:
+	if Globals.getBoolGamePropery("telePorter") and canTeleport:
 		var teleport_distance = 400.0
 		var target_x = position.x
 
@@ -528,6 +566,8 @@ func doTeleport():
 # ─── idle ─────────────────────────────────────────────────────────────────────
 
 func doIdle(delta: float):
+	if not inControl():
+		return
 	changeState(STATES.IDLE)
 	if state == STATES.IDLE:
 		currentIdleTime += delta
@@ -553,3 +593,71 @@ func doCameraShake(delta: float):
 	else:
 		camera.offset = Vector2.ZERO
 		
+# ─── take damage ─────────────────────────────────────────────────────────────
+func takeDamage(amount: float, sourceDirection: Vector2) -> void:
+	if not invulnerable and inControl(): 
+		animationPlayer.play("Damage")
+		hitTimer.start()
+		invulnerable = true
+		# Apply knockback		
+		var knockbackForce: Vector2 = (global_position - sourceDirection).normalized() * 500
+		Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "NeckSpark")
+		Globals.movePuffMachine(global_position, 0.05, 1)
+		Globals.moveBitMachine(upperside.global_position, 0.05, (0.05 *amount))
+		xForce += knockbackForce.x
+		yForce += knockbackForce.y	
+		var bits = Globals.getGamePropery(BITS)
+		# print("bits before:"+str(bits))
+		bits -= amount
+		if bits <= 0:
+			bits = 0
+			doDeath()
+		print("bits:"+str(bits))
+		Globals.setGamePropery(BITS, bits)
+
+func inControl() -> bool:
+	return not birthing and not dying and not magneting
+
+func _on_hit_timer_timeout() -> void:
+	invulnerable=false
+	if  inControl():
+		animationPlayer.play("Normal")
+
+func doDeath() -> void:
+	dying = true
+	dyingTimer.start()
+	if Globals.get_random_four() <=2:
+		animationPlayer.play("Death1")
+	else:	
+		animationPlayer.play("Death2")
+	Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "Smoke")
+
+
+func _on_dying_timer_timeout() -> void:
+	dying=false
+	dyingTimer.stop()
+	startBirth()
+
+
+func _on_birth_timer_timeout() -> void:
+	birthing=false
+	dying=false
+	birthTimer.stop()
+	changeState(STATES.IDLE)
+
+
+func magOn() -> void:
+	magnetTimer.start()
+	magneting = true
+	animationPlayer.play("Magenet")
+	Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "TeleportSpark")
+
+func magOff() -> void:
+	magnetTimer.start()
+	magneting = true
+	animationPlayer.play("MagenetOff")
+	Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "TeleportSpark")
+
+func _on_mag_timer_timeout() -> void:
+	magnetTimer.stop()
+	magneting=false

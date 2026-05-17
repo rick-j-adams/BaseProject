@@ -115,6 +115,9 @@ func pickUp() -> void:
 	stand_by()
 	var bits = Globals.getGamePropery(BITS)
 	bits += 1
+	if bits > Globals.getMaxHealth():
+		bits = Globals.getMaxHealth()
+		Globals.maxHealthHud()
 	Globals.setGamePropery(BITS, bits)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

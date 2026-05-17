@@ -94,6 +94,10 @@ func nsfHud(amount: float) -> void:
 	if hud != null:
 		hud.nsf(amount)
 
+func maxHealthHud() -> void:
+	if hud != null:
+		hud.maxHealth()
+
 func setUpPuffPool() -> void:
 	for i in range(maxPuffPoolSize):
 		var puff:Node = sceneMap.get("puffEffect").instantiate()
@@ -218,6 +222,23 @@ func getGamePropery(propertyName:String) -> Variant:
 func setGamePropery(propertyName:String, value:Variant) -> void:
 	allResources.gamesValues[propertyName] = value
 
+func getBoolGamePropery(propertyName:String) -> bool:
+	var value:Variant = allResources.gamesValues.get(propertyName)
+	if value == null:
+		value = false
+		allResources.gamesValues[propertyName] = value
+	return value
+
+func getMaxHealth() -> float:
+	var maxHealth: float = 10
+	if getBoolGamePropery("healthPack"):
+		maxHealth += 5
+	if getBoolGamePropery("bigHealthPack"):
+		maxHealth += 10
+	return maxHealth
+
+# @export var healthPack : bool = false
+# @export var bigHealthPack : bool = false
 func saveResources() -> void:
 	var result = ResourceSaver.save(allResources, RESOURCE_FILE_PATH)
 	print("save result = "+str(result))

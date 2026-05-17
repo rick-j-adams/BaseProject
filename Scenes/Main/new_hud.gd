@@ -23,7 +23,7 @@ func _ready():
 func _process(delta: float) -> void:
 	var bits = Globals.getGameProperyNoDefault(BITS)
 	var size = BASE_SIZE + (bits * INCREMENT_SIZE)
-	var maxHealthSize = BASE_SIZE + (10 * INCREMENT_SIZE) #TODO replace with max health
+	var maxHealthSize = BASE_SIZE + (Globals.getMaxHealth() * INCREMENT_SIZE) 
 	healthBar.size = Vector2(size, healthBar.size.y)
 	if maxHealthBar.size.x < maxHealthSize:
 		maxHealthBar.size.x = maxHealthBar.size.x + (INCREMENT_SIZE * delta) 
@@ -34,4 +34,7 @@ func nsf(amount: float) -> void:
 	var maxPaySize = BASE_SIZE + (amount * INCREMENT_SIZE)
 	payBar.size = Vector2(maxPaySize, payBar.size.y)
 	animationPlayer.play("NSF")
+
+func maxHealth() -> void:
+	animationPlayer.play("MaxHealth")
 	
