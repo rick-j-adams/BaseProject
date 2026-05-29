@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=3 uid="uid://dyyd5mxxfudvp"]
+
+[ext_resource type="Script" uid="uid://b3dk6khq72d6d" path="res://Scenes/Characters/crusher.gd" id="1_jol35"]
+[ext_resource type="Texture2D" uid="uid://45tujuf0yl2o" path="res://Images/Character/Crusher.png" id="1_yffmh"]
+[ext_resource type="Script" uid="uid://dbbrhmyet7xy6" path="res://Scenes/point.gd" id="3_0fpsh"]
+
+[sub_resource type="Animation" id="Animation_q7ook"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_lvmcw"]
+resource_name = "Spring"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.401332, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666734, 0.700809, 0.729476, 0.761928, 0.8, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 4, 9, 13, 15, 15, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"doDamage"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f44i2"]
+_data = {
+&"RESET": SubResource("Animation_q7ook"),
+&"Spring": SubResource("Animation_lvmcw")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u46hj"]
+size = Vector2(196, 163)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jol35"]
+polygon = PackedVector2Array(-128, -19, -103, -19, -104, 109, 102, 109, 104, -21, 127, -21, 127, 124, -127, 124)
+
+[node name="Crusher" type="Node2D"]
+script = ExtResource("1_jol35")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yffmh")
+hframes = 4
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_f44i2")
+}
+autoplay = "Spring"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 25.5)
+shape = SubResource("RectangleShape2D_u46hj")
+
+[node name="RPoint" type="Node2D" parent="."]
+position = Vector2(5, 89)
+script = ExtResource("3_0fpsh")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(0, -1)
+occluder = SubResource("OccluderPolygon2D_jol35")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -65,7 +65,9 @@ var currentloadState = LOAD_STATES.SCENES
 	"fissIn" : "res://Audio/StartUpFissInSound.ogg",
 	"select": "res://Audio/select.ogg",
 	"yesSound" : "res://Audio/yesSound.ogg",
-	"noSound" : "res://Audio/noSound.ogg"
+	"noSound" : "res://Audio/noSound.ogg",
+	"crash" : "res://Audio/crash.ogg",
+	"rbjump" : "res://Audio/rbjump.ogg",
 }
 
 @onready var loadMapGD :Dictionary  = {

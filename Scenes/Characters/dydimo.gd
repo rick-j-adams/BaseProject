@@ -330,6 +330,7 @@ func _process(delta: float) -> void:
 			changeState(STATES.PREJUMP)
 			springing = true
 			interaction = true
+			# Globals.playInterfaceAudio(global_position, "rbjump")
 
 	if Input.is_action_just_released("ui_up") and inControl():
 		doJump(isNowOnFloor)
@@ -661,3 +662,7 @@ func magOff() -> void:
 func _on_mag_timer_timeout() -> void:
 	magnetTimer.stop()
 	magneting=false
+
+func fix() -> void:
+	# birthing=true
+	animationPlayer.play("FaceForward")	

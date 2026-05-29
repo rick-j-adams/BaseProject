@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnkg70a1w2ue7"]
+
+[ext_resource type="Texture2D" uid="uid://byp1lcmdh00nm" path="res://Images/System/light1920.png" id="1_brcab"]
+
+[node name="Lighting" type="Node2D"]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = ExtResource("1_brcab")
