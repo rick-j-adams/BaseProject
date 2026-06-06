@@ -12,40 +12,40 @@
 modulate = Color(1, 1, 1, 0)
 
 [node name="TouchScreenButtonRight" type="TouchScreenButton" parent="Node2D"]
-position = Vector2(808, 87)
-scale = Vector2(4.59375, 10.5625)
+position = Vector2(170, 419)
+scale = Vector2(4.90625, 3.5625)
 texture_normal = ExtResource("1_ktoyk")
 texture_pressed = ExtResource("1_ktoyk")
 passby_press = true
 action = "ui_right"
 
 [node name="TouchScreenButtonLeft" type="TouchScreenButton" parent="Node2D"]
-position = Vector2(2, 86)
-scale = Vector2(4.84375, 10.75)
+position = Vector2(6.99998, 418)
+scale = Vector2(4.84375, 3.53125)
 texture_normal = ExtResource("2_20pe5")
 texture_pressed = ExtResource("2_20pe5")
 passby_press = true
 action = "ui_left"
 
 [node name="TouchScreenButtonUp" type="TouchScreenButton" parent="Node2D"]
-position = Vector2(294, 6)
-scale = Vector2(12.0625, 4.71875)
+position = Vector2(792, 414)
+scale = Vector2(5, 3.65625)
 texture_normal = ExtResource("3_51u1d")
 texture_pressed = ExtResource("3_51u1d")
 passby_press = true
 action = "ui_up"
 
 [node name="TouchScreenButtonDown" type="TouchScreenButton" parent="Node2D"]
-position = Vector2(284, 378)
-scale = Vector2(12.1563, 4.90625)
+position = Vector2(633, 414)
+scale = Vector2(4.78125, 3.71875)
 texture_normal = ExtResource("4_2ssy2")
 texture_pressed = ExtResource("4_2ssy2")
 passby_press = true
 action = "ui_down"
 
 [node name="TouchScreenButtonAcept" type="TouchScreenButton" parent="Node2D"]
-position = Vector2(294, 179)
-scale = Vector2(11.9063, 5.6875)
+position = Vector2(474, 418)
+scale = Vector2(4.78125, 3.625)
 texture_normal = ExtResource("5_kkn4d")
 texture_pressed = ExtResource("5_kkn4d")
 passby_press = true
