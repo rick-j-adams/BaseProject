@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Dydimo
 # @onready var animationTree: AnimationTree = $AnimationTree
 
-@onready var sprite : Sprite2D = $Sprite2D
+@onready var sprite : Sprite2D = $MidPoint/Sprite2D
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 @onready var rayFront :RayCast2D = $RayCast2DFront
 @onready var rayBack :RayCast2D = $RayCast2DBack
@@ -12,15 +12,23 @@ class_name Dydimo
 @onready var camera :Camera2D = $Camera2D
 @onready var underside :RPoint = $RPoint
 @onready var upperside :RPoint = $UPoint
+@onready var midPoint :RPoint = $MidPoint
 @onready var hitTimer :Timer = $HitTimer
 @onready var dyingTimer :Timer = $DyingTimer
 @onready var birthTimer :Timer = $BirthTimer
 @onready var magnetTimer :Timer = $MagTimer
+@onready var canvasModulate :CanvasModulate  = $CanvasModulate
 
+@onready var sparePartHead : SpareParts = $MidPoint/SparepartsHead
+@onready var sparePartBody : SpareParts = $MidPoint/SparepartsBody
+@onready var sparePartLarm : SpareParts = $MidPoint/SparepartsLarm
+@onready var sparePartRarm : SpareParts = $MidPoint/SparepartsRarm2
+@onready var sparePartTracks : SpareParts = $MidPoint/SparepartsTracks
 
 
 const BITS = "bits"
-
+const DARKEST = Color(0.4, 0.4, 0.4)
+const LIGHTEST = Color(0.9, 0.9, 0.9)
 @onready var teleportRightRay :RayCast2D = $RayCast2DTeleportRight
 @onready var teleportLeftRay :RayCast2D = $RayCast2DTeleportLeft
 
@@ -54,6 +62,8 @@ var lastYForce : float = 0.0
 
 var yForce : float = 0.0
 var xForce : float = 0.0
+var externalForceX : float = 0.0
+var externalForceY : float = 0.0
 var currentJumpForce : float = 0.0
 var springing : bool = false
 var interaction : bool = false
@@ -94,12 +104,13 @@ func isOnWallRide() -> bool:
 func _ready() -> void:
 	add_to_group("actor")
 	# animationPlayer.play(currentAnimation)
-	Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "BirthSpark")
+	Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "BirthSpark")
 	Globals.setMainCharacter(self)
 	startBirth()
 	
 
 func startBirth():
+	sprite.visible = true
 	birthing = true
 	var bits = Globals.getGamePropery(BITS)
 	bits = 1
@@ -108,6 +119,13 @@ func startBirth():
 	state = STATES.BIRTH
 	currentAnimation  = "Birth"
 	animationPlayer.play(currentAnimation)
+	set_collision_layer_value(1, true)
+
+	sparePartHead.destroy()
+	sparePartBody.destroy()
+	sparePartLarm.destroy()
+	sparePartRarm.destroy()
+	sparePartTracks.destroy()
 
 
 # ─── animation ────────────────────────────────────────────────────────────────
@@ -178,13 +196,13 @@ func doAnimation(onFloor: bool):
 					shakeStrength = 0.3
 					if lastYForce > 1000:
 						shakeStrength = 0.5
-						Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "LandSpark")
+						Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "LandSpark")
 					if lastYForce > 1200:
 						shakeStrength = 0.8
-						Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "LandSpark")
+						Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "LandSpark")
 					if lastYForce > 1400:
 						shakeStrength = 1.0
-						Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "LandSpark")
+						Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "LandSpark")
 				elif animationPlayer.is_playing() == false:
 					if currentAnimation == "Land":
 						changeState(STATES.IDLE)
@@ -218,7 +236,7 @@ func changeState(newState: STATES):
 		if state == STATES.WALKING and newState == STATES.IDLE:
 			currentAnimation = "WalkStop"
 			if magnetCounter <=0 :
-				Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "StopSpark")
+				Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "StopSpark")
 		if state == STATES.IDLE and newState == STATES.PREJUMP:
 			currentAnimation = "Spring"
 			currentJumpForce = 0.0
@@ -256,15 +274,19 @@ func changeState(newState: STATES):
 	state = newState
 
 # ─── movement ─────────────────────────────────────────────────────────────────
-
+func getMaxSpeed() -> float:
+	var newMaxSpeed: float = maxSpeed + externalForceX
+	return newMaxSpeed 
+	
 func calcAcceleration(delta: float, direction: float, currentSpeed: float, onFloor: bool):
-	if xForce < 0 and direction > 0:
+	if xForce < externalForceX and direction > 0:
 		decelerate(delta, sign(xForce), currentSpeed)
-	elif xForce > 0 and direction < 0:
+	elif xForce > externalForceX and direction < 0:
 		decelerate(delta, sign(xForce), currentSpeed)
 	else:
 		var localAcceleration: float = acceleration
-		var localMaxSpeed: float = maxSpeed
+		var localMaxSpeed: float = getMaxSpeed()
+		# Globals.setGamePropery("speedBoost",true)
 		if Globals.getBoolGamePropery("speedBoost"):
 			localAcceleration *= 1.5
 			localMaxSpeed *= 1.5
@@ -279,10 +301,10 @@ func calcAcceleration(delta: float, direction: float, currentSpeed: float, onFlo
 		xForce += delta * appliedAcceleration * direction
 
 func decelerate(delta: float, direction: float, currentSpeed: float, onFloor: bool = true):
-	if onFloor and currentSpeed > 0:
-		Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "StartSpark")
+	if onFloor and currentSpeed > 0 and externalForceX == 0:
+		Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "StartSpark")
 
-	var localMaxSpeed: float = maxSpeed
+	var localMaxSpeed: float = getMaxSpeed()
 	if Globals.getBoolGamePropery("speedBoost"):
 		localMaxSpeed *= 1.5
 	var appliedRatio: float = clamp(1.0 - (currentSpeed / localMaxSpeed), 0.0, 1.0)
@@ -295,21 +317,26 @@ func decelerate(delta: float, direction: float, currentSpeed: float, onFloor: bo
 
 	xForce -= delta * appliedDeceleration * direction
 
-	if direction < 0 and sign(xForce) > 0:
-		xForce = 0
-	elif direction > 0 and sign(xForce) < 0:
-		xForce = 0
+	if direction < 0 and sign(xForce) > externalForceX:
+		xForce = externalForceX
+	elif direction > 0 and sign(xForce) < externalForceX:
+		xForce = externalForceX
 
 func changeDirection(flip: bool):
-	$Sprite2D.flip_h = flip
+	sprite.flip_h = flip
 
 # ─── process ──────────────────────────────────────────────────────────────────
 
 func _process(delta: float) -> void:
+	var shade_factor: float = clamp(global_position.y / 1000.0, 0.0, 1.0)
+	var shading: Color = LIGHTEST.lerp(DARKEST, shade_factor)
+	canvasModulate.color = shading
+
 	var currentSpeed: float = absf(xForce)
 	var isNowOnFloor: bool = isOnFloor()
 	interaction = false
 
+	
 	if Input.is_action_pressed("ui_right") and inControl():
 		changeState(STATES.WALKING)
 		changeDirection(false)
@@ -346,10 +373,11 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_just_released("ui_select") and inControl():
 		print("SELECT")
+		explode()
 		if Globals.getBoolGamePropery("zap"):
-			Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "Zap")
+			Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "Zap")
 		if Globals.getBoolGamePropery("biZap"):
-			Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "BigZap")
+			Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "BigZap")
 
 
 	# Allow steep surfaces to act as walkable floor when wall riding
@@ -394,6 +422,9 @@ func _process(delta: float) -> void:
 	Globals.lastPosition = global_position
 
 # ─── forces ───────────────────────────────────────────────────────────────────
+func setExternalForce(newXForce: float, newYForce: float):
+	externalForceX = newXForce
+	externalForceY = newYForce
 
 func doForces(delta: float):
 	if isOnWallRide():
@@ -423,6 +454,7 @@ func doForces(delta: float):
 		else:
 			yForce += Globals.GRAVITY * delta
 
+	 
 		# Push character away from walls when wallRide is disabled
 		if not Globals.getBoolGamePropery("wallRide") and nextToWall() and (not isOnFloor() or rotation_degrees >= 45 or rotation_degrees <= -45):
 			if rayFacing.is_colliding():
@@ -430,7 +462,7 @@ func doForces(delta: float):
 			else:
 				xForce += 20
 		# if hit the ground hard enough, bounce a little bit. Only if not wall riding, otherwise it gets weird.
-		
+	
 		velocity.y = yForce
 		
 		velocity.x = xForce
@@ -438,42 +470,43 @@ func doForces(delta: float):
 # ─── rotation ─────────────────────────────────────────────────────────────────
 
 func doRotate(delta: float):
+	# print("rotation: "+str(midPoint.rotation_degrees))
 	var maxRotation: float = 90.0 if Globals.getBoolGamePropery("wallRide") else 45.0
 
 	# ── slope rotation from floor rays ──────────────────────────────────────
 	if rayFront.is_colliding() and not rayBack.is_colliding():
-		rotation_degrees -= 90.0 * delta
-		rotation_degrees = clamp(rotation_degrees, -maxRotation, maxRotation)
+		midPoint.rotation_degrees -= 90.0 * delta
+		midPoint.rotation_degrees = clamp(midPoint.rotation_degrees, -maxRotation, maxRotation)
 
 	elif not rayFront.is_colliding() and rayBack.is_colliding():
-		rotation_degrees += 90.0 * delta
-		rotation_degrees = clamp(rotation_degrees, -maxRotation, maxRotation)
+		midPoint.rotation_degrees += 90.0 * delta
+		midPoint.rotation_degrees = clamp(midPoint.rotation_degrees, -maxRotation, maxRotation)
 
 	else:
 		# Both or neither ray hitting: drift back toward 0°
-		if rotation_degrees > 0:
-			rotation_degrees -= 90.0 * delta
-		if rotation_degrees < 0:
-			rotation_degrees += 90.0 * delta
+		if midPoint.rotation_degrees > 0:
+			midPoint.rotation_degrees -= 90.0 * delta
+		if midPoint.rotation_degrees < 0:
+			midPoint.rotation_degrees += 90.0 * delta
 
 	# ── wall ride: drive rotation TOWARD ±90° ───────────────────────────────
 	# rayFacing   → detects the RIGHT wall → target +90°
 	# rayFacingBack → detects the LEFT wall  → target -90°
+
 	if Globals.getBoolGamePropery("wallRide") and nextToWall():
 		if rayFacing.is_colliding() and not rayFacingBack.is_colliding():
 			# Right wall — rotate toward +90°
-			if rotation_degrees < 90.0:
-				rotation_degrees += 90.0 * delta
-			elif rotation_degrees > 90.0:
-				rotation_degrees -= 90.0 * delta
+			if midPoint.rotation_degrees < 90.0:
+				midPoint.rotation_degrees += 90.0 * delta
+			elif midPoint.rotation_degrees > 90.0:
+				midPoint.rotation_degrees -= 90.0 * delta
 
 		elif rayFacingBack.is_colliding() and not rayFacing.is_colliding():
 			# Left wall — rotate toward -90°
-			if rotation_degrees > -90.0:
-				rotation_degrees -= 90.0 * delta
-			elif rotation_degrees < -90.0:
-				rotation_degrees += 90.0 * delta
-
+			if midPoint.rotation_degrees > -90.0:
+				midPoint.rotation_degrees -= 90.0 * delta
+			elif midPoint.rotation_degrees < -90.0:
+				midPoint.rotation_degrees += 90.0 * delta
 # ─── jump ─────────────────────────────────────────────────────────────────────
 
 func doJump(isNowOnFloor: bool):
@@ -595,14 +628,14 @@ func doCameraShake(delta: float):
 		camera.offset = Vector2.ZERO
 		
 # ─── take damage ─────────────────────────────────────────────────────────────
-func takeDamage(amount: float, sourceDirection: Vector2) -> void:
+func takeDamage(amount: float, sourceDirection: Vector2,explosion: bool) -> void:
 	if not invulnerable and inControl(): 
 		animationPlayer.play("Damage")
 		hitTimer.start()
 		invulnerable = true
 		# Apply knockback		
 		var knockbackForce: Vector2 = (global_position - sourceDirection).normalized() * 500
-		Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "NeckSpark")
+		Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "NeckSpark")
 		Globals.movePuffMachine(global_position, 0.05, 1)
 		Globals.moveBitMachine(upperside.global_position, 0.05, (0.05 *amount))
 		xForce += knockbackForce.x
@@ -612,8 +645,10 @@ func takeDamage(amount: float, sourceDirection: Vector2) -> void:
 		bits -= amount
 		if bits <= 0:
 			bits = 0
-			doDeath()
-		print("bits:"+str(bits))
+			if explosion:
+				explode()
+			else:
+				doDeath()
 		Globals.setGamePropery(BITS, bits)
 
 func inControl() -> bool:
@@ -631,7 +666,7 @@ func doDeath() -> void:
 		animationPlayer.play("Death1")
 	else:	
 		animationPlayer.play("Death2")
-	Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "Smoke")
+	Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "Smoke")
 
 
 func _on_dying_timer_timeout() -> void:
@@ -651,13 +686,13 @@ func magOn() -> void:
 	magnetTimer.start()
 	magneting = true
 	animationPlayer.play("Magenet")
-	Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "TeleportSpark")
+	Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "TeleportSpark")
 
 func magOff() -> void:
 	magnetTimer.start()
 	magneting = true
 	animationPlayer.play("MagenetOff")
-	Globals.moveSparkEffect(global_position, rotation, $Sprite2D.flip_h, "TeleportSpark")
+	Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "TeleportSpark")
 
 func _on_mag_timer_timeout() -> void:
 	magnetTimer.stop()
@@ -666,3 +701,19 @@ func _on_mag_timer_timeout() -> void:
 func fix() -> void:
 	# birthing=true
 	animationPlayer.play("FaceForward")	
+
+func explode() -> void:
+	sprite.visible = false
+	Globals.movePuffMachine(global_position, 0.05, 0.5)
+	Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "RedBloom")
+	set_collision_layer_value(1, false)
+	shakeStrength = 3.0
+	sparePartHead.flingUp(global_position)
+	sparePartBody.flingUp(global_position)
+	sparePartLarm.flingUp(global_position)
+	sparePartRarm.flingUp(global_position)
+	sparePartTracks.flingUp(global_position)
+	dying = true
+	dyingTimer.start() 
+	# velocity.x = Globals.get_rand_between(-maxSpeed, maxSpeed)
+	# velocity.y = Globals.get_rand_between(-maxSpeed, 0)

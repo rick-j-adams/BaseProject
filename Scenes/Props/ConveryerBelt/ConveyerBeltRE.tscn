@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=3 uid="uid://clxvp8y7mo2he"]
+
+[ext_resource type="Texture2D" uid="uid://dur8alhjv5edk" path="res://Images/Props/conveyerbelt.png" id="1_ufdg2"]
+[ext_resource type="Script" uid="uid://pvwui66a2mgw" path="res://Scenes/Props/ConveryerBelt/conveyer.gd" id="1_xj1c3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cfrb8"]
+radius = 36.978
+height = 209.983
+
+[sub_resource type="Animation" id="Animation_ubcnw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+
+[sub_resource type="Animation" id="Animation_6mrio"]
+resource_name = "anticlockwise"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 23, 24]
+}
+
+[sub_resource type="Animation" id="Animation_8p013"]
+resource_name = "clockwise"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 23, 22, 21, 20]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yhi84"]
+_data = {
+&"RESET": SubResource("Animation_ubcnw"),
+&"anticlockwise": SubResource("Animation_6mrio"),
+&"clockwise": SubResource("Animation_8p013")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1h14h"]
+size = Vector2(179, 66)
+
+[node name="ConveyerBelt" type="Node2D"]
+script = ExtResource("1_xj1c3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ufdg2")
+hframes = 5
+vframes = 5
+frame = 20
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-52, -7)
+rotation = 1.57203
+shape = SubResource("CapsuleShape2D_cfrb8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yhi84")
+}
+autoplay = "anticlockwise"
+
+[node name="Area2DRE" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DRE"]
+position = Vector2(-37.5, -38)
+shape = SubResource("RectangleShape2D_1h14h")
+
+[connection signal="body_entered" from="Area2DRE" to="." method="_on_area_2dre_body_entered"]
+[connection signal="body_exited" from="Area2DRE" to="." method="_on_area_2dre_body_exited"]

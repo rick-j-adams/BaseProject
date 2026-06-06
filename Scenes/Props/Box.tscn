@@ -75,10 +75,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ldmk"]
-size = Vector2(62, 54)
+size = Vector2(106, 101)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eqnyj"]
-size = Vector2(53, 16)
+size = Vector2(106, 16)
 
 [node name="Box" type="Node2D"]
 script = ExtResource("1_4ldmk")
@@ -97,13 +97,13 @@ autoplay = "idle"
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(3, -2)
+position = Vector2(7, 15.5)
 shape = SubResource("RectangleShape2D_4ldmk")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(2.5, -38)
+position = Vector2(7, -38)
 shape = SubResource("RectangleShape2D_eqnyj")
 
 [node name="RemoveAfter" type="Timer" parent="."]
