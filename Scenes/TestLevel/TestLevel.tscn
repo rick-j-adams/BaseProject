@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=4 uid="uid://bf0if5w2l0v7k"]
+[gd_scene load_steps=108 format=4 uid="uid://bf0if5w2l0v7k"]
 
 [ext_resource type="Texture2D" uid="uid://bxujlxx188ne4" path="res://Images/Tiles/plates8x8-small.png" id="3_1nb57"]
 [ext_resource type="Texture2D" uid="uid://bpt2tjdv68nqi" path="res://Images/Tiles/mask.png" id="3_fnepx"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://ctiifmvyayug3" path="res://Scenes/Props/ConveryerBelt/ConveyerBeltDD.tscn" id="32_opwdv"]
 [ext_resource type="PackedScene" uid="uid://clxvp8y7mo2he" path="res://Scenes/Props/ConveryerBelt/ConveyerBeltRE.tscn" id="33_l0ewk"]
 [ext_resource type="PackedScene" uid="uid://b1lq63nwskdh0" path="res://Scenes/Props/ConveryerBelt/ConveyerBeltDH.tscn" id="33_opwdv"]
+[ext_resource type="PackedScene" uid="uid://bo4eym23rta43" path="res://Images/Character/EnemyParts/Smasher.tscn" id="34_l0ewk"]
 
 [sub_resource type="Environment" id="Environment_k2qbn"]
 background_mode = 3
@@ -4018,3 +4019,14 @@ position = Vector2(512, 0)
 
 [node name="ConveyerBelt3" parent="." instance=ExtResource("33_opwdv")]
 position = Vector2(1054, -515)
+
+[node name="Smasher" parent="." instance=ExtResource("34_l0ewk")]
+position = Vector2(-898, 202)
+
+[node name="Smasher2" parent="." instance=ExtResource("34_l0ewk")]
+position = Vector2(617, 3128)
+health = 1
+
+[node name="Smasher3" parent="." instance=ExtResource("34_l0ewk")]
+position = Vector2(1711, 1730)
+health = 2
