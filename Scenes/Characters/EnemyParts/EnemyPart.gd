@@ -29,3 +29,7 @@ func die():
 	detached = true
 	animationPlayer.play("Rotate")
 
+
+func doDamage():
+	if parentEnemy != null:
+		parentEnemy.doDamage()

@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bo4eym23rta43"]
+[gd_scene load_steps=17 format=3 uid="uid://bo4eym23rta43"]
 
 [ext_resource type="Script" uid="uid://bxnlw1syagbmh" path="res://Scenes/Characters/EnemyParts/Enemy.gd" id="1_bmnxt"]
 [ext_resource type="PackedScene" uid="uid://b1sbt0rvnrw3l" path="res://Scenes/Characters/EnemyParts/EPartHammer.tscn" id="1_whtqj"]
 [ext_resource type="PackedScene" uid="uid://e2cagmn0nmcy" path="res://Scenes/Characters/EnemyParts/EPartBox.tscn" id="2_bmnxt"]
 [ext_resource type="PackedScene" uid="uid://tp6lgpdhj4ih" path="res://Scenes/Characters/EnemyParts/EPartTracks.tscn" id="3_apu0t"]
+[ext_resource type="Script" uid="uid://dbbrhmyet7xy6" path="res://Scenes/point.gd" id="5_apu0t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uqis"]
 radius = 45.0
@@ -11,6 +12,23 @@ height = 204.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m0ys2"]
 radius = 529.046
+
+[sub_resource type="Animation" id="Animation_m0ys2"]
+resource_name = "Dmg"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.100356, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_apu0t"]
 resource_name = "FlipLeft"
@@ -49,7 +67,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(24, -59)]
+"values": [Vector2(-37, -54)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -97,7 +115,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-153, 45)]
+"values": [Vector2(-180, 48)]
 }
 
 [sub_resource type="Animation" id="Animation_whtqj"]
@@ -125,7 +143,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-18, -59)]
+"values": [Vector2(44, -72)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -197,7 +215,24 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(143, 48)]
+"values": [Vector2(190, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_4uqis"]
+resource_name = "Hit"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.100356, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_bmnxt"]
@@ -311,40 +346,6 @@ tracks/8/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_4uqis"]
-resource_name = "Hit"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.100356, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_m0ys2"]
-resource_name = "Dmg"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.100356, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4uqis"]
 _data = {
 &"Dmg": SubResource("Animation_m0ys2"),
@@ -414,6 +415,11 @@ shape = SubResource("CapsuleShape2D_bmnxt")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DWeakPoint"]
 position = Vector2(-2.5, 9)
 shape = SubResource("RectangleShape2D_bmnxt")
+
+[node name="RPointDmg" type="Node2D" parent="."]
+position = Vector2(196, 47)
+script = ExtResource("5_apu0t")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
 [connection signal="body_entered" from="Area2DVision" to="." method="_on_area_2d_vision_body_entered"]
 [connection signal="body_exited" from="Area2DVision" to="." method="_on_area_2d_vision_body_exited"]

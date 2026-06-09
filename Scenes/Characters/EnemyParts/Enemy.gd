@@ -3,6 +3,8 @@ extends CharacterBody2D
 class_name Enemy
 
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
+@onready var rPointDmg: RPoint = $RPointDmg
+
 
 enum STATES {BIRTH, IDLE, MOVE, ATTACKING, DYING}
 var state : STATES = STATES.BIRTH
@@ -12,6 +14,9 @@ var destination: Vector2 = Vector2.ZERO
 var dydimoSeen: Dydimo = null
 var sparePartSeen: SpareParts = null
 
+var dydimoDmg: Dydimo = null
+var sparePartDmg: SpareParts = null
+
 @onready var parts: Node2D = $Parts
 @onready var timer: Timer = $Timer
 
@@ -20,6 +25,9 @@ var sparePartSeen: SpareParts = null
 @export var flying: bool = false
 @export var touchDamage: int = 1
 @export var weakpointDamage:int = 1
+@export var attackDamage: int = 2
+
+var facingRight: bool = true
 
 func _ready():
 	animateParts("Birth")
@@ -57,8 +65,7 @@ func _process(delta: float) -> void:
 	velocity.y += Globals.GRAVITY * delta
 	move_and_slide()
 	
-	if dydimoSeen != null:
-		setDestinationToBody(dydimoSeen.global_position)
+	
 	
 
 
@@ -72,8 +79,10 @@ func setDestinationToBody(newDestination: Vector2):
 	destination = newDestination
 	state = STATES.MOVE
 	if destination.x > global_position.x:
+		facingRight = true
 		animationPlayer.play("FlipRight")
 	else:
+		facingRight = false
 		animationPlayer.play("FlipLeft")
 	animateParts("Move")
 
@@ -128,7 +137,7 @@ func die():
 	var duration :float = 0.2 * health
 	Globals.movePuffMachine(global_position, 0.5, 0.5)
 	Globals.moveBitMachine(global_position, 0.1, duration)
-	Globals.moveSparkEffect(global_position, rotation, true, "RedBloom")
+	Globals.moveSparkEffect(global_position, rotation, facingRight, "RedBloom")
 	var childeren = parts.get_children()
 	timer.wait_time = 2.0
 	timer.start()
@@ -136,10 +145,52 @@ func die():
 		if child is EnemyPart:
 			child.die()
 
-#TODO attack	
+func setInDamage(body:Node2D):
+	print("setInDamage")
+
+	if state == STATES.DYING:
+		return
+	if body is Dydimo:
+		dydimoDmg = body
+		doAttack()
+	elif body is SpareParts:
+		sparePartDmg = body
+		doAttack()
+	
+func unSetInDamage(body:Node2D):
+	print("unSetInDamage")
+	if state == STATES.DYING:
+		return
+	if body is Dydimo:
+		dydimoDmg = null
+	elif body is SpareParts:
+		sparePartDmg = null
+	state = STATES.IDLE
+	animateParts("Idle")
+	if dydimoSeen != null or sparePartSeen != null:
+		state = STATES.MOVE
+		animateParts("Move")
+
+func doAttack():
+	if state == STATES.DYING:
+		return
+	print("doAttackDamage")
+	state = STATES.ATTACKING
+	velocity = Vector2.ZERO
+	animateParts("Attack")
+
+func doDamage():
+	if state == STATES.DYING:
+		return
+	if dydimoDmg != null:
+		dydimoDmg.takeDamage(touchDamage, rPointDmg.global_position, false)
+		Globals.movePuffMachine( rPointDmg.global_position, 0.5, 0.5)
+	elif sparePartDmg != null:
+		sparePartDmg.destroy()
+		Globals.movePuffMachine( rPointDmg.global_position, 0.5, 0.5)
 
 func _on_area_2d_damage_box_body_exited(body:Node2D) -> void:
-	pass
+	unSetInDamage(body)
 
 func _on_area_2d_vision_body_exited(body:Node2D) -> void:
 	lostSightOfBody(body)
@@ -149,7 +200,7 @@ func _on_area_2d_vision_body_entered(body:Node2D) -> void:
 	seenBody(body)
 
 func _on_area_2d_damage_box_body_entered(body:Node2D) -> void:
-	pass # Replace with function body.
+	setInDamage(body)
 
 
 func _on_area_2d_touch_damage_body_entered(body:Node2D) -> void:
