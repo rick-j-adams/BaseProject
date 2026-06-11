@@ -6,7 +6,7 @@ class_name Enemy
 @onready var rPointDmg: RPoint = $RPointDmg
 
 
-enum STATES {BIRTH, IDLE, MOVE, ATTACKING, DYING}
+enum STATES {BIRTH, IDLE, SEARCH, MOVE, ATTACKING, DYING}
 var state : STATES = STATES.BIRTH
 
 var destination: Vector2 = Vector2.ZERO
@@ -35,19 +35,32 @@ func _ready():
 	for child in childeren:
 		if child is EnemyPart:
 			child.parentEnemy = self
-	print("Enemy ready with health: ", health)
+
+func switchToIdle():
+	state = STATES.IDLE
+	timer.wait_time = Globals.get_rand_between(0.5, 3.5)
+	timer.start()
+
+func switchToSearch():
+	state = STATES.SEARCH
+	timer.wait_time = Globals.get_rand_between(1.0, 4.0)
+	timer.start()
+	animationPlayer.play("Search")
 
 func _process(delta: float) -> void:
 	match state:
 		STATES.BIRTH:
 			if not timer.is_stopped():
 				return
-			state = STATES.IDLE
+			switchToIdle()			
 			animateParts("Birth")
 		STATES.IDLE:
 			if dydimoSeen != null or sparePartSeen != null:
 				state = STATES.MOVE
 				animateParts("Move")
+			
+		STATES.SEARCH:
+			pass
 		STATES.MOVE:
 			var direction: Vector2 = (destination - global_position).normalized()
 			if flying:
@@ -58,6 +71,7 @@ func _process(delta: float) -> void:
 			if global_position.distance_to(destination) < 5.0:
 				state = STATES.IDLE
 				velocity = Vector2.ZERO
+				switchToIdle()
 				animateParts("Idle")
 		STATES.DYING:
 			return
@@ -65,9 +79,6 @@ func _process(delta: float) -> void:
 	velocity.y += Globals.GRAVITY * delta
 	move_and_slide()
 	
-	
-	
-
 
 func animateParts(animationName: String):
 	var childeren = parts.get_children()
@@ -105,6 +116,7 @@ func lostSightOfBody(body:Node2D):
 		sparePartSeen = null
 	state = STATES.IDLE
 	velocity = Vector2.ZERO
+	switchToIdle()
 	animateParts("Idle")
 
 func doTouchDamage(body: Node2D):
@@ -121,7 +133,7 @@ func takeDamage(body:Node2D):
 	if body is Dydimo:
 		health -= weakpointDamage
 		if health <= 0:
-			die()
+			die(body)
 		else:
 			Globals.movePuffMachine(global_position, 0.05, 0.5)
 			var childeren = parts.get_children()
@@ -130,7 +142,7 @@ func takeDamage(body:Node2D):
 					child.playDamageAnimation()
 		body.yForce -= 1000	
 
-func die():
+func die(body:Node2D):
 	state = STATES.DYING	
 	# set_collision_layer_value(1, false)
 	set_collision_layer_value(1, false)
@@ -144,10 +156,10 @@ func die():
 	for child in childeren:
 		if child is EnemyPart:
 			child.die()
+	if body is Dydimo:
+		body.shakeStrength = 2.0
 
 func setInDamage(body:Node2D):
-	print("setInDamage")
-
 	if state == STATES.DYING:
 		return
 	if body is Dydimo:
@@ -158,7 +170,6 @@ func setInDamage(body:Node2D):
 		doAttack()
 	
 func unSetInDamage(body:Node2D):
-	print("unSetInDamage")
 	if state == STATES.DYING:
 		return
 	if body is Dydimo:
@@ -174,7 +185,6 @@ func unSetInDamage(body:Node2D):
 func doAttack():
 	if state == STATES.DYING:
 		return
-	print("doAttackDamage")
 	state = STATES.ATTACKING
 	velocity = Vector2.ZERO
 	animateParts("Attack")
@@ -212,6 +222,17 @@ func _on_area_2d_weak_point_body_entered(body:Node2D) -> void:
 
 
 func _on_timer_timeout() -> void:
+	if state == STATES.IDLE:
+		animateParts("IdleMove")
+		var seach = Globals.get_rand_between(0.0, 1.0)
+		if seach < 0.5:
+			switchToSearch()
+		else:
+			switchToIdle()
+		return
+	if state == STATES.SEARCH:
+		switchToIdle()
+		return
 	if state == STATES.DYING:
 		queue_free()
 	
