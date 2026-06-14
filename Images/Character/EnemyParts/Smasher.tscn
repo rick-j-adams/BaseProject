@@ -1,10 +1,15 @@
-[gd_scene load_steps=20 format=3 uid="uid://bo4eym23rta43"]
+[gd_scene load_steps=25 format=3 uid="uid://bo4eym23rta43"]
 
 [ext_resource type="Script" uid="uid://bxnlw1syagbmh" path="res://Scenes/Characters/EnemyParts/Enemy.gd" id="1_bmnxt"]
 [ext_resource type="PackedScene" uid="uid://b1sbt0rvnrw3l" path="res://Scenes/Characters/EnemyParts/EPartHammer.tscn" id="1_whtqj"]
+[ext_resource type="PackedScene" uid="uid://dvroyh1ltnl1q" path="res://Scenes/Characters/EnemyParts/EPartProp.tscn" id="2_4uqis"]
 [ext_resource type="PackedScene" uid="uid://e2cagmn0nmcy" path="res://Scenes/Characters/EnemyParts/EPartBox.tscn" id="2_bmnxt"]
 [ext_resource type="PackedScene" uid="uid://tp6lgpdhj4ih" path="res://Scenes/Characters/EnemyParts/EPartTracks.tscn" id="3_apu0t"]
 [ext_resource type="Script" uid="uid://dbbrhmyet7xy6" path="res://Scenes/point.gd" id="5_apu0t"]
+[ext_resource type="PackedScene" uid="uid://b08gjxb1iua5t" path="res://Scenes/Characters/EnemyParts/EPartBase.tscn" id="5_s1l7r"]
+[ext_resource type="PackedScene" uid="uid://bbj8vdws6dcpi" path="res://Scenes/Characters/EnemyParts/EPartShell.tscn" id="6_xhqio"]
+[ext_resource type="PackedScene" uid="uid://chq6b4gfnisl2" path="res://Scenes/Characters/EnemyParts/EPartLight.tscn" id="8_xxcgk"]
+[ext_resource type="PackedScene" uid="uid://bthhwsa02hm80" path="res://Scenes/Characters/EnemyParts/EPartLightBeams.tscn" id="9_w6mjg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uqis"]
 radius = 45.0
@@ -12,6 +17,14 @@ height = 204.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m0ys2"]
 radius = 529.046
+
+[sub_resource type="Animation" id="Animation_7jken"]
+resource_name = "Attack"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_s1l7r"]
+resource_name = "Birth"
+length = 0.5
 
 [sub_resource type="Animation" id="Animation_m0ys2"]
 resource_name = "Dmg"
@@ -116,6 +129,102 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(-180, 48)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Parts/EPartLightBeams:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Parts/EPartBase:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Parts/EPartBase:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Parts/EPartShell:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Parts/EPartShell:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-30, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Parts/EPartLight:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Parts/EPartLight:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-23, 27)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Parts/EPartLightBeams:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, -20)]
+}
 
 [sub_resource type="Animation" id="Animation_whtqj"]
 resource_name = "FlipRight"
@@ -215,6 +324,102 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(190, 48)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Parts/EPartLightBeams:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-15, -22)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Parts/EPartLight:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-10, 25)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Parts/EPartShell:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Parts/EPartBase:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Parts/EPartLightBeams:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Parts/EPartLight:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Parts/EPartShell:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Parts/EPartBase:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_4uqis"]
@@ -344,6 +549,102 @@ tracks/8/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Parts/EPartLightBeams:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16, -18)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Parts/EPartLight:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-10, 25)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Parts/EPartShell:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Parts/EPartBase:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Parts/EPartLightBeams:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Parts/EPartLight:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Parts/EPartShell:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Parts/EPartBase:scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ha6gm"]
 resource_name = "Search"
@@ -360,14 +661,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-1, 0), Vector2(-527, 0), Vector2(-1, 0), Vector2(524, -6)]
 }
-
-[sub_resource type="Animation" id="Animation_7jken"]
-resource_name = "Attack"
-length = 0.5
-
-[sub_resource type="Animation" id="Animation_s1l7r"]
-resource_name = "Birth"
-length = 0.5
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4uqis"]
 _data = {
@@ -396,13 +689,28 @@ script = ExtResource("1_bmnxt")
 
 [node name="Parts" type="Node2D" parent="."]
 
+[node name="EPartProp" parent="Parts" instance=ExtResource("2_4uqis")]
+visible = false
+position = Vector2(-47, -18)
+
 [node name="EPartHammer" parent="Parts" instance=ExtResource("1_whtqj")]
 position = Vector2(-18, -59)
 
 [node name="EPartBox" parent="Parts" instance=ExtResource("2_bmnxt")]
+visible = false
 position = Vector2(1, 22)
 
+[node name="EPartBase" parent="Parts" instance=ExtResource("5_s1l7r")]
+
+[node name="EPartShell" parent="Parts" instance=ExtResource("6_xhqio")]
+
 [node name="EPartTracks" parent="Parts" instance=ExtResource("3_apu0t")]
+
+[node name="EPartLight" parent="Parts" instance=ExtResource("8_xxcgk")]
+position = Vector2(-10, 25)
+
+[node name="EPartLightBeams" parent="Parts" instance=ExtResource("9_w6mjg")]
+position = Vector2(-16, -18)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 51)

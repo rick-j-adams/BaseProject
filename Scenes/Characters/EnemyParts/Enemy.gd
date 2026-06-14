@@ -27,6 +27,12 @@ var sparePartDmg: SpareParts = null
 @export var weakpointDamage:int = 1
 @export var attackDamage: int = 2
 
+# Movement improvements
+@export var acceleration: float = 1500.0
+@export var deceleration: float = 1200.0
+@export var stoppingDistance: float = 15.0
+var targetVelocity: Vector2 = Vector2.ZERO
+
 var facingRight: bool = true
 
 func _ready():
@@ -63,16 +69,30 @@ func _process(delta: float) -> void:
 			pass
 		STATES.MOVE:
 			var direction: Vector2 = (destination - global_position).normalized()
-			if flying:
-				velocity = direction * speed
-			else:
-				velocity.x = direction.x * speed
+			var distanceToTarget: float = global_position.distance_to(destination)
 			
-			if global_position.distance_to(destination) < 5.0:
+			# Check if reached destination
+			if distanceToTarget < stoppingDistance:
 				state = STATES.IDLE
 				velocity = Vector2.ZERO
+				targetVelocity = Vector2.ZERO
 				switchToIdle()
 				animateParts("Idle")
+			else:
+				# Set target velocity
+				if flying:
+					targetVelocity = direction * speed
+				else:
+					targetVelocity.x = direction.x * speed
+					targetVelocity.y = 0  # Let gravity handle vertical movement
+				
+				# Smooth acceleration towards target velocity
+				var accel = acceleration if velocity.length() < speed else deceleration
+				if flying:
+					velocity = velocity.lerp(targetVelocity, accel * delta / speed)
+				else:
+					velocity.x = move_toward(velocity.x, targetVelocity.x, accel * delta)
+					velocity.y += Globals.GRAVITY * delta
 		STATES.DYING:
 			return
 			
@@ -89,6 +109,7 @@ func animateParts(animationName: String):
 func setDestinationToBody(newDestination: Vector2):
 	destination = newDestination
 	state = STATES.MOVE
+	targetVelocity = Vector2.ZERO
 	if destination.x > global_position.x:
 		facingRight = true
 		animationPlayer.play("FlipRight")
@@ -115,7 +136,8 @@ func lostSightOfBody(body:Node2D):
 	elif body is SpareParts:
 		sparePartSeen = null
 	state = STATES.IDLE
-	velocity = Vector2.ZERO
+	targetVelocity = Vector2.ZERO
+	velocity.x = 0  # Only stop horizontal movement; gravity still applies for ground enemies
 	switchToIdle()
 	animateParts("Idle")
 
@@ -177,6 +199,8 @@ func unSetInDamage(body:Node2D):
 	elif body is SpareParts:
 		sparePartDmg = null
 	state = STATES.IDLE
+	targetVelocity = Vector2.ZERO
+	velocity.x = 0
 	animateParts("Idle")
 	if dydimoSeen != null or sparePartSeen != null:
 		state = STATES.MOVE
@@ -186,7 +210,8 @@ func doAttack():
 	if state == STATES.DYING:
 		return
 	state = STATES.ATTACKING
-	velocity = Vector2.ZERO
+	targetVelocity = Vector2.ZERO
+	velocity.x = 0
 	animateParts("Attack")
 
 func doDamage():
