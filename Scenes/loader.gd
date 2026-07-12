@@ -19,7 +19,9 @@ var currentloadState = LOAD_STATES.SCENES
 	"bitMachine" :"res://Scenes/Effects/BitMachine.tscn",
 	"bitPayMachine" :"res://Scenes/Effects/BitPayMachine.tscn",
 	"bit" :"res://Scenes/Props/Bit.tscn",
+	"element" :"res://Scenes/Effects/Element.tscn",
 	"test" :"res://Scenes/TestLevel/TestLevel.tscn",
+
 }
 
 @onready var loadMapImages :Dictionary  = {

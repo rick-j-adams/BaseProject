@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=4 uid="uid://bf0if5w2l0v7k"]
+[gd_scene load_steps=110 format=4 uid="uid://bf0if5w2l0v7k"]
 
 [ext_resource type="Texture2D" uid="uid://bxujlxx188ne4" path="res://Images/Tiles/plates8x8-small.png" id="3_1nb57"]
 [ext_resource type="Texture2D" uid="uid://bpt2tjdv68nqi" path="res://Images/Tiles/mask.png" id="3_fnepx"]
@@ -34,6 +34,8 @@
 [ext_resource type="PackedScene" uid="uid://clxvp8y7mo2he" path="res://Scenes/Props/ConveryerBelt/ConveyerBeltRE.tscn" id="33_l0ewk"]
 [ext_resource type="PackedScene" uid="uid://b1lq63nwskdh0" path="res://Scenes/Props/ConveryerBelt/ConveyerBeltDH.tscn" id="33_opwdv"]
 [ext_resource type="PackedScene" uid="uid://bo4eym23rta43" path="res://Images/Character/EnemyParts/Smasher.tscn" id="34_l0ewk"]
+[ext_resource type="PackedScene" uid="uid://c7pjl7t7sjaq7" path="res://Images/Character/EnemyParts/Stinger.tscn" id="35_0lbil"]
+[ext_resource type="PackedScene" uid="uid://b5015kg4u7scx" path="res://Scenes/PickUps/PickUp.tscn" id="36_rpx7b"]
 
 [sub_resource type="Environment" id="Environment_k2qbn"]
 background_mode = 3
@@ -4025,8 +4027,13 @@ position = Vector2(-898, 202)
 
 [node name="Smasher2" parent="." instance=ExtResource("34_l0ewk")]
 position = Vector2(617, 3128)
-health = 1
 
 [node name="Smasher3" parent="." instance=ExtResource("34_l0ewk")]
 position = Vector2(1711, 1730)
-health = 2
+
+[node name="Stinger" parent="." instance=ExtResource("35_0lbil")]
+position = Vector2(1562, -418)
+flying = true
+
+[node name="PickUp" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(1270, -1)

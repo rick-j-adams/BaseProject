@@ -886,6 +886,16 @@ position = Vector2(-8, 75)
 script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
+[node name="RPointRight" type="Node2D" parent="."]
+position = Vector2(64, 32)
+script = ExtResource("4_eblft")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="RPointLeft" type="Node2D" parent="."]
+position = Vector2(-82, 32)
+script = ExtResource("4_eblft")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
 [node name="UPoint" type="Node2D" parent="."]
 position = Vector2(9, -71)
 script = ExtResource("4_eblft")
@@ -917,7 +927,7 @@ script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
 [node name="Sprite2D" type="Sprite2D" parent="MidPoint"]
-position = Vector2(0, 1)
+position = Vector2(-13, -3)
 texture = ExtResource("1_tvnxl")
 hframes = 10
 vframes = 10

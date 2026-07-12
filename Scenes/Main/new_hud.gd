@@ -11,6 +11,7 @@ var INCREMENT_SIZE : float = 20
 @onready var healthBar: ColorRect = $HealthBar
 @onready var maxHealthBar: ColorRect = $MaxHealth
 @onready var payBar: ColorRect = $PayBar
+@onready var bagPosition: RPoint = $RPointBagPosition
 
 
 func _ready():
@@ -37,4 +38,7 @@ func nsf(amount: float) -> void:
 
 func maxHealth() -> void:
 	animationPlayer.play("MaxHealth")
+
+func getBagPosition() -> RPoint:
+	return bagPosition
 	

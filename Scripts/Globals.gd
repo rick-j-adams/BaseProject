@@ -52,6 +52,10 @@ var maxBitPoolSize : int = 32
 var bitMachine :BitMachine = null
 var bitPayMachine :BitPayMachine = null
 
+var elementPool : Array = []
+var maxElementPoolSize : int = 32
+
+
 var lastPosition: Vector2 = Vector2.ZERO
 var mainCharacter = null
 
@@ -98,6 +102,11 @@ func maxHealthHud() -> void:
 	if hud != null:
 		hud.maxHealth()
 
+func bagPositionHud() -> RPoint:
+	if hud != null:
+		return hud.getBagPosition()
+	return null
+
 func setUpPuffPool() -> void:
 	for i in range(maxPuffPoolSize):
 		var puff:Node = sceneMap.get("puffEffect").instantiate()
@@ -111,6 +120,21 @@ func createPuff(position:Vector2) -> void:
 	for puff in puffPool:
 		if not puff.visible:
 			puff.setAndRelease(position)
+			return
+
+func setUpElementPool() -> void:
+	for i in range(maxElementPoolSize):
+		var element:Node = sceneMap.get("element").instantiate()
+		elementPool.append(element)
+		if mainScene != null:
+			mainScene.add_child(element)
+
+func createElement(owner: Node2D, setPosition: Vector2, effectType:int, energy:float, direction:Vector2) -> void:
+	if elementPool.size() == 0:
+		setUpElementPool()
+	for element in elementPool:
+		if not element.isOn:
+			element.setup(owner, setPosition, direction, energy)
 			return
 
 func setUpBitPool() -> void:

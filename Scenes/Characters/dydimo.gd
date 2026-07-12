@@ -13,6 +13,8 @@ class_name Dydimo
 @onready var underside :RPoint = $RPoint
 @onready var upperside :RPoint = $UPoint
 @onready var midPoint :RPoint = $MidPoint
+@onready var handRight :RPoint = $RPointRight
+@onready var handLeft :RPoint = $RPointLeft
 @onready var hitTimer :Timer = $HitTimer
 @onready var dyingTimer :Timer = $DyingTimer
 @onready var birthTimer :Timer = $BirthTimer
@@ -373,7 +375,11 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_just_released("ui_select") and inControl():
 		print("SELECT")
-		explode()
+		# explode()
+		if sprite.flip_h:
+			Globals.createElement(self, handLeft.global_position, 0, 5, Vector2(-1,0))
+		else:
+			Globals.createElement(self, handRight.global_position, 0, 5, Vector2(1,0))
 		if Globals.getBoolGamePropery("zap"):
 			Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "Zap")
 		if Globals.getBoolGamePropery("biZap"):
@@ -717,3 +723,6 @@ func explode() -> void:
 	dyingTimer.start() 
 	# velocity.x = Globals.get_rand_between(-maxSpeed, maxSpeed)
 	# velocity.y = Globals.get_rand_between(-maxSpeed, 0)
+
+func addPickUp(pickupType: PickUp.PickUpType) -> void:
+	print("addPickUp: "+str(pickupType))

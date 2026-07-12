@@ -79,7 +79,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-37, -54)]
+"values": [Vector2(-37, -59)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -187,7 +187,7 @@ tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-30, 0)]
+"values": [Vector2(-3, 0)]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
@@ -211,7 +211,7 @@ tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-23, 27)]
+"values": [Vector2(6, 25)]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
@@ -223,7 +223,19 @@ tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-17, -20)]
+"values": [Vector2(23, -27)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("RPointDmg:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-180, 51)]
 }
 
 [sub_resource type="Animation" id="Animation_whtqj"]
@@ -251,7 +263,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(44, -72)]
+"values": [Vector2(43, -59)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -335,7 +347,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-15, -22)]
+"values": [Vector2(-15, -27)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -420,6 +432,18 @@ tracks/15/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("RPointDmg:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(193, 46)]
 }
 
 [sub_resource type="Animation" id="Animation_4uqis"]
@@ -645,6 +669,18 @@ tracks/16/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("RPointDmg:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-180, 51)]
+}
 
 [sub_resource type="Animation" id="Animation_ha6gm"]
 resource_name = "Search"
@@ -713,7 +749,7 @@ position = Vector2(-10, 25)
 position = Vector2(-16, -18)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 51)
+position = Vector2(-2, 52)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_4uqis")
 
@@ -751,7 +787,7 @@ position = Vector2(-2.5, 9)
 shape = SubResource("RectangleShape2D_bmnxt")
 
 [node name="RPointDmg" type="Node2D" parent="."]
-position = Vector2(196, 47)
+position = Vector2(-180, 51)
 script = ExtResource("5_apu0t")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 

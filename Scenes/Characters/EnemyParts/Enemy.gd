@@ -20,7 +20,7 @@ var sparePartDmg: SpareParts = null
 @onready var parts: Node2D = $Parts
 @onready var timer: Timer = $Timer
 
-@export var health: int = 5
+@export var health: float = 5.0
 @export var speed: float = 300.0
 @export var flying: bool = false
 @export var touchDamage: int = 1
@@ -97,6 +97,12 @@ func _process(delta: float) -> void:
 			return
 			
 	velocity.y += Globals.GRAVITY * delta
+	if flying:
+		if velocity.y > 5.0:
+			velocity.y = -4.0
+		animationPlayer.play("Move")
+		# velocity = velocity.lerp(targetVelocity, acceleration * delta / speed)
+	
 	move_and_slide()
 	
 
@@ -164,13 +170,18 @@ func takeDamage(body:Node2D):
 					child.playDamageAnimation()
 		body.yForce -= 1000	
 
+func getNumberOfParts() -> float:
+	
+	return 0.4
+
 func die(body:Node2D):
 	state = STATES.DYING	
 	# set_collision_layer_value(1, false)
 	set_collision_layer_value(1, false)
-	var duration :float = 0.2 * health
 	Globals.movePuffMachine(global_position, 0.5, 0.5)
-	Globals.moveBitMachine(global_position, 0.1, duration)
+	Globals.moveBitMachine(global_position, 0.1, getNumberOfParts())
+	# Globals.moveBitMachine(global_position, 0.1, 0.4)
+
 	Globals.moveSparkEffect(global_position, rotation, facingRight, "RedBloom")
 	var childeren = parts.get_children()
 	timer.wait_time = 2.0
@@ -237,14 +248,11 @@ func _on_area_2d_vision_body_entered(body:Node2D) -> void:
 func _on_area_2d_damage_box_body_entered(body:Node2D) -> void:
 	setInDamage(body)
 
-
 func _on_area_2d_touch_damage_body_entered(body:Node2D) -> void:
 	doTouchDamage(body)
 
-
 func _on_area_2d_weak_point_body_entered(body:Node2D) -> void:
 	takeDamage(body)
-
 
 func _on_timer_timeout() -> void:
 	if state == STATES.IDLE:
