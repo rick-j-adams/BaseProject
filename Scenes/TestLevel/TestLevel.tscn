@@ -4035,5 +4035,81 @@ position = Vector2(1711, 1730)
 position = Vector2(1562, -418)
 flying = true
 
-[node name="PickUp" parent="." instance=ExtResource("36_rpx7b")]
+[node name="PickUp1" parent="." instance=ExtResource("36_rpx7b")]
 position = Vector2(1270, -1)
+
+[node name="PickUp2" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(2038, 264)
+pickUpType = 8
+
+[node name="PickUp3" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(947, 201)
+pickUpType = 0
+
+[node name="PickUp4" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(2180, -391)
+pickUpType = 1
+
+[node name="PickUp5" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(2267, -389)
+pickUpType = 2
+
+[node name="PickUp6" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(2356, -391)
+pickUpType = 3
+
+[node name="PickUp7" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(2455, -389)
+pickUpType = 4
+
+[node name="PickUp8" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(2984, 517)
+pickUpType = 6
+
+[node name="PickUp9" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(2984, 517)
+pickUpType = 6
+
+[node name="PickUp10" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(2906, 519)
+pickUpType = 9
+
+[node name="PickUp11" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(2842, 518)
+pickUpType = 10
+
+[node name="PickUp12" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(2727, 500)
+pickUpType = 11
+
+[node name="PickUp13" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(1958, 884)
+pickUpType = 12
+
+[node name="PickUp14" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(1884, 886)
+pickUpType = 13
+
+[node name="PickUp15" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(1884, 886)
+pickUpType = 13
+
+[node name="PickUp16" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(1799, 880)
+pickUpType = 14
+
+[node name="PickUp17" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(2316, 872)
+pickUpType = 18
+
+[node name="PickUp18" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(2433, 876)
+pickUpType = 17
+
+[node name="PickUp19" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(2538, 869)
+pickUpType = 16
+
+[node name="PickUp20" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(2660, 875)
+pickUpType = 15

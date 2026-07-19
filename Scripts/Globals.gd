@@ -11,6 +11,13 @@ extends Node
 
 const GRAVITY := 2000.0
 
+enum MODES {
+	INVENTORY,
+	PLAY,
+	EXPAND
+}
+
+var currentMode : MODES = MODES.PLAY
 
 const RESOURCE_CLAZZ = preload("res://Scripts/AllResources.gd")
 const RESOURCE_FILE_PATH = "res://Data/AllResources.res"
@@ -37,8 +44,12 @@ var audioMap: Dictionary = {}
 var gdMap: Dictionary = {}
 var dataMap: Dictionary = {}
 
+var picksUpMap: Dictionary = {}
+
 var randomPointer : int = 0
 var randomNumbers :Array = [47 ,22 ,67 ,83 ,82 ,36 ,2 ,89 ,98 ,42 ,70 ,60 ,53 ,92 ,21 ,14 ,54 ,76 ,9 ,11 ,1 ,32 ,55 ,79 ,10 ,4 ,46 ,80 ,72 ,35 ,3 ,44 ,48 ,20 ,99 ,84 ,0 ,86 ,66 ,90 ,28 ,15 ,30 ,25 ,38 ,63 ,61 ,71 ,27 ,51 ,41 ,45 ,64 ,23 ,94 ,33 ,12 ,56 ,31 ,49 ,75 ,52 ,13 ,43 ,57 ,74 ,85 ,34 ,73 ,96 ,39 ,26 ,69 ,7 ,88 ,37 ,62 ,65 ,77 ,91 ,93 ,97 ,16 ,68 ,18 ,87 ,17 ,24 ,81 ,40 ,19 ,78 ,29 ,6 ,58 ,5 ,95 ,50 ,59 ,8 ,8 ,57 ,51 ,14 ,28 ,85 ,64 ,93 ,61 ,90 ,1 ,33 ,76 ,75 ,62 ,7 ,46 ,79 ,78 ,19 ,65 ,88 ,41 ,36 ,54 ,58 ,77 ,23 ,72 ,12 ,26 ,71 ,84 ,3 ,9 ,63 ,42 ,89 ,5 ,16 ,48 ,32 ,39 ,15 ,94 ,87 ,6 ,60 ,13 ,66 ,70 ,56 ,18 ,99 ,83 ,30 ,47 ,35 ,69 ,0 ,91 ,52 ,38 ,81 ,74 ,24 ,25 ,55 ,49 ,22 ,97 ,21 ,27 ,50 ,96 ,31 ,43 ,44 ,67 ,98 ,37 ,45 ,53 ,82 ,17 ,10 ,59 ,29 ,11 ,92 ,80 ,68 ,95 ,40 ,34 ,2 ,73 ,4 ,86 ,20 ,42 ,25 ,89 ,93 ,23 ,47 ,15 ,30 ,84 ,48 ,27 ,10 ,56 ,24 ,98 ,19 ,12 ,67 ,43 ,7 ,92 ,35 ,69 ,83 ,4 ,32 ,20 ,70 ,91 ,17 ,45 ,51 ,13 ,75 ,37 ,34 ,11 ,33 ,76 ,2 ,28 ,18 ,79 ,36 ,53 ,66 ,71 ,61 ,60 ,38 ,57 ,46 ,59 ,44 ,63 ,49 ,62 ,6 ,65 ,40 ,8 ,1 ,82 ,74 ,88 ,87 ,0 ,26 ,14 ,50 ,22 ,9 ,78 ,96 ,85 ,80 ,94 ,39 ,97 ,41 ,55 ,86 ,3 ,29 ,5 ,64 ,52 ,31 ,81 ,73 ,58 ,72 ,77 ,90 ,16 ,21 ,99 ,68 ,54 ,95 ,81 ,86 ,24 ,90 ,5 ,64 ,17 ,3 ,8 ,29 ,60 ,77 ,14 ,16 ,2 ,82 ,43 ,80 ,11 ,28 ,65 ,36 ,34 ,25 ,94 ,79 ,53 ,20 ,85 ,46 ,9 ,40 ,57 ,4 ,51 ,59 ,70 ,96 ,62 ,55 ,35 ,27 ,56 ,50 ,6 ,91 ,87 ,7 ,66 ,19 ,88 ,38 ,30 ,33 ,67 ,76 ,47 ,93 ,71 ,41 ,73 ,0 ,10 ,45 ,74 ,23 ,15 ,95 ,26 ,61 ,18 ,1 ,78 ,98 ,52 ,83 ,75 ,32 ,48 ,21 ,54 ,63 ,37 ,68 ,69 ,89 ,12 ,72 ,42 ,13 ,92 ,49 ,31 ,99 ,39 ,84 ,22 ,58 ,97 ,44 ,45 ,52 ,27 ,20 ,2 ,65 ,38 ,54 ,35 ,70 ,9 ,14 ,71 ,68 ,76 ,30 ,25 ,18 ,55 ,66 ,72 ,64 ,19 ,26 ,11 ,78 ,61 ,91 ,84 ,43 ,50 ,73 ,0 ,97 ,44 ,40 ,5 ,8 ,31 ,88 ,51 ,15 ,16 ,42 ,62 ,95 ,63 ,24 ,89 ,22 ,3 ,49 ,48 ,17 ,57 ,1 ,7 ,56 ,86 ,28 ,39 ,21 ,98 ,83 ,67 ,41 ,96 ,36 ,93 ,4 ,74 ,13 ,69 ,99 ,10 ,32 ,77 ,33 ,37 ,29 ,79 ,53 ,90 ,59 ,60 ,34 ,58 ,80 ,87 ,12 ,85 ,75 ,23 ,94 ,92 ,81 ,82 ,47 ,46 ,6]
+
+
 
 var sectionRandomer : int = 11621
 var subSectionRandomer : int = 17377
@@ -58,6 +69,71 @@ var maxElementPoolSize : int = 32
 
 var lastPosition: Vector2 = Vector2.ZERO
 var mainCharacter = null
+
+func setUpPicksUpMap() -> void:
+	if allResources.allPickUps.size() == 0:
+		allResources.allPickUps = {
+			#                       {Category, picked up, pluged in, on, texture}
+			#expanasions
+			PickUp.PickUpType.JUMP: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardJump1"},
+			PickUp.PickUpType.JUMP2: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardJump2"},
+			PickUp.PickUpType.ZAP: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardZap1"},
+			PickUp.PickUpType.ZAP2: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardZap2"},
+			PickUp.PickUpType.JETPACK: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardJet"},
+			PickUp.PickUpType.WALLRIDE: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardWallRide"},
+			PickUp.PickUpType.TELEPORT: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false,  "texture": "PUBoardTeleport"},
+			PickUp.PickUpType.HEALTH1: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardHealth1"},
+			PickUp.PickUpType.HEALTH2: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardHealth2"},
+			PickUp.PickUpType.CHUTE: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardChute"},
+			PickUp.PickUpType.MAGNET: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardMagnet"},
+			PickUp.PickUpType.SECURITY: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardSecurity"},
+			PickUp.PickUpType.HEALTH3: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardHealth3"},
+			PickUp.PickUpType.ZAP3: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardZap3"},
+			PickUp.PickUpType.SPEED: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardSpeed"},
+			#Motherboards
+			PickUp.PickUpType.MB1: {"category": "motherboard", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUMB1"},
+			PickUp.PickUpType.MB2: {"category": "motherboard", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUMB2"},
+			PickUp.PickUpType.MB3: {"category": "motherboard", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUMB3"},
+			PickUp.PickUpType.MB4: {"category": "motherboard", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUMB4"},
+			#batteries
+			PickUp.PickUpType.BATTERYLOW1: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1"},
+			PickUp.PickUpType.BATTERYLOW2: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1"},
+			PickUp.PickUpType.BATTERYLOW3: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1"},
+			PickUp.PickUpType.BATTERYLOW4: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1"},
+			PickUp.PickUpType.BATTERYLOW5: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1"},
+			PickUp.PickUpType.BATTERYLOW6: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1"},
+			PickUp.PickUpType.BATTERYLOW7: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2"},
+			PickUp.PickUpType.BATTERYLOW8: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2"},
+			PickUp.PickUpType.BATTERYLOW9: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2"},
+			PickUp.PickUpType.BATTERYLOW10: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2"},
+			PickUp.PickUpType.BATTERYLOW11: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2"},
+			PickUp.PickUpType.BATTERYLOW12: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2"},
+			PickUp.PickUpType.BATTERYMED1: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery3"},
+			PickUp.PickUpType.BATTERYMED2: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery3"},
+			PickUp.PickUpType.BATTERYMED3: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, 	"texture": "PUBattery3"},
+			PickUp.PickUpType.BATTERYMED4: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery3"},
+			PickUp.PickUpType.BATTERYMED5: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery3"},
+			PickUp.PickUpType.BATTERYMED6: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery3"},
+			PickUp.PickUpType.BATTERYHIGH1: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery4"},
+			PickUp.PickUpType.BATTERYHIGH2: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery4"},
+			PickUp.PickUpType.BATTERYHIGH3: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery4"},
+			PickUp.PickUpType.BATTERYHIGH4: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,  "texture": "PUBattery4"},
+
+		}
+
+
+
+func pickUpPickUp(pickUpType: PickUp.PickUpType) -> void:
+	if allResources.allPickUps.has(pickUpType):
+		var pickUpData = allResources.allPickUps.get(pickUpType)
+		pickUpData["pickedUp"] = true
+		allResources.allPickUps[pickUpType] = pickUpData
+		if hud != null:
+			hud.addItemToBox()
+
+func uiCancel() -> void:
+	if hud != null:
+		hud._on_touch_screen_button_released()
 
 func setMainCharacter(character):
 	mainCharacter = character
@@ -106,6 +182,12 @@ func bagPositionHud() -> RPoint:
 	if hud != null:
 		return hud.getBagPosition()
 	return null
+
+func playBoxOpenAnimationHud() -> void:
+	if hud != null:
+		hud.playBoxOpenAnimation()
+
+
 
 func setUpPuffPool() -> void:
 	for i in range(maxPuffPoolSize):
@@ -222,7 +304,10 @@ func addToMainScene(newSceneName:String) -> Node:
 			mainScene.add_child(newNode)
 			return newNode
 	return null
-			
+
+func getTextureByName(textureName:String) -> Texture2D:
+	var texture:Texture2D = imageMap.get(textureName)
+	return texture		
 
 func playInterfaceAudio(localPostion: Vector2, audioName: String) -> void:
 	if interfaceAudio !=null: 

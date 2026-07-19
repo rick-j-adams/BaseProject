@@ -327,18 +327,13 @@ func decelerate(delta: float, direction: float, currentSpeed: float, onFloor: bo
 func changeDirection(flip: bool):
 	sprite.flip_h = flip
 
-# ─── process ──────────────────────────────────────────────────────────────────
-
-func _process(delta: float) -> void:
-	var shade_factor: float = clamp(global_position.y / 1000.0, 0.0, 1.0)
-	var shading: Color = LIGHTEST.lerp(DARKEST, shade_factor)
-	canvasModulate.color = shading
-
-	var currentSpeed: float = absf(xForce)
-	var isNowOnFloor: bool = isOnFloor()
+func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
+	if Globals.currentMode != Globals.MODES.PLAY:
+		return false
 	interaction = false
+	if Input.is_action_pressed("ui_cancel") and inControl():
+		Globals.uiCancel()
 
-	
 	if Input.is_action_pressed("ui_right") and inControl():
 		changeState(STATES.WALKING)
 		changeDirection(false)
@@ -351,8 +346,9 @@ func _process(delta: float) -> void:
 		calcAcceleration(delta, -1, currentSpeed, isNowOnFloor)
 		interaction = true
 
-	else:
-		decelerate(delta, sign(xForce), currentSpeed, isNowOnFloor)
+	# else:
+
+	# 	decelerate(delta, sign(xForce), currentSpeed, isNowOnFloor)
 
 	if Input.is_action_just_pressed("ui_up") and inControl():
 		if isNowOnFloor or (Globals.getBoolGamePropery("doubleJump") and jumpCounter < 2) or Globals.getBoolGamePropery("jetPack"):
@@ -384,8 +380,19 @@ func _process(delta: float) -> void:
 			Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "Zap")
 		if Globals.getBoolGamePropery("biZap"):
 			Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "BigZap")
+	return interaction
+# ─── process ──────────────────────────────────────────────────────────────────
 
+func _process(delta: float) -> void:
+	var shade_factor: float = clamp(global_position.y / 1000.0, 0.0, 1.0)
+	var shading: Color = LIGHTEST.lerp(DARKEST, shade_factor)
+	canvasModulate.color = shading
 
+	var currentSpeed: float = absf(xForce)
+	var isNowOnFloor: bool = isOnFloor()
+	interaction = handleInput(delta, currentSpeed, isNowOnFloor)
+	if not interaction:
+		decelerate(delta, sign(xForce), currentSpeed, isNowOnFloor)
 	# Allow steep surfaces to act as walkable floor when wall riding
 	if nextToWall() and Globals.getBoolGamePropery("wallRide") and (rotation_degrees < -45 or rotation_degrees > 45):
 		floor_max_angle = deg_to_rad(100)
@@ -725,4 +732,5 @@ func explode() -> void:
 	# velocity.y = Globals.get_rand_between(-maxSpeed, 0)
 
 func addPickUp(pickupType: PickUp.PickUpType) -> void:
+	Globals.pickUpPickUp(pickupType)
 	print("addPickUp: "+str(pickupType))

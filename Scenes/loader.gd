@@ -20,6 +20,7 @@ var currentloadState = LOAD_STATES.SCENES
 	"bitPayMachine" :"res://Scenes/Effects/BitPayMachine.tscn",
 	"bit" :"res://Scenes/Props/Bit.tscn",
 	"element" :"res://Scenes/Effects/Element.tscn",
+	"pickUp" :"res://Scenes/PickUps/PickUp.tscn",
 	"test" :"res://Scenes/TestLevel/TestLevel.tscn",
 
 }
@@ -59,6 +60,29 @@ var currentloadState = LOAD_STATES.SCENES
 	"ICONtarget" : "res://Images/Icons/target.png",
 	"ICONthink" : "res://Images/Icons/think.png",
 	"ICONup" : "res://Images/Icons/up.png",
+	"PUBattery1" : "res://Images/PickUps/Battery1.png",
+	"PUBattery2" : "res://Images/PickUps/Battery2.png",
+	"PUBattery3" : "res://Images/PickUps/Battery3.png",
+	"PUBattery4" : "res://Images/PickUps/Battery4.png",
+	"PUMB1" : "res://Images/PickUps/MBPickUp1.png",
+	"PUMB2" : "res://Images/PickUps/MBPickUp2.png",
+	"PUMB3" : "res://Images/PickUps/MBPickUp3.png",
+	"PUMB4" : "res://Images/PickUps/MBPickUp4.png",
+	"PUBoardSecurity" : "res://Images/PickUps/BoardAccess.png",
+	"PUChute" : "res://Images/PickUps/BoardChute.png",
+	"PUBoardHealth1" : "res://Images/PickUps/BoardHeart.png",
+	"PUBoardHealth2" : "res://Images/PickUps/BoardHeart2.png",
+	"PUBoardHealth3" : "res://Images/PickUps/BoardHeart3.png",
+	"PUBoardJet" : "res://Images/PickUps/BoardJet.png",
+	"PUBoardJump1" : "res://Images/PickUps/BoardJump1.png",
+	"PUBoardJump2" : "res://Images/PickUps/BoardJump2.png",
+	"PUBoardMagnet" : "res://Images/PickUps/BoardMagnet.png",
+	"PUBoardSpeed" : "res://Images/PickUps/BoardSpeed.png",
+	"PUBoardTeleport" : "res://Images/PickUps/BoardTeleport.png",
+	"PUBoardWallRide" : "res://Images/PickUps/BoardWallRide.png",
+	"PUBoardZap1" : "res://Images/PickUps/BoardZapper.png",
+	"PUBoardZap2" : "res://Images/PickUps/BoardZapp2.png",
+	"PUBoardZap3" : "res://Images/PickUps/BoardZapp2.png",
 
 }
 
