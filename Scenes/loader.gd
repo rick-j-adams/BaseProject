@@ -104,6 +104,13 @@ var currentloadState = LOAD_STATES.SCENES
 	"PUBattery3Top" : "res://Images/PickUps/BMB3.png",
 	"PUBattery4Top" : "res://Images/PickUps/BMB4.png",
 	"PUBoardChuteTop" : "res://Images/PickUps/BMDAChute.png",
+	"MainBoard1" : "res://Images/PickUps/MD1.png",
+	"MainBoard2" : "res://Images/PickUps/MD2.png",
+	"MainBoard3" : "res://Images/PickUps/MD3.png",
+	"MainBoard4" : "res://Images/PickUps/MD4.png",
+
+
+
 }
 
 @onready var loadMapAudio :Dictionary  = {

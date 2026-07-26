@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cbri375apng4c"]
+[gd_scene load_steps=29 format=3 uid="uid://cbri375apng4c"]
 
 [ext_resource type="Script" uid="uid://b652gij8tmep0" path="res://Scenes/Main/new_hud.gd" id="1_87ym2"]
 [ext_resource type="Texture2D" uid="uid://cx5ktnplou612" path="res://Images/Icons/gear3.png" id="2_eb8ms"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://t7w0lfet33ms" path="res://Images/PickUps/BatterySelector.png" id="9_nyvci"]
 [ext_resource type="Texture2D" uid="uid://dxenqi688psak" path="res://Images/PickUps/screen.png" id="10_c4m5t"]
 [ext_resource type="Texture2D" uid="uid://sacyv6hclx5t" path="res://Images/PickUps/BMDAJump.png" id="10_cq8hj"]
+[ext_resource type="Texture2D" uid="uid://diqctkij23nwj" path="res://Images/PickUps/BMB1.png" id="11_cq8hj"]
 
 [sub_resource type="Animation" id="Animation_dhgaq"]
 resource_name = "MaxHealth"
@@ -316,7 +317,7 @@ offset_right = 954.0
 offset_bottom = 536.0
 
 [node name="Sprite2DBoard" type="Sprite2D" parent="PanelContainerCase"]
-position = Vector2(279, 262)
+position = Vector2(279, 261)
 texture = ExtResource("8_ihcpf")
 
 [node name="Sprite2DCase" type="Sprite2D" parent="PanelContainerCase"]
@@ -376,6 +377,26 @@ position = Vector2(205, 331)
 script = ExtResource("4_t7jn7")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
+[node name="RPointBatteryHole1" type="Node2D" parent="PanelContainerCase"]
+position = Vector2(183, 376)
+script = ExtResource("4_t7jn7")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="RPointBatteryHole2" type="Node2D" parent="PanelContainerCase"]
+position = Vector2(376, 378)
+script = ExtResource("4_t7jn7")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="RPointBatteryHole3" type="Node2D" parent="PanelContainerCase"]
+position = Vector2(183, 442)
+script = ExtResource("4_t7jn7")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="RPointBatteryHole4" type="Node2D" parent="PanelContainerCase"]
+position = Vector2(377, 441)
+script = ExtResource("4_t7jn7")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
 [node name="Boards" type="Node2D" parent="PanelContainerCase"]
 
 [node name="Board1" type="Sprite2D" parent="PanelContainerCase/Boards"]
@@ -412,6 +433,28 @@ texture = ExtResource("10_cq8hj")
 visible = false
 position = Vector2(207, 329)
 texture = ExtResource("10_cq8hj")
+
+[node name="BatteryHoles" type="Node2D" parent="PanelContainerCase"]
+
+[node name="Sprite2DBattery1" type="Sprite2D" parent="PanelContainerCase/BatteryHoles"]
+visible = false
+position = Vector2(182, 378)
+texture = ExtResource("11_cq8hj")
+
+[node name="Sprite2DBattery2" type="Sprite2D" parent="PanelContainerCase/BatteryHoles"]
+visible = false
+position = Vector2(378, 378)
+texture = ExtResource("11_cq8hj")
+
+[node name="Sprite2DBattery3" type="Sprite2D" parent="PanelContainerCase/BatteryHoles"]
+visible = false
+position = Vector2(182, 442)
+texture = ExtResource("11_cq8hj")
+
+[node name="Sprite2DBattery4" type="Sprite2D" parent="PanelContainerCase/BatteryHoles"]
+visible = false
+position = Vector2(381, 440)
+texture = ExtResource("11_cq8hj")
 
 [node name="PanelContainerBag" type="PanelContainer" parent="."]
 offset_left = -505.0
