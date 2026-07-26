@@ -74,50 +74,51 @@ func setUpPicksUpMap() -> void:
 	if allResources.allPickUps.size() == 0:
 		allResources.allPickUps = {
 			#                       {Category, picked up, pluged in, on, texture}
+			PickUp.PickUpType.NONE: {"category": "none", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardJump1", "slotNo":-1},
 			#expanasions
-			PickUp.PickUpType.JUMP: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardJump1"},
-			PickUp.PickUpType.JUMP2: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardJump2"},
-			PickUp.PickUpType.ZAP: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardZap1"},
-			PickUp.PickUpType.ZAP2: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardZap2"},
-			PickUp.PickUpType.JETPACK: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardJet"},
-			PickUp.PickUpType.WALLRIDE: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardWallRide"},
-			PickUp.PickUpType.TELEPORT: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false,  "texture": "PUBoardTeleport"},
-			PickUp.PickUpType.HEALTH1: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardHealth1"},
-			PickUp.PickUpType.HEALTH2: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardHealth2"},
-			PickUp.PickUpType.CHUTE: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardChute"},
-			PickUp.PickUpType.MAGNET: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardMagnet"},
-			PickUp.PickUpType.SECURITY: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardSecurity"},
-			PickUp.PickUpType.HEALTH3: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardHealth3"},
-			PickUp.PickUpType.ZAP3: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardZap3"},
-			PickUp.PickUpType.SPEED: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardSpeed"},
+			PickUp.PickUpType.JUMP: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardJump1", "slotNo":-1},
+			PickUp.PickUpType.JUMP2: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardJump2","slotNo":-1},
+			PickUp.PickUpType.ZAP: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardZap1","slotNo":-1},
+			PickUp.PickUpType.ZAP2: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardZap2","slotNo":-1},
+			PickUp.PickUpType.JETPACK: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardJet","slotNo":-1},
+			PickUp.PickUpType.WALLRIDE: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardWallRide","slotNo":-1},
+			PickUp.PickUpType.TELEPORT: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false,  "texture": "PUBoardTeleport","slotNo":-1},
+			PickUp.PickUpType.HEALTH1: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardHealth1","slotNo":-1},
+			PickUp.PickUpType.HEALTH2: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardHealth2","slotNo":-1},
+			PickUp.PickUpType.CHUTE: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardChute","slotNo":-1},
+			PickUp.PickUpType.MAGNET: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardMagnet","slotNo":-1},
+			PickUp.PickUpType.SECURITY: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardSecurity","slotNo":-1},
+			PickUp.PickUpType.HEALTH3: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardHealth3","slotNo":-1},
+			PickUp.PickUpType.ZAP3: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardZap3","slotNo":-1},
+			PickUp.PickUpType.SPEED: {"category": "expansion", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBoardSpeed","slotNo":-1},
 			#Motherboards
-			PickUp.PickUpType.MB1: {"category": "motherboard", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUMB1"},
-			PickUp.PickUpType.MB2: {"category": "motherboard", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUMB2"},
-			PickUp.PickUpType.MB3: {"category": "motherboard", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUMB3"},
-			PickUp.PickUpType.MB4: {"category": "motherboard", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUMB4"},
+			PickUp.PickUpType.MB1: {"category": "motherboard", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUMB1","slotNo":-1},
+			PickUp.PickUpType.MB2: {"category": "motherboard", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUMB2","slotNo":-1},
+			PickUp.PickUpType.MB3: {"category": "motherboard", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUMB3","slotNo":-1},
+			PickUp.PickUpType.MB4: {"category": "motherboard", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUMB4","slotNo":-1},
 			#batteries
-			PickUp.PickUpType.BATTERYLOW1: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1"},
-			PickUp.PickUpType.BATTERYLOW2: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1"},
-			PickUp.PickUpType.BATTERYLOW3: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1"},
-			PickUp.PickUpType.BATTERYLOW4: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1"},
-			PickUp.PickUpType.BATTERYLOW5: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1"},
-			PickUp.PickUpType.BATTERYLOW6: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1"},
-			PickUp.PickUpType.BATTERYLOW7: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2"},
-			PickUp.PickUpType.BATTERYLOW8: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2"},
-			PickUp.PickUpType.BATTERYLOW9: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2"},
-			PickUp.PickUpType.BATTERYLOW10: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2"},
-			PickUp.PickUpType.BATTERYLOW11: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2"},
-			PickUp.PickUpType.BATTERYLOW12: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2"},
-			PickUp.PickUpType.BATTERYMED1: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery3"},
-			PickUp.PickUpType.BATTERYMED2: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery3"},
-			PickUp.PickUpType.BATTERYMED3: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, 	"texture": "PUBattery3"},
-			PickUp.PickUpType.BATTERYMED4: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery3"},
-			PickUp.PickUpType.BATTERYMED5: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery3"},
-			PickUp.PickUpType.BATTERYMED6: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery3"},
-			PickUp.PickUpType.BATTERYHIGH1: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery4"},
-			PickUp.PickUpType.BATTERYHIGH2: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery4"},
-			PickUp.PickUpType.BATTERYHIGH3: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery4"},
-			PickUp.PickUpType.BATTERYHIGH4: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,  "texture": "PUBattery4"},
+			PickUp.PickUpType.BATTERYLOW1: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1","slotNo":-1},
+			PickUp.PickUpType.BATTERYLOW2: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1","slotNo":-1},
+			PickUp.PickUpType.BATTERYLOW3: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1","slotNo":-1},
+			PickUp.PickUpType.BATTERYLOW4: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1","slotNo":-1},
+			PickUp.PickUpType.BATTERYLOW5: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1","slotNo":-1},
+			PickUp.PickUpType.BATTERYLOW6: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1","slotNo":-1},
+			PickUp.PickUpType.BATTERYLOW7: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2","slotNo":-1},
+			PickUp.PickUpType.BATTERYLOW8: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2","slotNo":-1},
+			PickUp.PickUpType.BATTERYLOW9: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2","slotNo":-1},
+			PickUp.PickUpType.BATTERYLOW10: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2","slotNo":-1},
+			PickUp.PickUpType.BATTERYLOW11: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2","slotNo":-1},
+			PickUp.PickUpType.BATTERYLOW12: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery2","slotNo":-1},
+			PickUp.PickUpType.BATTERYMED1: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery3","slotNo":-1},
+			PickUp.PickUpType.BATTERYMED2: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery3","slotNo":-1},
+			PickUp.PickUpType.BATTERYMED3: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, 	"texture": "PUBattery3","slotNo":-1},
+			PickUp.PickUpType.BATTERYMED4: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery3","slotNo":-1},
+			PickUp.PickUpType.BATTERYMED5: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery3","slotNo":-1},
+			PickUp.PickUpType.BATTERYMED6: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery3","slotNo":-1},
+			PickUp.PickUpType.BATTERYHIGH1: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery4","slotNo":-1},
+			PickUp.PickUpType.BATTERYHIGH2: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery4","slotNo":-1},
+			PickUp.PickUpType.BATTERYHIGH3: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUBattery4","slotNo":-1},
+			PickUp.PickUpType.BATTERYHIGH4: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,  "texture": "PUBattery4","slotNo":-1},
 
 		}
 
@@ -134,6 +135,17 @@ func pickUpPickUp(pickUpType: PickUp.PickUpType) -> void:
 func uiCancel() -> void:
 	if hud != null:
 		hud._on_touch_screen_button_released()
+
+func uiShowCase() -> void:
+	if hud != null:
+		currentMode = MODES.EXPAND
+		
+		hud.triggerShowCase()
+
+func uiHideCase() -> void:
+	if hud != null:
+		currentMode = MODES.PLAY
+		hud.triggerHideCase()
 
 func setMainCharacter(character):
 	mainCharacter = character

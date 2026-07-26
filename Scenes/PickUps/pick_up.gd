@@ -3,6 +3,7 @@ extends Node2D
 class_name PickUp
 
 enum PickUpType {
+NONE,
 JUMP,
 JUMP2,
 ZAP,
@@ -55,6 +56,9 @@ var inventoryItem = false;
 var speed : float = 1000.0
 @onready var animationPlayer :AnimationPlayer = $AnimationPlayer
 @onready var sprite :Sprite2D = $Sprite2D
+@onready var spriteHighLight :Sprite2D = $Sprite2DHighLight
+@onready var pointLight2D :PointLight2D = $PointLight2D
+
 
 @export var pickUpType :PickUpType = PickUpType.HEALTH1
 
@@ -63,35 +67,19 @@ func _ready() -> void:
 	var textureName = Globals.allResources.allPickUps.get(pickUpType).get("texture")
 	var textureValue = Globals.getTextureByName(textureName)
 	sprite.texture = textureValue
-	pass
+	spriteHighLight.texture=textureValue
+	UnhighlightPickUp()
 
 func _process(delta: float) -> void:
 	if pickingUp:
-		# var bagPosition = Globals.bagPositionHud()
-		var screenPos = Vector2(40, 40) # Your HUD/Screen coordinates
-		var worldPos = get_canvas_transform().affine_inverse() * screenPos	
-		if global_position.distance_to(worldPos) < 10:
+		var screenPos := Vector2(40, 40) # HUD/Screen coordinates
+		var worldPos := get_canvas_transform().affine_inverse() * screenPos
+
+		if global_position.distance_to(worldPos) <= 10:
 			Globals.playBoxOpenAnimationHud()
 			queue_free()
 		else:
-			
-			if worldPos.x < global_position.x:
-				global_position.x -= speed * delta
-			if worldPos.x > global_position.x:
-				global_position.x += speed * delta
-			if worldPos.y < global_position.y:
-				global_position.y -= speed * delta
-			if worldPos.y > global_position.y:
-				global_position.y += speed * delta	
-			# 	if global_position.x < bagPosition.global_position.x:
-			# 		global_position.x += speed * delta
-			# 	if global_position.x > bagPosition.global_position.x:
-			# 		global_position.x -= speed * delta
-			# 	if global_position.y < bagPosition.global_position.y:
-			# 		global_position.y += speed * delta
-			# 	if global_position.y > bagPosition.global_position.y:
-			# 		global_position.y -= speed * delta	
-			# global_position = global_position.lerp(bagPosition.global_position, 0.1)
+			global_position = global_position.move_toward(worldPos, speed * delta)
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
 	if body.is_in_group("actor"):
@@ -110,3 +98,10 @@ func setInventoryItem(value: bool) -> void:
 		pickingUp = false
 		animationPlayer.play("Wait")
 	
+func HighlightPickUp() -> void:
+	spriteHighLight.visible = true
+	pointLight2D.energy = 1.0
+
+func UnhighlightPickUp() -> void:
+	spriteHighLight.visible = false
+	pointLight2D.energy = 0.0

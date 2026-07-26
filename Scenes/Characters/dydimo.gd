@@ -713,7 +713,9 @@ func _on_mag_timer_timeout() -> void:
 
 func fix() -> void:
 	# birthing=true
-	animationPlayer.play("FaceForward")	
+	animationPlayer.play("FaceForward")
+	Globals.uiShowCase()	
+	Globals.uiCancel()
 
 func explode() -> void:
 	sprite.visible = false

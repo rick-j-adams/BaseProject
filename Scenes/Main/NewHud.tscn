@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cbri375apng4c"]
+[gd_scene load_steps=28 format=3 uid="uid://cbri375apng4c"]
 
 [ext_resource type="Script" uid="uid://b652gij8tmep0" path="res://Scenes/Main/new_hud.gd" id="1_87ym2"]
 [ext_resource type="Texture2D" uid="uid://cx5ktnplou612" path="res://Images/Icons/gear3.png" id="2_eb8ms"]
@@ -6,6 +6,13 @@
 [ext_resource type="Script" uid="uid://dbbrhmyet7xy6" path="res://Scenes/point.gd" id="4_t7jn7"]
 [ext_resource type="Texture2D" uid="uid://cmr5yyom634cw" path="res://Images/System/boxClose.png" id="5_v3a67"]
 [ext_resource type="Texture2D" uid="uid://cax5y3fmut8xp" path="res://Images/System/boxOpen.png" id="6_ek7pd"]
+[ext_resource type="Texture2D" uid="uid://bx68tyfmoa0rg" path="res://Images/System/BoxBoarder.png" id="7_ek7pd"]
+[ext_resource type="Texture2D" uid="uid://bucjbn4l1u202" path="res://Images/PickUps/SlotSelector.png" id="8_c4m5t"]
+[ext_resource type="Texture2D" uid="uid://cwg3hhncuxfsk" path="res://Images/PickUps/MD1.png" id="8_ihcpf"]
+[ext_resource type="Texture2D" uid="uid://dfnctwplrxep1" path="res://Images/PickUps/case.png" id="9_n3sgu"]
+[ext_resource type="Texture2D" uid="uid://t7w0lfet33ms" path="res://Images/PickUps/BatterySelector.png" id="9_nyvci"]
+[ext_resource type="Texture2D" uid="uid://dxenqi688psak" path="res://Images/PickUps/screen.png" id="10_c4m5t"]
+[ext_resource type="Texture2D" uid="uid://sacyv6hclx5t" path="res://Images/PickUps/BMDAJump.png" id="10_cq8hj"]
 
 [sub_resource type="Animation" id="Animation_dhgaq"]
 resource_name = "MaxHealth"
@@ -66,6 +73,22 @@ tracks/0/keys = {
 "values": [Color(0.627451, 0.745098, 0.784314, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_24rqk"]
+resource_name = "OpenBox"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainerBag/OpenBox:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.350321, 0.401141),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_eb8ms"]
 length = 0.001
 tracks/0/type = "value"
@@ -105,22 +128,6 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_24rqk"]
-resource_name = "OpenBox"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PanelContainerBag/OpenBox:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.350321, 0.401141),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dhgaq"]
 _data = {
 &"MaxHealth": SubResource("Animation_dhgaq"),
@@ -128,6 +135,22 @@ _data = {
 &"Normal": SubResource("Animation_87ym2"),
 &"OpenBox": SubResource("Animation_24rqk"),
 &"RESET": SubResource("Animation_eb8ms")
+}
+
+[sub_resource type="Animation" id="Animation_fo0nb"]
+resource_name = "PlayerCloseBox"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainerBag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(6, 40), Vector2(-505, 40)]
 }
 
 [sub_resource type="Animation" id="Animation_v3a67"]
@@ -161,27 +184,65 @@ tracks/0/keys = {
 "values": [Vector2(-505, 40)]
 }
 
-[sub_resource type="Animation" id="Animation_fo0nb"]
-resource_name = "PlayerCloseBox"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PanelContainerBag:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(6, 40), Vector2(-505, 40)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_24rqk"]
 _data = {
 &"PlayerCloseBox": SubResource("Animation_fo0nb"),
 &"PlayerOpenBox": SubResource("Animation_v3a67"),
 &"RESET": SubResource("Animation_ek7pd")
+}
+
+[sub_resource type="Animation" id="Animation_iqd32"]
+resource_name = "HideCase"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainerCase:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cq8hj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainerCase:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nyvci"]
+resource_name = "ShowCase"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainerCase:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c3f0l"]
+_data = {
+&"HideCase": SubResource("Animation_iqd32"),
+&"RESET": SubResource("Animation_cq8hj"),
+&"ShowCase": SubResource("Animation_nyvci")
 }
 
 [node name="NewHud" type="CanvasLayer"]
@@ -241,10 +302,121 @@ libraries = {
 &"": SubResource("AnimationLibrary_24rqk")
 }
 
+[node name="AnimationPlayerCase" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_c3f0l")
+}
+autoplay = "HideCase"
+
+[node name="PanelContainerCase" type="PanelContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 454.0
+offset_top = 36.0
+offset_right = 954.0
+offset_bottom = 536.0
+
+[node name="Sprite2DBoard" type="Sprite2D" parent="PanelContainerCase"]
+position = Vector2(279, 262)
+texture = ExtResource("8_ihcpf")
+
+[node name="Sprite2DCase" type="Sprite2D" parent="PanelContainerCase"]
+visible = false
+position = Vector2(251, 251)
+texture = ExtResource("9_n3sgu")
+
+[node name="Sprite2DScreen" type="Sprite2D" parent="PanelContainerCase"]
+position = Vector2(253, 251)
+texture = ExtResource("10_c4m5t")
+
+[node name="ShowHideTimer" type="Timer" parent="PanelContainerCase"]
+wait_time = 0.1
+
+[node name="Sprite2DSlotSelector" type="Sprite2D" parent="PanelContainerCase"]
+visible = false
+position = Vector2(202, 120)
+texture = ExtResource("8_c4m5t")
+
+[node name="Sprite2DBatterySelector" type="Sprite2D" parent="PanelContainerCase"]
+visible = false
+position = Vector2(181, 414)
+texture = ExtResource("9_nyvci")
+
+[node name="RPointSlot1" type="Node2D" parent="PanelContainerCase"]
+position = Vector2(204, 81)
+script = ExtResource("4_t7jn7")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="RPointSlot2" type="Node2D" parent="PanelContainerCase"]
+position = Vector2(203, 120)
+script = ExtResource("4_t7jn7")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="RPointSlot3" type="Node2D" parent="PanelContainerCase"]
+position = Vector2(203, 161)
+script = ExtResource("4_t7jn7")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="RPointSlot4" type="Node2D" parent="PanelContainerCase"]
+position = Vector2(203, 204)
+script = ExtResource("4_t7jn7")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="RPointSlot5" type="Node2D" parent="PanelContainerCase"]
+position = Vector2(203, 246)
+script = ExtResource("4_t7jn7")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="RPointSlot6" type="Node2D" parent="PanelContainerCase"]
+position = Vector2(203, 290)
+script = ExtResource("4_t7jn7")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="RPointSlot7" type="Node2D" parent="PanelContainerCase"]
+position = Vector2(205, 331)
+script = ExtResource("4_t7jn7")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="Boards" type="Node2D" parent="PanelContainerCase"]
+
+[node name="Board1" type="Sprite2D" parent="PanelContainerCase/Boards"]
+visible = false
+position = Vector2(206, 82)
+texture = ExtResource("10_cq8hj")
+
+[node name="Board2" type="Sprite2D" parent="PanelContainerCase/Boards"]
+visible = false
+position = Vector2(207, 119)
+texture = ExtResource("10_cq8hj")
+
+[node name="Board3" type="Sprite2D" parent="PanelContainerCase/Boards"]
+visible = false
+position = Vector2(206, 161)
+texture = ExtResource("10_cq8hj")
+
+[node name="Board4" type="Sprite2D" parent="PanelContainerCase/Boards"]
+visible = false
+position = Vector2(207, 205)
+texture = ExtResource("10_cq8hj")
+
+[node name="Board5" type="Sprite2D" parent="PanelContainerCase/Boards"]
+visible = false
+position = Vector2(206, 247)
+texture = ExtResource("10_cq8hj")
+
+[node name="Board6" type="Sprite2D" parent="PanelContainerCase/Boards"]
+visible = false
+position = Vector2(207, 291)
+texture = ExtResource("10_cq8hj")
+
+[node name="Board7" type="Sprite2D" parent="PanelContainerCase/Boards"]
+visible = false
+position = Vector2(207, 329)
+texture = ExtResource("10_cq8hj")
+
 [node name="PanelContainerBag" type="PanelContainer" parent="."]
-offset_left = -503.0
+offset_left = -505.0
 offset_top = 40.0
-offset_right = -3.0
+offset_right = -5.0
 offset_bottom = 540.0
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="PanelContainerBag"]
@@ -260,5 +432,10 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(530, 26)
 texture = ExtResource("6_ek7pd")
 
+[node name="BoardBoarder" type="Sprite2D" parent="PanelContainerBag"]
+position = Vector2(252, 248)
+texture = ExtResource("7_ek7pd")
+
+[connection signal="timeout" from="PanelContainerCase/ShowHideTimer" to="." method="_on_show_hide_timer_timeout"]
 [connection signal="released" from="PanelContainerBag/TouchScreenButton" to="." method="_on_touch_screen_button_released"]
 [connection signal="timeout" from="PanelContainerBag/OpenCloseTimer" to="." method="_on_open_close_timer_timeout"]

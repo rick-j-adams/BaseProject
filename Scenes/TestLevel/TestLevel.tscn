@@ -4040,7 +4040,6 @@ position = Vector2(1270, -1)
 
 [node name="PickUp2" parent="." instance=ExtResource("36_rpx7b")]
 position = Vector2(2038, 264)
-pickUpType = 8
 
 [node name="PickUp3" parent="." instance=ExtResource("36_rpx7b")]
 position = Vector2(947, 201)
@@ -4097,6 +4096,18 @@ pickUpType = 13
 [node name="PickUp16" parent="." instance=ExtResource("36_rpx7b")]
 position = Vector2(1799, 880)
 pickUpType = 14
+
+[node name="PickUp21" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(1693, 876)
+pickUpType = 19
+
+[node name="PickUp22" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(1582, 865)
+pickUpType = 34
+
+[node name="PickUp23" parent="." instance=ExtResource("36_rpx7b")]
+position = Vector2(1460, 882)
+pickUpType = 39
 
 [node name="PickUp17" parent="." instance=ExtResource("36_rpx7b")]
 position = Vector2(2316, 872)

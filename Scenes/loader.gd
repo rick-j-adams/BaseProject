@@ -82,8 +82,28 @@ var currentloadState = LOAD_STATES.SCENES
 	"PUBoardWallRide" : "res://Images/PickUps/BoardWallRide.png",
 	"PUBoardZap1" : "res://Images/PickUps/BoardZapper.png",
 	"PUBoardZap2" : "res://Images/PickUps/BoardZapp2.png",
-	"PUBoardZap3" : "res://Images/PickUps/BoardZapp2.png",
-
+	"PUBoardZap3" : "res://Images/PickUps/BoardZapp3.png",
+	"PUBoardSecurityTop" : "res://Images/PickUps/BMDAccess.png",
+	"PUChuteTop" : "res://Images/PickUps/BMDAChute.png",
+	"PUBoardHealth1Top" : "res://Images/PickUps/BMDAHearth1.png",
+	"PUBoardHealth2Top" : "res://Images/PickUps/BMDAHearth2.png",
+	"PUBoardHealth3Top" : "res://Images/PickUps/BMDAHearth3.png",
+	"PUBoardJetTop" : "res://Images/PickUps/BMDAJet.png",
+	"PUBoardChute" : "res://Images/PickUps/BoardChute.png",
+	"PUBoardJump1Top" : "res://Images/PickUps/BMDAJump.png",
+	"PUBoardJump2Top" : "res://Images/PickUps/BMDAJump2.png",
+	"PUBoardMagnetTop" : "res://Images/PickUps/BMDAMagnet.png",
+	"PUBoardSpeedTop" : "res://Images/PickUps/BMDSpeed.png",
+	"PUBoardTeleportTop" : "res://Images/PickUps/BMDATele.png",
+	"PUBoardWallRideTop" : "res://Images/PickUps/BMDAWall.png",
+	"PUBoardZap1Top" : "res://Images/PickUps/BMDAZap1.png",
+	"PUBoardZap2Top" : "res://Images/PickUps/BMDAZap2.png",
+	"PUBoardZap3Top" : "res://Images/PickUps/BMDAZap3.png",
+	"PUBattery1Top" : "res://Images/PickUps/BMB1.png",
+	"PUBattery2Top" : "res://Images/PickUps/BMB2.png",
+	"PUBattery3Top" : "res://Images/PickUps/BMB3.png",
+	"PUBattery4Top" : "res://Images/PickUps/BMB4.png",
+	"PUBoardChuteTop" : "res://Images/PickUps/BMDAChute.png",
 }
 
 @onready var loadMapAudio :Dictionary  = {
@@ -94,6 +114,7 @@ var currentloadState = LOAD_STATES.SCENES
 	"noSound" : "res://Audio/noSound.ogg",
 	"crash" : "res://Audio/crash.ogg",
 	"rbjump" : "res://Audio/rbjump.ogg",
+	"click" : "res://Audio/click.ogg",
 }
 
 @onready var loadMapGD :Dictionary  = {
