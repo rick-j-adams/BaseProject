@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5015kg4u7scx"]
+[gd_scene load_steps=11 format=3 uid="uid://b5015kg4u7scx"]
 
 [ext_resource type="Script" uid="uid://cih6eau6om2up" path="res://Scenes/PickUps/pick_up.gd" id="1_usx4k"]
 [ext_resource type="Texture2D" uid="uid://bytp5qbmm6hog" path="res://Images/PickUps/BoardZapper.png" id="2_upsb1"]
 [ext_resource type="Texture2D" uid="uid://b8m2u1rpbwvjh" path="res://Images/System/light512.png" id="3_upsb1"]
+[ext_resource type="Texture2D" uid="uid://dk1ujiww0cyay" path="res://Images/blank.png" id="4_jnh6k"]
 
 [sub_resource type="Animation" id="Animation_8uy0e"]
 resource_name = "PickUp"
@@ -236,4 +237,10 @@ shape = SubResource("RectangleShape2D_fnola")
 energy = 0.0
 texture = ExtResource("3_upsb1")
 
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(-32, -33)
+texture_normal = ExtResource("4_jnh6k")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]
+[connection signal="released" from="TouchScreenButton" to="." method="_on_touch_screen_button_released"]

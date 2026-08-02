@@ -1,0 +1,1042 @@
+[gd_scene load_steps=66 format=3 uid="uid://dj6ia2qloed7t"]
+
+[ext_resource type="Texture2D" uid="uid://h376gg2wcrhb" path="res://Images/PickUps/Screen2.png" id="1_a8efe"]
+[ext_resource type="Script" uid="uid://d3if0tf7qnp3u" path="res://Scenes/Main/new_screen.gd" id="1_gclsi"]
+[ext_resource type="Texture2D" uid="uid://by5r3runomjlt" path="res://Images/PickUps/DisplayIcons.png" id="2_gclsi"]
+
+[sub_resource type="Animation" id="Animation_vucwh"]
+resource_name = "Map"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [29]
+}
+
+[sub_resource type="Animation" id="Animation_tokxr"]
+resource_name = "PUBattery1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_5rd3t"]
+resource_name = "PUBattery2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_1ixh2"]
+resource_name = "PUBattery3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_tu2ys"]
+resource_name = "PUBattery4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_v20ha"]
+resource_name = "PUBoardChute"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.233333, 0.4, 0.566667, 0.733333, 0.898111),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 16, 17, 18, 17, 19, 17]
+}
+
+[sub_resource type="Animation" id="Animation_5cro1"]
+resource_name = "PUBoardHealth1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_44a4p"]
+resource_name = "PUBoardHealth2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 14, 15, 5]
+}
+
+[sub_resource type="Animation" id="Animation_x26jc"]
+resource_name = "PUBoardHealth3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.533333, 0.666667, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 14, 15, 12, 5, 13]
+}
+
+[sub_resource type="Animation" id="Animation_u2c7e"]
+resource_name = "PUBoardJet"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.433333, 0.533333, 0.633333, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 10, 11, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_a8efe"]
+resource_name = "PUBoardJump1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 0.90169),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 7, 6, 8]
+}
+
+[sub_resource type="Animation" id="Animation_2dteb"]
+resource_name = "PUBoardJump2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 8, 9, 8, 7, 6, 9]
+}
+
+[sub_resource type="Animation" id="Animation_oxj84"]
+resource_name = "PUBoardMagnet"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.40254, 0.604704, 0.801502, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 24]
+}
+
+[sub_resource type="Animation" id="Animation_ord4f"]
+resource_name = "PUBoardSecurity"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3, 0.433333, 0.566667, 0.7, 0.90169),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 45, 46, 47, 48, 49, 45]
+}
+
+[sub_resource type="Animation" id="Animation_uhc8t"]
+resource_name = "PUBoardSpeed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.200375, 0.395384, 0.583236, 0.76751, 0.896322, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 39, 40, 41, 42, 43, 42]
+}
+
+[sub_resource type="Animation" id="Animation_kf7wi"]
+resource_name = "PUBoardTeleport"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.233333, 0.333333, 0.5, 0.566667, 0.666667, 0.766667, 0.887377, 0.987377),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 31, 32, 33, 32, 34, 31, 30, 31, 30]
+}
+
+[sub_resource type="Animation" id="Animation_icugb"]
+resource_name = "PUBoardWallRide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 20, 21, 22, 23]
+}
+
+[sub_resource type="Animation" id="Animation_ar0wn"]
+resource_name = "PUBoardZap1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 35, 36, 35, 36]
+}
+
+[sub_resource type="Animation" id="Animation_ch2wm"]
+resource_name = "PUBoardZap2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.731644, 0.833333, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 35, 36, 37, 36, 35, 37]
+}
+
+[sub_resource type="Animation" id="Animation_q8lft"]
+resource_name = "PUBoardZap3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.333333, 0.433333, 0.533333, 0.666667, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 35, 36, 37, 38, 37, 38]
+}
+
+[sub_resource type="Animation" id="Animation_0qg3l"]
+resource_name = "PUMB1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [50]
+}
+
+[sub_resource type="Animation" id="Animation_yp2w6"]
+resource_name = "PUMB2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [50]
+}
+
+[sub_resource type="Animation" id="Animation_jimvs"]
+resource_name = "PUMB3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [50]
+}
+
+[sub_resource type="Animation" id="Animation_vcodd"]
+resource_name = "PUMB4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [50]
+}
+
+[sub_resource type="Animation" id="Animation_gclsi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DPickUpDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kf7wi"]
+_data = {
+&"Map": SubResource("Animation_vucwh"),
+&"PUBattery1": SubResource("Animation_tokxr"),
+&"PUBattery2": SubResource("Animation_5rd3t"),
+&"PUBattery3": SubResource("Animation_1ixh2"),
+&"PUBattery4": SubResource("Animation_tu2ys"),
+&"PUBoardChute": SubResource("Animation_v20ha"),
+&"PUBoardHealth1": SubResource("Animation_5cro1"),
+&"PUBoardHealth2": SubResource("Animation_44a4p"),
+&"PUBoardHealth3": SubResource("Animation_x26jc"),
+&"PUBoardJet": SubResource("Animation_u2c7e"),
+&"PUBoardJump1": SubResource("Animation_a8efe"),
+&"PUBoardJump2": SubResource("Animation_2dteb"),
+&"PUBoardMagnet": SubResource("Animation_oxj84"),
+&"PUBoardSecurity": SubResource("Animation_ord4f"),
+&"PUBoardSpeed": SubResource("Animation_uhc8t"),
+&"PUBoardTeleport": SubResource("Animation_kf7wi"),
+&"PUBoardWallRide": SubResource("Animation_icugb"),
+&"PUBoardZap1": SubResource("Animation_ar0wn"),
+&"PUBoardZap2": SubResource("Animation_ch2wm"),
+&"PUBoardZap3": SubResource("Animation_q8lft"),
+&"PUMB1": SubResource("Animation_0qg3l"),
+&"PUMB2": SubResource("Animation_yp2w6"),
+&"PUMB3": SubResource("Animation_jimvs"),
+&"PUMB4": SubResource("Animation_vcodd"),
+&"RESET": SubResource("Animation_gclsi")
+}
+
+[sub_resource type="Animation" id="Animation_0knq3"]
+resource_name = "Grow1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DCostDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_fde42"]
+resource_name = "Grow2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DCostDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 62]
+}
+
+[sub_resource type="Animation" id="Animation_t0w16"]
+resource_name = "Grow3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DCostDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 62, 63]
+}
+
+[sub_resource type="Animation" id="Animation_hf47j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DCostDisplay:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vsnyf"]
+_data = {
+&"Grow1": SubResource("Animation_0knq3"),
+&"Grow2": SubResource("Animation_fde42"),
+&"Grow3": SubResource("Animation_t0w16"),
+&"RESET": SubResource("Animation_hf47j")
+}
+
+[sub_resource type="Animation" id="Animation_3uuig"]
+resource_name = "Grow1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_41xr6"]
+resource_name = "Grow10"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.202165, 0.398962, 0.597548, 0.803291, 0.998299, 1.20046, 1.40263, 1.59943, 1.79872),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+}
+
+[sub_resource type="Animation" id="Animation_vsnyf"]
+resource_name = "Grow11"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.202165, 0.398962, 0.597548, 0.803291, 0.998299, 1.20046, 1.40263, 1.59943, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+}
+
+[sub_resource type="Animation" id="Animation_lai51"]
+resource_name = "Grow12"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.202165, 0.398962, 0.597548, 0.803291, 0.998299, 1.20046, 1.40263, 1.59943, 1.8, 2, 2.1967),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61]
+}
+
+[sub_resource type="Animation" id="Animation_is3mg"]
+resource_name = "Grow2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.202165),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 51]
+}
+
+[sub_resource type="Animation" id="Animation_wny7c"]
+resource_name = "Grow3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.202165, 0.398962),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 51, 52]
+}
+
+[sub_resource type="Animation" id="Animation_7nwbe"]
+resource_name = "Grow4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.202165, 0.398962, 0.597548),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53]
+}
+
+[sub_resource type="Animation" id="Animation_ftjpg"]
+resource_name = "Grow5"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.202165, 0.398962, 0.597548, 0.803291),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54]
+}
+
+[sub_resource type="Animation" id="Animation_5aevs"]
+resource_name = "Grow6"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.202165, 0.398962, 0.597548, 0.803291, 0.998299),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54, 55]
+}
+
+[sub_resource type="Animation" id="Animation_3iowr"]
+resource_name = "Grow7"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.202165, 0.398962, 0.597548, 0.803291, 0.998299, 1.20046),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54, 55, 56]
+}
+
+[sub_resource type="Animation" id="Animation_j0lwe"]
+resource_name = "Grow8"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.202165, 0.398962, 0.597548, 0.803291, 0.998299, 1.20046, 1.40263),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54, 55, 56, 57]
+}
+
+[sub_resource type="Animation" id="Animation_mnm0q"]
+resource_name = "Grow9"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.202165, 0.398962, 0.597548, 0.803291, 0.998299, 1.20046, 1.40263, 1.59943),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54, 55, 56, 57, 58]
+}
+
+[sub_resource type="Animation" id="Animation_ku0mt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFill:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lai51"]
+_data = {
+&"Grow1": SubResource("Animation_3uuig"),
+&"Grow10": SubResource("Animation_41xr6"),
+&"Grow11": SubResource("Animation_vsnyf"),
+&"Grow12": SubResource("Animation_lai51"),
+&"Grow2": SubResource("Animation_is3mg"),
+&"Grow3": SubResource("Animation_wny7c"),
+&"Grow4": SubResource("Animation_7nwbe"),
+&"Grow5": SubResource("Animation_ftjpg"),
+&"Grow6": SubResource("Animation_5aevs"),
+&"Grow7": SubResource("Animation_3iowr"),
+&"Grow8": SubResource("Animation_j0lwe"),
+&"Grow9": SubResource("Animation_mnm0q"),
+&"RESET": SubResource("Animation_ku0mt")
+}
+
+[sub_resource type="Animation" id="Animation_875ui"]
+resource_name = "Grow1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_pvbuc"]
+resource_name = "Grow10"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.198586, 0.400751, 0.595759, 0.799713, 1, 1.20022, 1.39701, 1.60276, 1.80204),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+}
+
+[sub_resource type="Animation" id="Animation_u5rfy"]
+resource_name = "Grow11"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.198586, 0.400751, 0.595759, 0.799713, 1, 1.20022, 1.39701, 1.60276, 1.80204, 1.99884),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+}
+
+[sub_resource type="Animation" id="Animation_etijt"]
+resource_name = "Grow12"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.198586, 0.400751, 0.595759, 0.799713, 1, 1.20022, 1.39701, 1.60276, 1.80204, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61]
+}
+
+[sub_resource type="Animation" id="Animation_6jqvv"]
+resource_name = "Grow2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.198586),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 51]
+}
+
+[sub_resource type="Animation" id="Animation_wiv58"]
+resource_name = "Grow3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.198586, 0.400751),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 51, 52]
+}
+
+[sub_resource type="Animation" id="Animation_7r1tb"]
+resource_name = "Grow4"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.198586, 0.400751, 0.595759),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53]
+}
+
+[sub_resource type="Animation" id="Animation_rvlpt"]
+resource_name = "Grow5"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.198586, 0.400751, 0.595759, 0.799713),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54]
+}
+
+[sub_resource type="Animation" id="Animation_otfbb"]
+resource_name = "Grow6"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.198586, 0.400751, 0.595759, 0.799713, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54, 55]
+}
+
+[sub_resource type="Animation" id="Animation_gyxow"]
+resource_name = "Grow7"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.198586, 0.400751, 0.595759, 0.799713, 1, 1.20022),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54, 55, 56]
+}
+
+[sub_resource type="Animation" id="Animation_5j5i8"]
+resource_name = "Grow8"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.198586, 0.400751, 0.595759, 0.799713, 1, 1.20022, 1.39701),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54, 55, 56, 57]
+}
+
+[sub_resource type="Animation" id="Animation_odye7"]
+resource_name = "Grow9"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.198586, 0.400751, 0.595759, 0.799713, 1, 1.20022, 1.39701, 1.60276),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 51, 52, 53, 54, 55, 56, 57, 58]
+}
+
+[sub_resource type="Animation" id="Animation_kwnfd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5j5i8"]
+_data = {
+&"Grow1": SubResource("Animation_875ui"),
+&"Grow10": SubResource("Animation_pvbuc"),
+&"Grow11": SubResource("Animation_u5rfy"),
+&"Grow12": SubResource("Animation_etijt"),
+&"Grow2": SubResource("Animation_6jqvv"),
+&"Grow3": SubResource("Animation_wiv58"),
+&"Grow4": SubResource("Animation_7r1tb"),
+&"Grow5": SubResource("Animation_rvlpt"),
+&"Grow6": SubResource("Animation_otfbb"),
+&"Grow7": SubResource("Animation_gyxow"),
+&"Grow8": SubResource("Animation_5j5i8"),
+&"Grow9": SubResource("Animation_odye7"),
+&"RESET": SubResource("Animation_kwnfd")
+}
+
+[sub_resource type="Animation" id="Animation_72j6t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.412152, 0.412152, 0.412152, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2DCostDisplay:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_selhk"]
+resource_name = "Warning"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DBarreryFillMax:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.203015, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.412152, 0.412152, 0.412152, 1), Color(1, 0, 0, 1), Color(0.412152, 0.412152, 0.412152, 1), Color(1, 0, 0, 1), Color(0.412152, 0.412152, 0.412152, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2DCostDisplay:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0948205, 0.202165, 0.296985, 0.398962, 0.497361),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ccef"]
+_data = {
+&"RESET": SubResource("Animation_72j6t"),
+&"Warning": SubResource("Animation_selhk")
+}
+
+[node name="NewScreen" type="Node2D"]
+script = ExtResource("1_gclsi")
+
+[node name="Sprite2DScreen" type="Sprite2D" parent="."]
+texture = ExtResource("1_a8efe")
+
+[node name="Sprite2DBarreryIcon" type="Sprite2D" parent="."]
+texture = ExtResource("2_gclsi")
+hframes = 8
+vframes = 8
+frame = 1
+
+[node name="Sprite2DBarreryFillMax" type="Sprite2D" parent="."]
+modulate = Color(0.412152, 0.412152, 0.412152, 1)
+texture = ExtResource("2_gclsi")
+hframes = 8
+vframes = 8
+frame = 2
+
+[node name="Sprite2DBarreryFill" type="Sprite2D" parent="."]
+texture = ExtResource("2_gclsi")
+hframes = 8
+vframes = 8
+frame = 2
+
+[node name="Sprite2DDividerIcon" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_gclsi")
+hframes = 8
+vframes = 8
+
+[node name="Sprite2DPickUpDisplay" type="Sprite2D" parent="."]
+texture = ExtResource("2_gclsi")
+hframes = 8
+vframes = 8
+frame = 6
+
+[node name="Sprite2DCostDisplay" type="Sprite2D" parent="."]
+texture = ExtResource("2_gclsi")
+hframes = 8
+vframes = 8
+frame = 3
+
+[node name="AnimationPlayerPickUp" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kf7wi")
+}
+
+[node name="AnimationPlayerCost" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vsnyf")
+}
+
+[node name="AnimationPlayerGrowBattery" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lai51")
+}
+
+[node name="AnimationPlayerGrowBattertMax" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5j5i8")
+}
+
+[node name="AnimationPlayerWarn" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8ccef")
+}

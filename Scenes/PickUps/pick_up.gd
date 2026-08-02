@@ -59,8 +59,11 @@ var speed : float = 1000.0
 @onready var spriteHighLight :Sprite2D = $Sprite2DHighLight
 @onready var pointLight2D :PointLight2D = $PointLight2D
 
+var pressed : bool = false
+var originalPosition : Vector2 = Vector2.ZERO
 
 @export var pickUpType :PickUpType = PickUpType.HEALTH1
+
 
 func _ready() -> void:
 	Globals.setUpPicksUpMap()
@@ -80,6 +83,15 @@ func _process(delta: float) -> void:
 			queue_free()
 		else:
 			global_position = global_position.move_toward(worldPos, speed * delta)
+	else:
+		if inventoryItem:
+			if pressed:
+				var mousePos = get_global_mouse_position()
+				global_position = mousePos
+			else:
+				if originalPosition != Vector2.ZERO:
+					position = position.move_toward(originalPosition, speed * delta)
+		
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
 	if body.is_in_group("actor"):
@@ -105,3 +117,13 @@ func HighlightPickUp() -> void:
 func UnhighlightPickUp() -> void:
 	spriteHighLight.visible = false
 	pointLight2D.energy = 0.0
+
+
+
+func _on_touch_screen_button_released() -> void:
+	pressed = false
+
+func _on_touch_screen_button_pressed() -> void:
+	originalPosition = position
+	pressed = true
+

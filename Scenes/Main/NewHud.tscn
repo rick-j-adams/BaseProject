@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cbri375apng4c"]
+[gd_scene load_steps=31 format=3 uid="uid://cbri375apng4c"]
 
 [ext_resource type="Script" uid="uid://b652gij8tmep0" path="res://Scenes/Main/new_hud.gd" id="1_87ym2"]
 [ext_resource type="Texture2D" uid="uid://cx5ktnplou612" path="res://Images/Icons/gear3.png" id="2_eb8ms"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dxenqi688psak" path="res://Images/PickUps/screen.png" id="10_c4m5t"]
 [ext_resource type="Texture2D" uid="uid://sacyv6hclx5t" path="res://Images/PickUps/BMDAJump.png" id="10_cq8hj"]
 [ext_resource type="Texture2D" uid="uid://diqctkij23nwj" path="res://Images/PickUps/BMB1.png" id="11_cq8hj"]
+[ext_resource type="PackedScene" uid="uid://dj6ia2qloed7t" path="res://Scenes/Main/NewScreen.tscn" id="12_iqd32"]
 
 [sub_resource type="Animation" id="Animation_dhgaq"]
 resource_name = "MaxHealth"
@@ -246,6 +247,9 @@ _data = {
 &"ShowCase": SubResource("Animation_nyvci")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqd32"]
+size = Vector2(196, 25)
+
 [node name="NewHud" type="CanvasLayer"]
 script = ExtResource("1_87ym2")
 
@@ -326,6 +330,7 @@ position = Vector2(251, 251)
 texture = ExtResource("9_n3sgu")
 
 [node name="Sprite2DScreen" type="Sprite2D" parent="PanelContainerCase"]
+visible = false
 position = Vector2(253, 251)
 texture = ExtResource("10_c4m5t")
 
@@ -347,55 +352,129 @@ position = Vector2(204, 81)
 script = ExtResource("4_t7jn7")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
+[node name="Area2DSlot1" type="Area2D" parent="PanelContainerCase/RPointSlot1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PanelContainerCase/RPointSlot1/Area2DSlot1"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_iqd32")
+
 [node name="RPointSlot2" type="Node2D" parent="PanelContainerCase"]
 position = Vector2(203, 120)
 script = ExtResource("4_t7jn7")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="Area2DSlot2" type="Area2D" parent="PanelContainerCase/RPointSlot2"]
+position = Vector2(2, -3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PanelContainerCase/RPointSlot2/Area2DSlot2"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_iqd32")
 
 [node name="RPointSlot3" type="Node2D" parent="PanelContainerCase"]
 position = Vector2(203, 161)
 script = ExtResource("4_t7jn7")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
+[node name="Area2DSlot3" type="Area2D" parent="PanelContainerCase/RPointSlot3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PanelContainerCase/RPointSlot3/Area2DSlot3"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_iqd32")
+
 [node name="RPointSlot4" type="Node2D" parent="PanelContainerCase"]
 position = Vector2(203, 204)
 script = ExtResource("4_t7jn7")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="Area2DSlot4" type="Area2D" parent="PanelContainerCase/RPointSlot4"]
+position = Vector2(2, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PanelContainerCase/RPointSlot4/Area2DSlot4"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_iqd32")
 
 [node name="RPointSlot5" type="Node2D" parent="PanelContainerCase"]
 position = Vector2(203, 246)
 script = ExtResource("4_t7jn7")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
+[node name="Area2DSlot5" type="Area2D" parent="PanelContainerCase/RPointSlot5"]
+position = Vector2(1, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PanelContainerCase/RPointSlot5/Area2DSlot5"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_iqd32")
+
 [node name="RPointSlot6" type="Node2D" parent="PanelContainerCase"]
 position = Vector2(203, 290)
 script = ExtResource("4_t7jn7")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="Area2DSlot6" type="Area2D" parent="PanelContainerCase/RPointSlot6"]
+position = Vector2(1, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PanelContainerCase/RPointSlot6/Area2DSlot6"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_iqd32")
 
 [node name="RPointSlot7" type="Node2D" parent="PanelContainerCase"]
 position = Vector2(205, 331)
 script = ExtResource("4_t7jn7")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
+[node name="Area2DSlot7" type="Area2D" parent="PanelContainerCase"]
+position = Vector2(204, 81)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PanelContainerCase/Area2DSlot7"]
+position = Vector2(2, 254)
+shape = SubResource("RectangleShape2D_iqd32")
+
 [node name="RPointBatteryHole1" type="Node2D" parent="PanelContainerCase"]
 position = Vector2(183, 376)
 script = ExtResource("4_t7jn7")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="Area2DBatteryHole1" type="Area2D" parent="PanelContainerCase/RPointBatteryHole1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PanelContainerCase/RPointBatteryHole1/Area2DBatteryHole1"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_iqd32")
 
 [node name="RPointBatteryHole2" type="Node2D" parent="PanelContainerCase"]
 position = Vector2(376, 378)
 script = ExtResource("4_t7jn7")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
+[node name="Area2DBatteryHole2" type="Area2D" parent="PanelContainerCase/RPointBatteryHole2"]
+position = Vector2(2, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PanelContainerCase/RPointBatteryHole2/Area2DBatteryHole2"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_iqd32")
+
 [node name="RPointBatteryHole3" type="Node2D" parent="PanelContainerCase"]
 position = Vector2(183, 442)
 script = ExtResource("4_t7jn7")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
+[node name="Area2DBatteryHole3" type="Area2D" parent="PanelContainerCase/RPointBatteryHole3"]
+position = Vector2(-2, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PanelContainerCase/RPointBatteryHole3/Area2DBatteryHole3"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_iqd32")
+
 [node name="RPointBatteryHole4" type="Node2D" parent="PanelContainerCase"]
 position = Vector2(377, 441)
 script = ExtResource("4_t7jn7")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="Area2DBatteryHole4" type="Area2D" parent="PanelContainerCase/RPointBatteryHole4"]
+position = Vector2(2, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PanelContainerCase/RPointBatteryHole4/Area2DBatteryHole4"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_iqd32")
 
 [node name="Boards" type="Node2D" parent="PanelContainerCase"]
 
@@ -456,6 +535,9 @@ visible = false
 position = Vector2(381, 440)
 texture = ExtResource("11_cq8hj")
 
+[node name="NewScreen" parent="PanelContainerCase" instance=ExtResource("12_iqd32")]
+position = Vector2(409, 99)
+
 [node name="PanelContainerBag" type="PanelContainer" parent="."]
 offset_left = -505.0
 offset_top = 40.0
@@ -480,5 +562,16 @@ position = Vector2(252, 248)
 texture = ExtResource("7_ek7pd")
 
 [connection signal="timeout" from="PanelContainerCase/ShowHideTimer" to="." method="_on_show_hide_timer_timeout"]
+[connection signal="area_entered" from="PanelContainerCase/RPointSlot1/Area2DSlot1" to="." method="_on_area_2d_slot_1_area_entered"]
+[connection signal="area_entered" from="PanelContainerCase/RPointSlot2/Area2DSlot2" to="." method="_on_area_2d_slot_2_area_entered"]
+[connection signal="area_entered" from="PanelContainerCase/RPointSlot3/Area2DSlot3" to="." method="_on_area_2d_slot_3_area_entered"]
+[connection signal="area_entered" from="PanelContainerCase/RPointSlot4/Area2DSlot4" to="." method="_on_area_2d_slot_4_area_entered"]
+[connection signal="area_entered" from="PanelContainerCase/RPointSlot5/Area2DSlot5" to="." method="_on_area_2d_slot_5_area_entered"]
+[connection signal="area_entered" from="PanelContainerCase/RPointSlot6/Area2DSlot6" to="." method="_on_area_2d_slot_6_area_entered"]
+[connection signal="area_entered" from="PanelContainerCase/Area2DSlot7" to="." method="_on_area_2d_slot_7_area_entered"]
+[connection signal="area_entered" from="PanelContainerCase/RPointBatteryHole1/Area2DBatteryHole1" to="." method="_on_area_2d_battery_hole_1_area_entered"]
+[connection signal="area_entered" from="PanelContainerCase/RPointBatteryHole2/Area2DBatteryHole2" to="." method="_on_area_2d_battery_hole_2_area_entered"]
+[connection signal="area_entered" from="PanelContainerCase/RPointBatteryHole3/Area2DBatteryHole3" to="." method="_on_area_2d_battery_hole_3_area_entered"]
+[connection signal="area_entered" from="PanelContainerCase/RPointBatteryHole4/Area2DBatteryHole4" to="." method="_on_area_2d_battery_hole_4_area_entered"]
 [connection signal="released" from="PanelContainerBag/TouchScreenButton" to="." method="_on_touch_screen_button_released"]
 [connection signal="timeout" from="PanelContainerBag/OpenCloseTimer" to="." method="_on_open_close_timer_timeout"]

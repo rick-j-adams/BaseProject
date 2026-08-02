@@ -1,6 +1,9 @@
 extends CanvasLayer
 
 const BITS = "bits"
+const MAX_BATTERY = "maxBattery"
+const CURRENT_BATTERY = "currentBattery"
+
 
 var BASE_SIZE : float = 36.0
 var INCREMENT_SIZE : float = 20
@@ -57,6 +60,7 @@ enum MODES {PLAY,INVENTORY,EXPANSION,BATTERY,MAP}
 @onready var battery4 :Sprite2D = get_node_or_null("PanelContainerCase/BatteryHoles/Sprite2DBattery4")
 
 @onready var mainBoard :Sprite2D = $PanelContainerCase/Sprite2DBoard
+@onready var newScreen :NewScreen = $PanelContainerCase/NewScreen
 
 
 var boards:Array = [board1,board2,board3,board4,board5,board6,board7]
@@ -79,14 +83,26 @@ var batteryHoleList:Array = [batteryHole1,batteryHole2]
 var batteryPosition:int = 0
 var batties:Array = [battery1,battery2,battery3,battery4 ]
 
+# var maxBattery:int = 0 
+# var currentBattery:int = 0 
+
+
 func _ready():
 	Globals.hud = self
 	var bits = Globals.getGameProperyNoDefault(BITS)
 	if bits == null:
 		bits = 5
 		Globals.setGamePropery(BITS, bits)
-		animationPlayerCase.play("HideCase")
-		boardSlotList = [slotOne2, slotOne4, slotOne5 ,slotOne6]
+	animationPlayerCase.play("HideCase")
+	boardSlotList = [slotOne2, slotOne4, slotOne5 ,slotOne6]
+
+	var maxBattery = Globals.getGameProperyNoDefault(MAX_BATTERY)
+	if maxBattery==null:
+		Globals.setGamePropery(MAX_BATTERY, 0)
+
+	var currentBattery = Globals.getGameProperyNoDefault(CURRENT_BATTERY)
+	if currentBattery==null:
+		Globals.setGamePropery(CURRENT_BATTERY, 0)
 
 func _process(delta: float) -> void:
 	var bits = Globals.getGameProperyNoDefault(BITS)
@@ -98,6 +114,7 @@ func _process(delta: float) -> void:
 	if maxHealthBar.size.x > maxHealthSize:
 		maxHealthBar.size.x = maxHealthSize
 	handleInput()	
+	chekForSelectedItem()
 
 func handleInput() -> void:
 	if bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_cancel"):
@@ -130,10 +147,19 @@ func changeSelectedBoard()->void:
 	if pickUpType!=PickUp.PickUpType.NONE:
 		Globals.allResources.allPickUps.get(pickUpType).set("slotNo",-1)
 		Globals.allResources.allPickUps.get(pickUpType).set("pluggedIn",false)
-	Globals.playInterfaceAudio(boardSlotList[boardSlotPosition].position, "click")
-	Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("slotNo",boardSlotPosition)
-	Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("pluggedIn",true)
-	placeBoard()
+		Globals.allResources.allPickUps.get(pickUpType).set("on",false)
+	var cost:int = calcPotentialCost()
+	var maxBattery:int = getMaxBattery()
+	if cost<=maxBattery:
+		Globals.playInterfaceAudio(boardSlotList[boardSlotPosition].position, "click")
+		Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("slotNo",boardSlotPosition)
+		Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("pluggedIn",true)
+		Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("on",true)
+		newScreen.growBattery(cost)
+		placeBoard()
+	else:
+		newScreen.showWarning()
+		# Globals.playInterfaceAudio(boardSlotList[boardSlotPosition].position, "error")
 
 func batteryInput() -> void:
 	if caseState == CASE_STATES.SHOW and Input.is_action_just_released("ui_right"):
@@ -156,9 +182,13 @@ func changeSelectedBattery() -> void:
 	if pickUpType != PickUp.PickUpType.NONE:
 		Globals.allResources.allPickUps.get(pickUpType).set("slotNo", -1)
 		Globals.allResources.allPickUps.get(pickUpType).set("pluggedIn", false)
+		Globals.allResources.allPickUps.get(pickUpType).set("on", false)
 	Globals.playInterfaceAudio(batteryHoleList[batteryPosition].position, "click")
 	Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("slotNo", batteryPosition)
 	Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("pluggedIn", true)
+	Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("on", true)
+	var maxBattery:int = getMaxBattery()
+	newScreen.growMaxBattery(maxBattery)
 	placeBattery()
 
 func getPickUpInSlot(slotNo:int)->PickUp.PickUpType:
@@ -328,6 +358,20 @@ func moveBatterySelector() -> void:
 	if batteryHoleList.size() > 0 and batteryPosition >= 0 and batteryPosition < len(batteryHoleList):
 		batterySelector.position = batteryHoleList[batteryPosition].position
 	
+func chekForSelectedItem()->void:
+	if bagState == BAG_STATES.OPEN:
+		for i in range(itemsInBag.keys().size()):
+			var itemKey = itemsInBag.keys()[i]
+			var itemData = itemsInBag.get(itemKey)
+			
+			if itemData != null:
+				if itemData.pressed == true:
+					selectedItem.UnhighlightPickUp()
+					selectedPointer=i
+					selectedItem=itemData
+					showSelectdePickUp()
+					selectedItem.HighlightPickUp()
+
 func inventoryInput() -> void:
 	if bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_right"):
 		if itemsInBag.keys().size() > 0:
@@ -339,6 +383,7 @@ func inventoryInput() -> void:
 			selectedItem = itemsInBag.get(firstItemKey)
 			if selectedItem != null:
 				selectedItem.HighlightPickUp()
+				showSelectdePickUp()
 	if bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_left"):
 		if itemsInBag.keys().size() > 0:
 			selectedItem.UnhighlightPickUp()
@@ -348,6 +393,7 @@ func inventoryInput() -> void:
 			var firstItemKey = itemsInBag.keys()[selectedPointer]
 			selectedItem = itemsInBag.get(firstItemKey)
 			if selectedItem != null:
+				showSelectdePickUp()
 				selectedItem.HighlightPickUp()
 	if  bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_select"):
 		if caseState == CASE_STATES.SHOW:
@@ -362,6 +408,28 @@ func inventoryInput() -> void:
 				moveBatterySelector()
 			elif selectedCategory == "motherboard":
 				setMainBoard()
+
+func getMaxBattery() -> int:
+	var maxBattery:int = 0
+	for potentialItem in Globals.allResources.allPickUps.keys():
+		var itemData = Globals.allResources.allPickUps.get(potentialItem)
+		if itemData != null and itemData.get("category") == "battery" and itemData.get("on") == true:
+			maxBattery += itemData.get("cost")
+	return maxBattery
+
+func calcPotentialCost()->int:
+	# "category": "expansion"
+	var cost:int = 0
+	for potentialItem in Globals.allResources.allPickUps.keys():
+		var itemData = Globals.allResources.allPickUps.get(potentialItem)
+		if itemData != null and itemData.get("category") == "expansion" and itemData.get("on") == true:
+			cost += itemData.get("cost")
+	cost += Globals.allResources.allPickUps.get(selectedItem.pickUpType).get("cost")
+	return cost
+
+func showSelectdePickUp()->void:
+	newScreen.changePickUp(Globals.allResources.allPickUps.get(selectedItem.pickUpType).get("texture"))
+	newScreen.showCost(Globals.allResources.allPickUps.get(selectedItem.pickUpType).get("cost"))
 
 
 func nsf(amount: float) -> void:
@@ -476,7 +544,6 @@ func getMainBoard()->String:
 	if mbName==null:
 		Globals.setGamePropery("mainBoard", "MainBoard1")
 		mbName = Globals.getGameProperyNoDefault("mainBoard")
-	print("getMainBoard:"+mbName)
 	return mbName
 	
 func setMainBoard() -> void:
@@ -493,3 +560,158 @@ func setMainBoard() -> void:
 	setUpBoard()
 	placeBattery()
 	placeBoard()
+
+
+func validDraggedSlot(slotNo:int, thismode:MODES) -> bool:
+	if thismode == MODES.EXPANSION:
+		if getMainBoard()=="MainBoard1":
+			if slotNo==1 || slotNo==3 || slotNo==7:
+				return false
+		if getMainBoard()=="MainBoard2":
+			if slotNo==1 || slotNo==3 || slotNo==7:
+				return false
+		if getMainBoard()=="MainBoard3":
+			if slotNo==1 || slotNo==7:
+				return false
+			
+	elif thismode == MODES.BATTERY:
+		if getMainBoard()=="MainBoard1":
+			if slotNo==3 || slotNo==4:
+				return false
+		if getMainBoard()=="MainBoard2":
+			if slotNo==1:
+				return false
+		if getMainBoard()=="MainBoard4":
+			if slotNo==1 :
+				return false
+	return true
+
+func getDraggedSlot(slotNo:int, thismode:MODES) -> int:
+	if thismode == MODES.EXPANSION:
+		if getMainBoard()=="MainBoard1" || getMainBoard()=="MainBoard2":
+			if slotNo==2:
+				return 0
+			if slotNo==4:
+				return 1
+			if slotNo==5:
+				return 2
+			if slotNo==6:
+				return 3
+		if getMainBoard()=="MainBoard3":
+			if slotNo==2:
+				return 0
+			if slotNo==3:
+				return 1
+			if slotNo==4:
+				return 2
+			if slotNo==5:
+				return 3
+			if slotNo==6:
+				return 4
+		if getMainBoard()=="MainBoard4":
+			if slotNo==1:
+				return 0
+			if slotNo==2:
+				return 1
+			if slotNo==3:
+				return 2
+			if slotNo==4:
+				return 3
+			if slotNo==5:
+				return 4
+			if slotNo==6:
+				return 5
+			if slotNo==7:
+				return 6
+	elif thismode == MODES.BATTERY:
+		if getMainBoard()=="MainBoard1":
+			if slotNo==1:
+				return 0
+			if slotNo==2:
+				return 1
+		if getMainBoard()=="MainBoard2" || getMainBoard()=="MainBoard4":
+			if slotNo==2:
+				return 0
+			if slotNo==3:
+				return 1
+			if slotNo==4:
+				return 2
+		if getMainBoard()=="MainBoard3":
+			if slotNo==1:
+				return 0
+			if slotNo==2:
+				return 1
+			if slotNo==3:
+				return 2
+			if slotNo==4:
+				return 3
+	return -1
+
+func setDraggedSlot(slotNo:int, thismode:MODES) -> bool:
+	if validDraggedSlot(slotNo, thismode):
+		if thismode == MODES.EXPANSION:
+			boardSlotPosition = getDraggedSlot(slotNo, thismode)
+		elif thismode == MODES.BATTERY:
+			batteryPosition = getDraggedSlot(slotNo, thismode)
+		return true
+	else:
+		return false
+
+func draggedToSlot(slotNo:int, area:Area2D, thismode:MODES)->void:
+	print("Dragged to slot: ", slotNo)
+	var parentNode = area.get_parent()
+	if Globals.currentMode==Globals.MODES.INVENTORY and parentNode != null and parentNode is PickUp:
+	 
+		var pickUpDtails = Globals.allResources.allPickUps.get(parentNode.pickUpType)
+		if pickUpDtails != null and parentNode.pressed:
+			var category:String = pickUpDtails.get("category")
+			if category == "expansion" and thismode == MODES.EXPANSION:
+				if setDraggedSlot(slotNo, MODES.EXPANSION):
+					changeSelectedBoard()
+					parentNode.pressed = false
+
+				print("expansion dragged to slot: ", slotNo)
+			elif category == "battery" and thismode == MODES.BATTERY:
+				if setDraggedSlot(slotNo, MODES.BATTERY):
+					changeSelectedBattery()
+					parentNode.pressed = false
+			elif category == "motherboard":
+				setMainBoard()
+				parentNode.pressed = false
+			else:
+				print("unknown category dragged to slot: ", slotNo)
+		print("Dragged to slot: ", slotNo)
+
+
+func _on_area_2d_slot_1_area_entered(area:Area2D) -> void:
+	draggedToSlot(1, area, MODES.EXPANSION)
+
+func _on_area_2d_slot_2_area_entered(area:Area2D) -> void:
+	draggedToSlot(2, area, MODES.EXPANSION)
+
+func _on_area_2d_slot_3_area_entered(area: Area2D) -> void:
+	draggedToSlot(3, area, MODES.EXPANSION)
+
+func _on_area_2d_slot_4_area_entered(area: Area2D) -> void:
+	draggedToSlot(4, area, MODES.EXPANSION)
+
+func _on_area_2d_slot_5_area_entered(area: Area2D) -> void:
+	draggedToSlot(5, area, MODES.EXPANSION)
+
+func _on_area_2d_slot_6_area_entered(area: Area2D) -> void:
+	draggedToSlot(6, area, MODES.EXPANSION)
+
+func _on_area_2d_slot_7_area_entered(area: Area2D) -> void:
+	draggedToSlot(7, area, MODES.EXPANSION)
+
+func _on_area_2d_battery_hole_1_area_entered(area: Area2D) -> void:
+	draggedToSlot(1, area, MODES.BATTERY)
+
+func _on_area_2d_battery_hole_2_area_entered(area: Area2D) -> void:
+	draggedToSlot(2, area, MODES.BATTERY)
+
+func _on_area_2d_battery_hole_3_area_entered(area: Area2D) -> void:
+	draggedToSlot(3, area, MODES.BATTERY)
+
+func _on_area_2d_battery_hole_4_area_entered(area: Area2D) -> void:
+	draggedToSlot(4, area, MODES.BATTERY)
