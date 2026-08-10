@@ -45,13 +45,13 @@ func turnOn():
 func _on_blow_area_body_exited(body:Node2D) -> void:
 	if body.is_in_group("actor"):
 		if body is Dydimo:
-			if isOn and not isBroken and Globals.getBoolGamePropery("chute"):
+			if isOn and not isBroken and  Globals.isPickUpOn(PickUp.PickUpType.CHUTE) :
 				body.blowUp = false
 
 func _on_blow_area_body_entered(body:Node2D) -> void:
 	if body.is_in_group("actor"):
 		if body is Dydimo:
-			if isOn and not isBroken and Globals.getBoolGamePropery("chute"):
+			if isOn and not isBroken and  Globals.isPickUpOn(PickUp.PickUpType.CHUTE):
 				body.blowUp = true
 
 
@@ -68,7 +68,7 @@ func _on_start_build_timer_timeout() -> void:
 	startBuildTimer.stop()
 	Globals.createPuff(global_position)
 	Globals.movePuffMachine(global_position, 0.05, 1)
-	if Globals.closeTo(global_position) and Globals.getBoolGamePropery("chute"):
+	if Globals.closeTo(global_position) and  Globals.isPickUpOn(PickUp.PickUpType.CHUTE):
 		Globals.mainCharacter.blowUp = true
 
 func _on_build_area_body_entered(body:Node2D) -> void:

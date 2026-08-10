@@ -5,7 +5,7 @@ extends StaticBody2D
 func _on_area_2d_body_exited(body:Node2D) -> void:
 	if body.is_in_group("actor"):
 		if body is Dydimo:
-			if isOn and  Globals.getBoolGamePropery("magnet"):
+			if isOn and Globals.isPickUpOn(PickUp.PickUpType.MAGNET):
 				body.magnetCounter = body.magnetCounter - 1
 				if body.magnetCounter <=0:
 					body.magnetCounter = 0
@@ -14,7 +14,7 @@ func _on_area_2d_body_exited(body:Node2D) -> void:
 func _on_area_2d_body_entered(body:Node2D) -> void:
 	if body.is_in_group("actor"):
 		if body is Dydimo:
-			if isOn and Globals.getBoolGamePropery("magnet"):
+			if isOn and  Globals.isPickUpOn(PickUp.PickUpType.MAGNET):
 				body.magnetCounter = body.magnetCounter + 1	
 				if body.magnetCounter == 1:
 					body.magOn()

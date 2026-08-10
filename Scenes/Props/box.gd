@@ -1,6 +1,6 @@
 extends Node2D
 
-
+class_name GoodyBox
 
 
 @onready var animationPlayer :AnimationPlayer = $AnimationPlayer
@@ -14,7 +14,8 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 		if not destroyed:
 			if body is Dydimo:			
 				destroy()
-				body.yForce -= 1000
+				var launchUp = 1000 - body.yForce
+				body.yForce -= launchUp
 				
 
 func destroy():
@@ -23,6 +24,7 @@ func destroy():
 	removeTimer.start()
 	Globals.movePuffMachine(global_position, 0.05, 1)
 	Globals.moveBitMachine(global_position, 0.1, 0.4)
+	
 
 func _on_remove_after_timeout() -> void:
 	queue_free()		

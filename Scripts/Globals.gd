@@ -29,6 +29,13 @@ const prime1:int = 7919
 const prime2:int = 6997
 const prime3:int = 5869
 
+const BASEHEALTH : float = 3.0
+const HEALTHPACK1 : float = 2.0
+const HEALTHPACK2 : float = 3.0
+const HEALTHPACK3 : float = 4.0
+
+var currentPower : float = 0.0
+
 var editMode : bool = true
 
 var mainScene  : Node = null
@@ -122,7 +129,11 @@ func setUpPicksUpMap() -> void:
 
 		}
 
-
+func isPickUpOn(pickUpType: PickUp.PickUpType) -> bool:
+	if allResources.allPickUps.has(pickUpType):
+		var pickUpData = allResources.allPickUps.get(pickUpType)
+		return pickUpData["on"]
+	return false
 
 func pickUpPickUp(pickUpType: PickUp.PickUpType) -> void:
 	if allResources.allPickUps.has(pickUpType):
@@ -223,12 +234,13 @@ func setUpElementPool() -> void:
 		if mainScene != null:
 			mainScene.add_child(element)
 
-func createElement(owner: Node2D, setPosition: Vector2, effectType:int, energy:float, direction:Vector2) -> void:
+func createElement(powner: Node2D, setPosition: Vector2, effectType:int, energy:float, direction:Vector2) -> void:
 	if elementPool.size() == 0:
 		setUpElementPool()
 	for element in elementPool:
 		if not element.isOn:
-			element.setup(owner, setPosition, direction, energy)
+			element.setup(powner, setPosition, direction, energy)
+			return
 			
 
 func setUpBitPool() -> void:
@@ -243,7 +255,9 @@ func createBit(position:Vector2) -> void:
 		setUpBitPool()
 	for bit in bitPool:
 		if not bit.isOn:
+			#return now that its done!
 			bit.moveBit(position)
+			return
 	
 func createBitPay(position:Vector2, destination:Vector2) -> void:
 	if bitPool.size() == 0:
@@ -251,6 +265,8 @@ func createBitPay(position:Vector2, destination:Vector2) -> void:
 	for bit in bitPool:
 		if not bit.isOn:
 			bit.moveBitPayment(position, destination)
+			#return now that its done!
+			return
 
 func moveSparkEffect(position:Vector2, rotation:float, flipX:bool, animationName:String):
 	if sparkEffectScene == null:
@@ -348,12 +364,18 @@ func getBoolGamePropery(propertyName:String) -> bool:
 		allResources.gamesValues[propertyName] = value
 	return value
 
+# const BASEHEALTH : float = 3.0
+# const HEALTHPACK1 : float = 1.0
+# const HEALTHPACK2 : float = 2.0
+# const HEALTHPACK3 : float = 3.0
 func getMaxHealth() -> float:
-	var maxHealth: float = 10
-	if getBoolGamePropery("healthPack"):
-		maxHealth += 5
-	if getBoolGamePropery("bigHealthPack"):
-		maxHealth += 10
+	var maxHealth: float = BASEHEALTH
+	if isPickUpOn(PickUp.PickUpType.HEALTH1):
+		maxHealth += HEALTHPACK1
+	if isPickUpOn(PickUp.PickUpType.HEALTH2):
+		maxHealth += HEALTHPACK2
+	if isPickUpOn(PickUp.PickUpType.HEALTH3):
+		maxHealth += HEALTHPACK3
 	return maxHealth
 
 # @export var healthPack : bool = false

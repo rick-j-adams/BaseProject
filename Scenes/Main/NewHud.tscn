@@ -561,6 +561,10 @@ texture = ExtResource("6_ek7pd")
 position = Vector2(252, 248)
 texture = ExtResource("7_ek7pd")
 
+[node name="PowerGrowTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="timeout" from="PanelContainerCase/ShowHideTimer" to="." method="_on_show_hide_timer_timeout"]
 [connection signal="area_entered" from="PanelContainerCase/RPointSlot1/Area2DSlot1" to="." method="_on_area_2d_slot_1_area_entered"]
 [connection signal="area_entered" from="PanelContainerCase/RPointSlot2/Area2DSlot2" to="." method="_on_area_2d_slot_2_area_entered"]
@@ -575,3 +579,4 @@ texture = ExtResource("7_ek7pd")
 [connection signal="area_entered" from="PanelContainerCase/RPointBatteryHole4/Area2DBatteryHole4" to="." method="_on_area_2d_battery_hole_4_area_entered"]
 [connection signal="released" from="PanelContainerBag/TouchScreenButton" to="." method="_on_touch_screen_button_released"]
 [connection signal="timeout" from="PanelContainerBag/OpenCloseTimer" to="." method="_on_open_close_timer_timeout"]
+[connection signal="timeout" from="PowerGrowTimer" to="." method="_on_power_grow_timer_timeout"]

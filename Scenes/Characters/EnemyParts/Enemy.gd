@@ -156,10 +156,13 @@ func doTouchDamage(body: Node2D):
 		body.destroy()
 
 func takeDamage(body:Node2D):
+	receieveDamage(body, true, weakpointDamage)
+
+func receieveDamage(body:Node2D, bounceBack: bool, amount: float ):
 	if state == STATES.DYING:
 		return
 	if body is Dydimo:
-		health -= weakpointDamage
+		health -= amount
 		if health <= 0:
 			die(body)
 		else:
@@ -168,7 +171,9 @@ func takeDamage(body:Node2D):
 			for child in childeren:
 				if child is EnemyPart:
 					child.playDamageAnimation()
-		body.yForce -= 1000	
+		if bounceBack:
+			body.yForce -= 1000	
+
 
 func getNumberOfParts() -> float:
 	

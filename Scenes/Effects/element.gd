@@ -29,7 +29,7 @@ func standBy() -> void:
 	fading = false
 	addNew = false
 
-func setup(owner: Node2D, setPosition: Vector2, setDirection: Vector2, setEnergy: float) -> void:
+func setup(powner: Node2D, setPosition: Vector2, setDirection: Vector2, setEnergy: float) -> void:
 	isOn = true
 	position = setPosition
 	direction = setDirection
@@ -38,8 +38,15 @@ func setup(owner: Node2D, setPosition: Vector2, setDirection: Vector2, setEnergy
 	timer.start()
 	fading = false
 	addNew = false
-	if owner != null:
-		owner.add_child(self)
+	if powner != null:
+		# print("Adding element to owner: ", powner.name)
+		
+		powner.add_child(self)
+		if powner is Dydimo:
+			# print("Dydimo rotation: ", powner.midPoint.rotation)
+			rotation_degrees = powner.rotation_degrees
+
+		# midPoint
 
 func getAnimationName() -> String:
 	var animationName :String = "Go"

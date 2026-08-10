@@ -21,12 +21,14 @@ class_name Dydimo
 @onready var magnetTimer :Timer = $MagTimer
 @onready var canvasModulate :CanvasModulate  = $CanvasModulate
 
+@onready var zapper :Zapper  = $Zapper
+
+
 @onready var sparePartHead : SpareParts = $MidPoint/SparepartsHead
 @onready var sparePartBody : SpareParts = $MidPoint/SparepartsBody
 @onready var sparePartLarm : SpareParts = $MidPoint/SparepartsLarm
 @onready var sparePartRarm : SpareParts = $MidPoint/SparepartsRarm2
 @onready var sparePartTracks : SpareParts = $MidPoint/SparepartsTracks
-
 
 const BITS = "bits"
 const DARKEST = Color(0.4, 0.4, 0.4)
@@ -47,7 +49,7 @@ const LIGHTEST = Color(0.9, 0.9, 0.9)
 @export var security : bool = false
 # @export var speedBoost : bool = false #done
 
-enum STATES {BIRTH, IDLE, WALKING, RUNNING, PREJUMP, JUMPING, FALLING, BLOWING}
+enum STATES {BIRTH, IDLE, WALKING, RUNNING, PREJUMP, JUMPING, FALLING, BLOWING, SHOOTING}
 var state : STATES = STATES.BIRTH
 
 var currentAnimation : String = "Birth"
@@ -99,7 +101,7 @@ func nextToWall() -> bool:
 
 # True once the character has rotated far enough to be gripping a wall.
 func isOnWallRide() -> bool:
-	return Globals.getBoolGamePropery("wallRide") and nextToWall() and (rotation_degrees >= 45.0 or rotation_degrees <= -45.0)
+	return Globals.isPickUpOn(PickUp.PickUpType.WALLRIDE) and nextToWall() and (rotation_degrees >= 45.0 or rotation_degrees <= -45.0)
 
 # ─── ready ────────────────────────────────────────────────────────────────────
 
@@ -175,7 +177,7 @@ func doAnimation(onFloor: bool):
 							currentAnimation = "ParashootOpen"
 						else:
 							currentAnimation = "Parashootfloat"
-					elif Globals.getBoolGamePropery("jetPack"):
+					elif Globals.isPickUpOn(PickUp.PickUpType.JETPACK):
 						currentAnimation = "Falling"
 					else:
 						currentAnimation = "Rising"
@@ -209,7 +211,10 @@ func doAnimation(onFloor: bool):
 					if currentAnimation == "Land":
 						changeState(STATES.IDLE)
 						currentAnimation = "Default"
-
+		STATES.SHOOTING:
+			if animationPlayer.is_playing() == false:
+				changeState(STATES.IDLE)
+				currentAnimation = "Default"
 	if blowUp and currentAnimation == "ParashootOpen":
 		if animationPlayer.is_playing() == false:
 			currentAnimation = "Parashootfloat"
@@ -230,6 +235,10 @@ func changeState(newState: STATES):
 		return
 	if state == STATES.BIRTH and newState == STATES.IDLE:
 		currentAnimation = "Default"
+	if state == STATES.BIRTH and newState == STATES.WALKING:
+		currentAnimation = "WalkStart"
+	if state == STATES.SHOOTING and newState != STATES.SHOOTING:
+		currentAnimation = "Firing"
 	if isOnFloor():
 		if newState == STATES.WALKING:
 			currentIdleTime = 0.0
@@ -255,7 +264,7 @@ func changeState(newState: STATES):
 		if state == STATES.JUMPING and newState == STATES.FALLING:
 			currentAnimation = "Falling"
 		if state == STATES.WALKING and newState == STATES.FALLING:
-			currentAnimation = "Falling" if Globals.getBoolGamePropery("jetPack") else "Rising"
+			currentAnimation = "Falling" if Globals.isPickUpOn(PickUp.PickUpType.JETPACK) else "Rising"
 		if state == STATES.IDLE and newState == STATES.FALLING:
 			currentAnimation = "Rising"
 		if state == STATES.JUMPING and newState == STATES.PREJUMP:
@@ -289,7 +298,7 @@ func calcAcceleration(delta: float, direction: float, currentSpeed: float, onFlo
 		var localAcceleration: float = acceleration
 		var localMaxSpeed: float = getMaxSpeed()
 		# Globals.setGamePropery("speedBoost",true)
-		if Globals.getBoolGamePropery("speedBoost"):
+		if Globals.isPickUpOn(PickUp.PickUpType.SPEED):
 			localAcceleration *= 1.5
 			localMaxSpeed *= 1.5
 		if not onFloor:
@@ -307,7 +316,7 @@ func decelerate(delta: float, direction: float, currentSpeed: float, onFloor: bo
 		Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "StartSpark")
 
 	var localMaxSpeed: float = getMaxSpeed()
-	if Globals.getBoolGamePropery("speedBoost"):
+	if Globals.isPickUpOn(PickUp.PickUpType.SPEED):
 		localMaxSpeed *= 1.5
 	var appliedRatio: float = clamp(1.0 - (currentSpeed / localMaxSpeed), 0.0, 1.0)
 	var appliedBreakForce: float = breakForce
@@ -351,7 +360,7 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 	# 	decelerate(delta, sign(xForce), currentSpeed, isNowOnFloor)
 
 	if Input.is_action_just_pressed("ui_up") and inControl():
-		if isNowOnFloor or (Globals.getBoolGamePropery("doubleJump") and jumpCounter < 2) or Globals.getBoolGamePropery("jetPack"):
+		if isNowOnFloor or (Globals.isPickUpOn(PickUp.PickUpType.JUMP2) and jumpCounter < 2) or Globals.isPickUpOn(PickUp.PickUpType.JETPACK):
 			changeState(STATES.PREJUMP)
 			springing = true
 			interaction = true
@@ -372,14 +381,16 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 	if Input.is_action_just_released("ui_select") and inControl():
 		print("SELECT")
 		# explode()
-		if sprite.flip_h:
-			Globals.createElement(self, handLeft.global_position, 0, 5, Vector2(-1,0))
-		else:
-			Globals.createElement(self, handRight.global_position, 0, 5, Vector2(1,0))
-		if Globals.getBoolGamePropery("zap"):
+		zapper.startZap(sprite.flip_h)
+		# if sprite.flip_h:
+		# 	Globals.createElement(self, handLeft.global_position, 0, 5, Vector2(-1,0))
+		# else:
+		# 	Globals.createElement(self, handRight.global_position, 0, 5, Vector2(1,0))
+		if Globals.isPickUpOn(PickUp.PickUpType.ZAP):
 			Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "Zap")
-		if Globals.getBoolGamePropery("biZap"):
+		if Globals.isPickUpOn(PickUp.PickUpType.ZAP2):
 			Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "BigZap")
+		changeState(STATES.SHOOTING)
 	return interaction
 # ─── process ──────────────────────────────────────────────────────────────────
 
@@ -394,12 +405,12 @@ func _process(delta: float) -> void:
 	if not interaction:
 		decelerate(delta, sign(xForce), currentSpeed, isNowOnFloor)
 	# Allow steep surfaces to act as walkable floor when wall riding
-	if nextToWall() and Globals.getBoolGamePropery("wallRide") and (rotation_degrees < -45 or rotation_degrees > 45):
+	if nextToWall() and Globals.isPickUpOn(PickUp.PickUpType.WALLRIDE) and (rotation_degrees < -45 or rotation_degrees > 45):
 		floor_max_angle = deg_to_rad(100)
 	else:
 		floor_max_angle = deg_to_rad(50)
 
-	if not interaction and Globals.getBoolGamePropery("wallRide"):
+	if not interaction and Globals.isPickUpOn(PickUp.PickUpType.WALLRIDE):
 		floor_max_angle = deg_to_rad(50)
 
 	if springing:
@@ -469,7 +480,7 @@ func doForces(delta: float):
 
 	 
 		# Push character away from walls when wallRide is disabled
-		if not Globals.getBoolGamePropery("wallRide") and nextToWall() and (not isOnFloor() or rotation_degrees >= 45 or rotation_degrees <= -45):
+		if not Globals.isPickUpOn(PickUp.PickUpType.WALLRIDE) and nextToWall() and (not isOnFloor() or rotation_degrees >= 45 or rotation_degrees <= -45):
 			if rayFacing.is_colliding():
 				xForce -= 20
 			else:
@@ -484,7 +495,7 @@ func doForces(delta: float):
 
 func doRotate(delta: float):
 	# print("rotation: "+str(midPoint.rotation_degrees))
-	var maxRotation: float = 90.0 if Globals.getBoolGamePropery("wallRide") else 45.0
+	var maxRotation: float = 90.0 if Globals.isPickUpOn(PickUp.PickUpType.WALLRIDE) else 45.0
 
 	# ── slope rotation from floor rays ──────────────────────────────────────
 	if rayFront.is_colliding() and not rayBack.is_colliding():
@@ -506,7 +517,7 @@ func doRotate(delta: float):
 	# rayFacing   → detects the RIGHT wall → target +90°
 	# rayFacingBack → detects the LEFT wall  → target -90°
 
-	if Globals.getBoolGamePropery("wallRide") and nextToWall():
+	if Globals.isPickUpOn(PickUp.PickUpType.WALLRIDE) and nextToWall():
 		if rayFacing.is_colliding() and not rayFacingBack.is_colliding():
 			# Right wall — rotate toward +90°
 			if midPoint.rotation_degrees < 90.0:
@@ -523,13 +534,13 @@ func doRotate(delta: float):
 # ─── jump ─────────────────────────────────────────────────────────────────────
 
 func doJump(isNowOnFloor: bool):
-	if isNowOnFloor or (Globals.getBoolGamePropery("doubleJump") and jumpCounter < 1) or Globals.getBoolGamePropery("jetPack"):
-		if Globals.getBoolGamePropery("doubleJump") and jumpCounter < 2:
+	if isNowOnFloor or (Globals.isPickUpOn(PickUp.PickUpType.JUMP2) and jumpCounter < 1) or Globals.isPickUpOn(PickUp.PickUpType.JETPACK):
+		if Globals.isPickUpOn(PickUp.PickUpType.JUMP2) and jumpCounter < 2:
 			currentJumpForce = jumpPower
 			if (!isNowOnFloor):
 				Globals.moveSparkEffect(underside.global_position, rotation, sprite.flip_h, "Smoke")
 
-		if Globals.getBoolGamePropery("jetPack"):
+		if Globals.isPickUpOn(PickUp.PickUpType.JETPACK):
 			currentJumpForce = jumpPower / 2
 		if (!isNowOnFloor):
 				Globals.moveSparkEffect(underside.global_position, rotation, sprite.flip_h, "RedBloom")
@@ -566,7 +577,7 @@ func doBlowUp(delta: float):
 # ─── teleport ─────────────────────────────────────────────────────────────────
 
 func doTeleport():
-	if Globals.getBoolGamePropery("telePorter") and canTeleport:
+	if Globals.isPickUpOn(PickUp.PickUpType.TELEPORT) and canTeleport:
 		var teleport_distance = 400.0
 		var target_x = position.x
 
@@ -713,7 +724,7 @@ func _on_mag_timer_timeout() -> void:
 
 func fix() -> void:
 	# birthing=true
-	animationPlayer.play("FaceForward")
+	#animationPlayer.play("FaceForward")
 	Globals.uiShowCase()	
 	Globals.uiCancel()
 

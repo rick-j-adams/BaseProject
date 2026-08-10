@@ -25,6 +25,8 @@ enum MODES {PLAY,INVENTORY,EXPANSION,BATTERY,MAP}
 
 @onready var healthBar: ColorRect = $HealthBar
 @onready var maxHealthBar: ColorRect = $MaxHealth
+@onready var powerBar: ColorRect = $PowerBar
+@onready var maxPowerBar: ColorRect = $MaxPower
 @onready var payBar: ColorRect = $PayBar
 @onready var bagPosition: RPoint = $RPointBagPosition
 
@@ -62,7 +64,6 @@ enum MODES {PLAY,INVENTORY,EXPANSION,BATTERY,MAP}
 @onready var mainBoard :Sprite2D = $PanelContainerCase/Sprite2DBoard
 @onready var newScreen :NewScreen = $PanelContainerCase/NewScreen
 
-
 var boards:Array = [board1,board2,board3,board4,board5,board6,board7]
 
 var selectedItem : PickUp = null
@@ -85,7 +86,7 @@ var batties:Array = [battery1,battery2,battery3,battery4 ]
 
 # var maxBattery:int = 0 
 # var currentBattery:int = 0 
-
+var powerAnchorPoint:Vector2 = Vector2(0,0)
 
 func _ready():
 	Globals.hud = self
@@ -95,6 +96,9 @@ func _ready():
 		Globals.setGamePropery(BITS, bits)
 	animationPlayerCase.play("HideCase")
 	boardSlotList = [slotOne2, slotOne4, slotOne5 ,slotOne6]
+	powerAnchorPoint = powerBar.position
+	#width of screen
+	powerBar.size.x = get_tree().get_root().size.x
 
 	var maxBattery = Globals.getGameProperyNoDefault(MAX_BATTERY)
 	if maxBattery==null:
@@ -113,8 +117,34 @@ func _process(delta: float) -> void:
 		maxHealthBar.size.x = maxHealthBar.size.x + (INCREMENT_SIZE * delta) 
 	if maxHealthBar.size.x > maxHealthSize:
 		maxHealthBar.size.x = maxHealthSize
+	displayPowerBars(delta)
+	
 	handleInput()	
 	chekForSelectedItem()
+
+func displayPowerBars(delta: float) -> void:
+	var maxBattery := float(getMaxBattery())
+	var maxPowerSize := BASE_SIZE + (maxBattery * INCREMENT_SIZE) 
+	if maxPowerBar.size.x < maxPowerSize:
+		maxPowerBar.size.x = maxPowerBar.size.x + (INCREMENT_SIZE * delta)
+		
+	if maxPowerBar.size.x > maxPowerSize:
+		maxPowerBar.size.x = maxPowerSize
+	maxPowerBar.position.x = powerAnchorPoint.x - maxPowerBar.size.x
+
+	var currentPower : float = Globals.currentPower
+	var currentPowerSize : float = BASE_SIZE + (currentPower * INCREMENT_SIZE) 
+
+	if powerBar.size.x < currentPowerSize:
+		powerBar.size.x = powerBar.size.x + (INCREMENT_SIZE * delta)
+	
+	if powerBar.size.x > currentPowerSize:
+		powerBar.size.x = currentPowerSize
+	if powerBar.size.x > maxPowerBar.size.x:
+		powerBar.size.x = maxPowerBar.size.x
+	powerBar.position.x = powerAnchorPoint.x - powerBar.size.x
+	# powerBar.size = Vector2(currentPowerSize, powerBar.size.y)
+
 
 func handleInput() -> void:
 	if bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_cancel"):
@@ -417,6 +447,16 @@ func getMaxBattery() -> int:
 			maxBattery += itemData.get("cost")
 	return maxBattery
 
+func getMaxBatteryMinusPowerUse() -> int:
+	var maxBattery:int = 0
+	for potentialItem in Globals.allResources.allPickUps.keys():
+		var itemData = Globals.allResources.allPickUps.get(potentialItem)
+		if itemData != null and itemData.get("category") == "battery" and itemData.get("on") == true:
+			maxBattery += itemData.get("cost")
+		if itemData != null and itemData.get("category") == "expansion" and itemData.get("on") == true:
+			maxBattery -= itemData.get("cost")
+	return maxBattery
+
 func calcPotentialCost()->int:
 	# "category": "expansion"
 	var cost:int = 0
@@ -715,3 +755,11 @@ func _on_area_2d_battery_hole_3_area_entered(area: Area2D) -> void:
 
 func _on_area_2d_battery_hole_4_area_entered(area: Area2D) -> void:
 	draggedToSlot(4, area, MODES.BATTERY)
+
+
+func _on_power_grow_timer_timeout() -> void:
+	var maxPowerAviable :float = getMaxBatteryMinusPowerUse()
+	if Globals.currentPower < maxPowerAviable:
+		Globals.currentPower += 1
+	if  Globals.currentPower  > maxPowerAviable:
+		Globals.currentPower -= 1

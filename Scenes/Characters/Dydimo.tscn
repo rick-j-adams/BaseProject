@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dcgmiqmop582s"]
+[gd_scene load_steps=46 format=3 uid="uid://dcgmiqmop582s"]
 
 [ext_resource type="Script" uid="uid://c8u8jsmwudb1d" path="res://Scenes/Characters/dydimo.gd" id="1_2324m"]
 [ext_resource type="Texture2D" uid="uid://d1fac0jajjh2h" path="res://Images/Character/DydimoSpriteSheet.png" id="1_tvnxl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dbbrhmyet7xy6" path="res://Scenes/point.gd" id="4_eblft"]
 [ext_resource type="Texture2D" uid="uid://b8m2u1rpbwvjh" path="res://Images/System/light512.png" id="5_vurtd"]
 [ext_resource type="PackedScene" uid="uid://l2pxeyhy2x13" path="res://Scenes/Props/Spareparts.tscn" id="6_1b5e8"]
+[ext_resource type="PackedScene" uid="uid://epqi2e3ylled" path="res://Scenes/Characters/Zapper.tscn" id="7_q8jek"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2324m"]
 radius = 28.0713
@@ -166,7 +167,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_uauc8"]
 resource_name = "Firing"
 length = 0.19
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -960,6 +960,8 @@ collision_layer = 64
 collision_mask = 64
 partsType = 4
 showOnStart = false
+
+[node name="Zapper" parent="." instance=ExtResource("7_q8jek")]
 
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="DyingTimer" to="." method="_on_dying_timer_timeout"]
