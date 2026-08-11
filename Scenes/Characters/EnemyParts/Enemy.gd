@@ -191,6 +191,7 @@ func die(body:Node2D):
 	var childeren = parts.get_children()
 	timer.wait_time = 2.0
 	timer.start()
+	Globals.requestTempLight(global_position, TempLight.LightType.WHITE_EXPLODE)
 	for child in childeren:
 		if child is EnemyPart:
 			child.die()

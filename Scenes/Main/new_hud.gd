@@ -126,11 +126,12 @@ func displayPowerBars(delta: float) -> void:
 	var maxBattery := float(getMaxBattery())
 	var maxPowerSize := BASE_SIZE + (maxBattery * INCREMENT_SIZE) 
 	if maxPowerBar.size.x < maxPowerSize:
-		maxPowerBar.size.x = maxPowerBar.size.x + (INCREMENT_SIZE * delta)
+		maxPowerBar.size.x = maxPowerBar.size.x + (INCREMENT_SIZE * delta) 
 		
 	if maxPowerBar.size.x > maxPowerSize:
 		maxPowerBar.size.x = maxPowerSize
-	maxPowerBar.position.x = powerAnchorPoint.x - maxPowerBar.size.x
+	maxPowerBar.position.x = powerAnchorPoint.x - maxPowerBar.size.x + 36 #TODO fix this 36 is the base size of the bar, but it should be dynamic
+	
 
 	var currentPower : float = Globals.currentPower
 	var currentPowerSize : float = BASE_SIZE + (currentPower * INCREMENT_SIZE) 
@@ -142,9 +143,7 @@ func displayPowerBars(delta: float) -> void:
 		powerBar.size.x = currentPowerSize
 	if powerBar.size.x > maxPowerBar.size.x:
 		powerBar.size.x = maxPowerBar.size.x
-	powerBar.position.x = powerAnchorPoint.x - powerBar.size.x
-	# powerBar.size = Vector2(currentPowerSize, powerBar.size.y)
-
+	powerBar.position.x = powerAnchorPoint.x - powerBar.size.x + 36 #TODO fix this 36 is the base size of the bar, but it should be dynamic
 
 func handleInput() -> void:
 	if bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_cancel"):

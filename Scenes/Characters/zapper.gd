@@ -15,10 +15,11 @@ func energyCost() -> void:
 	Globals.currentPower -= ZAPPER_ENERGY_COST
 
 func startZap(flip: bool) -> void:
-
+	
 	var zapPower := getZapperPower()
 	if zapPower <= 0:
 		return
+	Globals.requestTempLight(global_position, TempLight.LightType.LIGHTNING)
 	damage = float(zapPower) 
 	isOn = true
 	energyCost()
@@ -52,7 +53,7 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 		# 	body.destroy()	
 		if body is Enemy:
 			var parent = get_parent()
-			body.receieveDamage(parent, false, 5.0) #replace with level
+			body.receieveDamage(parent, false, damage) #replace with level
 		elif body is SpareParts:
 			body.destroy()
 		

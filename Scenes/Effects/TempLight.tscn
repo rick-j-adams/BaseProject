@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=3 uid="uid://jvgwcq2c7cs3"]
+
+[ext_resource type="Script" uid="uid://d3l8wwgsruxgy" path="res://Scenes/Effects/temp_light.gd" id="1_4knbj"]
+[ext_resource type="Texture2D" uid="uid://cn5hji7snksgh" path="res://Images/System/TitleScreen.png" id="2_iuqvo"]
+[ext_resource type="Texture2D" uid="uid://b8m2u1rpbwvjh" path="res://Images/System/light512.png" id="3_d7dwf"]
+
+[sub_resource type="Animation" id="Animation_1gqhc"]
+resource_name = "Explode"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0996078, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 4.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_u2c62"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bi6qd"]
+resource_name = "Flicker"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.250036, 0.3, 0.349644, 0.400464, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.77, 0.22, 1.0, 0.8, 1.2, 0.58, 0.89, 1.2, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yvgcl"]
+resource_name = "FlickerShort"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.250036, 0.3, 0.349644, 0.400464, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.77, 0.22, 1.0, 0.0, 1.2, 0.58, 0.89, 1.2, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ndmi6"]
+resource_name = "Blink"
+length = 0.3
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.250036, 0.3, 0.349644, 0.400464, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.1, 0.0, 0.0, 1.0, 1.2, 0.0, 0.89, 1.2, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1i6al"]
+_data = {
+&"Blink": SubResource("Animation_ndmi6"),
+&"Explode": SubResource("Animation_1gqhc"),
+&"Flicker": SubResource("Animation_bi6qd"),
+&"FlickerShort": SubResource("Animation_yvgcl"),
+&"RESET": SubResource("Animation_u2c62")
+}
+
+[node name="TempLight" type="Node2D"]
+script = ExtResource("1_4knbj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_iuqvo")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.0
+shadow_enabled = true
+texture = ExtResource("3_d7dwf")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1i6al")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

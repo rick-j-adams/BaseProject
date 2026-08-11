@@ -73,6 +73,9 @@ var bitPayMachine :BitPayMachine = null
 var elementPool : Array = []
 var maxElementPoolSize : int = 32
 
+var tempLightPool : Array = []
+var maxTempLightPoolSize : int = 2
+
 
 var lastPosition: Vector2 = Vector2.ZERO
 var mainCharacter = null
@@ -225,6 +228,23 @@ func createPuff(position:Vector2) -> void:
 	for puff in puffPool:
 		if not puff.visible:
 			puff.setAndRelease(position)
+			return
+
+# var tempLightPool : Array = []
+# var maxTempLightPoolSize : int = 2
+func setUpTempLightPool() -> void:
+	for i in range(maxTempLightPoolSize):
+		var tempLight:Node = sceneMap.get("tempLight").instantiate()
+		tempLightPool.append(tempLight)
+		if mainScene != null:
+			mainScene.add_child(tempLight)
+
+func requestTempLight(position:Vector2, lightType:TempLight.LightType) -> void:
+	if tempLightPool.size() == 0:
+		setUpTempLightPool()
+	for tempLight in tempLightPool:
+		if not tempLight.visible:
+			tempLight.setUpLight( lightType,position)
 			return
 
 func setUpElementPool() -> void:

@@ -21,6 +21,7 @@ var currentloadState = LOAD_STATES.SCENES
 	"bit" :"res://Scenes/Props/Bit.tscn",
 	"element" :"res://Scenes/Effects/Element.tscn",
 	"pickUp" :"res://Scenes/PickUps/PickUp.tscn",
+	"tempLight" :"res://Scenes/Effects/TempLight.tscn",
 	"test" :"res://Scenes/TestLevel/TestLevel.tscn",
 
 }

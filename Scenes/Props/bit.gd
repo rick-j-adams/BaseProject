@@ -126,9 +126,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			if isOn and isWaiting and not isPayment:
 				pickUp()
 				
-				
-
-
 
 func _on_timer_timeout() -> void:
 	Globals.createPuff(global_position)
