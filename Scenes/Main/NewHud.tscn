@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cbri375apng4c"]
+[gd_scene load_steps=33 format=3 uid="uid://cbri375apng4c"]
 
 [ext_resource type="Script" uid="uid://b652gij8tmep0" path="res://Scenes/Main/new_hud.gd" id="1_87ym2"]
 [ext_resource type="Texture2D" uid="uid://cx5ktnplou612" path="res://Images/Icons/gear3.png" id="2_eb8ms"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://sacyv6hclx5t" path="res://Images/PickUps/BMDAJump.png" id="10_cq8hj"]
 [ext_resource type="Texture2D" uid="uid://diqctkij23nwj" path="res://Images/PickUps/BMB1.png" id="11_cq8hj"]
 [ext_resource type="PackedScene" uid="uid://dj6ia2qloed7t" path="res://Scenes/Main/NewScreen.tscn" id="12_iqd32"]
+[ext_resource type="PackedScene" uid="uid://dvlj7xfe80pdk" path="res://Scenes/Map/Map.tscn" id="16_c3f0l"]
 
 [sub_resource type="Animation" id="Animation_dhgaq"]
 resource_name = "MaxHealth"
@@ -154,6 +155,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(6, 40), Vector2(-505, 40)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainerMap:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_v3a67"]
 resource_name = "PlayerOpenBox"
@@ -170,6 +183,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-505, 40), Vector2(6, 40)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainerMap:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.450606, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ek7pd"]
 length = 0.001
@@ -184,6 +209,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-505, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainerMap:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_24rqk"]
@@ -246,6 +283,9 @@ _data = {
 &"RESET": SubResource("Animation_cq8hj"),
 &"ShowCase": SubResource("Animation_nyvci")
 }
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_d8dou"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqd32"]
 size = Vector2(196, 25)
@@ -312,6 +352,18 @@ libraries = {
 &"": SubResource("AnimationLibrary_c3f0l")
 }
 autoplay = "HideCase"
+
+[node name="PanelContainerMap" type="PanelContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 520.0
+offset_top = 101.0
+offset_right = 934.0
+offset_bottom = 513.0
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainerMap"]
+position = Vector2(206.5, 203.5)
+scale = Vector2(0.810547, 0.802734)
+texture = SubResource("ViewportTexture_d8dou")
 
 [node name="PanelContainerCase" type="PanelContainer" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -564,6 +616,10 @@ texture = ExtResource("7_ek7pd")
 [node name="PowerGrowTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Map" parent="SubViewport" instance=ExtResource("16_c3f0l")]
 
 [connection signal="timeout" from="PanelContainerCase/ShowHideTimer" to="." method="_on_show_hide_timer_timeout"]
 [connection signal="area_entered" from="PanelContainerCase/RPointSlot1/Area2DSlot1" to="." method="_on_area_2d_slot_1_area_entered"]

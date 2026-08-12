@@ -36,11 +36,13 @@ const HEALTHPACK3 : float = 4.0
 
 var currentPower : float = 0.0
 
-var editMode : bool = true
+var editMode : bool = false
 
 var mainScene  : Node = null
 var mainCamera : Camera2D = null
 var hud: Node = null
+var gameWindow : Node = null
+
 
 var transitionMask : TransistionMask = null
 var interfaceAudio : AudioStreamPlayer2D = null
@@ -131,6 +133,14 @@ func setUpPicksUpMap() -> void:
 			PickUp.PickUpType.BATTERYHIGH4: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,  "texture": "PUBattery4","slotNo":-1,"cost":3},
 
 		}
+
+func setUpLevelsMap() -> void:
+	if allResources.allLevels.size() == 0:
+		allResources.allLevels = {
+			"R001" : {"sceneName":"test"},
+			"R002" : {"sceneName":"test"}
+		}
+
 
 func isPickUpOn(pickUpType: PickUp.PickUpType) -> bool:
 	if allResources.allPickUps.has(pickUpType):
@@ -416,4 +426,5 @@ func loadResources() -> void:
 
 
 
-	
+func loadNextLevel() ->void :
+	pass	

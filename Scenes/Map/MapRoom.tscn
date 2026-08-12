@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://clal205ols17i"]
+
+[ext_resource type="Script" uid="uid://b2q5oe3h5j0o8" path="res://Scenes/Map/map_room.gd" id="1_jhhd5"]
+[ext_resource type="Texture2D" uid="uid://e5sj060bswl6" path="res://Images/Map/testMap.png" id="2_qm2bf"]
+[ext_resource type="Texture2D" uid="uid://xeh11sfepoxm" path="res://Images/Map/MapMasker.png" id="3_mys41"]
+
+[node name="MapRoom" type="Node2D"]
+script = ExtResource("1_jhhd5")
+
+[node name="Sprite2DRoomMap" type="Sprite2D" parent="."]
+texture = ExtResource("2_qm2bf")
+
+[node name="Maskers" type="Node2D" parent="."]
+
+[node name="Masker1" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-161, -143)
+scale = Vector2(2.37109, 2.48047)
+texture = ExtResource("3_mys41")
+
+[node name="Masker2" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-399, -150)
+scale = Vector2(2.37109, 2.48047)
+texture = ExtResource("3_mys41")
+
+[node name="Masker3" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(94, -135)
+scale = Vector2(2.37109, 2.48047)
+texture = ExtResource("3_mys41")
+
+[node name="Masker4" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(354, -129)
+scale = Vector2(2.37109, 2.48047)
+texture = ExtResource("3_mys41")
+
+[node name="Masker5" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-271, 132)
+scale = Vector2(2.37109, 2.48047)
+texture = ExtResource("3_mys41")
+
+[node name="Masker6" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(11, 143)
+scale = Vector2(2.37109, 2.48047)
+texture = ExtResource("3_mys41")
+
+[node name="Masker7" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(757, 259)
+scale = Vector2(2.37109, 2.48047)
+texture = ExtResource("3_mys41")
+
+[node name="Masker8" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-14, 302)
+scale = Vector2(2.37109, 2.48047)
+texture = ExtResource("3_mys41")
+
+[node name="Masker9" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(271, 151)
+scale = Vector2(2.37109, 2.48047)
+texture = ExtResource("3_mys41")

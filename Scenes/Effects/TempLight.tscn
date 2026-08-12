@@ -4,6 +4,24 @@
 [ext_resource type="Texture2D" uid="uid://cn5hji7snksgh" path="res://Images/System/TitleScreen.png" id="2_iuqvo"]
 [ext_resource type="Texture2D" uid="uid://b8m2u1rpbwvjh" path="res://Images/System/light512.png" id="3_d7dwf"]
 
+[sub_resource type="Animation" id="Animation_ndmi6"]
+resource_name = "Blink"
+length = 0.3
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.250036, 0.3, 0.349644, 0.400464, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.1, 0.0, 0.0, 1.0, 1.2, 0.0, 0.89, 1.2, 0.0]
+}
+
 [sub_resource type="Animation" id="Animation_1gqhc"]
 resource_name = "Explode"
 length = 0.2
@@ -18,21 +36,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 4.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_u2c62"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_bi6qd"]
@@ -70,22 +73,19 @@ tracks/0/keys = {
 "values": [0.0, 0.77, 0.22, 1.0, 0.0, 1.2, 0.58, 0.89, 1.2, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_ndmi6"]
-resource_name = "Blink"
-length = 0.3
-loop_mode = 1
-step = 0.05
+[sub_resource type="Animation" id="Animation_u2c62"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("PointLight2D:energy")
-tracks/0/interp = 0
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.250036, 0.3, 0.349644, 0.400464, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0, 0.1, 0.0, 0.0, 1.0, 1.2, 0.0, 0.89, 1.2, 0.0]
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1i6al"]

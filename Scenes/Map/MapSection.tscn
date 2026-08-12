@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://najelrq0jjyx"]
+
+[ext_resource type="Script" uid="uid://gj66l4eaqhf7" path="res://Scenes/Map/map_section.gd" id="1_mupd6"]
+[ext_resource type="PackedScene" uid="uid://clal205ols17i" path="res://Scenes/Map/MapRoom.tscn" id="2_3y7bx"]
+
+[node name="MapSection" type="Node2D"]
+script = ExtResource("1_mupd6")
+
+[node name="MapRoom" parent="." instance=ExtResource("2_3y7bx")]
+position = Vector2(359, 305)
+
+[node name="MapRoom2" parent="." instance=ExtResource("2_3y7bx")]
+position = Vector2(1073, 69)
+roomName = "TestRoom2"

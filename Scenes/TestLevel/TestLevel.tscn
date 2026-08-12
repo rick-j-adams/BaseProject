@@ -1,5 +1,6 @@
-[gd_scene load_steps=110 format=4 uid="uid://bf0if5w2l0v7k"]
+[gd_scene load_steps=111 format=4 uid="uid://bf0if5w2l0v7k"]
 
+[ext_resource type="Script" uid="uid://dbbrhmyet7xy6" path="res://Scenes/point.gd" id="1_waq5v"]
 [ext_resource type="Texture2D" uid="uid://bxujlxx188ne4" path="res://Images/Tiles/plates8x8-small.png" id="3_1nb57"]
 [ext_resource type="Texture2D" uid="uid://bpt2tjdv68nqi" path="res://Images/Tiles/mask.png" id="3_fnepx"]
 [ext_resource type="Texture2D" uid="uid://1mpc0ffcfc2v" path="res://Images/Tiles/background1-8x8.png" id="3_nkuq4"]
@@ -3758,6 +3759,16 @@ sources/1 = SubResource("TileSetAtlasSource_vsn0m")
 
 [node name="TestLevel" type="Node2D"]
 
+[node name="RPointBottomCorner" type="Node2D" parent="."]
+position = Vector2(6912, 6912)
+script = ExtResource("1_waq5v")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="RPointTopCorner" type="Node2D" parent="."]
+position = Vector2(-6912, -6912)
+script = ExtResource("1_waq5v")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_k2qbn")
 
@@ -3779,7 +3790,7 @@ position = Vector2(2113, -401)
 texture = ExtResource("22_nldbv")
 
 [node name="Struct1" type="Sprite2D" parent="."]
-position = Vector2(408, 2679)
+position = Vector2(7115, -44)
 texture = ExtResource("23_5dnb7")
 
 [node name="Struct2" type="Sprite2D" parent="."]

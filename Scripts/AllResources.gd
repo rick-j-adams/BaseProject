@@ -9,3 +9,4 @@ extends Resource
 
 #NAME {picked up, pluged in, on}
 @export var allPickUps:Dictionary = {}
+@export var allLevels:Dictionary = {}

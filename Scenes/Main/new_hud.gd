@@ -64,6 +64,9 @@ enum MODES {PLAY,INVENTORY,EXPANSION,BATTERY,MAP}
 @onready var mainBoard :Sprite2D = $PanelContainerCase/Sprite2DBoard
 @onready var newScreen :NewScreen = $PanelContainerCase/NewScreen
 
+@onready var map :Map = $SubViewport/Map
+
+
 var boards:Array = [board1,board2,board3,board4,board5,board6,board7]
 
 var selectedItem : PickUp = null
@@ -402,6 +405,11 @@ func chekForSelectedItem()->void:
 					selectedItem.HighlightPickUp()
 
 func inventoryInput() -> void:
+	if bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_up"):
+		map.zoomin()
+		
+	if bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_down"):
+		map.zoomout()
 	if bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_right"):
 		if itemsInBag.keys().size() > 0:
 			selectedItem.UnhighlightPickUp()
@@ -426,6 +434,8 @@ func inventoryInput() -> void:
 				selectedItem.HighlightPickUp()
 	if  bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_select"):
 		if caseState == CASE_STATES.SHOW:
+			if selectedItem == null:
+				return
 			var selectedCategory = Globals.allResources.allPickUps.get(selectedItem.pickUpType).get("category")
 			if selectedCategory == "expansion":
 				slotSelector.visible=true
@@ -517,6 +527,7 @@ func triggerOpenBox() -> void:
 		animationPlayerBag.play("PlayerOpenBox")
 		openCloseTimer.start()
 		currentMode = MODES.INVENTORY
+		map.setPosition()
 
 func triggerCloseBox() -> void:
 	triggerHideCase()
@@ -697,7 +708,7 @@ func setDraggedSlot(slotNo:int, thismode:MODES) -> bool:
 		return false
 
 func draggedToSlot(slotNo:int, area:Area2D, thismode:MODES)->void:
-	print("Dragged to slot: ", slotNo)
+	#print("Dragged to slot: ", slotNo)
 	var parentNode = area.get_parent()
 	if Globals.currentMode==Globals.MODES.INVENTORY and parentNode != null and parentNode is PickUp:
 	 
@@ -709,7 +720,7 @@ func draggedToSlot(slotNo:int, area:Area2D, thismode:MODES)->void:
 					changeSelectedBoard()
 					parentNode.pressed = false
 
-				print("expansion dragged to slot: ", slotNo)
+				#print("expansion dragged to slot: ", slotNo)
 			elif category == "battery" and thismode == MODES.BATTERY:
 				if setDraggedSlot(slotNo, MODES.BATTERY):
 					changeSelectedBattery()
