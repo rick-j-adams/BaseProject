@@ -10,6 +10,8 @@
 extends Node
 
 const GRAVITY := 2000.0
+const LASTLEVELKEY = "lastLevel"
+const LASTPOSITIONKEY = "lastPosition"
 
 enum MODES {
 	INVENTORY,
@@ -82,6 +84,9 @@ var maxTempLightPoolSize : int = 2
 var lastPosition: Vector2 = Vector2.ZERO
 var mainCharacter = null
 
+var currentLevel = "XXXX"
+
+
 func setUpPicksUpMap() -> void:
 	if allResources.allPickUps.size() == 0:
 		allResources.allPickUps = {
@@ -137,8 +142,8 @@ func setUpPicksUpMap() -> void:
 func setUpLevelsMap() -> void:
 	if allResources.allLevels.size() == 0:
 		allResources.allLevels = {
-			"R001" : {"sceneName":"test"},
-			"R002" : {"sceneName":"test"}
+			"R001" : {"sceneName":"test", "visited":true},
+			"R002" : {"sceneName":"test", "visited":true}
 		}
 
 
@@ -426,5 +431,73 @@ func loadResources() -> void:
 
 
 
-func loadNextLevel() ->void :
-	pass	
+func loadRestartLevel() ->void :
+	var lastLoadLevel = getGameProperyNoDefault(LASTLEVELKEY)
+	if lastLoadLevel == null:
+		#New Game
+		lastLoadLevel = "R001"
+		setGamePropery(LASTLEVELKEY, lastLoadLevel)
+		
+	var lastLoadPosition =  getGameProperyNoDefault(LASTPOSITIONKEY)
+	if lastLoadPosition == null:
+		lastLoadPosition  = Vector2(222.0,173.0 ) 
+		setGamePropery(LASTPOSITIONKEY, lastLoadPosition)
+	transisitionToLevel(lastLoadLevel )
+	mainCharacter.position = lastLoadPosition
+
+
+
+func transisitionToLevel(levelName :String) -> void:
+	if gameWindow != null:
+		setUpLevelsMap()		
+		if levelName!=currentLevel:
+			for childNode in gameWindow.level.get_children():
+				childNode.queue_free()
+			var newSceneName = allResources.allLevels.get(levelName).get("sceneName")
+			print (newSceneName)
+			if newSceneName!=null:
+				if transitionMask !=null:
+					transitionMask.playTransistion()
+				var newSceneNode:PackedScene = sceneMap.get(newSceneName)
+				if newSceneNode!=null:
+					var newNode := newSceneNode.instantiate()
+					gameWindow.level.add_child(newNode)
+					print (mainCamera)
+					if mainCamera != null:
+						var levelLimits = newNode.getLevelLimts ()
+						print (levelLimits)
+						mainCamera.limit_left = levelLimits[0] 
+						mainCamera.limit_top = levelLimits[1]
+						mainCamera.limit_right = levelLimits[2]
+						mainCamera.limit_bottom = levelLimits[3]
+
+					currentLevel=levelName
+
+		
+		
+func transitionToEntryPoint(transisitionType :TransitionArea.TRANSITION_TYPES,  destinationLevel:String, destinationEntryPoint:String) -> void:
+	transisitionToLevel(destinationLevel)
+	print ("destinationLevel="+str(destinationLevel))
+	print ("destinationEntryPoint="+str(destinationEntryPoint))
+	for childNode in gameWindow.level.get_children():
+		var newPosition = childNode.findEntryPointsPosition(destinationEntryPoint)
+		if transisitionType == TransitionArea.TRANSITION_TYPES.HORIZONTAL or transisitionType == TransitionArea.TRANSITION_TYPES.BOTH:
+			mainCharacter.position.x = newPosition.x
+		if transisitionType == TransitionArea.TRANSITION_TYPES.VERTICAL or transisitionType == TransitionArea.TRANSITION_TYPES.BOTH:
+			mainCharacter.position.y = newPosition.y
+
+# @export var transisitionType :TRANSITION_TYPES = TRANSITION_TYPES.HORIZONTAL
+# @export var destinationLevel : String = "R001"
+# @export var destinationEntryPoint : String = "E1"
+
+
+# func _on_body_entered(body:Node2D) -> void:
+# 	if body.is_in_group("actor"):
+# 		if body is Dydimo:
+# 			Globals.transitionToEntryPoint(transisitionType,  destinationLevel, destinationEntryPoint)
+
+# allResources.allLevels = {
+# 			"R001" : {"sceneName":"test", "visited":true},
+# 	const LASTLEVELKEY = "lastLevel"
+# const LASTPOSITIONKEY = "lastPosition"
+	# pass	

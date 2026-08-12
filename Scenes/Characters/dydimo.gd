@@ -110,6 +110,7 @@ func _ready() -> void:
 	# animationPlayer.play(currentAnimation)
 	Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "BirthSpark")
 	Globals.setMainCharacter(self)
+	Globals.mainCamera = camera
 	startBirth()
 	
 
@@ -696,6 +697,7 @@ func doDeath() -> void:
 func _on_dying_timer_timeout() -> void:
 	dying=false
 	dyingTimer.stop()
+	Globals.loadRestartLevel()
 	startBirth()
 
 

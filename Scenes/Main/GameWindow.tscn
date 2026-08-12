@@ -1,15 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://5fgib33nmcje"]
+[gd_scene load_steps=6 format=3 uid="uid://5fgib33nmcje"]
 
 [ext_resource type="Script" uid="uid://brbmtqsnngjj4" path="res://Scenes/Main/game_window.gd" id="1_dbpy3"]
 [ext_resource type="PackedScene" uid="uid://bf0if5w2l0v7k" path="res://Scenes/TestLevel/TestLevel.tscn" id="2_x77s8"]
 [ext_resource type="PackedScene" uid="uid://cbri375apng4c" path="res://Scenes/Main/NewHud.tscn" id="3_1bovn"]
 [ext_resource type="PackedScene" uid="uid://b1ui4fob7e0xk" path="res://Scenes/Main/TouchOne.tscn" id="4_0rvuu"]
+[ext_resource type="PackedScene" uid="uid://dcgmiqmop582s" path="res://Scenes/Characters/Dydimo.tscn" id="5_wh14y"]
 
 [node name="GameWindow" type="Node2D"]
 script = ExtResource("1_dbpy3")
 
-[node name="TestLevel" parent="." instance=ExtResource("2_x77s8")]
+[node name="Level" type="Node2D" parent="."]
+
+[node name="TestLevel" parent="Level" instance=ExtResource("2_x77s8")]
 
 [node name="NewHud" parent="." instance=ExtResource("3_1bovn")]
 
 [node name="TouchOne" parent="." instance=ExtResource("4_0rvuu")]
+
+[node name="Dydimo" parent="." instance=ExtResource("5_wh14y")]
+position = Vector2(213, 217)

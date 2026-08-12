@@ -1,5 +1,6 @@
-[gd_scene load_steps=111 format=4 uid="uid://bf0if5w2l0v7k"]
+[gd_scene load_steps=113 format=4 uid="uid://bf0if5w2l0v7k"]
 
+[ext_resource type="Script" uid="uid://b1v31dvjnxeq7" path="res://Scenes/Levels/Level.gd" id="1_elur0"]
 [ext_resource type="Script" uid="uid://dbbrhmyet7xy6" path="res://Scenes/point.gd" id="1_waq5v"]
 [ext_resource type="Texture2D" uid="uid://bxujlxx188ne4" path="res://Images/Tiles/plates8x8-small.png" id="3_1nb57"]
 [ext_resource type="Texture2D" uid="uid://bpt2tjdv68nqi" path="res://Images/Tiles/mask.png" id="3_fnepx"]
@@ -10,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://dasm0gwhcv80g" path="res://Images/Tiles/Wall1Rusted64x128.png" id="6_xw7kl"]
 [ext_resource type="PackedScene" uid="uid://6rgcxyb4d6ua" path="res://Scenes/Characters/Overseer.tscn" id="7_gv0f6"]
 [ext_resource type="Texture2D" uid="uid://b48mgv5uf4qkt" path="res://Images/Backgrounds/rubbish/littlerubbish.png" id="7_vsn0m"]
-[ext_resource type="PackedScene" uid="uid://dcgmiqmop582s" path="res://Scenes/Characters/Dydimo.tscn" id="8_840qq"]
 [ext_resource type="Texture2D" uid="uid://clnsmfvcelws5" path="res://Images/Backgrounds/rubbish/bigrubbish.png" id="8_csnxk"]
 [ext_resource type="Texture2D" uid="uid://dppnkjebo58vj" path="res://Images/Tiles/Wall64x128.png" id="9_csnxk"]
 [ext_resource type="Texture2D" uid="uid://cc5cg13h3nner" path="res://Images/test.png" id="12_840qq"]
@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://bo4eym23rta43" path="res://Images/Character/EnemyParts/Smasher.tscn" id="34_l0ewk"]
 [ext_resource type="PackedScene" uid="uid://c7pjl7t7sjaq7" path="res://Images/Character/EnemyParts/Stinger.tscn" id="35_0lbil"]
 [ext_resource type="PackedScene" uid="uid://b5015kg4u7scx" path="res://Scenes/PickUps/PickUp.tscn" id="36_rpx7b"]
+[ext_resource type="PackedScene" uid="uid://bkhvotnd6cruc" path="res://Scenes/Levels/TransitionArea.tscn" id="38_elur0"]
 
 [sub_resource type="Environment" id="Environment_k2qbn"]
 background_mode = 3
@@ -3757,7 +3758,11 @@ custom_data_layer_0/type = 0
 sources/0 = SubResource("TileSetAtlasSource_nkuq4")
 sources/1 = SubResource("TileSetAtlasSource_vsn0m")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bl2o2"]
+size = Vector2(34750, 10279)
+
 [node name="TestLevel" type="Node2D"]
+script = ExtResource("1_elur0")
 
 [node name="RPointBottomCorner" type="Node2D" parent="."]
 position = Vector2(6912, 6912)
@@ -3824,9 +3829,6 @@ texture = ExtResource("21_wgcyu")
 
 [node name="Overseer" parent="." instance=ExtResource("7_gv0f6")]
 position = Vector2(222, 173)
-
-[node name="Dydimo" parent="." instance=ExtResource("8_840qq")]
-position = Vector2(213, 217)
 
 [node name="Compo2Test" type="Sprite2D" parent="."]
 visible = false
@@ -3923,6 +3925,7 @@ tile_map_data = PackedByteArray("AAA6AAoAAQABAAQAAAA5AAoAAQAEAAYAAAA4AAoAAQAHAAQ
 tile_set = SubResource("TileSet_1nb57")
 
 [node name="TEST" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-1688, 1684)
 texture = ExtResource("12_840qq")
 
@@ -3983,7 +3986,7 @@ position = Vector2(4339, -770)
 position = Vector2(4466, -770)
 
 [node name="Pipe2" type="Sprite2D" parent="."]
-position = Vector2(1055, 771)
+position = Vector2(1056, 761)
 rotation = 3.14159
 texture = ExtResource("24_v8m66")
 
@@ -3992,7 +3995,7 @@ position = Vector2(1058, 874)
 texture = ExtResource("24_v8m66")
 
 [node name="Pipe4" type="Sprite2D" parent="."]
-position = Vector2(1418, 772)
+position = Vector2(1419, 761)
 rotation = 3.14159
 texture = ExtResource("24_v8m66")
 
@@ -4001,7 +4004,7 @@ position = Vector2(1421, 875)
 texture = ExtResource("24_v8m66")
 
 [node name="Pipe6" type="Sprite2D" parent="."]
-position = Vector2(2048, 774)
+position = Vector2(2049, 761)
 rotation = 3.14159
 texture = ExtResource("24_v8m66")
 
@@ -4155,3 +4158,73 @@ pickUpType = 36
 [node name="PickUp28" parent="." instance=ExtResource("36_rpx7b")]
 position = Vector2(3921, 1252)
 pickUpType = 26
+
+[node name="DeathZones" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="DeathZones"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZones/Area2D"]
+position = Vector2(-9, 12945.5)
+shape = SubResource("RectangleShape2D_bl2o2")
+
+[node name="EntryPoints" type="Node2D" parent="."]
+
+[node name="E1" type="Node2D" parent="EntryPoints"]
+position = Vector2(-1522, 182)
+script = ExtResource("1_waq5v")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="E2" type="Node2D" parent="EntryPoints"]
+position = Vector2(-1628, 1622)
+script = ExtResource("1_waq5v")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="E3" type="Node2D" parent="EntryPoints"]
+position = Vector2(5242, 1557)
+script = ExtResource("1_waq5v")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="E4" type="Node2D" parent="EntryPoints"]
+position = Vector2(5242, -575)
+script = ExtResource("1_waq5v")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="E5" type="Node2D" parent="EntryPoints"]
+position = Vector2(1319, -968)
+script = ExtResource("1_waq5v")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="E6" type="Node2D" parent="EntryPoints"]
+position = Vector2(1254, 3680)
+script = ExtResource("1_waq5v")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="ExitPoints" type="Node2D" parent="."]
+
+[node name="TransitionArea" parent="ExitPoints" instance=ExtResource("38_elur0")]
+position = Vector2(-1917, 155)
+scale = Vector2(2, 2)
+transisitionType = 2
+destinationLevel = "R002"
+destinationEntryPoint = "E3"
+
+[node name="TransitionArea2" parent="ExitPoints" instance=ExtResource("38_elur0")]
+position = Vector2(-1978, 1519)
+scale = Vector2(2, 2)
+transisitionType = 2
+destinationLevel = "R002"
+destinationEntryPoint = "E4"
+
+[node name="TransitionArea3" parent="ExitPoints" instance=ExtResource("38_elur0")]
+position = Vector2(5563, 1549)
+scale = Vector2(2, 2)
+transisitionType = 2
+
+[node name="TransitionArea4" parent="ExitPoints" instance=ExtResource("38_elur0")]
+position = Vector2(5593, -671)
+scale = Vector2(2, 2)
+transisitionType = 2
+destinationLevel = "R002"
+destinationEntryPoint = "E2"
+
+[connection signal="body_entered" from="DeathZones/Area2D" to="." method="_on_area_2d_body_entered"]
