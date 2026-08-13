@@ -29,6 +29,9 @@ func die():
 	detached = true
 	animationPlayer.play("Rotate")
 
+func requestLight():
+	Globals.requestTempLight(global_position,TempLight.LightType.FLAME )
+	# requestTempLight(lightposition:Vector2, lightType:TempLight.LightType) -> void:
 
 func doDamage():
 	if parentEnemy != null:

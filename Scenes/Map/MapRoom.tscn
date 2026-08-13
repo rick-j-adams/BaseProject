@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://clal205ols17i"]
+[gd_scene load_steps=5 format=3 uid="uid://clal205ols17i"]
 
 [ext_resource type="Script" uid="uid://b2q5oe3h5j0o8" path="res://Scenes/Map/map_room.gd" id="1_jhhd5"]
 [ext_resource type="Texture2D" uid="uid://e5sj060bswl6" path="res://Images/Map/testMap.png" id="2_qm2bf"]
 [ext_resource type="Texture2D" uid="uid://xeh11sfepoxm" path="res://Images/Map/MapMasker.png" id="3_mys41"]
+[ext_resource type="Texture2D" uid="uid://dsc5atnd5oya6" path="res://Images/Map/redSquare.png" id="3_qm2bf"]
 
 [node name="MapRoom" type="Node2D"]
 script = ExtResource("1_jhhd5")
@@ -10,58 +11,328 @@ script = ExtResource("1_jhhd5")
 [node name="Sprite2DRoomMap" type="Sprite2D" parent="."]
 texture = ExtResource("2_qm2bf")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_qm2bf")
+
 [node name="Maskers" type="Node2D" parent="."]
 
 [node name="Masker1" type="Sprite2D" parent="Maskers"]
 visible = false
-position = Vector2(-161, -143)
-scale = Vector2(2.37109, 2.48047)
+position = Vector2(-112, -112)
 texture = ExtResource("3_mys41")
 
 [node name="Masker2" type="Sprite2D" parent="Maskers"]
 visible = false
-position = Vector2(-399, -150)
-scale = Vector2(2.37109, 2.48047)
+position = Vector2(-80, -112)
 texture = ExtResource("3_mys41")
 
 [node name="Masker3" type="Sprite2D" parent="Maskers"]
 visible = false
-position = Vector2(94, -135)
-scale = Vector2(2.37109, 2.48047)
+position = Vector2(-48, -112)
 texture = ExtResource("3_mys41")
 
 [node name="Masker4" type="Sprite2D" parent="Maskers"]
 visible = false
-position = Vector2(354, -129)
-scale = Vector2(2.37109, 2.48047)
+position = Vector2(-16, -112)
 texture = ExtResource("3_mys41")
 
 [node name="Masker5" type="Sprite2D" parent="Maskers"]
 visible = false
-position = Vector2(-271, 132)
-scale = Vector2(2.37109, 2.48047)
+position = Vector2(16, -112)
 texture = ExtResource("3_mys41")
 
 [node name="Masker6" type="Sprite2D" parent="Maskers"]
 visible = false
-position = Vector2(11, 143)
-scale = Vector2(2.37109, 2.48047)
+position = Vector2(48, -112)
 texture = ExtResource("3_mys41")
 
 [node name="Masker7" type="Sprite2D" parent="Maskers"]
 visible = false
-position = Vector2(757, 259)
-scale = Vector2(2.37109, 2.48047)
+position = Vector2(80, -112)
 texture = ExtResource("3_mys41")
 
 [node name="Masker8" type="Sprite2D" parent="Maskers"]
 visible = false
-position = Vector2(-14, 302)
-scale = Vector2(2.37109, 2.48047)
+position = Vector2(112, -112)
 texture = ExtResource("3_mys41")
 
 [node name="Masker9" type="Sprite2D" parent="Maskers"]
 visible = false
-position = Vector2(271, 151)
-scale = Vector2(2.37109, 2.48047)
+position = Vector2(-112, -80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker10" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-80, -80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker11" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-48, -80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker12" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-16, -80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker13" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(16, -80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker14" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(48, -80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker15" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(80, -80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker16" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(112, -80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker17" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-112, -48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker18" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-80, -48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker19" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-48, -48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker20" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-16, -48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker21" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(16, -48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker22" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(48, -48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker23" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(80, -48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker24" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(112, -48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker25" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-112, -16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker26" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-80, -16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker27" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-48, -16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker28" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-16, -16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker29" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(16, -16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker30" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(48, -16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker31" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(80, -16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker32" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(112, -16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker33" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-112, 16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker34" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-80, 16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker35" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-48, 16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker36" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-16, 16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker37" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(16, 16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker38" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(48, 16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker39" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(80, 16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker40" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(112, 16)
+texture = ExtResource("3_mys41")
+
+[node name="Masker41" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-112, 48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker42" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-80, 48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker43" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-48, 48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker44" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-16, 48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker45" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(16, 48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker46" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(48, 48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker47" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(80, 48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker48" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(112, 48)
+texture = ExtResource("3_mys41")
+
+[node name="Masker49" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-112, 80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker50" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-80, 80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker51" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-48, 80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker52" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-16, 80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker53" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(16, 80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker54" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(48, 80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker55" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(80, 80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker56" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(112, 80)
+texture = ExtResource("3_mys41")
+
+[node name="Masker57" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-112, 112)
+texture = ExtResource("3_mys41")
+
+[node name="Masker58" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-80, 112)
+texture = ExtResource("3_mys41")
+
+[node name="Masker59" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-48, 112)
+texture = ExtResource("3_mys41")
+
+[node name="Masker60" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(-16, 112)
+texture = ExtResource("3_mys41")
+
+[node name="Masker61" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(16, 112)
+texture = ExtResource("3_mys41")
+
+[node name="Masker62" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(48, 112)
+texture = ExtResource("3_mys41")
+
+[node name="Masker63" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(80, 112)
+texture = ExtResource("3_mys41")
+
+[node name="Masker64" type="Sprite2D" parent="Maskers"]
+visible = false
+position = Vector2(112, 112)
 texture = ExtResource("3_mys41")

@@ -142,8 +142,8 @@ func setUpPicksUpMap() -> void:
 func setUpLevelsMap() -> void:
 	if allResources.allLevels.size() == 0:
 		allResources.allLevels = {
-			"R001" : {"sceneName":"test", "visited":true},
-			"R002" : {"sceneName":"test", "visited":true}
+			"R001" : {"sceneName":"test", "visited":false, "culled": [], "levelMasks": {} },
+			"R002" : {"sceneName":"test", "visited":false, "culled": [], "levelMasks": {} }
 		}
 
 
@@ -254,12 +254,15 @@ func setUpTempLightPool() -> void:
 		if mainScene != null:
 			mainScene.add_child(tempLight)
 
-func requestTempLight(position:Vector2, lightType:TempLight.LightType) -> void:
+func requestTempLight(lightposition:Vector2, lightType:TempLight.LightType) -> void:
 	if tempLightPool.size() == 0:
 		setUpTempLightPool()
+	#no need to light if we cannot see it
+	if lightposition.distance_to(mainCharacter.global_position) > 1000: 
+		return
 	for tempLight in tempLightPool:
 		if not tempLight.visible:
-			tempLight.setUpLight( lightType,position)
+			tempLight.setUpLight( lightType,lightposition)
 			return
 
 func setUpElementPool() -> void:
@@ -453,7 +456,8 @@ func transisitionToLevel(levelName :String) -> void:
 		if levelName!=currentLevel:
 			for childNode in gameWindow.level.get_children():
 				childNode.queue_free()
-			var newSceneName = allResources.allLevels.get(levelName).get("sceneName")
+			var levelDetails =  allResources.allLevels.get(levelName)
+			var newSceneName = levelDetails.get("sceneName")
 			print (newSceneName)
 			if newSceneName!=null:
 				if transitionMask !=null:
@@ -462,29 +466,69 @@ func transisitionToLevel(levelName :String) -> void:
 				if newSceneNode!=null:
 					var newNode := newSceneNode.instantiate()
 					gameWindow.level.add_child(newNode)
-					print (mainCamera)
+					# print (mainCamera)
+					
+					levelDetails.set("visited",true)
+						# "R002" : {"sceneName":"test", "visited":true, "culled": [] }
 					if mainCamera != null:
 						var levelLimits = newNode.getLevelLimts ()
-						print (levelLimits)
 						mainCamera.limit_left = levelLimits[0] 
 						mainCamera.limit_top = levelLimits[1]
 						mainCamera.limit_right = levelLimits[2]
 						mainCamera.limit_bottom = levelLimits[3]
 
 					currentLevel=levelName
+					newNode.resetLevel()
 
 		
 		
 func transitionToEntryPoint(transisitionType :TransitionArea.TRANSITION_TYPES,  destinationLevel:String, destinationEntryPoint:String) -> void:
 	transisitionToLevel(destinationLevel)
-	print ("destinationLevel="+str(destinationLevel))
-	print ("destinationEntryPoint="+str(destinationEntryPoint))
+	# print ("destinationLevel="+str(destinationLevel))
+	# print ("destinationEntryPoint="+str(destinationEntryPoint))
 	for childNode in gameWindow.level.get_children():
 		var newPosition = childNode.findEntryPointsPosition(destinationEntryPoint)
 		if transisitionType == TransitionArea.TRANSITION_TYPES.HORIZONTAL or transisitionType == TransitionArea.TRANSITION_TYPES.BOTH:
 			mainCharacter.position.x = newPosition.x
 		if transisitionType == TransitionArea.TRANSITION_TYPES.VERTICAL or transisitionType == TransitionArea.TRANSITION_TYPES.BOTH:
 			mainCharacter.position.y = newPosition.y
+
+
+func addToCullList(levelID:int) -> void:
+	# print(currentLevel)
+	var levelDetails =  allResources.allLevels.get(currentLevel)
+	if levelDetails != null:
+		levelDetails.get("culled").append(levelID)
+
+
+func getUpMaskRevealsForLevel() -> Dictionary:
+	return getUpMaskRevealsForGivenLevel(currentLevel)
+	# var levelMaskDetails =  allResources.allLevels.get(currentLevel).get("levelMasks")
+	# if levelMaskDetails.size() == 0:
+	# 	for childNode in gameWindow.level.get_children():
+	# 		levelMaskDetails = childNode.getMaskRevealDictionary()		
+	# return levelMaskDetails
+
+
+
+func getUpMaskRevealsForGivenLevel(levelName:String) -> Dictionary:
+	var levelLevelDetails =  allResources.allLevels.get(levelName)
+	if levelLevelDetails  != null :
+		var levelMaskDetails = levelLevelDetails.get("levelMasks")
+		if levelMaskDetails.size() == 0:
+			for childNode in gameWindow.level.get_children():
+				levelMaskDetails = childNode.getMaskRevealDictionary()
+		return levelMaskDetails
+	return {}	
+	
+	# if levelMaskDetails.size() == 0:
+	# 	for childNode in gameWindow.level.get_children():
+	# 		levelMaskDetails = childNode.getMaskRevealDictionary()		
+	# return levelMaskDetails
+
+
+
+	# levelMasks
 
 # @export var transisitionType :TRANSITION_TYPES = TRANSITION_TYPES.HORIZONTAL
 # @export var destinationLevel : String = "R001"

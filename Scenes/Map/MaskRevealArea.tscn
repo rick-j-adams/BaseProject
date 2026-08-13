@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqhjc386wqkwv"]
+
+[ext_resource type="Script" uid="uid://jvcy2u33rbr0" path="res://Scenes/Map/mask_reveal_area.gd" id="1_u0k01"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i04sr"]
+size = Vector2(1728, 1742)
+
+[node name="MaskRevealArea" type="Area2D"]
+script = ExtResource("1_u0k01")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i04sr")
+debug_color = Color(0.379552, 0.613454, 1.92523e-07, 0.42)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

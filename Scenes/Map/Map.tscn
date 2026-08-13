@@ -7,48 +7,52 @@
 [node name="Map" type="Node2D"]
 script = ExtResource("1_lcs11")
 
-[node name="MapRoom" parent="." instance=ExtResource("2_lcs11")]
-position = Vector2(-804, 879)
+[node name="MapRooms" type="Node2D" parent="."]
 
-[node name="MapRoom2" parent="." instance=ExtResource("2_lcs11")]
-position = Vector2(-673, 878)
+[node name="MapRoom" parent="MapRooms" instance=ExtResource("2_lcs11")]
+position = Vector2(-802, 877)
+roomName = "R001"
 
-[node name="MapRoom6" parent="." instance=ExtResource("2_lcs11")]
+[node name="MapRoom2" parent="MapRooms" instance=ExtResource("2_lcs11")]
+position = Vector2(-670, 877)
+roomName = "R002"
+
+[node name="MapRoom6" parent="MapRooms" instance=ExtResource("2_lcs11")]
 position = Vector2(-544, 879)
 
-[node name="MapRoom7" parent="." instance=ExtResource("2_lcs11")]
+[node name="MapRoom7" parent="MapRooms" instance=ExtResource("2_lcs11")]
 position = Vector2(-808, 968)
 
-[node name="MapRoom8" parent="." instance=ExtResource("2_lcs11")]
+[node name="MapRoom8" parent="MapRooms" instance=ExtResource("2_lcs11")]
 position = Vector2(-802, 793)
 
-[node name="MapRoom9" parent="." instance=ExtResource("2_lcs11")]
+[node name="MapRoom9" parent="MapRooms" instance=ExtResource("2_lcs11")]
 position = Vector2(-670, 791)
 
-[node name="MapRoom10" parent="." instance=ExtResource("2_lcs11")]
+[node name="MapRoom10" parent="MapRooms" instance=ExtResource("2_lcs11")]
 position = Vector2(-678, 965)
 
-[node name="MapRoom11" parent="." instance=ExtResource("2_lcs11")]
+[node name="MapRoom11" parent="MapRooms" instance=ExtResource("2_lcs11")]
 position = Vector2(-549, 965)
 
-[node name="MapRoom12" parent="." instance=ExtResource("2_lcs11")]
+[node name="MapRoom12" parent="MapRooms" instance=ExtResource("2_lcs11")]
 position = Vector2(-541, 791)
 
-[node name="MapRoom13" parent="." instance=ExtResource("2_lcs11")]
+[node name="MapRoom13" parent="MapRooms" instance=ExtResource("2_lcs11")]
 position = Vector2(-416, 878)
 
-[node name="MapRoom14" parent="." instance=ExtResource("2_lcs11")]
+[node name="MapRoom14" parent="MapRooms" instance=ExtResource("2_lcs11")]
 position = Vector2(-421, 964)
 
-[node name="MapRoom3" parent="." instance=ExtResource("2_lcs11")]
+[node name="MapRoom3" parent="MapRooms" instance=ExtResource("2_lcs11")]
 position = Vector2(-937, 918)
 roomsection = 1
 
-[node name="MapRoom4" parent="." instance=ExtResource("2_lcs11")]
+[node name="MapRoom4" parent="MapRooms" instance=ExtResource("2_lcs11")]
 position = Vector2(-1067, 891)
 roomsection = 1
 
-[node name="MapRoom5" parent="." instance=ExtResource("2_lcs11")]
+[node name="MapRoom5" parent="MapRooms" instance=ExtResource("2_lcs11")]
 position = Vector2(-935, 832)
 roomsection = 1
 

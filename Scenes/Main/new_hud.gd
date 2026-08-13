@@ -528,6 +528,9 @@ func triggerOpenBox() -> void:
 		openCloseTimer.start()
 		currentMode = MODES.INVENTORY
 		map.setPosition()
+		map.setVisiblity()
+		
+
 
 func triggerCloseBox() -> void:
 	triggerHideCase()

@@ -20,6 +20,8 @@ var sparePartDmg: SpareParts = null
 @onready var parts: Node2D = $Parts
 @onready var timer: Timer = $Timer
 
+@export var levelId: int = 0
+
 @export var health: float = 5.0
 @export var speed: float = 300.0
 @export var flying: bool = false
@@ -273,5 +275,6 @@ func _on_timer_timeout() -> void:
 		switchToIdle()
 		return
 	if state == STATES.DYING:
+		Globals.addToCullList(levelId)
 		queue_free()
 	

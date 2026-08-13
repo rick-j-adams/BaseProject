@@ -5,7 +5,7 @@ class_name GoodyBox
 
 @onready var animationPlayer :AnimationPlayer = $AnimationPlayer
 @onready var removeTimer :Timer = $RemoveAfter
-
+@export var levelId: int = 0
 
 var destroyed :	bool= false
 
@@ -27,4 +27,5 @@ func destroy():
 	
 
 func _on_remove_after_timeout() -> void:
+	Globals.addToCullList(levelId)
 	queue_free()		

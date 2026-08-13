@@ -3,6 +3,8 @@ extends Node2D
 class_name Map
 
 @onready var camera2DViewPort :Camera2D = $Camera2DViewPort
+@onready var mapRooms :Node2D = $MapRooms
+@onready var positionIndecator : Sprite2D =  $Sprite2DPostion
 
 enum SECTIONS {REFUSE, ENGINE, ENGINEERING, CARGO, GENERATION, SCIENCE, RECYCLING, MAINTENANCE, ADMINISTRATION, CREW, COMMAND, SECURITY, CORE }
 
@@ -25,19 +27,46 @@ const  sectionColor:Dictionary = {
 var zoomLevels: Array = [4.0,2.0,1, 0.5]
 var zoomPointer :int = 0
 
+func setUpMap() ->void:
+	setPosition()
+	setVisiblity()
+
+func setVisiblity() -> void:
+	for node in mapRooms.get_children():
+		if node is MapRoom:
+			var levelDetails = Globals.allResources.allLevels.get(node.roomName)
+			if levelDetails != null:
+				if levelDetails.get("visited"):
+					node.visible=true
+					node.doMaskReveals()
+				else:
+					node.visible=false
+			else:
+				node.visible=false
+
+
+
+func findMatchingMap(mapName:String) -> MapRoom:
+	for node in mapRooms.get_children():
+		if node is MapRoom:
+			if node.roomName == mapName:
+				return node
+	return null
+
+
 #Remember that the main level should be from -6912.0 to 6912.0
 # and mapRooms should be 256 with a ratio of 54 
-func setPosition():
+func setPosition() -> void:
 
 	var currentPosition = Globals.mainCharacter.position
-	var sprite = $Sprite2DPostion #TODO onready these
-	var mapRoom = $MapRoom #TODO coose active map
+	var sprite = positionIndecator #TODO scale 
+	var mapRoom = findMatchingMap(Globals.currentLevel)
 	#mapRoom.add_child(sprite)
-	var scaledPostion =  currentPosition
-	scaledPostion =  scaledPostion/54
-
-	sprite.position = mapRoom.position + scaledPostion
-	camera2DViewPort.position = sprite.position
+	if mapRoom != null:
+		var scaledPostion =  currentPosition
+		scaledPostion =  scaledPostion/54
+		sprite.position = mapRoom.position + scaledPostion
+		camera2DViewPort.position = sprite.position
 
 
 
@@ -52,9 +81,16 @@ func zoomin():
 func setZoom():
 	print(Globals.mainScene)
 	var zoomLevel = zoomLevels[zoomPointer]
-	print(zoomLevel)
+	# print(zoomLevel)
 	camera2DViewPort.zoom.x = zoomLevel
 	camera2DViewPort.zoom.y = zoomLevel
+	# if zoomLevel == len(zoomLevels)-1:
+	# 	positionIndecator.scale.x = 1
+	# 	positionIndecator.scale.y = 1
+	# else:
+	# 	positionIndecator.scale.x = 0.05
+	# 	positionIndecator.scale.y = 0.05
+
 
 func zoomout():
 	zoomPointer=zoomPointer-1

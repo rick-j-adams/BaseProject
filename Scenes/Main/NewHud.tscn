@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://cbri375apng4c"]
+[gd_scene load_steps=34 format=3 uid="uid://cbri375apng4c"]
 
 [ext_resource type="Script" uid="uid://b652gij8tmep0" path="res://Scenes/Main/new_hud.gd" id="1_87ym2"]
 [ext_resource type="Texture2D" uid="uid://cx5ktnplou612" path="res://Images/Icons/gear3.png" id="2_eb8ms"]
 [ext_resource type="Texture2D" uid="uid://cv65752pq0rvf" path="res://Images/Icons/lightning.png" id="3_eb8ms"]
 [ext_resource type="Script" uid="uid://dbbrhmyet7xy6" path="res://Scenes/point.gd" id="4_t7jn7"]
+[ext_resource type="Texture2D" uid="uid://dla024kmx56kp" path="res://Images/Map/MapFrame.png" id="5_d8dou"]
 [ext_resource type="Texture2D" uid="uid://cmr5yyom634cw" path="res://Images/System/boxClose.png" id="5_v3a67"]
 [ext_resource type="Texture2D" uid="uid://cax5y3fmut8xp" path="res://Images/System/boxOpen.png" id="6_ek7pd"]
 [ext_resource type="Texture2D" uid="uid://bx68tyfmoa0rg" path="res://Images/System/BoxBoarder.png" id="7_ek7pd"]
@@ -361,9 +362,14 @@ offset_right = 934.0
 offset_bottom = 513.0
 
 [node name="Sprite2D" type="Sprite2D" parent="PanelContainerMap"]
-position = Vector2(206.5, 203.5)
+position = Vector2(211, 205)
 scale = Vector2(0.810547, 0.802734)
 texture = SubResource("ViewportTexture_d8dou")
+
+[node name="MapFrame" type="Sprite2D" parent="PanelContainerMap"]
+position = Vector2(212, 205)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("5_d8dou")
 
 [node name="PanelContainerCase" type="PanelContainer" parent="."]
 modulate = Color(1, 1, 1, 0)
