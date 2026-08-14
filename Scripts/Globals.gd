@@ -16,7 +16,8 @@ const LASTPOSITIONKEY = "lastPosition"
 enum MODES {
 	INVENTORY,
 	PLAY,
-	EXPAND
+	EXPAND,
+	BATTERY_RECEPTACLE 
 }
 
 var currentMode : MODES = MODES.PLAY
@@ -84,8 +85,8 @@ var maxTempLightPoolSize : int = 2
 var lastPosition: Vector2 = Vector2.ZERO
 var mainCharacter = null
 
-var currentLevel = "XXXX"
-
+var currentLevel:String = "XXXX"
+var currentReceptacle: BatteryReceptacleWallMount = null
 
 func setUpPicksUpMap() -> void:
 	if allResources.allPickUps.size() == 0:
@@ -142,8 +143,8 @@ func setUpPicksUpMap() -> void:
 func setUpLevelsMap() -> void:
 	if allResources.allLevels.size() == 0:
 		allResources.allLevels = {
-			"R001" : {"sceneName":"test", "visited":false, "culled": [], "levelMasks": {} },
-			"R002" : {"sceneName":"test", "visited":false, "culled": [], "levelMasks": {} }
+			"R001" : {"sceneName":"test", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
+			"R002" : {"sceneName":"test", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  }
 		}
 
 

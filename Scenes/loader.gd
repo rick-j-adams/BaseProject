@@ -109,6 +109,9 @@ var currentloadState = LOAD_STATES.SCENES
 	"MainBoard2" : "res://Images/PickUps/MD2.png",
 	"MainBoard3" : "res://Images/PickUps/MD3.png",
 	"MainBoard4" : "res://Images/PickUps/MD4.png",
+	"bulkHeadDoor" : "res://Images/KeyAndLock/BulkHeadDoor.png",
+	"electricDoor" : "res://Images/KeyAndLock/ElectricDoor.png",
+
 
 
 

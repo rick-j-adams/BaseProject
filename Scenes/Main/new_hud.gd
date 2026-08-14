@@ -18,6 +18,8 @@ enum MODES {PLAY,INVENTORY,EXPANSION,BATTERY,MAP}
 @onready var animationPlayer :AnimationPlayer = $AnimationPlayer
 @onready var animationPlayerBag :AnimationPlayer = $AnimationPlayerBag
 @onready var animationPlayerCase :AnimationPlayer = $AnimationPlayerCase
+@onready var animationPlayerBatteryReceptacle :AnimationPlayer = $AnimationPlayerBatteryReceptacle
+
 
 @onready var touchPlayerBag :TouchScreenButton = $PanelContainerBag/TouchScreenButton
 @onready var openCloseTimer :Timer = $PanelContainerBag/OpenCloseTimer
@@ -215,7 +217,8 @@ func changeSelectedBattery() -> void:
 		Globals.allResources.allPickUps.get(pickUpType).set("slotNo", -1)
 		Globals.allResources.allPickUps.get(pickUpType).set("pluggedIn", false)
 		Globals.allResources.allPickUps.get(pickUpType).set("on", false)
-	Globals.playInterfaceAudio(batteryHoleList[batteryPosition].position, "click")
+	if batteryHoleList[batteryPosition] != null:
+		Globals.playInterfaceAudio(batteryHoleList[batteryPosition].position, "click")
 	Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("slotNo", batteryPosition)
 	Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("pluggedIn", true)
 	Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("on", true)
@@ -433,6 +436,7 @@ func inventoryInput() -> void:
 				showSelectdePickUp()
 				selectedItem.HighlightPickUp()
 	if  bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_select"):
+		doBatteryPlacement()
 		if caseState == CASE_STATES.SHOW:
 			if selectedItem == null:
 				return
@@ -527,8 +531,10 @@ func triggerOpenBox() -> void:
 		animationPlayerBag.play("PlayerOpenBox")
 		openCloseTimer.start()
 		currentMode = MODES.INVENTORY
-		map.setPosition()
-		map.setVisiblity()
+		map.setUpMap()
+		if Globals.currentReceptacle !=null:
+			animationPlayerBatteryReceptacle.play("Show")
+
 		
 
 
@@ -539,6 +545,8 @@ func triggerCloseBox() -> void:
 		animationPlayerBag.play("PlayerCloseBox")
 		openCloseTimer.start()
 		Globals.currentMode = Globals.MODES.PLAY
+		if Globals.currentReceptacle !=null:
+			animationPlayerBatteryReceptacle.play("Hide")
 		
 
 
@@ -733,7 +741,7 @@ func draggedToSlot(slotNo:int, area:Area2D, thismode:MODES)->void:
 				parentNode.pressed = false
 			else:
 				print("unknown category dragged to slot: ", slotNo)
-		print("Dragged to slot: ", slotNo)
+		#print("Dragged to slot: ", slotNo)
 
 
 func _on_area_2d_slot_1_area_entered(area:Area2D) -> void:
@@ -776,3 +784,30 @@ func _on_power_grow_timer_timeout() -> void:
 		Globals.currentPower += 1
 	if  Globals.currentPower  > maxPowerAviable:
 		Globals.currentPower -= 1
+
+
+func doBatteryPlacement()-> void:
+
+	if Globals.currentReceptacle==null:
+		return 
+	if selectedItem == null:
+		return
+	var selectedCategory = Globals.allResources.allPickUps.get(selectedItem.pickUpType).get("category")
+	if selectedCategory == "battery":
+		print("todo doBatteryPlacement")
+
+
+
+func _on_area_2d_battery_hole_area_entered(area: Area2D) -> void:
+	
+	if Globals.currentMode == Globals.MODES.BATTERY_RECEPTACLE:
+		var parentNode = area.get_parent()
+		if parentNode != null and parentNode is PickUp:
+	 
+			var pickUpDtails = Globals.allResources.allPickUps.get(parentNode.pickUpType)
+			if pickUpDtails != null and parentNode.pressed:
+				var category:String = pickUpDtails.get("category")
+			
+				if category == "battery" :
+					doBatteryPlacement()
+			

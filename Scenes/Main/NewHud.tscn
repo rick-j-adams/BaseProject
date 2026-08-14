@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cbri375apng4c"]
+[gd_scene load_steps=40 format=3 uid="uid://cbri375apng4c"]
 
 [ext_resource type="Script" uid="uid://b652gij8tmep0" path="res://Scenes/Main/new_hud.gd" id="1_87ym2"]
 [ext_resource type="Texture2D" uid="uid://cx5ktnplou612" path="res://Images/Icons/gear3.png" id="2_eb8ms"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://diqctkij23nwj" path="res://Images/PickUps/BMB1.png" id="11_cq8hj"]
 [ext_resource type="PackedScene" uid="uid://dj6ia2qloed7t" path="res://Scenes/Main/NewScreen.tscn" id="12_iqd32"]
 [ext_resource type="PackedScene" uid="uid://dvlj7xfe80pdk" path="res://Scenes/Map/Map.tscn" id="16_c3f0l"]
+[ext_resource type="Texture2D" uid="uid://cyrse0qph6m14" path="res://Images/KeyAndLock/batteryReceptacle.png" id="17_mtgv4"]
 
 [sub_resource type="Animation" id="Animation_dhgaq"]
 resource_name = "MaxHealth"
@@ -288,8 +289,65 @@ _data = {
 [sub_resource type="ViewportTexture" id="ViewportTexture_d8dou"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtgv4"]
+size = Vector2(240.5, 146)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqd32"]
 size = Vector2(196, 25)
+
+[sub_resource type="Animation" id="Animation_vsatl"]
+resource_name = "Show"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PanelContainerBatteryReceptacle/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4ejey"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PanelContainerBatteryReceptacle/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gj01a"]
+resource_name = "Hide"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PanelContainerBatteryReceptacle/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rbj6g"]
+_data = {
+&"Hide": SubResource("Animation_gj01a"),
+&"RESET": SubResource("Animation_4ejey"),
+&"Show": SubResource("Animation_vsatl")
+}
 
 [node name="NewHud" type="CanvasLayer"]
 script = ExtResource("1_87ym2")
@@ -370,6 +428,25 @@ texture = SubResource("ViewportTexture_d8dou")
 position = Vector2(212, 205)
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("5_d8dou")
+
+[node name="PanelContainerBatteryReceptacle" type="PanelContainer" parent="."]
+offset_left = -505.0
+offset_top = 40.0
+offset_right = -5.0
+offset_bottom = 540.0
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainerBatteryReceptacle"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1227, 259)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("17_mtgv4")
+
+[node name="Area2DBatteryHole" type="Area2D" parent="PanelContainerBatteryReceptacle"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PanelContainerBatteryReceptacle/Area2DBatteryHole"]
+position = Vector2(1237, 273)
+shape = SubResource("RectangleShape2D_mtgv4")
+debug_color = Color(0.954206, 2.79158e-06, 0.549623, 0.42)
 
 [node name="PanelContainerCase" type="PanelContainer" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -627,6 +704,13 @@ autostart = true
 
 [node name="Map" parent="SubViewport" instance=ExtResource("16_c3f0l")]
 
+[node name="AnimationPlayerBatteryReceptacle" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationPlayerCase")
+libraries = {
+&"": SubResource("AnimationLibrary_rbj6g")
+}
+
+[connection signal="area_entered" from="PanelContainerBatteryReceptacle/Area2DBatteryHole" to="." method="_on_area_2d_battery_hole_area_entered"]
 [connection signal="timeout" from="PanelContainerCase/ShowHideTimer" to="." method="_on_show_hide_timer_timeout"]
 [connection signal="area_entered" from="PanelContainerCase/RPointSlot1/Area2DSlot1" to="." method="_on_area_2d_slot_1_area_entered"]
 [connection signal="area_entered" from="PanelContainerCase/RPointSlot2/Area2DSlot2" to="." method="_on_area_2d_slot_2_area_entered"]

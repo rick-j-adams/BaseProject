@@ -10,6 +10,7 @@ enum LightType {
 	WHITE_EXPLODE,
 	RED_EXPLODE,
 	LIGHTNING,
+	PURPLE_LIGHTNING,
 	FLAME
 }
 
@@ -20,10 +21,10 @@ func _ready() -> void:
 	visible=false
 	isOn=false
 
-func setUpLight(lightType:LightType, lightPosition:Vector2) -> void:
+func setUpLight(lightTypeIn:LightType, lightPosition:Vector2) -> void:
 	if isOn:
 		return
-	lightType = lightType
+	lightType = lightTypeIn
 	global_position = lightPosition
 	isOn = true
 	runAnimation(lightType)
@@ -38,6 +39,10 @@ func runAnimation(type:LightType) -> void:
 		
 	elif type == LightType.LIGHTNING:
 		pointLight.color = Color.AQUA
+		animationName = "FlickerShort"
+		waitTime = 0.2
+	elif type == LightType.PURPLE_LIGHTNING:
+		pointLight.color = Color.PURPLE
 		animationName = "FlickerShort"
 		waitTime = 0.2
 	elif type == LightType.FLAME:

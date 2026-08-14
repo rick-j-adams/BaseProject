@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=4 uid="uid://bf0if5w2l0v7k"]
+[gd_scene load_steps=115 format=4 uid="uid://bf0if5w2l0v7k"]
 
 [ext_resource type="Script" uid="uid://b1v31dvjnxeq7" path="res://Scenes/Levels/Level.gd" id="1_elur0"]
 [ext_resource type="Script" uid="uid://dbbrhmyet7xy6" path="res://Scenes/point.gd" id="1_waq5v"]
@@ -36,7 +36,10 @@
 [ext_resource type="PackedScene" uid="uid://c7pjl7t7sjaq7" path="res://Images/Character/EnemyParts/Stinger.tscn" id="35_0lbil"]
 [ext_resource type="PackedScene" uid="uid://b5015kg4u7scx" path="res://Scenes/PickUps/PickUp.tscn" id="36_rpx7b"]
 [ext_resource type="PackedScene" uid="uid://dqhjc386wqkwv" path="res://Scenes/Map/MaskRevealArea.tscn" id="37_waq5v"]
+[ext_resource type="PackedScene" uid="uid://bbvrih4pijywy" path="res://Scenes/KeyAndLock/Door.tscn" id="38_bl2o2"]
 [ext_resource type="PackedScene" uid="uid://bkhvotnd6cruc" path="res://Scenes/Levels/TransitionArea.tscn" id="38_elur0"]
+[ext_resource type="Texture2D" uid="uid://cc5cg13h3nner" path="res://Images/test.png" id="39_bl2o2"]
+[ext_resource type="PackedScene" uid="uid://cjuv5w04krsqw" path="res://Scenes/KeyAndLock/BatteryReceptacleWallMount.tscn" id="40_slng1"]
 
 [sub_resource type="Environment" id="Environment_k2qbn"]
 background_mode = 3
@@ -4053,7 +4056,7 @@ position = Vector2(1582, 865)
 pickUpType = 34
 
 [node name="PickUp23" parent="PickUps" instance=ExtResource("36_rpx7b")]
-position = Vector2(1460, 882)
+position = Vector2(-112, 210)
 pickUpType = 39
 
 [node name="PickUp17" parent="PickUps" instance=ExtResource("36_rpx7b")]
@@ -4513,5 +4516,25 @@ maskNumber = 63
 [node name="MaskRevealArea64" parent="MaskRevealAreas" instance=ExtResource("37_waq5v")]
 position = Vector2(6060, 6162)
 maskNumber = 64
+
+[node name="LocksAndKeys" type="Node2D" parent="."]
+
+[node name="Door" parent="LocksAndKeys" instance=ExtResource("38_bl2o2")]
+position = Vector2(726, 177)
+doorType = 1
+doorState = 0
+flippedPower = true
+
+[node name="Door2" parent="LocksAndKeys" instance=ExtResource("38_bl2o2")]
+position = Vector2(34, 179)
+doorState = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="LocksAndKeys"]
+visible = false
+position = Vector2(617, 206)
+texture = ExtResource("39_bl2o2")
+
+[node name="BatteryReceptacleWallMount" parent="LocksAndKeys" instance=ExtResource("40_slng1")]
+position = Vector2(573, 203)
 
 [connection signal="body_entered" from="DeathZones/Area2D" to="." method="_on_area_2d_body_entered"]
