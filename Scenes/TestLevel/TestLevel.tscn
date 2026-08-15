@@ -4527,7 +4527,7 @@ flippedPower = true
 
 [node name="Door2" parent="LocksAndKeys" instance=ExtResource("38_bl2o2")]
 position = Vector2(34, 179)
-doorState = 0
+flippedPower = true
 
 [node name="Sprite2D" type="Sprite2D" parent="LocksAndKeys"]
 visible = false
@@ -4536,5 +4536,6 @@ texture = ExtResource("39_bl2o2")
 
 [node name="BatteryReceptacleWallMount" parent="LocksAndKeys" instance=ExtResource("40_slng1")]
 position = Vector2(573, 203)
+hasBattery = false
 
 [connection signal="body_entered" from="DeathZones/Area2D" to="." method="_on_area_2d_body_entered"]

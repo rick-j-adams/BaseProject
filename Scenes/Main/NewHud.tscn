@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cbri375apng4c"]
+[gd_scene load_steps=41 format=3 uid="uid://cbri375apng4c"]
 
 [ext_resource type="Script" uid="uid://b652gij8tmep0" path="res://Scenes/Main/new_hud.gd" id="1_87ym2"]
 [ext_resource type="Texture2D" uid="uid://cx5ktnplou612" path="res://Images/Icons/gear3.png" id="2_eb8ms"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bx68tyfmoa0rg" path="res://Images/System/BoxBoarder.png" id="7_ek7pd"]
 [ext_resource type="Texture2D" uid="uid://bucjbn4l1u202" path="res://Images/PickUps/SlotSelector.png" id="8_c4m5t"]
 [ext_resource type="Texture2D" uid="uid://cwg3hhncuxfsk" path="res://Images/PickUps/MD1.png" id="8_ihcpf"]
+[ext_resource type="Texture2D" uid="uid://do3r2hclwa413" path="res://Images/Icons/downgreen.png" id="8_vsatl"]
 [ext_resource type="Texture2D" uid="uid://dfnctwplrxep1" path="res://Images/PickUps/case.png" id="9_n3sgu"]
 [ext_resource type="Texture2D" uid="uid://t7w0lfet33ms" path="res://Images/PickUps/BatterySelector.png" id="9_nyvci"]
 [ext_resource type="Texture2D" uid="uid://dxenqi688psak" path="res://Images/PickUps/screen.png" id="10_c4m5t"]
@@ -295,8 +296,8 @@ size = Vector2(240.5, 146)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqd32"]
 size = Vector2(196, 25)
 
-[sub_resource type="Animation" id="Animation_vsatl"]
-resource_name = "Show"
+[sub_resource type="Animation" id="Animation_gj01a"]
+resource_name = "Hide"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -308,7 +309,31 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../PanelContainerBatteryReceptacle/Sprite2DFilled:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../PanelContainerBatteryReceptacle/TouchScreenButtonEject:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_4ejey"]
@@ -325,9 +350,33 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../PanelContainerBatteryReceptacle/Sprite2DFilled:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../PanelContainerBatteryReceptacle/TouchScreenButtonEject:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
-[sub_resource type="Animation" id="Animation_gj01a"]
-resource_name = "Hide"
+[sub_resource type="Animation" id="Animation_vsatl"]
+resource_name = "Show"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -339,7 +388,45 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../PanelContainerBatteryReceptacle/Sprite2DFilled:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"showBatteryInReceptacleContainer"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../PanelContainerBatteryReceptacle/TouchScreenButtonEject:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rbj6g"]
@@ -448,12 +535,23 @@ position = Vector2(1237, 273)
 shape = SubResource("RectangleShape2D_mtgv4")
 debug_color = Color(0.954206, 2.79158e-06, 0.549623, 0.42)
 
+[node name="Sprite2DFilled" type="Sprite2D" parent="PanelContainerBatteryReceptacle"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1226, 264)
+texture = ExtResource("11_cq8hj")
+
+[node name="TouchScreenButtonEject" type="TouchScreenButton" parent="PanelContainerBatteryReceptacle"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(1216, 364)
+texture_normal = ExtResource("8_vsatl")
+texture_pressed = ExtResource("8_vsatl")
+
 [node name="PanelContainerCase" type="PanelContainer" parent="."]
 modulate = Color(1, 1, 1, 0)
 offset_left = 454.0
-offset_top = 36.0
+offset_top = 34.0
 offset_right = 954.0
-offset_bottom = 536.0
+offset_bottom = 534.0
 
 [node name="Sprite2DBoard" type="Sprite2D" parent="PanelContainerCase"]
 position = Vector2(279, 261)
@@ -711,6 +809,7 @@ libraries = {
 }
 
 [connection signal="area_entered" from="PanelContainerBatteryReceptacle/Area2DBatteryHole" to="." method="_on_area_2d_battery_hole_area_entered"]
+[connection signal="released" from="PanelContainerBatteryReceptacle/TouchScreenButtonEject" to="." method="_on_touch_screen_button_eject_released"]
 [connection signal="timeout" from="PanelContainerCase/ShowHideTimer" to="." method="_on_show_hide_timer_timeout"]
 [connection signal="area_entered" from="PanelContainerCase/RPointSlot1/Area2DSlot1" to="." method="_on_area_2d_slot_1_area_entered"]
 [connection signal="area_entered" from="PanelContainerCase/RPointSlot2/Area2DSlot2" to="." method="_on_area_2d_slot_2_area_entered"]

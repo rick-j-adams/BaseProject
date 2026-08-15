@@ -66,9 +66,16 @@ enum MODES {PLAY,INVENTORY,EXPANSION,BATTERY,MAP}
 @onready var mainBoard :Sprite2D = $PanelContainerCase/Sprite2DBoard
 @onready var newScreen :NewScreen = $PanelContainerCase/NewScreen
 
+@onready var mapContainer:PanelContainer = $PanelContainerMap
+@onready var batteryReceptacleContainer:PanelContainer = $PanelContainerBatteryReceptacle
+@onready var panelContainerCase:PanelContainer = $PanelContainerCase
+
+@onready var sprite2DFilled:Sprite2D = $PanelContainerBatteryReceptacle/Sprite2DFilled
+
+
 @onready var map :Map = $SubViewport/Map
 
-
+var animateFrom:Dictionary = {}
 var boards:Array = [board1,board2,board3,board4,board5,board6,board7]
 
 var selectedItem : PickUp = null
@@ -182,6 +189,10 @@ func changeSelectedBoard()->void:
 		Globals.allResources.allPickUps.get(pickUpType).set("slotNo",-1)
 		Globals.allResources.allPickUps.get(pickUpType).set("pluggedIn",false)
 		Globals.allResources.allPickUps.get(pickUpType).set("on",false)
+
+		animateFrom.set(pickUpType,boardSlotList[boardSlotPosition].global_position )
+		# else:
+		# 	animateFrom.set(pickUpType,sprite2DFilled.global_position )
 	var cost:int = calcPotentialCost()
 	var maxBattery:int = getMaxBattery()
 	if cost<=maxBattery:
@@ -190,9 +201,12 @@ func changeSelectedBoard()->void:
 		Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("pluggedIn",true)
 		Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("on",true)
 		newScreen.growBattery(cost)
+		animateFrom.set(pickUpType,sprite2DFilled.global_position )
 		placeBoard()
 	else:
 		newScreen.showWarning()
+	addItemToBox()
+
 		# Globals.playInterfaceAudio(boardSlotList[boardSlotPosition].position, "error")
 
 func batteryInput() -> void:
@@ -217,6 +231,12 @@ func changeSelectedBattery() -> void:
 		Globals.allResources.allPickUps.get(pickUpType).set("slotNo", -1)
 		Globals.allResources.allPickUps.get(pickUpType).set("pluggedIn", false)
 		Globals.allResources.allPickUps.get(pickUpType).set("on", false)
+		
+		if batteryHoleList[batteryPosition] != null:
+			animateFrom.set(pickUpType,batteryHoleList[batteryPosition].global_position )
+		else:
+			animateFrom.set(pickUpType,sprite2DFilled.global_position )
+
 	if batteryHoleList[batteryPosition] != null:
 		Globals.playInterfaceAudio(batteryHoleList[batteryPosition].position, "click")
 	Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("slotNo", batteryPosition)
@@ -224,7 +244,9 @@ func changeSelectedBattery() -> void:
 	Globals.allResources.allPickUps.get(selectedItem.pickUpType).set("on", true)
 	var maxBattery:int = getMaxBattery()
 	newScreen.growMaxBattery(maxBattery)
+
 	placeBattery()
+	addItemToBox()
 
 func getPickUpInSlot(slotNo:int)->PickUp.PickUpType:
 	for potentialItem in Globals.allResources.allPickUps.keys():
@@ -436,7 +458,7 @@ func inventoryInput() -> void:
 				showSelectdePickUp()
 				selectedItem.HighlightPickUp()
 	if  bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_select"):
-		doBatteryPlacement()
+		doBatteryPlacement(selectedItem.pickUpType)
 		if caseState == CASE_STATES.SHOW:
 			if selectedItem == null:
 				return
@@ -534,6 +556,12 @@ func triggerOpenBox() -> void:
 		map.setUpMap()
 		if Globals.currentReceptacle !=null:
 			animationPlayerBatteryReceptacle.play("Show")
+			mapContainer.visible=false
+			batteryReceptacleContainer.visible=true
+		else:
+			mapContainer.visible=true
+			batteryReceptacleContainer.visible=false
+
 
 		
 
@@ -557,11 +585,23 @@ func _on_touch_screen_button_released() -> void:
 	elif bagState == BAG_STATES.OPEN:
 		triggerCloseBox()
 
+
+# func ItemsFromBag() -> void:
+# 	for item in itemsInBag.keys():
+# 		var itemData:PickUp = itemsInBag.get(item)
+# 		if itemData != null:
+# 			var itemDataDetails = Globals.allResources.allPickUps.get(itemData.pickUpType)
+# 			if itemDataDetails !=null :
+# 				if itemData.get("pickedUp") == true and itemData.get("slotNo") > 0 and itemData.get("givenTo")>0:
+# 					itemsInBag.erase(item)
+
+
 func addItemToBox() -> void:
 	for item in itemsInBag.keys():
-		var itemData = itemsInBag.get(item)
+		var itemData:PickUp = itemsInBag.get(item)
 		if itemData != null:
 			itemData.queue_free()
+	itemsInBag.clear()
 	var newpostion = Vector2(itemSize*1.5, itemSize*1.5)
 	var rowCount = 0
 	# var newXPosition = itemSize
@@ -569,7 +609,11 @@ func addItemToBox() -> void:
 	for potentialItem in Globals.allResources.allPickUps.keys():
 		var itemData = Globals.allResources.allPickUps.get(potentialItem)
 		if itemData != null:
-			if itemData.get("pickedUp") == true:
+			# print(itemData.get("pickedUp"))
+			# print(itemData.get("slotNo"))
+			# print(itemData.get("givenTo"))
+			 
+			if itemData.get("pickedUp") == true and itemData.get("slotNo") == -1 and itemData.get("givenTo") == -1 :  #"slotNo":-1,"cost":1, "givenTo":-1},
 				var pickUpScene = Globals.sceneMap.get("pickUp")
 				var pickUpInstance = pickUpScene.instantiate()
 				pickUpInstance.pickUpType = potentialItem
@@ -584,12 +628,24 @@ func addItemToBox() -> void:
 					rowCount = 0
 					newpostion.x = itemSize*1.5
 					newpostion.y += itemSize
+				var animationFromInstance  = animateFrom.get(potentialItem)
+				if animationFromInstance !=null:
+					pickUpInstance.originalPosition = pickUpInstance.position
+					pickUpInstance.position = animationFromInstance
+					animateFrom.erase(potentialItem)
+				
 	if itemsInBag.keys().size() > 0:
 		selectedPointer = 0
 		var firstItemKey = itemsInBag.keys()[selectedPointer]
 		selectedItem = itemsInBag.get(firstItemKey)
 		if selectedItem != null:
 			selectedItem.HighlightPickUp()
+		
+	# if animateFrom.size()>0:
+	# 	for animate in animateFrom.keys():
+
+
+	# if animateFrom.set(potentialItem,sprite2DFilled.position )
 	
 
 func _on_show_hide_timer_timeout() -> void:
@@ -618,9 +674,11 @@ func setMainBoard() -> void:
 	if namedTexture == "PUMB4":
 		Globals.setGamePropery("mainBoard", "MainBoard4")	
 	mainBoard.texture=Globals.getTextureByName(Globals.getGameProperyNoDefault("mainBoard"))
+	ejectAll()
 	setUpBoard()
 	placeBattery()
 	placeBoard()
+	
 
 
 func validDraggedSlot(slotNo:int, thismode:MODES) -> bool:
@@ -720,6 +778,8 @@ func setDraggedSlot(slotNo:int, thismode:MODES) -> bool:
 
 func draggedToSlot(slotNo:int, area:Area2D, thismode:MODES)->void:
 	#print("Dragged to slot: ", slotNo)
+	if panelContainerCase.modulate==Color("ffffff00"):
+		return
 	var parentNode = area.get_parent()
 	if Globals.currentMode==Globals.MODES.INVENTORY and parentNode != null and parentNode is PickUp:
 	 
@@ -785,29 +845,95 @@ func _on_power_grow_timer_timeout() -> void:
 	if  Globals.currentPower  > maxPowerAviable:
 		Globals.currentPower -= 1
 
+func ejectAll() ->void:
+	var numEjected:int=0
+	for potentialItem in Globals.allResources.allPickUps.keys():
+		var itemData = Globals.allResources.allPickUps.get(potentialItem)
+		if itemData != null:
+			if itemData.get("slotNo") >=0 :
+				itemData.set("slotNo",-1)
+				itemData.set("on", false)
+				numEjected=numEjected+1
+				animateFrom.set(potentialItem,sprite2DFilled.global_position )
+				newScreen.growBattery(0)
+				var maxBattery:int = getMaxBattery()
+				newScreen.growMaxBattery(maxBattery)
+	if numEjected>0:
+		addItemToBox()
+			# "category": "battery"			 
+			# if itemData.get("category") ==  "battery":
+			# 	if itemData.get("givenTo")== Globals.currentReceptacle.oid:
+			# 		itemData.set("givenTo",-1)
+			# 		animateFrom.set(potentialItem,sprite2DFilled.global_position )
 
-func doBatteryPlacement()-> void:
+func showBatteryInReceptacleContainer() -> void:
+	if not batteryReceptacleContainer.visible:
+		sprite2DFilled.visible = false
+		return
+	
+	for potentialItem in Globals.allResources.allPickUps.keys():
+		var itemData = Globals.allResources.allPickUps.get(potentialItem)
+		if itemData != null:
+			if itemData.get("category") ==  "battery":
+				if itemData.get("givenTo")== Globals.currentReceptacle.oid:
 
-	if Globals.currentReceptacle==null:
+					var textureKey = itemData.get("texture") + "Top"
+					sprite2DFilled.visible=true
+					sprite2DFilled.texture = Globals.getTextureByName(textureKey)
+					return
+	
+	sprite2DFilled.visible = false
+
+func doBatteryPlacement(pickUp:PickUp.PickUpType)-> void:
+	if not batteryReceptacleContainer.visible:
+		return
+	ejectBattery()
+	var selectedCategory = Globals.allResources.allPickUps.get(selectedItem.pickUpType).get("category")
+	if selectedCategory == "battery":
+		var pickUpDtails = Globals.allResources.allPickUps.get(pickUp)
+		pickUpDtails.set("givenTo", Globals.currentReceptacle.oid)
+		addItemToBox()
+	Globals.currentReceptacle.hasBattery = true
+	Globals.playInterfaceAudio(sprite2DFilled.global_position, "batteryon")
+
+	showBatteryInReceptacleContainer()
+
+func ejectBattery()-> void:
+	if not batteryReceptacleContainer.visible:
+		return
+	if Globals.currentReceptacle==null:	
 		return 
 	if selectedItem == null:
 		return
-	var selectedCategory = Globals.allResources.allPickUps.get(selectedItem.pickUpType).get("category")
-	if selectedCategory == "battery":
-		print("todo doBatteryPlacement")
 
-
+	for potentialItem in Globals.allResources.allPickUps.keys():
+		var itemData = Globals.allResources.allPickUps.get(potentialItem)
+		if itemData != null:
+			# "category": "battery"			 
+			if itemData.get("category") ==  "battery":
+				if itemData.get("givenTo")== Globals.currentReceptacle.oid:
+					itemData.set("givenTo",-1)
+					animateFrom.set(potentialItem,sprite2DFilled.global_position )
+					Globals.playInterfaceAudio(sprite2DFilled.global_position, "batteryoff")
+	Globals.currentReceptacle.hasBattery = false
+	showBatteryInReceptacleContainer()
 
 func _on_area_2d_battery_hole_area_entered(area: Area2D) -> void:
-	
+	if not batteryReceptacleContainer.visible:
+		return
 	if Globals.currentMode == Globals.MODES.BATTERY_RECEPTACLE:
 		var parentNode = area.get_parent()
-		if parentNode != null and parentNode is PickUp:
-	 
+		if parentNode != null and parentNode is PickUp:	 
 			var pickUpDtails = Globals.allResources.allPickUps.get(parentNode.pickUpType)
 			if pickUpDtails != null and parentNode.pressed:
-				var category:String = pickUpDtails.get("category")
-			
+				var category:String = pickUpDtails.get("category")		
 				if category == "battery" :
-					doBatteryPlacement()
+					doBatteryPlacement(parentNode.pickUpType)
 			
+
+
+func _on_touch_screen_button_eject_released() -> void:
+	if not batteryReceptacleContainer.visible:
+		return
+	ejectBattery()	
+	addItemToBox()

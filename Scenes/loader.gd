@@ -126,6 +126,8 @@ var currentloadState = LOAD_STATES.SCENES
 	"crash" : "res://Audio/crash.ogg",
 	"rbjump" : "res://Audio/rbjump.ogg",
 	"click" : "res://Audio/click.ogg",
+	"batteryon" : "res://Audio/batteryon.ogg",
+	"batteryoff" : "res://Audio/batteryoff.ogg",
 }
 
 @onready var loadMapGD :Dictionary  = {

@@ -12,6 +12,7 @@ var currentState:STATE = STATE.CLOSED
 @export var hasBattery = false
 
 var inArea:bool = false
+@export var oid:int = 1
 
 func _ready() -> void:
 	playIdle()
@@ -23,14 +24,11 @@ func playIdle() ->void:
 		animationPlayer.play("IdleBatteryOut")
 	timer.stop()
 
-
 func _on_area_2d_body_exited(body:Node2D) -> void:
 	if body is Dydimo:	
 		inArea=false
 		timer.start()
 		Globals.currentReceptacle=null
-
-
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
 	if body is Dydimo:	

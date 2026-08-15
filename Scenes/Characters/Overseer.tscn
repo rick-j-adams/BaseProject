@@ -526,7 +526,7 @@ size = Vector2(234, 193)
 size = Vector2(996, 198)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6mkt"]
-size = Vector2(80, 142)
+size = Vector2(57, 142)
 
 [node name="Overseer" type="Node2D"]
 script = ExtResource("1_akota")
@@ -585,7 +585,7 @@ wait_time = 6.0
 [node name="Area2DFix" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DFix"]
-position = Vector2(6, 31)
+position = Vector2(5.5, 31)
 shape = SubResource("RectangleShape2D_n6mkt")
 
 [connection signal="body_entered" from="Area2DRight" to="." method="_on_area_2d_right_body_entered"]

@@ -61,6 +61,8 @@ var speed : float = 1000.0
 
 var pressed : bool = false
 var originalPosition : Vector2 = Vector2.ZERO
+# var animateReturn : bool = false
+# var animateFrom : Vector2 = Vector2.ZERO
 
 @export var pickUpType :PickUpType = PickUpType.HEALTH1
 
@@ -91,7 +93,12 @@ func _process(delta: float) -> void:
 			else:
 				if originalPosition != Vector2.ZERO:
 					position = position.move_toward(originalPosition, speed * delta)
-		
+
+# func doAnimateFrom() -> void:
+# 	if not animateReturn:	
+# 		return
+# 	animateReturn=false
+# 	position = animateFrom
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
 	if body.is_in_group("actor"):
