@@ -772,9 +772,9 @@ texture = ExtResource("11_cq8hj")
 position = Vector2(409, 99)
 
 [node name="PanelContainerBag" type="PanelContainer" parent="."]
-offset_left = 6.0
+offset_left = -505.0
 offset_top = 40.0
-offset_right = 506.0
+offset_right = -5.0
 offset_bottom = 540.0
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="PanelContainerBag"]

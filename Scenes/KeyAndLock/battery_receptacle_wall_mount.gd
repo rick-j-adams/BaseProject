@@ -9,7 +9,7 @@ var currentState:STATE = STATE.CLOSED
 @onready var timer :Timer = $Timer
 @onready var animationPlayer :AnimationPlayer = $AnimationPlayer
 
-@export var hasBattery = false
+# @export var hasBattery = false
 
 var inArea:bool = false
 @export var oid:int = 1
@@ -20,14 +20,14 @@ var lockAndKeySystem:LockAndKeySystem = null
 func _ready() -> void:
 	playIdle()
 	if lockAndKeySystem !=null:
-		if hasBattery:
+		if hasBattery():
 			lockAndKeySystem.powerOnSystem()
 		else:
 			lockAndKeySystem.powerOffSystem()
 
 
 func playIdle() ->void:
-	if hasBattery:
+	if hasBattery():
 		animationPlayer.play("IdleBatteryIn")
 	else:
 		animationPlayer.play("IdleBatteryOut")
@@ -38,6 +38,7 @@ func _on_area_2d_body_exited(body:Node2D) -> void:
 		inArea=false
 		timer.start()
 		Globals.currentReceptacle=null
+		body.inReceptacleRange = false
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
 	if body is Dydimo:	
@@ -46,6 +47,7 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 		animationPlayer.play("Open")
 		inArea=true
 		Globals.currentReceptacle=self
+		body.inReceptacleRange = true
 
 func close() -> void:
 	currentState = STATE.CLOSING
@@ -56,8 +58,8 @@ func _on_timer_timeout() -> void:
 	if currentState == STATE.OPENING:
 		if inArea:
 			timer.stop()
-			Globals.uiCancel()
-			Globals.currentMode=Globals.MODES.BATTERY_RECEPTACLE
+			# Globals.uiCancel()
+			# Globals.currentMode=Globals.MODES.BATTERY_RECEPTACLE
 		else:
 			close()
 	else:
@@ -65,9 +67,20 @@ func _on_timer_timeout() -> void:
 
 	
 func setHasBattery(batteryState: bool) ->void:
-	hasBattery=batteryState
+	# hasBattery=batteryState
 	if lockAndKeySystem !=null :
-		if hasBattery==true:
+		if hasBattery()==true:
 			lockAndKeySystem.powerOnSystem()
 		else:
 			lockAndKeySystem.powerOffSystem()
+
+func hasBattery() -> bool :
+	for potentialItem in Globals.allResources.allPickUps.keys():
+		var itemData = Globals.allResources.allPickUps.get(potentialItem)
+		if itemData != null:
+			if itemData.get("category") == "battery" and itemData.get("givenTo") == oid:
+				return true
+	return false
+				
+
+			# "category": "battery"

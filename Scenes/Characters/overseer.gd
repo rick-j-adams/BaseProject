@@ -78,14 +78,19 @@ func _on_idle_timer_timeout() -> void:
 func _on_area_2d_fix_body_entered(body: Node2D) -> void:
 	if body.is_in_group("actor"):
 		if body is Dydimo:
+			body.inOverseerRange = true
 			dydimoInRange=body
-			fixTimer.wait_time= 2.0
+			fixTimer.wait_time= 0.5
+			if dydimoInRange.currentAnimation == "Birth":
+				animationTree.set("parameters/conditions/emerge", true)
+				animationTree.set("parameters/conditions/build", true)
 			fixTimer.start()
 
 func _on_area_2d_fix_body_exited(body: Node2D) -> void:
 	if body.is_in_group("actor"):
 		if body is Dydimo:
 			dydimoInRange=null
+			body.inOverseerRange = false
 			fixTimer.stop()
 			resetAllAnimationTree()
 			animationTree.set("parameters/conditions/endwork", true)
@@ -94,6 +99,9 @@ func _on_fix_timer_timeout() -> void:
 	fixTimer.stop()
 	if dydimoInRange != null:	
 		resetAllAnimationTree()
-		animationTree.set("parameters/conditions/emerge", true)
+		
 		animationTree.set("parameters/conditions/work", true)
-		dydimoInRange.fix()
+		animationTree.set("parameters/conditions/emerge", true)
+		
+		
+		# dydimoInRange.fix()

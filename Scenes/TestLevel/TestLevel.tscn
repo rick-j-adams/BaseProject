@@ -4055,11 +4055,11 @@ pickUpType = 19
 
 [node name="PickUp22" parent="PickUps" instance=ExtResource("36_rpx7b")]
 position = Vector2(1582, 865)
-pickUpType = 34
+pickUpType = 20
 
 [node name="PickUp23" parent="PickUps" instance=ExtResource("36_rpx7b")]
 position = Vector2(-112, 210)
-pickUpType = 39
+pickUpType = 21
 
 [node name="PickUp17" parent="PickUps" instance=ExtResource("36_rpx7b")]
 position = Vector2(2316, 872)
@@ -4087,15 +4087,83 @@ pickUpType = 5
 
 [node name="PickUp26" parent="PickUps" instance=ExtResource("36_rpx7b")]
 position = Vector2(3630, 1275)
-pickUpType = 41
+pickUpType = 22
 
 [node name="PickUp27" parent="PickUps" instance=ExtResource("36_rpx7b")]
 position = Vector2(3756, 1269)
-pickUpType = 36
+pickUpType = 23
 
 [node name="PickUp28" parent="PickUps" instance=ExtResource("36_rpx7b")]
 position = Vector2(3921, 1252)
+pickUpType = 24
+
+[node name="PickUp29" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(-836, 3169)
+pickUpType = 25
+
+[node name="PickUp30" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(-737, 3160)
 pickUpType = 26
+
+[node name="PickUp31" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(-613, 3166)
+pickUpType = 27
+
+[node name="PickUp32" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(-431, 3145)
+pickUpType = 28
+
+[node name="PickUp33" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(-204, 3169)
+pickUpType = 29
+
+[node name="PickUp34" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(-48, 3165)
+pickUpType = 30
+
+[node name="PickUp35" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(147, 3146)
+pickUpType = 31
+
+[node name="PickUp36" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(-595, 2658)
+pickUpType = 32
+
+[node name="PickUp37" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(-452, 2658)
+pickUpType = 33
+
+[node name="PickUp38" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(-226, 2642)
+pickUpType = 34
+
+[node name="PickUp39" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(57, 2668)
+pickUpType = 35
+
+[node name="PickUp40" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(717, 1386)
+pickUpType = 36
+
+[node name="PickUp41" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(918, 1390)
+pickUpType = 37
+
+[node name="PickUp42" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(-1041, 1561)
+pickUpType = 38
+
+[node name="PickUp43" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(-912, 1561)
+pickUpType = 39
+
+[node name="PickUp44" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(78, 1185)
+pickUpType = 40
+
+[node name="PickUp45" parent="PickUps" instance=ExtResource("36_rpx7b")]
+position = Vector2(233, 1185)
+pickUpType = 41
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -4530,7 +4598,6 @@ hasPower = false
 
 [node name="BatteryReceptacleWallMount" parent="LocksAndKeys/LockAndKeySystem" instance=ExtResource("40_slng1")]
 position = Vector2(573, 201)
-hasBattery = true
 
 [node name="Switch" parent="LocksAndKeys/LockAndKeySystem" instance=ExtResource("41_17dga")]
 z_index = 1

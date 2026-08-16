@@ -56,7 +56,8 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 			var parent = get_parent()
 			body.receieveDamage(parent, false, damage) #replace with level
 		elif body is SpareParts:
-			body.destroy()
+			if not body.destroyed:
+				body.destroy()
 		
 		elif body is CharacterBody2D:
 			var parentNode = body.get_parent()

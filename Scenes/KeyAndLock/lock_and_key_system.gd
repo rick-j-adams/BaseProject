@@ -27,7 +27,7 @@ func _ready() -> void:
 
 
 func systemHasPower() -> bool:
-	if batteryReceptacleWallMount !=null and batteryReceptacleWallMount.hasBattery:
+	if batteryReceptacleWallMount !=null and batteryReceptacleWallMount.hasBattery():
 		return true
 	return false
 
@@ -61,7 +61,7 @@ func switchOff() -> void:
 
 func _on_timer_check_system_state_timeout() -> void:
 	if batteryReceptacleWallMount != null:
-		if batteryReceptacleWallMount.hasBattery:
+		if batteryReceptacleWallMount.hasBattery():
 			powerOnSystem()		
 		else: 
 			powerOffSystem()

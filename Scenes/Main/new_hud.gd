@@ -433,10 +433,16 @@ func inventoryInput() -> void:
 	if bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_up"):
 		map.zoomin()
 		
-	if bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_down"):
+	if bagState == BAG_STATES.OPEN and Input.is_action_just_released("ui_down"):
 		map.zoomout()
 		if ejectBattery():
 			addItemToBox()
+		if caseState == CASE_STATES.SHOW:
+				ejectAll()
+				setUpBoard()
+				placeBattery()
+				placeBoard()
+
 			
 	if bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_right"):
 		if itemsInBag.keys().size() > 0:
@@ -614,9 +620,6 @@ func addItemToBox() -> void:
 	for potentialItem in Globals.allResources.allPickUps.keys():
 		var itemData = Globals.allResources.allPickUps.get(potentialItem)
 		if itemData != null:
-			# print(itemData.get("pickedUp"))
-			# print(itemData.get("slotNo"))
-			# print(itemData.get("givenTo"))
 			 
 			if itemData.get("pickedUp") == true and itemData.get("slotNo") == -1 and itemData.get("givenTo") == -1 :  #"slotNo":-1,"cost":1, "givenTo":-1},
 				var pickUpScene = Globals.sceneMap.get("pickUp")
@@ -782,7 +785,6 @@ func setDraggedSlot(slotNo:int, thismode:MODES) -> bool:
 		return false
 
 func draggedToSlot(slotNo:int, area:Area2D, thismode:MODES)->void:
-	#print("Dragged to slot: ", slotNo)
 	if panelContainerCase.modulate==Color("ffffff00"):
 		return
 	var parentNode = area.get_parent()
@@ -796,7 +798,6 @@ func draggedToSlot(slotNo:int, area:Area2D, thismode:MODES)->void:
 					changeSelectedBoard()
 					parentNode.pressed = false
 
-				#print("expansion dragged to slot: ", slotNo)
 			elif category == "battery" and thismode == MODES.BATTERY:
 				if setDraggedSlot(slotNo, MODES.BATTERY):
 					changeSelectedBattery()
@@ -806,7 +807,6 @@ func draggedToSlot(slotNo:int, area:Area2D, thismode:MODES)->void:
 				parentNode.pressed = false
 			else:
 				print("unknown category dragged to slot: ", slotNo)
-		#print("Dragged to slot: ", slotNo)
 
 
 func _on_area_2d_slot_1_area_entered(area:Area2D) -> void:
@@ -860,7 +860,7 @@ func ejectAll() ->void:
 				itemData.set("on", false)
 				numEjected=numEjected+1
 				animateFrom.set(potentialItem,sprite2DFilled.global_position )
-				newScreen.growBattery(0)
+				newScreen.growBattery(1)
 				var maxBattery:int = getMaxBattery()
 				newScreen.growMaxBattery(maxBattery)
 	if numEjected>0:

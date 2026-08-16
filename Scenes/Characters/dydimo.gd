@@ -46,8 +46,9 @@ const LIGHTEST = Color(0.9, 0.9, 0.9)
 # @export var bigHealthPack : bool = false
 # @export var chute : bool = false
 # @export var magnet : bool = false # done
-@export var security : bool = false
+# @export var security : bool = false
 # @export var speedBoost : bool = false #done
+
 
 enum STATES {BIRTH, IDLE, WALKING, RUNNING, PREJUMP, JUMPING, FALLING, BLOWING, SHOOTING}
 var state : STATES = STATES.BIRTH
@@ -90,6 +91,8 @@ var birthing : bool = true
 var magneting:	 bool = false
 
 var magnetCounter : int = 0
+var inOverseerRange = false
+var inReceptacleRange = false
 
 # ─── helpers ──────────────────────────────────────────────────────────────────
 
@@ -342,7 +345,16 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 		return false
 	interaction = false
 	if Input.is_action_pressed("ui_cancel") and inControl():
-		Globals.uiCancel()
+		if inOverseerRange:
+			fix()
+		elif inReceptacleRange:
+			Globals.uiCancel()
+			Globals.currentMode=Globals.MODES.BATTERY_RECEPTACLE	
+		else:
+			Globals.uiCancel()
+		# inOverseerRange = false
+# var inReceptacleRange = false
+		
 
 	if Input.is_action_pressed("ui_right") and inControl():
 		changeState(STATES.WALKING)
@@ -365,6 +377,7 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 			changeState(STATES.PREJUMP)
 			springing = true
 			interaction = true
+		
 			# Globals.playInterfaceAudio(global_position, "rbjump")
 
 	if Input.is_action_just_released("ui_up") and inControl():
@@ -372,6 +385,13 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 		interaction = true
 
 	if Input.is_action_just_released("ui_down") and inControl():
+		if inOverseerRange:
+			fix()
+			return true
+		elif inReceptacleRange:
+			Globals.uiCancel()
+			Globals.currentMode=Globals.MODES.BATTERY_RECEPTACLE
+			return true
 		if buildableArea != null:
 			buildableArea.repair(upperside.global_position)
 		doTeleport()
@@ -677,6 +697,8 @@ func _on_hit_timer_timeout() -> void:
 func doDeath() -> void:
 	dying = true
 	dyingTimer.start()
+	if Globals.gameWindow!=null:
+		Globals.gameWindow.playFadeOut()
 	if Globals.get_random_four() <=2:
 		animationPlayer.play("Death1")
 	else:	
@@ -688,6 +710,8 @@ func _on_dying_timer_timeout() -> void:
 	dying=false
 	dyingTimer.stop()
 	Globals.loadRestartLevel()
+	if Globals.gameWindow!=null:
+		Globals.gameWindow.playFadeIn()
 	startBirth()
 
 
@@ -733,6 +757,8 @@ func explode() -> void:
 	sparePartTracks.flingUp(global_position)
 	dying = true
 	dyingTimer.start() 
+	if Globals.gameWindow!=null:
+		Globals.gameWindow.playFadeOut()
 	# velocity.x = Globals.get_rand_between(-maxSpeed, maxSpeed)
 	# velocity.y = Globals.get_rand_between(-maxSpeed, 0)
 
