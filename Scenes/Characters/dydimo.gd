@@ -380,18 +380,8 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 		# takeDamage(2.0, underside.global_position)
 
 	if Input.is_action_just_released("ui_select") and inControl():
-		print("SELECT")
-		# explode()
-		zapper.startZap(sprite.flip_h)
-		# if sprite.flip_h:
-		# 	Globals.createElement(self, handLeft.global_position, 0, 5, Vector2(-1,0))
-		# else:
-		# 	Globals.createElement(self, handRight.global_position, 0, 5, Vector2(1,0))
-		# if Globals.isPickUpOn(PickUp.PickUpType.ZAP):
-		# 	Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "Zap")
-		# if Globals.isPickUpOn(PickUp.PickUpType.ZAP2):
-		# 	Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "BigZap")
-		changeState(STATES.SHOOTING)
+		if zapper.startZap(sprite.flip_h):
+			changeState(STATES.SHOOTING)
 	return interaction
 # ─── process ──────────────────────────────────────────────────────────────────
 
@@ -748,4 +738,3 @@ func explode() -> void:
 
 func addPickUp(pickupType: PickUp.PickUpType) -> void:
 	Globals.pickUpPickUp(pickupType)
-	print("addPickUp: "+str(pickupType))

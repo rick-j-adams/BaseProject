@@ -14,8 +14,17 @@ var currentState:STATE = STATE.CLOSED
 var inArea:bool = false
 @export var oid:int = 1
 
+var lockAndKeySystem:LockAndKeySystem = null
+
+
 func _ready() -> void:
 	playIdle()
+	if lockAndKeySystem !=null:
+		if hasBattery:
+			lockAndKeySystem.powerOnSystem()
+		else:
+			lockAndKeySystem.powerOffSystem()
+
 
 func playIdle() ->void:
 	if hasBattery:
@@ -55,3 +64,10 @@ func _on_timer_timeout() -> void:
 		playIdle()
 
 	
+func setHasBattery(batteryState: bool) ->void:
+	hasBattery=batteryState
+	if lockAndKeySystem !=null :
+		if hasBattery==true:
+			lockAndKeySystem.powerOnSystem()
+		else:
+			lockAndKeySystem.powerOffSystem()

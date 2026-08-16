@@ -39,7 +39,6 @@ func resetLevel() -> void:
 	for node in enemies.get_children():
 		if node is Enemy or node is GoodyBox:
 			var levelDetails =  Globals.allResources.allLevels.get(Globals.currentLevel)
-			print (levelDetails)
 			if levelDetails != null:
 				for cid in  levelDetails.get("culled"):
 					if cid == node.levelId:

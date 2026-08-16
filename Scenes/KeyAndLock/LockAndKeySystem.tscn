@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dewhfsjhnh086"]
+
+[ext_resource type="Script" uid="uid://mg4d6ho54yhn" path="res://Scenes/KeyAndLock/lock_and_key_system.gd" id="1_je5qo"]
+
+[node name="LockAndKeySystem" type="Node2D"]
+script = ExtResource("1_je5qo")
+
+[node name="TimerCheckSystemState" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="TimerCheckSystemState" to="." method="_on_timer_check_system_state_timeout"]

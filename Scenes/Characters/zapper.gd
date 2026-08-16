@@ -14,11 +14,11 @@ var damage : float = 1.0
 func energyCost() -> void:
 	Globals.currentPower -= ZAPPER_ENERGY_COST
 
-func startZap(flip: bool) -> void:
+func startZap(flip: bool) -> bool:
 	
 	var zapPower := getZapperPower()
 	if zapPower <= 0:
-		return
+		return false
 	Globals.requestTempLight(global_position, TempLight.LightType.LIGHTNING)
 	damage = float(zapPower) 
 	isOn = true
@@ -33,6 +33,7 @@ func startZap(flip: bool) -> void:
 		zapPower=5
 	var animationName :String = direction +"Zap" + str(zapPower)
 	animationPlayer.play(animationName)
+	return true
 	
 func getZapperPower() -> int:
 	var zapPower:int = 0

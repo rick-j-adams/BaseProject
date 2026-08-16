@@ -16,12 +16,16 @@ enum DOOR_STATES {OPEN, OPENING, CLOSED, CLOSING}
 @onready var timer :Timer = $Timer
 @onready var staticBody2D :StaticBody2D = $StaticBody2D
 
+var lockAndKeySystem:LockAndKeySystem = null
+
 func _ready() -> void:
+	
+	# if doorState == DOOR_STATES.OPEN:
+	# 	setOpen()
+	# if doorState == DOOR_STATES.CLOSED:
+	# 	setClosed()
 	setUpType()
-	if doorState == DOOR_STATES.OPEN:
-		setOpen()
-	if doorState == DOOR_STATES.CLOSED:
-		setClosed()
+	
 
 func getDoorTexture() ->Texture2D :
 	var texture:Texture2D = null
@@ -33,12 +37,13 @@ func getDoorTexture() ->Texture2D :
 
 func setUpType() -> void:
 	sprite2D.texture = getDoorTexture()
-
+	
 	if not hasPower and flippedPower: 
-		doorState = DOOR_STATES.OPEN
-
-		
-
+		doorState=DOOR_STATES.CLOSED
+		openDoor()
+	if hasPower  and flippedPower: 
+		doorState=DOOR_STATES.OPEN
+		closeDoor()
 
 func openDoor() ->void:
 	if doorState != DOOR_STATES.CLOSED:
@@ -78,8 +83,8 @@ func doLighting() ->void:
 		Globals.requestTempLight(global_position, TempLight.LightType.PURPLE_LIGHTNING)
 
 func _on_timer_timeout() -> void:
-	if doorState != DOOR_STATES.OPENING:
+	if doorState == DOOR_STATES.OPENING:
 		setOpen()
-	if doorState != DOOR_STATES.CLOSING:
+	if doorState == DOOR_STATES.CLOSING:
 		setClosed()
 		

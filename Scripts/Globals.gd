@@ -115,7 +115,7 @@ func setUpPicksUpMap() -> void:
 			PickUp.PickUpType.MB3: {"category": "motherboard", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUMB3","slotNo":-1,"cost":1, "givenTo":-1},
 			PickUp.PickUpType.MB4: {"category": "motherboard", "pickedUp": false, "pluggedIn": false, "on": false, "texture": "PUMB4","slotNo":-1,"cost":1, "givenTo":-1},
 			#batteries
-			PickUp.PickUpType.BATTERYLOW1: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1","slotNo":-1,"cost":1, "givenTo":-1},
+			PickUp.PickUpType.BATTERYLOW1: {"category": "battery", "pickedUp": true, "pluggedIn": false, "on": false,"texture": "PUBattery1","slotNo":-1,"cost":1, "givenTo":1},
 			PickUp.PickUpType.BATTERYLOW2: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1","slotNo":-1,"cost":1, "givenTo":-1},
 			PickUp.PickUpType.BATTERYLOW3: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1","slotNo":-1,"cost":1, "givenTo":-1},
 			PickUp.PickUpType.BATTERYLOW4: {"category": "battery", "pickedUp": false, "pluggedIn": false, "on": false,"texture": "PUBattery1","slotNo":-1,"cost":1, "givenTo":-1},
@@ -459,7 +459,6 @@ func transisitionToLevel(levelName :String) -> void:
 				childNode.queue_free()
 			var levelDetails =  allResources.allLevels.get(levelName)
 			var newSceneName = levelDetails.get("sceneName")
-			print (newSceneName)
 			if newSceneName!=null:
 				if transitionMask !=null:
 					transitionMask.playTransistion()
@@ -467,8 +466,7 @@ func transisitionToLevel(levelName :String) -> void:
 				if newSceneNode!=null:
 					var newNode := newSceneNode.instantiate()
 					gameWindow.level.add_child(newNode)
-					# print (mainCamera)
-					
+				
 					levelDetails.set("visited",true)
 						# "R002" : {"sceneName":"test", "visited":true, "culled": [] }
 					if mainCamera != null:
@@ -485,8 +483,7 @@ func transisitionToLevel(levelName :String) -> void:
 		
 func transitionToEntryPoint(transisitionType :TransitionArea.TRANSITION_TYPES,  destinationLevel:String, destinationEntryPoint:String) -> void:
 	transisitionToLevel(destinationLevel)
-	# print ("destinationLevel="+str(destinationLevel))
-	# print ("destinationEntryPoint="+str(destinationEntryPoint))
+	
 	for childNode in gameWindow.level.get_children():
 		var newPosition = childNode.findEntryPointsPosition(destinationEntryPoint)
 		if transisitionType == TransitionArea.TRANSITION_TYPES.HORIZONTAL or transisitionType == TransitionArea.TRANSITION_TYPES.BOTH:
@@ -496,7 +493,6 @@ func transitionToEntryPoint(transisitionType :TransitionArea.TRANSITION_TYPES,  
 
 
 func addToCullList(levelID:int) -> void:
-	# print(currentLevel)
 	var levelDetails =  allResources.allLevels.get(currentLevel)
 	if levelDetails != null:
 		levelDetails.get("culled").append(levelID)

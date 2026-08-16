@@ -435,6 +435,9 @@ func inventoryInput() -> void:
 		
 	if bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_down"):
 		map.zoomout()
+		if ejectBattery():
+			addItemToBox()
+			
 	if bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_right"):
 		if itemsInBag.keys().size() > 0:
 			selectedItem.UnhighlightPickUp()
@@ -458,7 +461,9 @@ func inventoryInput() -> void:
 				showSelectdePickUp()
 				selectedItem.HighlightPickUp()
 	if  bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_select"):
-		doBatteryPlacement(selectedItem.pickUpType)
+		if selectedItem !=null :
+			doBatteryPlacement(selectedItem.pickUpType)
+		
 		if caseState == CASE_STATES.SHOW:
 			if selectedItem == null:
 				return
@@ -870,6 +875,8 @@ func showBatteryInReceptacleContainer() -> void:
 	if not batteryReceptacleContainer.visible:
 		sprite2DFilled.visible = false
 		return
+	if Globals.currentReceptacle ==null:
+		return
 	
 	for potentialItem in Globals.allResources.allPickUps.keys():
 		var itemData = Globals.allResources.allPickUps.get(potentialItem)
@@ -887,25 +894,28 @@ func showBatteryInReceptacleContainer() -> void:
 func doBatteryPlacement(pickUp:PickUp.PickUpType)-> void:
 	if not batteryReceptacleContainer.visible:
 		return
+	if Globals.currentReceptacle==null:	
+		return 
 	ejectBattery()
 	var selectedCategory = Globals.allResources.allPickUps.get(selectedItem.pickUpType).get("category")
 	if selectedCategory == "battery":
 		var pickUpDtails = Globals.allResources.allPickUps.get(pickUp)
 		pickUpDtails.set("givenTo", Globals.currentReceptacle.oid)
+		Globals.currentReceptacle.setHasBattery(true)
 		addItemToBox()
-	Globals.currentReceptacle.hasBattery = true
 	Globals.playInterfaceAudio(sprite2DFilled.global_position, "batteryon")
 
 	showBatteryInReceptacleContainer()
 
-func ejectBattery()-> void:
+func ejectBattery()-> bool:
 	if not batteryReceptacleContainer.visible:
-		return
+		return false
+	
+	# if selectedItem == null:
+	# 	return
 	if Globals.currentReceptacle==null:	
-		return 
-	if selectedItem == null:
-		return
-
+		return false
+	var ejected : bool = false;
 	for potentialItem in Globals.allResources.allPickUps.keys():
 		var itemData = Globals.allResources.allPickUps.get(potentialItem)
 		if itemData != null:
@@ -915,8 +925,11 @@ func ejectBattery()-> void:
 					itemData.set("givenTo",-1)
 					animateFrom.set(potentialItem,sprite2DFilled.global_position )
 					Globals.playInterfaceAudio(sprite2DFilled.global_position, "batteryoff")
-	Globals.currentReceptacle.hasBattery = false
+					ejected=true
+	Globals.currentReceptacle.setHasBattery(false)
 	showBatteryInReceptacleContainer()
+	return ejected
+	# addItemToBox()
 
 func _on_area_2d_battery_hole_area_entered(area: Area2D) -> void:
 	if not batteryReceptacleContainer.visible:

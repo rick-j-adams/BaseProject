@@ -79,7 +79,6 @@ func zoomin():
 	
 
 func setZoom():
-	print(Globals.mainScene)
 	var zoomLevel = zoomLevels[zoomPointer]
 	# print(zoomLevel)
 	camera2DViewPort.zoom.x = zoomLevel
