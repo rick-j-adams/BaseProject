@@ -35,7 +35,9 @@ func repair(setPosition: Vector2):
 			
 		else:
 			Globals.nsfHud(repairCostInBits)
-		
+
+func working () -> void:
+	pass
 			
 func turnOn():
 	if not isBroken:

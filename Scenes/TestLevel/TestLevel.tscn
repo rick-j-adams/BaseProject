@@ -41,7 +41,7 @@
 [ext_resource type="PackedScene" uid="uid://bkhvotnd6cruc" path="res://Scenes/Levels/TransitionArea.tscn" id="38_elur0"]
 [ext_resource type="PackedScene" uid="uid://cjuv5w04krsqw" path="res://Scenes/KeyAndLock/BatteryReceptacleWallMount.tscn" id="40_slng1"]
 [ext_resource type="PackedScene" uid="uid://b4m7d3gbayct4" path="res://Scenes/KeyAndLock/Switch.tscn" id="41_17dga"]
-[ext_resource type="Texture2D" uid="uid://x45bqdynb11x" path="res://Images/KeyAndLock/scanner.png" id="41_njoqy"]
+[ext_resource type="Texture2D" uid="uid://cc5cg13h3nner" path="res://Images/test.png" id="42_36t4f"]
 
 [sub_resource type="Environment" id="Environment_k2qbn"]
 background_mode = 3
@@ -4274,13 +4274,25 @@ texture = ExtResource("23_5dnb7")
 [node name="Interactive" type="Node2D" parent="."]
 
 [node name="Fan" parent="Interactive" instance=ExtResource("13_s6xme")]
-position = Vector2(3338, 2601)
+position = Vector2(3463, 2416)
 
 [node name="Buildable" parent="Interactive" instance=ExtResource("13_rw1vm")]
 position = Vector2(1762, 25)
+buildableType = 0
 
 [node name="Buildable2" parent="Interactive" instance=ExtResource("13_rw1vm")]
-position = Vector2(-1058, 269)
+position = Vector2(-1058, 267)
+isOn = true
+isBroken = false
+
+[node name="Buildable3" parent="Interactive" instance=ExtResource("13_rw1vm")]
+position = Vector2(4380, 1793)
+buildableType = 3
+repairCostInBits = 2.0
+
+[node name="Buildable3MapMachine" parent="Interactive" instance=ExtResource("13_rw1vm")]
+position = Vector2(4141, 1200)
+buildableType = 2
 isOn = true
 isBroken = false
 
@@ -4623,12 +4635,7 @@ switchType = 1
 switchState = 1
 
 [node name="Test" type="Sprite2D" parent="."]
-visible = false
-z_index = 2
-position = Vector2(922, -50)
-texture = ExtResource("41_njoqy")
-hframes = 3
-vframes = 3
-frame = 4
+position = Vector2(4174, 579)
+texture = ExtResource("42_36t4f")
 
 [connection signal="body_entered" from="DeathZones/Area2D" to="." method="_on_area_2d_body_entered"]

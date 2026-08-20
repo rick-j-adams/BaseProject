@@ -394,7 +394,9 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 			return true
 		if buildableArea != null:
 			buildableArea.repair(upperside.global_position)
+			buildableArea.working ()
 		doTeleport()
+
 		var bitPosition: Vector2 = global_position
 		bitPosition.y -= 128
 		# takeDamage(2.0, underside.global_position)

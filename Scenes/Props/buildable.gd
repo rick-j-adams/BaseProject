@@ -4,12 +4,16 @@ class_name Buildable
 
 enum BuildableType {
 	FAN,
-	TELEPORTER
+	TELEPORTER,
+	MAP_MACHINE,
+	FAST_TRAVEL
 }
 
 @export var buildableType: BuildableType = BuildableType.TELEPORTER
+
 @export var isOn := false	
 @export var isBroken :bool = true
+@export var mapAreaName = ""
 
 @onready var sprite :Sprite2D = $Sprite2D
 @onready var animationPlayer :AnimationPlayer = $AnimationPlayer
@@ -19,7 +23,25 @@ enum BuildableType {
 const BITS = "bits"
 @export var repairCostInBits : float = 5
 
+# func tool_texture() ->void:
+# 	if buildableType == BuildableType.TELEPORTER:
+# 		sprite.texture = preload("res://Images/Props/Pin.png")
+# 	elif buildableType == BuildableType.MAP_MACHINE:
+# 		sprite.texture = preload("res://Images/Props/mapmachine.png")
+# 	elif buildableType == BuildableType.FAST_TRAVEL:
+# 		sprite.texture = preload("res://Images/Props/FastTraveller.png")
+
 func _ready():
+	if buildableType == BuildableType.FAN:
+		sprite.texture=Globals.getTextureByName("fan")
+	if buildableType == BuildableType.TELEPORTER:
+		sprite.texture=Globals.getTextureByName("pin")
+	elif buildableType == BuildableType.MAP_MACHINE:
+		sprite.texture=Globals.getTextureByName("mapmachine")
+	elif buildableType == BuildableType.FAST_TRAVEL:
+		sprite.texture=Globals.getTextureByName("fasttravel")
+	# if Engine.is_editor_hint():
+	# 	tool_texture()
 	if isOn:
 		animationPlayer.play("Idle")
 	else:
@@ -37,7 +59,15 @@ func repair(setPosition: Vector2):
 			startBuildTimer.start()	
 		else:
 			Globals.nsfHud(repairCostInBits)
-		
+
+func working ():
+	if not isBroken and isOn: 
+		animationPlayer.play("Working")	
+		if 	buildableType == BuildableType.MAP_MACHINE:
+			pass #TODO add map details
+		if 	buildableType == BuildableType.FAST_TRAVEL:
+			pass #TODO add map details
+			
 			
 func turnOn():
 	if not isBroken:
@@ -87,3 +117,11 @@ func _on_use_area_body_exited(body:Node2D) -> void:
 		if body is Dydimo:
 			if isOn and not isBroken:
 				setUnUseable()
+
+func requestLight() -> void:
+	if buildableType == BuildableType.TELEPORTER:
+		Globals.requestTempLight(global_position, TempLight.LightType.FLAME)
+	if buildableType == BuildableType.MAP_MACHINE:
+		Globals.requestTempLight(global_position, TempLight.LightType.LIGHTNING)
+	if buildableType == BuildableType.FAST_TRAVEL:
+		Globals.requestTempLight(global_position, TempLight.LightType.LIGHTNING)

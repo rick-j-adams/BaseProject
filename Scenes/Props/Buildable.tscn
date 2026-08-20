@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://buoa4mtfneu4r"]
 
 [ext_resource type="Script" uid="uid://dyemdnm146qw6" path="res://Scenes/Props/buildable.gd" id="1_sv420"]
-[ext_resource type="Texture2D" uid="uid://c7vtoswjx4jqg" path="res://Images/Props/Pin.png" id="2_8bx51"]
+[ext_resource type="Texture2D" uid="uid://c58xyr15o5oxp" path="res://Images/Props/FastTraveller.png" id="2_sv420"]
 
 [sub_resource type="Animation" id="Animation_qvtni"]
 resource_name = "Birth"
@@ -99,6 +99,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_w54ia"]
 resource_name = "Ready"
 length = 0.4
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -115,6 +116,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_sv420"]
 resource_name = "Working"
 length = 0.75
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -126,6 +128,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [10, 11, 12, 13, 14, 15, 14, 13, 12, 11, 10]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"requestLight"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qvtni"]
@@ -150,7 +166,7 @@ script = ExtResource("1_sv420")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -10)
-texture = ExtResource("2_8bx51")
+texture = ExtResource("2_sv420")
 hframes = 4
 vframes = 4
 

@@ -113,8 +113,10 @@ var currentloadState = LOAD_STATES.SCENES
 	"electricDoor" : "res://Images/KeyAndLock/ElectricDoor.png",
 	"scanner" : "res://Images/KeyAndLock/scanner.png",
 	"prox" : "res://Images/KeyAndLock/prox.png",
-
-
+	"pin" : "res://Images/Props/Pin.png",
+	"mapmachine" : "res://Images/Props/mapmachine.png",
+	"fasttravel" : "res://Images/Props/FastTraveller.png",
+	"fan" : "res://Images/Props/Fan.png"
 
 
 }
