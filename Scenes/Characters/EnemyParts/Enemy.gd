@@ -174,8 +174,7 @@ func receieveDamage(body:Node2D, bounceBack: bool, amount: float ):
 				if child is EnemyPart:
 					child.playDamageAnimation()
 		if bounceBack:
-			body.yForce -= 1000	
-
+			body.launchInAir()
 
 func getNumberOfParts() -> float:
 	

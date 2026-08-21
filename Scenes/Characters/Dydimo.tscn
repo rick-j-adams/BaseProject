@@ -1,9 +1,10 @@
-[gd_scene load_steps=46 format=3 uid="uid://dcgmiqmop582s"]
+[gd_scene load_steps=49 format=3 uid="uid://dcgmiqmop582s"]
 
 [ext_resource type="Script" uid="uid://c8u8jsmwudb1d" path="res://Scenes/Characters/dydimo.gd" id="1_2324m"]
 [ext_resource type="Texture2D" uid="uid://d1fac0jajjh2h" path="res://Images/Character/DydimoSpriteSheet.png" id="1_tvnxl"]
 [ext_resource type="Texture2D" uid="uid://byp1lcmdh00nm" path="res://Images/System/light1920.png" id="3_m0oep"]
 [ext_resource type="Script" uid="uid://dbbrhmyet7xy6" path="res://Scenes/point.gd" id="4_eblft"]
+[ext_resource type="Texture2D" uid="uid://c58xyr15o5oxp" path="res://Images/Props/FastTraveller.png" id="5_kdu8k"]
 [ext_resource type="Texture2D" uid="uid://b8m2u1rpbwvjh" path="res://Images/System/light512.png" id="5_vurtd"]
 [ext_resource type="PackedScene" uid="uid://l2pxeyhy2x13" path="res://Scenes/Props/Spareparts.tscn" id="6_1b5e8"]
 [ext_resource type="PackedScene" uid="uid://epqi2e3ylled" path="res://Scenes/Characters/Zapper.tscn" id="7_q8jek"]
@@ -210,6 +211,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [60, 61, 61, 61]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MidPoint/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.250968),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.8), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MidPoint/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0503017, 0.250968),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-13, -3), Vector2(-13, 10), Vector2(-13, -3)]
 }
 
 [sub_resource type="Animation" id="Animation_y3oah"]
@@ -487,6 +512,30 @@ tracks/7/keys = {
 "update": 1,
 "values": [10]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MidPoint/Sprite2D:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("MidPoint/Sprite2D:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-13, -3)]
+}
 
 [sub_resource type="Animation" id="Animation_exiak"]
 resource_name = "Rising"
@@ -536,6 +585,86 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [47, 48, 49, 50, 51, 52, 53, 54]
+}
+
+[sub_resource type="Animation" id="Animation_s4q0y"]
+resource_name = "SuckedDown"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MidPoint/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10307, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [78, 78, 77]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MidPoint/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(0.5, 1.5), Vector2(1.5, 0.5), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MidPoint/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-13, -100), Vector2(-13, -20), Vector2(-13, 35), Vector2(-13, -3)]
+}
+
+[sub_resource type="Animation" id="Animation_tit2u"]
+resource_name = "SuckedUp"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MidPoint/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10307, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [77, 78, 78]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MidPoint/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 0.5), Vector2(0.5, 1.5), Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MidPoint/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-13, -3), Vector2(-13, 35), Vector2(-13, -20), Vector2(-13, -100)]
 }
 
 [sub_resource type="Animation" id="Animation_nvppy"]
@@ -819,6 +948,8 @@ _data = {
 &"Rising": SubResource("Animation_exiak"),
 &"ShootUp": SubResource("Animation_6dijm"),
 &"Spring": SubResource("Animation_yim6f"),
+&"SuckedDown": SubResource("Animation_s4q0y"),
+&"SuckedUp": SubResource("Animation_tit2u"),
 &"UpSideDown": SubResource("Animation_nvppy"),
 &"UpSideDownReturn": SubResource("Animation_dk12k"),
 &"WaitIdle1": SubResource("Animation_kdu8k"),
@@ -914,6 +1045,9 @@ one_shot = true
 [node name="MagTimer" type="Timer" parent="."]
 wait_time = 0.3
 
+[node name="FastTravelTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 shadow_enabled = true
 shadow_filter = 1
@@ -925,6 +1059,13 @@ color = Color(0.834614, 0.834614, 0.834614, 1)
 [node name="MidPoint" type="Node2D" parent="."]
 script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="Sprite2D2" type="Sprite2D" parent="MidPoint"]
+visible = false
+position = Vector2(-13, -36)
+texture = ExtResource("5_kdu8k")
+hframes = 4
+vframes = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="MidPoint"]
 position = Vector2(-13, -3)
@@ -967,3 +1108,4 @@ showOnStart = false
 [connection signal="timeout" from="DyingTimer" to="." method="_on_dying_timer_timeout"]
 [connection signal="timeout" from="BirthTimer" to="." method="_on_birth_timer_timeout"]
 [connection signal="timeout" from="MagTimer" to="." method="_on_mag_timer_timeout"]
+[connection signal="timeout" from="FastTravelTimer" to="." method="_on_fast_travel_timer_timeout"]

@@ -60,14 +60,14 @@ func repair(setPosition: Vector2):
 		else:
 			Globals.nsfHud(repairCostInBits)
 
-func working ():
+func working () ->BuildableType:
 	if not isBroken and isOn: 
 		animationPlayer.play("Working")	
 		if 	buildableType == BuildableType.MAP_MACHINE:
 			pass #TODO add map details
 		if 	buildableType == BuildableType.FAST_TRAVEL:
-			pass #TODO add map details
-			
+			return buildableType
+	return 	BuildableType.TELEPORTER
 			
 func turnOn():
 	if not isBroken:

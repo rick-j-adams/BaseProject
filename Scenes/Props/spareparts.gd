@@ -53,7 +53,7 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 	if body.is_in_group("actor"):
 		if not destroyed:
 			if body is Dydimo:		
-				body.yForce -= 1000	
+				body.launchInAir()
 				destroy()
 
 func reset():

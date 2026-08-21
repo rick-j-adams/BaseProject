@@ -6,11 +6,14 @@ class_name Bit
 @onready var collisionShape2D :CollisionShape2D = $CollisionShape2D
 @onready var timer :Timer = $Timer
 @onready var rollTimer :Timer = $RollTimer
+@onready var grabTimer :Timer = $GrabTimer
+
 
 
 @export var isOn : bool = false
 @export var isWaiting : bool = false
 @export var isPayment: bool = false
+var canGrab = false
 var paymentDestination : Vector2 = Vector2.ZERO
 
 @export var bitType : int = 0
@@ -106,8 +109,11 @@ func moveBit(setPosition: Vector2) -> void:
 	collision_mask = 2
 	timer.wait_time = 10
 	timer.start()
-	rollTimer.wait_time = 3
+	rollTimer.wait_time = 3.0
 	rollTimer.start()
+	canGrab=false
+	grabTimer.wait_time=0.5
+	grabTimer.start()
 
 func pickUp() -> void:
 	Globals.createPuff(global_position)
@@ -123,8 +129,9 @@ func pickUp() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("actor"):
 		if body is Dydimo:
-			if isOn and isWaiting and not isPayment:
+			if isOn and (isWaiting or canGrab) and not isPayment:
 				pickUp()
+			
 				
 
 func _on_timer_timeout() -> void:
@@ -138,3 +145,7 @@ func _on_roll_timer_timeout() -> void:
 		doPayment()
 	else:
 		changeToWait()
+
+
+func _on_grab_timer_timeout() -> void:
+	canGrab=true

@@ -14,8 +14,9 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 		if not destroyed:
 			if body is Dydimo:			
 				destroy()
-				var launchUp = 1000 - body.yForce
-				body.yForce -= launchUp
+				body.launchInAir()
+				# var launchUp = 1000 - body.yForce
+				# body.yForce -= launchUp
 				
 
 func destroy():

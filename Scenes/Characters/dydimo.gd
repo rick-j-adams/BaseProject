@@ -19,6 +19,8 @@ class_name Dydimo
 @onready var dyingTimer :Timer = $DyingTimer
 @onready var birthTimer :Timer = $BirthTimer
 @onready var magnetTimer :Timer = $MagTimer
+@onready var fastTravelTimer :Timer = $FastTravelTimer
+
 @onready var canvasModulate :CanvasModulate  = $CanvasModulate
 
 @onready var zapper :Zapper  = $Zapper
@@ -394,8 +396,14 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 			return true
 		if buildableArea != null:
 			buildableArea.repair(upperside.global_position)
-			buildableArea.working ()
-		doTeleport()
+			var buildableType = buildableArea.working () 
+			if buildableType == Buildable.BuildableType.TELEPORTER:
+				doTeleport()
+			if buildableType == Buildable.BuildableType.FAST_TRAVEL:
+				Globals.currentMode = Globals.MODES.FAST_TRAVEL
+				animationPlayer.play("SuckedUp")
+				fastTravelTimer.start()
+
 
 		var bitPosition: Vector2 = global_position
 		bitPosition.y -= 128
@@ -766,3 +774,19 @@ func explode() -> void:
 
 func addPickUp(pickupType: PickUp.PickUpType) -> void:
 	Globals.pickUpPickUp(pickupType)
+
+
+func _on_fast_travel_timer_timeout() -> void:
+	Globals.currentMode = Globals.MODES.PLAY
+	animationPlayer.play("SuckedDown")
+	fastTravelTimer.stop()
+
+
+func launchInAir() -> void:
+	#minimum new launch value is -1000 acconting for current force 
+	var miniValue  = -1000
+	var launchInAirAmount =  yForce + miniValue
+	if launchInAirAmount<miniValue:
+		launchInAirAmount=miniValue
+	yForce = launchInAirAmount
+	print("launchInAir:"+str(yForce))

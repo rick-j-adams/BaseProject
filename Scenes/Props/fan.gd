@@ -36,8 +36,8 @@ func repair(setPosition: Vector2):
 		else:
 			Globals.nsfHud(repairCostInBits)
 
-func working () -> void:
-	pass
+func working () -> Buildable.BuildableType:
+	return Buildable.BuildableType.FAN
 			
 func turnOn():
 	if not isBroken:
