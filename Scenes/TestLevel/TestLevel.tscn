@@ -4273,29 +4273,6 @@ texture = ExtResource("23_5dnb7")
 
 [node name="Interactive" type="Node2D" parent="."]
 
-[node name="Fan" parent="Interactive" instance=ExtResource("13_s6xme")]
-position = Vector2(3463, 2416)
-
-[node name="Buildable" parent="Interactive" instance=ExtResource("13_rw1vm")]
-position = Vector2(1762, 25)
-buildableType = 0
-
-[node name="Buildable2" parent="Interactive" instance=ExtResource("13_rw1vm")]
-position = Vector2(-1058, 267)
-isOn = true
-isBroken = false
-
-[node name="Buildable3" parent="Interactive" instance=ExtResource("13_rw1vm")]
-position = Vector2(4380, 1793)
-buildableType = 3
-repairCostInBits = 2.0
-
-[node name="Buildable3MapMachine" parent="Interactive" instance=ExtResource("13_rw1vm")]
-position = Vector2(4141, 1200)
-buildableType = 2
-isOn = true
-isBroken = false
-
 [node name="Magenet" parent="Interactive" instance=ExtResource("16_2njhn")]
 position = Vector2(3700, -768)
 
@@ -4325,6 +4302,9 @@ position = Vector2(1509, -27)
 
 [node name="Overseer" parent="Interactive" instance=ExtResource("7_gv0f6")]
 position = Vector2(222, 173)
+
+[node name="Fan" parent="Interactive" instance=ExtResource("13_s6xme")]
+position = Vector2(3463, 2416)
 
 [node name="MaskRevealAreas" type="Node2D" parent="."]
 visible = false
@@ -4633,6 +4613,32 @@ z_index = 1
 position = Vector2(726, 176)
 switchType = 1
 switchState = 1
+
+[node name="Buildables" type="Node2D" parent="."]
+
+[node name="Buildable" parent="Buildables" instance=ExtResource("13_rw1vm")]
+position = Vector2(1762, 25)
+oid = 1
+buildableType = 0
+
+[node name="Buildable2" parent="Buildables" instance=ExtResource("13_rw1vm")]
+position = Vector2(-1058, 267)
+oid = 2
+isOn = true
+isBroken = false
+
+[node name="Buildable3FastTravel" parent="Buildables" instance=ExtResource("13_rw1vm")]
+position = Vector2(4380, 1793)
+oid = 3
+buildableType = 3
+repairCostInBits = 2.0
+
+[node name="Buildable3MapMachine" parent="Buildables" instance=ExtResource("13_rw1vm")]
+position = Vector2(4141, 1200)
+oid = 4
+buildableType = 2
+isOn = true
+isBroken = false
 
 [node name="Test" type="Sprite2D" parent="."]
 position = Vector2(4174, 579)

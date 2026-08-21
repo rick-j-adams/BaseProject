@@ -9,6 +9,8 @@ enum BuildableType {
 	FAST_TRAVEL
 }
 
+@export var oid = 0
+
 @export var buildableType: BuildableType = BuildableType.TELEPORTER
 
 @export var isOn := false	
@@ -31,7 +33,33 @@ const BITS = "bits"
 # 	elif buildableType == BuildableType.FAST_TRAVEL:
 # 		sprite.texture = preload("res://Images/Props/FastTraveller.png")
 
-func _ready():
+func getConfiguration() -> Dictionary:
+	var configuration :Dictionary =  {"buildableType":buildableType , "isOn":isOn, "isBroken":isBroken }
+	return configuration 
+
+func saveBuildableState() -> void:	
+	var levelsBuildables =  Globals.allResources.allLevelsBuildables.get(Globals.currentLevel)
+	if levelsBuildables == null:
+		var newBuildableDetails = { oid:getConfiguration()}
+		Globals.allResources.allLevelsBuildables.set(Globals.currentLevel, newBuildableDetails)
+		levelsBuildables =  Globals.allResources.allLevelsBuildables.get(Globals.currentLevel)	
+	var buildableDetails = levelsBuildables.get(oid)
+	if buildableDetails==null:
+		levelsBuildables.set(oid, getConfiguration())
+		buildableDetails = levelsBuildables.get(oid)
+	buildableDetails.set("buildableType",buildableType)
+	buildableDetails.set("isOn",isOn)
+	buildableDetails.set("isBroken",isBroken)
+
+
+
+func setUpBuildable(details:Dictionary):
+	buildableType = details.get("buildableType")
+	isOn = details.get("isOn")
+	isBroken = details.get("isBroken")
+	configNewState()
+
+func configNewState() -> void:
 	if buildableType == BuildableType.FAN:
 		sprite.texture=Globals.getTextureByName("fan")
 	if buildableType == BuildableType.TELEPORTER:
@@ -50,6 +78,9 @@ func _ready():
 		else:
 			animationPlayer.play("Off")
 
+func _ready():
+	configNewState()
+
 func repair(setPosition: Vector2):
 	if isBroken:
 		var bits = Globals.getGamePropery(BITS)
@@ -57,6 +88,7 @@ func repair(setPosition: Vector2):
 			Globals.moveBitPayMachine(setPosition, global_position,repairCostInBits)		
 			startBuildTimer.wait_time = 0.2*repairCostInBits
 			startBuildTimer.start()	
+			
 		else:
 			Globals.nsfHud(repairCostInBits)
 
@@ -100,11 +132,13 @@ func setUseable():
 		animationPlayer.play("Ready")
 	if buildableType == BuildableType.TELEPORTER:
 		Globals.mainCharacter.canTeleport = true
+	saveBuildableState()
 
 func setUnUseable():
 	animationPlayer.play("Idle")
 	if buildableType == BuildableType.TELEPORTER:
 		Globals.mainCharacter.canTeleport = false
+	saveBuildableState()
 
 func _on_use_area_body_entered(body:Node2D) -> void:
 	if body.is_in_group("actor"):

@@ -5,6 +5,7 @@ extends Node2D
 @onready var enemies :Node2D = $Enemies
 @onready var pickUps :Node2D = $PickUps
 @onready var maskRevealAreas :Node2D = $MaskRevealAreas
+@onready var buildables :Node2D = $Buildables
 
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
@@ -43,6 +44,18 @@ func resetLevel() -> void:
 				for cid in  levelDetails.get("culled"):
 					if cid == node.levelId:
 						node.queue_free()
+	
+	for node in buildables.get_children():
+		if node is Buildable:
+			var levelsBuildables =  Globals.allResources.allLevelsBuildables.get(Globals.currentLevel)
+			if levelsBuildables != null:
+				var buildableDetails = levelsBuildables.get(node.oid)
+				if buildableDetails !=null:
+					node.setUpBuildable(buildableDetails)
+
+
+
+	# allLevelsBuildables
 				 
 # PickUp.PickUpType.JUMP: {"category": "expansion", "pickedUp"		
 func getMaskRevealDictionary() -> Dictionary:
