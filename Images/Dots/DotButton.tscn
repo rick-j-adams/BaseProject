@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dg6gcj0rvd5r3"]
+
+[ext_resource type="Script" uid="uid://bq33aqle4tow2" path="res://Images/Dots/dot_switch.gd" id="1_tdsdf"]
+[ext_resource type="Texture2D" uid="uid://c604bt6tblu2y" path="res://Images/Dots/button-sprite.png" id="2_tdsdf"]
+[ext_resource type="AudioStream" uid="uid://ljkpcibbdfm6" path="res://Audio/click.ogg" id="3_lcncl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hf448"]
+size = Vector2(40, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uchsk"]
+size = Vector2(63, 31)
+
+[node name="DotButton" type="Node2D"]
+script = ExtResource("1_tdsdf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tdsdf")
+vframes = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_hf448")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_lcncl")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, 16.5)
+shape = SubResource("RectangleShape2D_uchsk")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

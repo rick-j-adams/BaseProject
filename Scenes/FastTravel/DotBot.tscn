@@ -1,0 +1,151 @@
+[gd_scene load_steps=12 format=3 uid="uid://c2lmmlofhyysy"]
+
+[ext_resource type="Script" uid="uid://byyxkr7ywrylx" path="res://Scenes/FastTravel/dot_bot.gd" id="1_85742"]
+[ext_resource type="Texture2D" uid="uid://b3dqdtjoq320i" path="res://Images/Dots/d-robot.png" id="2_y46ms"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8udg"]
+size = Vector2(50, 46)
+
+[sub_resource type="Animation" id="Animation_dilf1"]
+resource_name = "Idle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_rrfla"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_667qs"]
+resource_name = "Walk"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 1, 4]
+}
+
+[sub_resource type="Animation" id="Animation_laqcc"]
+resource_name = "PrepJump"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_qe08a"]
+resource_name = "JumpUp"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_v3nje"]
+resource_name = "FallDown"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.216288),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_85742"]
+resource_name = "die"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rwsox"]
+_data = {
+&"FallDown": SubResource("Animation_v3nje"),
+&"Idle": SubResource("Animation_dilf1"),
+&"JumpUp": SubResource("Animation_qe08a"),
+&"PrepJump": SubResource("Animation_laqcc"),
+&"RESET": SubResource("Animation_rrfla"),
+&"Walk": SubResource("Animation_667qs"),
+&"die": SubResource("Animation_85742")
+}
+
+[node name="DotBot" type="CharacterBody2D"]
+script = ExtResource("1_85742")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_y46ms")
+hframes = 3
+vframes = 5
+frame = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2)
+shape = SubResource("RectangleShape2D_x8udg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rwsox")
+}
+
+[node name="TimerDying" type="Timer" parent="."]
+
+[connection signal="timeout" from="TimerDying" to="." method="_on_timer_dying_timeout"]

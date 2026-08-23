@@ -4304,7 +4304,8 @@ position = Vector2(1509, -27)
 position = Vector2(222, 173)
 
 [node name="Fan" parent="Interactive" instance=ExtResource("13_s6xme")]
-position = Vector2(3463, 2416)
+position = Vector2(4312, 1316)
+isOn = true
 
 [node name="MaskRevealAreas" type="Node2D" parent="."]
 visible = false

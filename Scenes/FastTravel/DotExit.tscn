@@ -1,0 +1,112 @@
+[gd_scene load_steps=12 format=3 uid="uid://dmr6c5g3pkmyj"]
+
+[ext_resource type="Script" uid="uid://cldlj41muakh3" path="res://Scenes/FastTravel/dot_exit.gd" id="1_ryjla"]
+[ext_resource type="Texture2D" uid="uid://bo8grd3dqiuby" path="res://Images/Dots/terminal.png" id="2_ctus6"]
+[ext_resource type="Texture2D" uid="uid://dier1msycbav6" path="res://Images/Dots/tube-down-pipe.png" id="3_366wi"]
+[ext_resource type="Script" uid="uid://dbbrhmyet7xy6" path="res://Scenes/point.gd" id="4_ctus6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ty2un"]
+size = Vector2(62, 61)
+
+[sub_resource type="Animation" id="Animation_m7eoj"]
+resource_name = "exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DTerminal:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.106438, 0.202232, 0.300306, 0.402943),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_m1p2f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DTerminal:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p1abg"]
+_data = {
+&"RESET": SubResource("Animation_m1p2f"),
+&"exit": SubResource("Animation_m7eoj")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqjuc"]
+size = Vector2(63, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txe6q"]
+size = Vector2(61, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryjla"]
+size = Vector2(63, 12)
+
+[node name="DotExit" type="Node2D"]
+script = ExtResource("1_ryjla")
+
+[node name="Sprite2DTerminal" type="Sprite2D" parent="."]
+position = Vector2(0, 64)
+texture = ExtResource("2_ctus6")
+vframes = 3
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2DTerminal"]
+position = Vector2(0, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2DTerminal/StaticBody2D"]
+position = Vector2(0, 31.5)
+shape = SubResource("RectangleShape2D_ty2un")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p1abg")
+}
+
+[node name="Sprite2DPipe" type="Sprite2D" parent="."]
+position = Vector2(0, -128)
+rotation = 3.14159
+texture = ExtResource("3_366wi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2DPipe"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2DPipe/StaticBody2D"]
+position = Vector2(-0.499999, 15.5)
+shape = SubResource("RectangleShape2D_qqjuc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Area2DStartExit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DStartExit"]
+position = Vector2(-1, 27)
+shape = SubResource("RectangleShape2D_txe6q")
+debug_color = Color(1, 0.52549, 0, 0.419608)
+
+[node name="Area2DFinishExit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DFinishExit"]
+position = Vector2(0.5, -123)
+shape = SubResource("RectangleShape2D_ryjla")
+debug_color = Color(0.716163, 6.257e-07, 0.413556, 0.42)
+
+[node name="LoadingPoint" type="Node2D" parent="."]
+position = Vector2(-1, -87)
+script = ExtResource("4_ctus6")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2DStartExit" to="." method="_on_area_2d_start_exit_body_entered"]
+[connection signal="body_exited" from="Area2DStartExit" to="." method="_on_area_2d_start_exit_body_exited"]
+[connection signal="body_entered" from="Area2DFinishExit" to="." method="_on_area_2d_finish_exit_body_entered"]

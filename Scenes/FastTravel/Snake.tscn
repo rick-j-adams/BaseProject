@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnxb1nb2igfsx"]
+
+[ext_resource type="Script" uid="uid://8pug6nicvdp5" path="res://Scenes/FastTravel/snake.gd" id="1_u0ndq"]
+[ext_resource type="Texture2D" uid="uid://cew8qjj8um8aw" path="res://Images/Dots/worm-sprite.png" id="2_g2f1p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpjmx"]
+size = Vector2(54, 21)
+
+[sub_resource type="Animation" id="Animation_4nme1"]
+resource_name = "Walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.202334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_ltfls"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cjkx1"]
+_data = {
+&"RESET": SubResource("Animation_ltfls"),
+&"Walk": SubResource("Animation_4nme1")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34knc"]
+size = Vector2(65, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iadx8"]
+size = Vector2(53, 6)
+
+[node name="Snake" type="CharacterBody2D"]
+script = ExtResource("1_u0ndq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_g2f1p")
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_wpjmx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cjkx1")
+}
+autoplay = "Walk"
+
+[node name="HitArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_34knc")
+debug_color = Color(0.816173, 2.02149e-06, 0.464837, 0.42)
+
+[node name="KillArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea2D"]
+position = Vector2(-0.5, -13)
+shape = SubResource("RectangleShape2D_iadx8")
+debug_color = Color(0.211875, 0.639865, 0, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="HitArea2D" to="." method="_on_hit_area_2d_body_entered"]
+[connection signal="body_entered" from="KillArea2D" to="." method="_on_kill_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

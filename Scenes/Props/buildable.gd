@@ -21,6 +21,8 @@ enum BuildableType {
 @onready var animationPlayer :AnimationPlayer = $AnimationPlayer
 @onready var startBuildTimer :Timer = $StartBuildTimer
 
+@export var fastTravelOid = -1
+
 
 const BITS = "bits"
 @export var repairCostInBits : float = 5
