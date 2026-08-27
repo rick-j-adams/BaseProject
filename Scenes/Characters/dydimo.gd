@@ -9,7 +9,7 @@ class_name Dydimo
 @onready var rayBack :RayCast2D = $RayCast2DBack
 @onready var rayFacing :RayCast2D = $RayCast2DFacing
 @onready var rayFacingBack :RayCast2D = $RayCast2DFacingBack
-@onready var camera :Camera2D = $Camera2D
+# @onready var camera :Camera2D = $Camera2D
 @onready var underside :RPoint = $RPoint
 @onready var upperside :RPoint = $UPoint
 @onready var midPoint :RPoint = $MidPoint
@@ -31,6 +31,10 @@ class_name Dydimo
 @onready var sparePartLarm : SpareParts = $MidPoint/SparepartsLarm
 @onready var sparePartRarm : SpareParts = $MidPoint/SparepartsRarm2
 @onready var sparePartTracks : SpareParts = $MidPoint/SparepartsTracks
+
+@onready var camLeft :RPoint = $CameraPoints/RPointCamLeft
+@onready var camRight :RPoint = $CameraPoints/RPointCamRight
+
 
 const BITS = "bits"
 const DARKEST = Color(0.4, 0.4, 0.4)
@@ -115,7 +119,7 @@ func _ready() -> void:
 	# animationPlayer.play(currentAnimation)
 	Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "BirthSpark")
 	Globals.setMainCharacter(self)
-	Globals.mainCamera = camera
+	# Globals.mainCamera = camera
 	startBirth()
 	
 
@@ -395,11 +399,15 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 			Globals.currentMode=Globals.MODES.BATTERY_RECEPTACLE
 			return true
 		if buildableArea != null:
+			print(buildableArea)
 			buildableArea.repair(upperside.global_position)
 			var buildableType = buildableArea.working () 
 			if buildableType == Buildable.BuildableType.TELEPORTER:
 				doTeleport()
+
+			print("TODO buildableType = "+str(buildableType))
 			if buildableType == Buildable.BuildableType.FAST_TRAVEL:
+				print("Globals.MODES.FAST_TRAVEL")
 				Globals.currentMode = Globals.MODES.FAST_TRAVEL
 				animationPlayer.play("SuckedUp")
 				fastTravelTimer.start()
@@ -413,9 +421,24 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 		if zapper.startZap(sprite.flip_h):
 			changeState(STATES.SHOOTING)
 	return interaction
-# ─── process ──────────────────────────────────────────────────────────────────
 
+func doCameraPoints() ->void:
+	print(str(velocity.x))
+	if Globals.facingRight:
+		if velocity.x > 500 or velocity.x < -500:
+			Globals.moveCameraTo = camLeft.global_position
+		else:
+			Globals.moveCameraTo = handLeft.global_position
+	else:
+		if velocity.x > 500 or velocity.x < -500:
+			Globals.moveCameraTo = camRight.global_position
+		else:
+			Globals.moveCameraTo = handRight.global_position
+# ─── process ──────────────────────────────────────────────────────────────────
 func _process(delta: float) -> void:
+	Globals.facingRight = sprite.flip_h
+	doCameraPoints()
+
 	var shade_factor: float = clamp(global_position.y / 1000.0, 0.0, 1.0)
 	var shading: Color = LIGHTEST.lerp(DARKEST, shade_factor)
 	canvasModulate.color = shading
@@ -664,13 +687,15 @@ func doIdle(delta: float):
 # ─── camera shake ─────────────────────────────────────────────────────────────
 
 func doCameraShake(delta: float):
+	if Globals.mainCamera == null:
+		return
 	if shakeStrength > 0:
 		shakeStrength = max(shakeStrength - shakeDecay * delta, 0)
 		var offset_x = randf_range(-1.0, 1.0) * shakeOfferSet.x * shakeStrength
 		var offset_y = randf_range(-1.0, 1.0) * shakeOfferSet.y * shakeStrength
-		camera.offset = Vector2(offset_x, offset_y)
+		Globals.mainCamera.offset = Vector2(offset_x, offset_y)
 	else:
-		camera.offset = Vector2.ZERO
+		Globals.mainCamera.offset = Vector2.ZERO
 		
 # ─── take damage ─────────────────────────────────────────────────────────────
 func takeDamage(amount: float, sourceDirection: Vector2,explosion: bool) -> void:
@@ -777,9 +802,17 @@ func addPickUp(pickupType: PickUp.PickUpType) -> void:
 
 
 func _on_fast_travel_timer_timeout() -> void:
-	Globals.currentMode = Globals.MODES.PLAY
-	animationPlayer.play("SuckedDown")
+	# Globals.currentMode = Globals.MODES.PLAY
+	# animationPlayer.play("SuckedDown")
 	fastTravelTimer.stop()
+	if Globals.currentMode == Globals.MODES.PLAY:
+		animationPlayer.play("SuckedDown")
+	else:
+		Globals.transisitionToFastTravel()
+
+func backFromFastTravel() -> void:
+	Globals.currentMode = Globals.MODES.PLAY
+	fastTravelTimer.start()
 
 
 func launchInAir() -> void:

@@ -43,3 +43,4 @@ func _on_timer_timeout() -> void:
 func _on_area_2d_finish_exit_body_entered(body: Node2D) -> void:
 	if body is DotBot:
 		print("TODO load: level: "+ str(destinationLevel)+" OID:"+str(destinationOid))
+		Globals.transitionToBuildable(destinationLevel,destinationOid)

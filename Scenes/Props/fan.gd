@@ -29,7 +29,6 @@ func repair(setPosition: Vector2):
 		if bits >= repairCostInBits:
 			Globals.moveBitPayMachine(setPosition, global_position,repairCostInBits)		
 			
-
 			startBuildTimer.wait_time = 0.2*repairCostInBits
 			startBuildTimer.start()
 			

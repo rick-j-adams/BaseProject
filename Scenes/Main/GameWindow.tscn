@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://5fgib33nmcje"]
+[gd_scene load_steps=11 format=3 uid="uid://5fgib33nmcje"]
 
 [ext_resource type="Script" uid="uid://brbmtqsnngjj4" path="res://Scenes/Main/game_window.gd" id="1_dbpy3"]
 [ext_resource type="PackedScene" uid="uid://bf0if5w2l0v7k" path="res://Scenes/TestLevel/TestLevel.tscn" id="2_x77s8"]
 [ext_resource type="PackedScene" uid="uid://cbri375apng4c" path="res://Scenes/Main/NewHud.tscn" id="3_1bovn"]
 [ext_resource type="PackedScene" uid="uid://b1ui4fob7e0xk" path="res://Scenes/Main/TouchOne.tscn" id="4_0rvuu"]
 [ext_resource type="PackedScene" uid="uid://dcgmiqmop582s" path="res://Scenes/Characters/Dydimo.tscn" id="5_wh14y"]
+[ext_resource type="PackedScene" uid="uid://yc8ap7iiuryv" path="res://Scenes/Characters/MainCamera.tscn" id="6_dnpmq"]
 
 [sub_resource type="Animation" id="Animation_drghw"]
 resource_name = "FadeIn"
@@ -78,3 +79,5 @@ position = Vector2(213, 217)
 libraries = {
 &"": SubResource("AnimationLibrary_5u676")
 }
+
+[node name="MainCamera" parent="." instance=ExtResource("6_dnpmq")]

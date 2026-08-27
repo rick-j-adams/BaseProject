@@ -1,5 +1,6 @@
 extends Node2D
 
+class_name Level
 
 @onready var entryPoints :Node2D = $EntryPoints
 @onready var enemies :Node2D = $Enemies
@@ -44,12 +45,16 @@ func resetLevel() -> void:
 				for cid in  levelDetails.get("culled"):
 					if cid == node.levelId:
 						node.queue_free()
-	
+	print("resetLevel")
 	for node in buildables.get_children():
+		print("Globals.currentLevel = "+str(Globals.currentLevel))
 		if node is Buildable:
 			var levelsBuildables =  Globals.allResources.allLevelsBuildables.get(Globals.currentLevel)
+			print("levelsBuildables = "+str(levelsBuildables))
+
 			if levelsBuildables != null:
 				var buildableDetails = levelsBuildables.get(node.oid)
+				print ("buildableDetails = "+str(buildableDetails))
 				if buildableDetails !=null:
 					node.setUpBuildable(buildableDetails)
 
@@ -75,5 +80,12 @@ func getMaskRevealDictionary() -> Dictionary:
 func findEntryPointsPosition(entryPointsName:String) -> Vector2:
 	for node in entryPoints.get_children():
 		if node.name == entryPointsName:
+			return node.global_position
+	return Vector2(0.0,0.0)
+
+func findBuildablePointsPosition(buildableOid:int) -> Vector2:
+	for node in buildables.get_children():
+		print(node.oid)
+		if node.oid == buildableOid:
 			return node.global_position
 	return Vector2(0.0,0.0)

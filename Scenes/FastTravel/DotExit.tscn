@@ -8,21 +8,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ty2un"]
 size = Vector2(62, 61)
 
-[sub_resource type="Animation" id="Animation_m7eoj"]
-resource_name = "exit"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2DTerminal:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.106438, 0.202232, 0.300306, 0.402943),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 1, 0]
-}
-
 [sub_resource type="Animation" id="Animation_m1p2f"]
 length = 0.001
 tracks/0/type = "value"
@@ -36,6 +21,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_m7eoj"]
+resource_name = "exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DTerminal:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.106438, 0.202232, 0.300306, 0.402943),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p1abg"]

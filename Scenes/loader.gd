@@ -23,6 +23,7 @@ var currentloadState = LOAD_STATES.SCENES
 	"pickUp" :"res://Scenes/PickUps/PickUp.tscn",
 	"tempLight" :"res://Scenes/Effects/TempLight.tscn",
 	"test" :"res://Scenes/TestLevel/TestLevel.tscn",
+	"fastTravel": "res://Scenes/FastTravel/FastTravelMap.tscn"
 
 }
 

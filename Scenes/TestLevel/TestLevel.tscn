@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=4 uid="uid://bf0if5w2l0v7k"]
+[gd_scene load_steps=116 format=4 uid="uid://bf0if5w2l0v7k"]
 
 [ext_resource type="Script" uid="uid://b1v31dvjnxeq7" path="res://Scenes/Levels/Level.gd" id="1_elur0"]
 [ext_resource type="Script" uid="uid://dbbrhmyet7xy6" path="res://Scenes/point.gd" id="1_waq5v"]
@@ -41,7 +41,6 @@
 [ext_resource type="PackedScene" uid="uid://bkhvotnd6cruc" path="res://Scenes/Levels/TransitionArea.tscn" id="38_elur0"]
 [ext_resource type="PackedScene" uid="uid://cjuv5w04krsqw" path="res://Scenes/KeyAndLock/BatteryReceptacleWallMount.tscn" id="40_slng1"]
 [ext_resource type="PackedScene" uid="uid://b4m7d3gbayct4" path="res://Scenes/KeyAndLock/Switch.tscn" id="41_17dga"]
-[ext_resource type="Texture2D" uid="uid://cc5cg13h3nner" path="res://Images/test.png" id="42_36t4f"]
 
 [sub_resource type="Environment" id="Environment_k2qbn"]
 background_mode = 3
@@ -3959,7 +3958,7 @@ metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 [node name="ExitPoints" type="Node2D" parent="."]
 
 [node name="TransitionArea" parent="ExitPoints" instance=ExtResource("38_elur0")]
-position = Vector2(-1976, 141)
+position = Vector2(-1973, 141)
 scale = Vector2(2, 2)
 transisitionType = 2
 destinationLevel = "R002"
@@ -4620,7 +4619,7 @@ switchState = 1
 [node name="Buildable" parent="Buildables" instance=ExtResource("13_rw1vm")]
 position = Vector2(1762, 25)
 oid = 1
-buildableType = 0
+buildableType = 1
 
 [node name="Buildable2" parent="Buildables" instance=ExtResource("13_rw1vm")]
 position = Vector2(-1058, 267)
@@ -4628,21 +4627,12 @@ oid = 2
 isOn = true
 isBroken = false
 
-[node name="Buildable3FastTravel" parent="Buildables" instance=ExtResource("13_rw1vm")]
-position = Vector2(4380, 1793)
-oid = 3
-buildableType = 3
-repairCostInBits = 2.0
-
-[node name="Buildable3MapMachine" parent="Buildables" instance=ExtResource("13_rw1vm")]
-position = Vector2(4141, 1200)
+[node name="Buildable3MapMachine2" parent="Buildables" instance=ExtResource("13_rw1vm")]
+position = Vector2(610, -59)
 oid = 4
-buildableType = 2
+buildableType = 4
 isOn = true
-isBroken = false
-
-[node name="Test" type="Sprite2D" parent="."]
-position = Vector2(4174, 579)
-texture = ExtResource("42_36t4f")
+fastTravelOid = 1
+repairCostInBits = 1.0
 
 [connection signal="body_entered" from="DeathZones/Area2D" to="." method="_on_area_2d_body_entered"]

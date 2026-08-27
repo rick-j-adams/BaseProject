@@ -988,8 +988,6 @@ libraries = {
 }
 autoplay = "Birth"
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="RayCast2DFront" type="RayCast2D" parent="."]
 position = Vector2(21, 59)
 target_position = Vector2(0, 35)
@@ -1103,6 +1101,18 @@ partsType = 4
 showOnStart = false
 
 [node name="Zapper" parent="." instance=ExtResource("7_q8jek")]
+
+[node name="CameraPoints" type="Node2D" parent="."]
+
+[node name="RPointCamRight" type="Node2D" parent="CameraPoints"]
+position = Vector2(500, 0)
+script = ExtResource("4_eblft")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="RPointCamLeft" type="Node2D" parent="CameraPoints"]
+position = Vector2(-500, 0)
+script = ExtResource("4_eblft")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="DyingTimer" to="." method="_on_dying_timer_timeout"]

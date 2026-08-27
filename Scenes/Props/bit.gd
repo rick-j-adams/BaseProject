@@ -131,8 +131,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		if body is Dydimo:
 			if isOn and (isWaiting or canGrab) and not isPayment:
 				pickUp()
-			
-				
+							
 
 func _on_timer_timeout() -> void:
 	Globals.createPuff(global_position)

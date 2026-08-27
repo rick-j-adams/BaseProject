@@ -45,6 +45,10 @@ var editMode : bool = false
 
 var mainScene  : Node = null
 var mainCamera : Camera2D = null
+
+var moveCameraTo : Vector2 = Vector2.ZERO
+var facingRight: bool = true
+
 var hud: Node = null
 var gameWindow : Node = null
 
@@ -450,8 +454,18 @@ func loadRestartLevel() ->void :
 		setGamePropery(LASTPOSITIONKEY, lastLoadPosition)
 	transisitionToLevel(lastLoadLevel )
 	mainCharacter.position = lastLoadPosition
+	mainCamera.snapTo(mainCharacter.position)
 
-
+func transisitionToFastTravel() -> void:
+	if gameWindow != null:
+		for childNode in gameWindow.level.get_children():
+				childNode.queue_free()
+		var newSceneNode:PackedScene = sceneMap.get("fastTravel")
+		if newSceneNode!=null:
+			var newNode := newSceneNode.instantiate()
+			gameWindow.level.add_child(newNode)
+			newNode.doStartPosition() 
+			currentLevel="fastTravel"
 
 func transisitionToLevel(levelName :String) -> void:
 	if gameWindow != null:
@@ -461,10 +475,12 @@ func transisitionToLevel(levelName :String) -> void:
 				childNode.queue_free()
 			var levelDetails =  allResources.allLevels.get(levelName)
 			var newSceneName = levelDetails.get("sceneName")
+			print("transisitionToLevel:"+str(newSceneName))
 			if newSceneName!=null:
 				if transitionMask !=null:
 					transitionMask.playTransistion()
 				var newSceneNode:PackedScene = sceneMap.get(newSceneName)
+				print("newSceneNode:"+str(newSceneNode))
 				if newSceneNode!=null:
 					var newNode := newSceneNode.instantiate()
 					gameWindow.level.add_child(newNode)
@@ -492,7 +508,21 @@ func transitionToEntryPoint(transisitionType :TransitionArea.TRANSITION_TYPES,  
 			mainCharacter.position.x = newPosition.x
 		if transisitionType == TransitionArea.TRANSITION_TYPES.VERTICAL or transisitionType == TransitionArea.TRANSITION_TYPES.BOTH:
 			mainCharacter.position.y = newPosition.y
+		mainCamera.snapTo(mainCharacter.position)
+		
 
+func transitionToBuildable( destinationLevel:String, destinationOid:int) -> void:
+	transisitionToLevel(destinationLevel)
+	for childNode in gameWindow.level.get_children():
+		print("looking for destination")
+
+		if childNode is Level:
+			print("found destination")
+			mainCharacter.position = childNode.findBuildablePointsPosition(destinationOid)
+			mainCamera.snapTo(mainCharacter.position)
+			currentMode=MODES.PLAY
+			if mainCharacter!=null:
+				mainCharacter.backFromFastTravel()
 
 func addToCullList(levelID:int) -> void:
 	var levelDetails =  allResources.allLevels.get(currentLevel)

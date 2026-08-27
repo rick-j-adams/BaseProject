@@ -35,6 +35,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if moveCamera:
 		camera2D.position = camera2D.position.move_toward(cameraDestination,  SPEED * delta)
+		# if Globals.mainCamera !=null:
+		# 	Globals.mainCamera.global_position = Globals.mainCamera.global_position.move_toward(camera2D.global_position,  SPEED * delta)
 		# velocity.x = move_toward(velocity.x, 0, SPEED)
 
 
@@ -104,5 +106,7 @@ func doStartPosition() -> void:
 		if node is DotExit:
 			if node.oid == Globals.fastTravelOid:
 				dottyBot.global_position = node.loadInPoint.global_position
-				dottyBot.velocity.x = 100
+				if Globals.mainCamera !=null:
+					Globals.mainCamera.global_position = camera2D.global_position
+					camera2D = Globals.mainCamera #TODO camera is returning to Dydimo - fix this 1
 	# fastTravelOid

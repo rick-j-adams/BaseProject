@@ -3,6 +3,7 @@ extends Node2D
 class_name Buildable
 
 enum BuildableType {
+	NONE,
 	FAN,
 	TELEPORTER,
 	MAP_MACHINE,
@@ -52,13 +53,21 @@ func saveBuildableState() -> void:
 	buildableDetails.set("buildableType",buildableType)
 	buildableDetails.set("isOn",isOn)
 	buildableDetails.set("isBroken",isBroken)
+	print("saving:"+ str(Globals.allResources.allLevelsBuildables.get(Globals.currentLevel))	)
 
 
 
 func setUpBuildable(details:Dictionary):
+	print("buildable oid:"+str(oid))
+	if oid==3:#TODO remove this
+		print("setup buildable")
+		print(details)
 	buildableType = details.get("buildableType")
 	isOn = details.get("isOn")
 	isBroken = details.get("isBroken")
+	if oid==3:#TODO remove this
+		print("setup buildable DONE")
+		print(details)
 	configNewState()
 
 func configNewState() -> void:
@@ -72,13 +81,22 @@ func configNewState() -> void:
 		sprite.texture=Globals.getTextureByName("fasttravel")
 	# if Engine.is_editor_hint():
 	# 	tool_texture()
-	if isOn:
-		animationPlayer.play("Idle")
+
+	if isBroken:
+		animationPlayer.play("Broken")
 	else:
-		if isBroken:
-			animationPlayer.play("Broken")
+		if isOn:
+			animationPlayer.play("Idle")
 		else:
 			animationPlayer.play("Off")
+
+	# if isOn:
+	# 	animationPlayer.play("Idle")
+	# else:
+	# 	if isBroken:
+	# 		animationPlayer.play("Broken")
+	# 	else:
+	# 		animationPlayer.play("Off")
 
 func _ready():
 	configNewState()
@@ -95,13 +113,15 @@ func repair(setPosition: Vector2):
 			Globals.nsfHud(repairCostInBits)
 
 func working () ->BuildableType:
+	print("working:isBroken= "+str(isBroken)+" isOn = "+str(isOn))
 	if not isBroken and isOn: 
 		animationPlayer.play("Working")	
 		if 	buildableType == BuildableType.MAP_MACHINE:
 			pass #TODO add map details
 		if 	buildableType == BuildableType.FAST_TRAVEL:
+			Globals.fastTravelOid=fastTravelOid
 			return buildableType
-	return 	BuildableType.TELEPORTER
+	return 	BuildableType.NONE
 			
 func turnOn():
 	if not isBroken:
@@ -121,6 +141,7 @@ func _on_start_build_timer_timeout() -> void:
 	startBuildTimer.stop()
 	Globals.createPuff(global_position)
 	Globals.movePuffMachine(global_position, 0.05, 1)
+	saveBuildableState()
 	if Globals.closeTo(global_position):
 		setUseable()
 
@@ -134,16 +155,18 @@ func setUseable():
 		animationPlayer.play("Ready")
 	if buildableType == BuildableType.TELEPORTER:
 		Globals.mainCharacter.canTeleport = true
-	saveBuildableState()
+	#saveBuildableState()
 
 func setUnUseable():
 	animationPlayer.play("Idle")
 	if buildableType == BuildableType.TELEPORTER:
 		Globals.mainCharacter.canTeleport = false
-	saveBuildableState()
+	#saveBuildableState()
 
 func _on_use_area_body_entered(body:Node2D) -> void:
 	if body.is_in_group("actor"):
+		if oid == 3:
+			print ("buildableType:"+str(buildableType))
 		if body is Dydimo:
 			if isOn and not isBroken :				
 				setUseable()

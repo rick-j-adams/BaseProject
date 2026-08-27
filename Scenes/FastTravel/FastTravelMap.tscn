@@ -393,7 +393,7 @@ tile_set = SubResource("TileSet_0tuxv")
 
 [node name="DotBot" parent="." instance=ExtResource("7_u2awu")]
 modulate = Color(0.336608, 0.336608, 0.336608, 1)
-position = Vector2(489, 214)
+position = Vector2(-498, -970)
 
 [node name="Areas" type="Node2D" parent="."]
 
@@ -657,31 +657,43 @@ position = Vector2(-127, -163)
 modulate = Color(0.211765, 0.568627, 1, 1)
 position = Vector2(161, 160)
 oid = 1
+destinationLevel = "R001"
+destinationOid = 4
 
 [node name="DotExit2" parent="EntriesAndExits" instance=ExtResource("11_0bjhf")]
 modulate = Color(0.952121, 0.342355, 0.0274932, 1)
 position = Vector2(-861, -736)
 oid = 2
+destinationLevel = "R001"
+destinationOid = 4
 
 [node name="DotExit3" parent="EntriesAndExits" instance=ExtResource("11_0bjhf")]
 modulate = Color(0.335102, 0.0976539, 0.0012309, 1)
 position = Vector2(354, -159)
 oid = 3
+destinationLevel = "R001"
+destinationOid = 4
 
 [node name="DotExit4" parent="EntriesAndExits" instance=ExtResource("11_0bjhf")]
 modulate = Color(0.171938, 0.06909, 0.48776, 1)
 position = Vector2(289, -737)
 oid = 4
+destinationLevel = "R001"
+destinationOid = 4
 
 [node name="DotExit5" parent="EntriesAndExits" instance=ExtResource("11_0bjhf")]
 modulate = Color(0.415686, 0.94902, 0.956863, 1)
 position = Vector2(1823, 224)
 oid = 5
+destinationLevel = "R001"
+destinationOid = 4
 
 [node name="DotExit6" parent="EntriesAndExits" instance=ExtResource("11_0bjhf")]
 modulate = Color(0.415686, 0.94902, 0.243137, 1)
 position = Vector2(1634, -672)
 oid = 6
+destinationLevel = "R001"
+destinationOid = 4
 
 [connection signal="body_entered" from="Areas/Room1" to="." method="_on_room_1_body_entered"]
 [connection signal="body_entered" from="Areas/Room2" to="." method="_on_room_2_body_entered"]
