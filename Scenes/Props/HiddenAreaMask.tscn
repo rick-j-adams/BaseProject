@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c788bd0xuifl6"]
+
+[ext_resource type="Script" uid="uid://c20nxqadsmw63" path="res://Scenes/Props/hidden_area_mask.gd" id="1_wv0jc"]
+[ext_resource type="Texture2D" uid="uid://x1d846gg58a3" path="res://Images/Props/HiddenAreaMask.png" id="2_nqhmv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3alo"]
+size = Vector2(428, 369)
+
+[node name="HiddenAreaMask" type="Node2D" unique_id=823932208]
+script = ExtResource("1_wv0jc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=293798757]
+z_index = 1
+texture = ExtResource("2_nqhmv")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2066439515]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1128472667]
+position = Vector2(-33, 29.5)
+shape = SubResource("RectangleShape2D_g3alo")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
