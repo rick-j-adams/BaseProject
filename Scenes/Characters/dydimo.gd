@@ -379,11 +379,12 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 	# 	decelerate(delta, sign(xForce), currentSpeed, isNowOnFloor)
 
 	if Input.is_action_just_pressed("ui_up") and inControl():
-		if isNowOnFloor or (Globals.isPickUpOn(PickUp.PickUpType.JUMP2) and jumpCounter < 2) or Globals.isPickUpOn(PickUp.PickUpType.JETPACK):
+		if (isNowOnFloor and Globals.isPickUpOn(PickUp.PickUpType.JUMP) )or (Globals.isPickUpOn(PickUp.PickUpType.JUMP2) and jumpCounter < 2) or Globals.isPickUpOn(PickUp.PickUpType.JETPACK):
 			changeState(STATES.PREJUMP)
 			springing = true
 			interaction = true
-		
+			var objective = Globals.getAllObjectives().get("firstjump")	
+			objective.set("done",true)
 			# Globals.playInterfaceAudio(global_position, "rbjump")
 
 	if Input.is_action_just_released("ui_up") and inControl():
@@ -399,7 +400,7 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 			Globals.currentMode=Globals.MODES.BATTERY_RECEPTACLE
 			return true
 		if buildableArea != null:
-			print(buildableArea)
+			# print(buildableArea)
 			buildableArea.repair(upperside.global_position)
 			var buildableType = buildableArea.working () 
 			if buildableType == Buildable.BuildableType.TELEPORTER:
@@ -407,7 +408,7 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 
 			print("TODO buildableType = "+str(buildableType))
 			if buildableType == Buildable.BuildableType.FAST_TRAVEL:
-				print("Globals.MODES.FAST_TRAVEL")
+				# print("Globals.MODES.FAST_TRAVEL")
 				Globals.currentMode = Globals.MODES.FAST_TRAVEL
 				animationPlayer.play("SuckedUp")
 				fastTravelTimer.start()
@@ -423,7 +424,7 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 	return interaction
 
 func doCameraPoints() ->void:
-	print(str(velocity.x))
+	# print(str(velocity.x))
 	if Globals.facingRight:
 		if velocity.x > 500 or velocity.x < -500:
 			Globals.moveCameraTo = camLeft.global_position
@@ -776,6 +777,8 @@ func _on_mag_timer_timeout() -> void:
 func fix() -> void:
 	# birthing=true
 	#animationPlayer.play("FaceForward")
+	var objective = Globals.getAllObjectives().get("firstfix")	
+	objective.set("done",true)
 	Globals.uiShowCase()	
 	Globals.uiCancel()
 

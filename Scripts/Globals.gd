@@ -146,6 +146,31 @@ func setUpPicksUpMap() -> void:
 
 		}
 
+func getAllObjectives() -> Dictionary:
+	if allResources.allObjectives.size() == 0:	
+		allResources.allObjectives = {
+			"battery" : { "done" :false},
+			"jumpboard" : { "done" :false},
+			"firstfix" : { "done" :false},
+			"firstjump" : { "done" :false},
+			"zapBoard" : { "done" :false},
+			"clearPath" : { "done" :false}, #leave zone 1 
+			"fixLift" : { "done" :false}, #fix the contral left 
+			"fixClearBlockage" : { "done" :false},
+			"none" : { "done" :false}
+		}
+	return allResources.allObjectives
+
+func getCurrentObjective() -> String:
+	var allObjectives = getAllObjectives()
+	for key in allObjectives.keys():
+		var details = allObjectives.get(key)
+		var boolValue = details.get("done")
+		if boolValue == false:
+			return key
+	return ""
+
+
 func setUpLevelsMap() -> void:
 	if allResources.allLevels.size() == 0:
 		allResources.allLevels = {
@@ -165,8 +190,21 @@ func pickUpPickUp(pickUpType: PickUp.PickUpType) -> void:
 		var pickUpData = allResources.allPickUps.get(pickUpType)
 		pickUpData["pickedUp"] = true
 		allResources.allPickUps[pickUpType] = pickUpData
+		doObjectivePickUp(pickUpType)
 		if hud != null:
 			hud.addItemToBox()
+
+func doObjectivePickUp(pickUpType: PickUp.PickUpType) -> void:
+	if pickUpType == PickUp.PickUpType.JUMP:
+		var objective = getAllObjectives().get("jumpboard")	
+		objective.set("done",true)
+	if pickUpType == PickUp.PickUpType.ZAP:
+		var objective = getAllObjectives().get("zapBoard")	
+		objective.set("done",true)
+	var pickUpData = allResources.allPickUps.get(pickUpType)
+	if pickUpData.get("category") == "battery":
+		var objective = getAllObjectives().get("battery")	
+		objective.set("done",true)
 
 func uiCancel() -> void:
 	if hud != null:
@@ -475,12 +513,12 @@ func transisitionToLevel(levelName :String) -> void:
 				childNode.queue_free()
 			var levelDetails =  allResources.allLevels.get(levelName)
 			var newSceneName = levelDetails.get("sceneName")
-			print("transisitionToLevel:"+str(newSceneName))
+			# print("transisitionToLevel:"+str(newSceneName))
 			if newSceneName!=null:
 				if transitionMask !=null:
 					transitionMask.playTransistion()
 				var newSceneNode:PackedScene = sceneMap.get(newSceneName)
-				print("newSceneNode:"+str(newSceneNode))
+				# print("newSceneNode:"+str(newSceneNode))
 				if newSceneNode!=null:
 					var newNode := newSceneNode.instantiate()
 					gameWindow.level.add_child(newNode)

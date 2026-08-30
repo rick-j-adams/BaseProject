@@ -23,17 +23,47 @@ func resetAllAnimationTree():
 	animationTree.set("parameters/conditions/unemerge", false)
 	animationTree.set("parameters/conditions/build", false)
 	animationTree.set("parameters/conditions/endwork", false)
-	animationTree.set("parameters/conditions/point", false)
+	animationTree.set("parameters/conditions/doPoint", false)
 	animationTree.set("parameters/conditions/work", false)
-	animationTree.set("parameters/conditions/unpoint", false)
+	animationTree.set("parameters/conditions/unPoint", false)
 	animationTree.set("parameters/conditions/idleOut", false)
-
+	animationTree.set("parameters/conditions/screenBattery", false)
+	animationTree.set("parameters/conditions/screenZap", false)
+	animationTree.set("parameters/conditions/screenDown", false)
+	animationTree.set("parameters/conditions/screenUp", false)
+	animationTree.set("parameters/conditions/screenJump", false)
 
 func _on_area_2d_right_body_exited(body:Node2D) -> void:
 	if body.is_in_group("actor"):
 		if body is Dydimo:
 			resetAllAnimationTree()
+			
 			animationTree.set("parameters/conditions/unlook", true)
+			animationTree.set("parameters/conditions/unPoint", true)
+
+func doPoint() -> bool:
+	var currentObject:String = Globals.getCurrentObjective()
+	if currentObject=="battery":
+		animationTree.set("parameters/conditions/screenBattery", true)
+		return true
+	if currentObject=="jumpboard":
+		animationTree.set("parameters/conditions/screenJump", true)
+		return true
+	if currentObject=="firstfix":
+		animationTree.set("parameters/conditions/screenDown", true)
+		return true
+	if currentObject=="firstjump":
+		animationTree.set("parameters/conditions/screenUp", true)
+		return true
+	if currentObject=="zapBoard":
+		animationTree.set("parameters/conditions/screenZap", true)
+		return true
+	return false
+	# "battery" : { "done" :false},
+	# 		"jumpboard" : { "done" :false},
+	# 		"firstfix" : { "done" :false},
+	# 		"firstjump" : { "done" :false},
+	# 		"zapBoard" : { "done" :false},
 
 
 func _on_area_2d_right_body_entered(body:Node2D) -> void:
@@ -41,7 +71,12 @@ func _on_area_2d_right_body_entered(body:Node2D) -> void:
 		if body is Dydimo:
 			resetAllAnimationTree()
 			animationTree.set("parameters/conditions/emerge", true)
-			animationTree.set("parameters/conditions/lookright", true)
+			if doPoint():
+				animationTree.set("parameters/conditions/doPoint", true)
+			else:
+				animationTree.set("parameters/conditions/lookright", true)
+			
+			
 
 
 func _on_area_2d_left_body_exited(body:Node2D) -> void:
@@ -105,3 +140,6 @@ func _on_fix_timer_timeout() -> void:
 		
 		
 		# dydimoInRange.fix()
+
+func requestLight() -> void:
+	Globals.requestTempLight(global_position, TempLight.LightType.LIGHTNING)

@@ -11,3 +11,4 @@ extends Resource
 @export var allPickUps:Dictionary = {}
 @export var allLevels:Dictionary = {}
 @export var allLevelsBuildables:Dictionary = {}
+@export var allObjectives:Dictionary = {}

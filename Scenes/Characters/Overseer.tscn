@@ -1,7 +1,8 @@
-[gd_scene load_steps=65 format=3 uid="uid://6rgcxyb4d6ua"]
+[gd_scene format=3 uid="uid://6rgcxyb4d6ua"]
 
 [ext_resource type="Script" uid="uid://cchv2skvnbjn4" path="res://Scenes/Characters/overseer.gd" id="1_akota"]
 [ext_resource type="Texture2D" uid="uid://bvn1cv8tubrj7" path="res://Images/Character/Overseer.png" id="1_sasb2"]
+[ext_resource type="Texture2D" uid="uid://de3mijo2e13g" path="res://Images/Character/OverseerScreen.png" id="3_x3b6k"]
 
 [sub_resource type="Animation" id="Animation_u28p5"]
 resource_name = "BeginWork"
@@ -208,6 +209,247 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2DScreen:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fxgbf"]
+resource_name = "ScreenBattery"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DScreen:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [60]
+}
+
+[sub_resource type="Animation" id="Animation_ba3jf"]
+resource_name = "ScreenDown"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DScreen:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [17, 18, 19, 20]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [60]
+}
+
+[sub_resource type="Animation" id="Animation_12hhc"]
+resource_name = "ScreenJump"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DScreen:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [60]
+}
+
+[sub_resource type="Animation" id="Animation_8oc63"]
+resource_name = "ScreenOff"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DScreen:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [60]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"requestLight"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nmrt7"]
+resource_name = "ScreenOn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DScreen:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [60]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"requestLight"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_d8uhn"]
+resource_name = "ScreenUp"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DScreen:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [13, 14, 15, 16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [60]
+}
+
+[sub_resource type="Animation" id="Animation_kk888"]
+resource_name = "ScreenZap"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DScreen:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [21, 22, 23, 24]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [60]
+}
 
 [sub_resource type="Animation" id="Animation_xcuxw"]
 resource_name = "StartWork"
@@ -322,6 +564,22 @@ tracks/0/keys = {
 "values": [71, 72]
 }
 
+[sub_resource type="Animation" id="Animation_wm5fb"]
+resource_name = "doPoint"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00105286, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [51, 52, 53, 54, 55, 56, 57, 58, 59]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fpvd4"]
 _data = {
 &"BeginWork": SubResource("Animation_u28p5"),
@@ -336,13 +594,21 @@ _data = {
 &"LookRight": SubResource("Animation_ipxkm"),
 &"Point": SubResource("Animation_e2u28"),
 &"RESET": SubResource("Animation_x3b6k"),
+&"ScreenBattery": SubResource("Animation_fxgbf"),
+&"ScreenDown": SubResource("Animation_ba3jf"),
+&"ScreenJump": SubResource("Animation_12hhc"),
+&"ScreenOff": SubResource("Animation_8oc63"),
+&"ScreenOn": SubResource("Animation_nmrt7"),
+&"ScreenUp": SubResource("Animation_d8uhn"),
+&"ScreenZap": SubResource("Animation_kk888"),
 &"StartWork": SubResource("Animation_xcuxw"),
 &"UnEmerge": SubResource("Animation_t7amj"),
 &"UnLookLeft": SubResource("Animation_4cd73"),
 &"UnLookRight": SubResource("Animation_aoyvp"),
 &"UnPoint": SubResource("Animation_7xidu"),
 &"WallIdle": SubResource("Animation_akota"),
-&"Work": SubResource("Animation_ac4f5")
+&"Work": SubResource("Animation_ac4f5"),
+&"doPoint": SubResource("Animation_wm5fb")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nmrt7"]
@@ -369,8 +635,26 @@ animation = &"LookLeft"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fxgbf"]
 animation = &"LookRight"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8oc63"]
-animation = &"Point"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1oqo2"]
+animation = &"ScreenBattery"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr8xv"]
+animation = &"ScreenDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gwtmq"]
+animation = &"ScreenJump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kgt1m"]
+animation = &"ScreenOff"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qtshv"]
+animation = &"ScreenOn"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qaktq"]
+animation = &"ScreenUp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h4q0q"]
+animation = &"ScreenZap"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ba3jf"]
 animation = &"UnEmerge"
@@ -381,7 +665,7 @@ animation = &"UnLookLeft"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dol7c"]
 animation = &"UnLookRight"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_12hhc"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8oc63"]
 animation = &"UnPoint"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d8uhn"]
@@ -389,6 +673,9 @@ animation = &"WallIdle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kk888"]
 animation = &"Work"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_12hhc"]
+animation = &"doPoint"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dol7c"]
 advance_mode = 2
@@ -398,25 +685,11 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"emerge"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kgt1m"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"unpoint"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qtshv"]
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mr8xv"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h4q0q"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"point"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qapsm"]
 switch_mode = 2
 advance_mode = 2
 
@@ -482,6 +755,72 @@ advance_condition = &"endwork"
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d8uhn"]
+advance_mode = 2
+advance_condition = &"doPoint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eerb5"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qaktq"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h4q0q"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qapsm"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"screenBattery"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_og0ay"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"unPoint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vu5ku"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"screenJump"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5igjk"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"unPoint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r8g7y"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"screenUp"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_moy5l"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"unPoint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lw0wd"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"screenDown"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0s7in"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"unPoint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q55xh"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"screenZap"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n36p8"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"unPoint"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gt1s8"]
 states/BeginWork/node = SubResource("AnimationNodeAnimation_nmrt7")
 states/BeginWork/position = Vector2(67, 281)
@@ -499,8 +838,20 @@ states/LookLeft/node = SubResource("AnimationNodeAnimation_wm5fb")
 states/LookLeft/position = Vector2(552, 326)
 states/LookRight/node = SubResource("AnimationNodeAnimation_fxgbf")
 states/LookRight/position = Vector2(817, 305)
-states/Point/node = SubResource("AnimationNodeAnimation_8oc63")
-states/Point/position = Vector2(301, 48)
+states/ScreenBattery/node = SubResource("AnimationNodeAnimation_1oqo2")
+states/ScreenBattery/position = Vector2(391, 3.981781)
+states/ScreenDown/node = SubResource("AnimationNodeAnimation_mr8xv")
+states/ScreenDown/position = Vector2(242, -116.01822)
+states/ScreenJump/node = SubResource("AnimationNodeAnimation_gwtmq")
+states/ScreenJump/position = Vector2(366, -63.01822)
+states/ScreenOff/node = SubResource("AnimationNodeAnimation_kgt1m")
+states/ScreenOff/position = Vector2(785, -116.01822)
+states/ScreenOn/node = SubResource("AnimationNodeAnimation_qtshv")
+states/ScreenOn/position = Vector2(140, 24.981781)
+states/ScreenUp/node = SubResource("AnimationNodeAnimation_qaktq")
+states/ScreenUp/position = Vector2(373, -110.01822)
+states/ScreenZap/node = SubResource("AnimationNodeAnimation_h4q0q")
+states/ScreenZap/position = Vector2(73, -112.01822)
 states/Start/position = Vector2(45, 189)
 states/UnEmerge/node = SubResource("AnimationNodeAnimation_ba3jf")
 states/UnEmerge/position = Vector2(184, 100)
@@ -508,14 +859,16 @@ states/UnLookLeft/node = SubResource("AnimationNodeAnimation_bitpj")
 states/UnLookLeft/position = Vector2(686, 326)
 states/UnLookRight/node = SubResource("AnimationNodeAnimation_dol7c")
 states/UnLookRight/position = Vector2(1038, 252)
-states/UnPoint/node = SubResource("AnimationNodeAnimation_12hhc")
-states/UnPoint/position = Vector2(454, 53)
+states/UnPoint/node = SubResource("AnimationNodeAnimation_8oc63")
+states/UnPoint/position = Vector2(518, 49.532963)
 states/WallIdle/node = SubResource("AnimationNodeAnimation_d8uhn")
 states/WallIdle/position = Vector2(152, 184)
 states/Work/node = SubResource("AnimationNodeAnimation_kk888")
 states/Work/position = Vector2(309, 297)
-transitions = ["Start", "WallIdle", SubResource("AnimationNodeStateMachineTransition_dol7c"), "WallIdle", "Emerge", SubResource("AnimationNodeStateMachineTransition_bitpj"), "Point", "UnPoint", SubResource("AnimationNodeStateMachineTransition_kgt1m"), "UnEmerge", "WallIdle", SubResource("AnimationNodeStateMachineTransition_qtshv"), "Emerge", "IdleOutMain", SubResource("AnimationNodeStateMachineTransition_mr8xv"), "IdleOutMain", "Point", SubResource("AnimationNodeStateMachineTransition_h4q0q"), "UnPoint", "IdleOutMain", SubResource("AnimationNodeStateMachineTransition_qapsm"), "IdleOutMain", "Build", SubResource("AnimationNodeStateMachineTransition_iypdu"), "Build", "IdleOutMain", SubResource("AnimationNodeStateMachineTransition_ukgo6"), "IdleOutMain", "LookLeft", SubResource("AnimationNodeStateMachineTransition_322wm"), "IdleOutMain", "LookRight", SubResource("AnimationNodeStateMachineTransition_vyac7"), "IdleOutMain", "UnEmerge", SubResource("AnimationNodeStateMachineTransition_j3xqp"), "LookRight", "UnLookRight", SubResource("AnimationNodeStateMachineTransition_lmlnr"), "UnLookRight", "IdleOutMain", SubResource("AnimationNodeStateMachineTransition_gt1s8"), "LookLeft", "UnLookLeft", SubResource("AnimationNodeStateMachineTransition_wc8ge"), "UnLookLeft", "IdleOutMain", SubResource("AnimationNodeStateMachineTransition_gdxwj"), "IdleOutMain", "IdleWait", SubResource("AnimationNodeStateMachineTransition_yxal5"), "IdleWait", "IdleOutMain", SubResource("AnimationNodeStateMachineTransition_wm5fb"), "IdleOutMain", "BeginWork", SubResource("AnimationNodeStateMachineTransition_ba3jf"), "BeginWork", "Work", SubResource("AnimationNodeStateMachineTransition_12hhc"), "Work", "FinishWork", SubResource("AnimationNodeStateMachineTransition_1oqo2"), "FinishWork", "IdleOutMain", SubResource("AnimationNodeStateMachineTransition_gwtmq")]
-graph_offset = Vector2(0, 10.6543)
+states/doPoint/node = SubResource("AnimationNodeAnimation_12hhc")
+states/doPoint/position = Vector2(366, 60.532963)
+transitions = ["Start", "WallIdle", SubResource("AnimationNodeStateMachineTransition_dol7c"), "WallIdle", "Emerge", SubResource("AnimationNodeStateMachineTransition_bitpj"), "UnEmerge", "WallIdle", SubResource("AnimationNodeStateMachineTransition_qtshv"), "Emerge", "IdleOutMain", SubResource("AnimationNodeStateMachineTransition_mr8xv"), "IdleOutMain", "Build", SubResource("AnimationNodeStateMachineTransition_iypdu"), "Build", "IdleOutMain", SubResource("AnimationNodeStateMachineTransition_ukgo6"), "IdleOutMain", "LookLeft", SubResource("AnimationNodeStateMachineTransition_322wm"), "IdleOutMain", "LookRight", SubResource("AnimationNodeStateMachineTransition_vyac7"), "IdleOutMain", "UnEmerge", SubResource("AnimationNodeStateMachineTransition_j3xqp"), "LookRight", "UnLookRight", SubResource("AnimationNodeStateMachineTransition_lmlnr"), "UnLookRight", "IdleOutMain", SubResource("AnimationNodeStateMachineTransition_gt1s8"), "LookLeft", "UnLookLeft", SubResource("AnimationNodeStateMachineTransition_wc8ge"), "UnLookLeft", "IdleOutMain", SubResource("AnimationNodeStateMachineTransition_gdxwj"), "IdleOutMain", "IdleWait", SubResource("AnimationNodeStateMachineTransition_yxal5"), "IdleWait", "IdleOutMain", SubResource("AnimationNodeStateMachineTransition_wm5fb"), "IdleOutMain", "BeginWork", SubResource("AnimationNodeStateMachineTransition_ba3jf"), "BeginWork", "Work", SubResource("AnimationNodeStateMachineTransition_12hhc"), "Work", "FinishWork", SubResource("AnimationNodeStateMachineTransition_1oqo2"), "FinishWork", "IdleOutMain", SubResource("AnimationNodeStateMachineTransition_gwtmq"), "IdleOutMain", "doPoint", SubResource("AnimationNodeStateMachineTransition_d8uhn"), "UnPoint", "IdleOutMain", SubResource("AnimationNodeStateMachineTransition_eerb5"), "ScreenOff", "UnPoint", SubResource("AnimationNodeStateMachineTransition_qaktq"), "doPoint", "ScreenOn", SubResource("AnimationNodeStateMachineTransition_h4q0q"), "ScreenOn", "ScreenBattery", SubResource("AnimationNodeStateMachineTransition_qapsm"), "ScreenBattery", "ScreenOff", SubResource("AnimationNodeStateMachineTransition_og0ay"), "ScreenOn", "ScreenJump", SubResource("AnimationNodeStateMachineTransition_vu5ku"), "ScreenJump", "ScreenOff", SubResource("AnimationNodeStateMachineTransition_5igjk"), "ScreenOn", "ScreenUp", SubResource("AnimationNodeStateMachineTransition_r8g7y"), "ScreenUp", "ScreenOff", SubResource("AnimationNodeStateMachineTransition_moy5l"), "ScreenOn", "ScreenDown", SubResource("AnimationNodeStateMachineTransition_lw0wd"), "ScreenDown", "ScreenOff", SubResource("AnimationNodeStateMachineTransition_0s7in"), "ScreenOn", "ScreenZap", SubResource("AnimationNodeStateMachineTransition_q55xh"), "ScreenZap", "ScreenOff", SubResource("AnimationNodeStateMachineTransition_n36p8")]
+graph_offset = Vector2(-36, -177.01822)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gdxwj"]
 size = Vector2(246, 197)
@@ -529,63 +882,71 @@ size = Vector2(996, 198)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6mkt"]
 size = Vector2(57, 142)
 
-[node name="Overseer" type="Node2D"]
+[node name="Overseer" type="Node2D" unique_id=966154217]
 script = ExtResource("1_akota")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=121582695]
 texture = ExtResource("1_sasb2")
 hframes = 9
 vframes = 9
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_fpvd4")
-}
+[node name="Sprite2DScreen" type="Sprite2D" parent="." unique_id=486350575]
+texture = ExtResource("3_x3b6k")
+hframes = 9
+vframes = 9
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1093051617]
+libraries/ = SubResource("AnimationLibrary_fpvd4")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1533826032]
 tree_root = SubResource("AnimationNodeStateMachine_gt1s8")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/build = false
+parameters/conditions/doPoint = false
 parameters/conditions/emerge = false
 parameters/conditions/endwork = false
 parameters/conditions/idleOut = false
 parameters/conditions/lookleft = false
 parameters/conditions/lookright = false
-parameters/conditions/point = false
+parameters/conditions/screenBattery = false
+parameters/conditions/screenDown = false
+parameters/conditions/screenJump = false
+parameters/conditions/screenUp = false
+parameters/conditions/screenZap = false
+parameters/conditions/unPoint = false
 parameters/conditions/unemerge = false
 parameters/conditions/unlook = false
-parameters/conditions/unpoint = false
 parameters/conditions/work = false
 
-[node name="Area2DRight" type="Area2D" parent="."]
+[node name="Area2DRight" type="Area2D" parent="." unique_id=759858937]
 position = Vector2(34, -3)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DRight" unique_id=1935295536]
 position = Vector2(225, 0)
 shape = SubResource("RectangleShape2D_gdxwj")
 
-[node name="Area2DLeft" type="Area2D" parent="."]
+[node name="Area2DLeft" type="Area2D" parent="." unique_id=1401524200]
 position = Vector2(-32, 3)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DLeft"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DLeft" unique_id=1376815910]
 position = Vector2(-225, 0)
 shape = SubResource("RectangleShape2D_akota")
 
-[node name="Area2DInRange" type="Area2D" parent="."]
+[node name="Area2DInRange" type="Area2D" parent="." unique_id=307194136]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DInRange"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DInRange" unique_id=861349418]
 position = Vector2(28, -5)
 shape = SubResource("RectangleShape2D_x3b6k")
 debug_color = Color(0.938397, 1.30916e-05, 0.623869, 0.42)
 
-[node name="IdleTimer" type="Timer" parent="."]
+[node name="IdleTimer" type="Timer" parent="." unique_id=1462486678]
 wait_time = 6.0
 
-[node name="FixTimer" type="Timer" parent="."]
+[node name="FixTimer" type="Timer" parent="." unique_id=1687188719]
 
-[node name="Area2DFix" type="Area2D" parent="."]
+[node name="Area2DFix" type="Area2D" parent="." unique_id=774874577]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DFix"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DFix" unique_id=1540137273]
 position = Vector2(5.5, 31)
 shape = SubResource("RectangleShape2D_n6mkt")
 
