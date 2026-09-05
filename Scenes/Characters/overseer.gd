@@ -32,6 +32,10 @@ func resetAllAnimationTree():
 	animationTree.set("parameters/conditions/screenDown", false)
 	animationTree.set("parameters/conditions/screenUp", false)
 	animationTree.set("parameters/conditions/screenJump", false)
+	animationTree.set("parameters/conditions/screenLeave", false)
+	animationTree.set("parameters/conditions/screenLiftPower", false)
+	animationTree.set("parameters/conditions/screenLiftBlocked", false)
+
 
 func _on_area_2d_right_body_exited(body:Node2D) -> void:
 	if body.is_in_group("actor"):
@@ -57,6 +61,15 @@ func doPoint() -> bool:
 		return true
 	if currentObject=="zapBoard":
 		animationTree.set("parameters/conditions/screenZap", true)
+		return true
+	if currentObject=="clearPath":
+		animationTree.set("parameters/conditions/screenLeave", true)
+		return true
+	if currentObject=="fixLift":
+		animationTree.set("parameters/conditions/screenLiftPower", true)
+		return true
+	if currentObject=="fixClearBlockage":
+		animationTree.set("parameters/conditions/screenLiftBlocked", true)
 		return true
 	return false
 	# "battery" : { "done" :false},

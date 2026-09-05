@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://jvgwcq2c7cs3"]
+[gd_scene format=3 uid="uid://jvgwcq2c7cs3"]
 
 [ext_resource type="Script" uid="uid://d3l8wwgsruxgy" path="res://Scenes/Effects/temp_light.gd" id="1_4knbj"]
 [ext_resource type="Texture2D" uid="uid://cn5hji7snksgh" path="res://Images/System/TitleScreen.png" id="2_iuqvo"]
@@ -36,6 +36,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 4.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4knbj"]
+resource_name = "Fade"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.95),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.2, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_bi6qd"]
@@ -92,28 +108,27 @@ tracks/0/keys = {
 _data = {
 &"Blink": SubResource("Animation_ndmi6"),
 &"Explode": SubResource("Animation_1gqhc"),
+&"Fade": SubResource("Animation_4knbj"),
 &"Flicker": SubResource("Animation_bi6qd"),
 &"FlickerShort": SubResource("Animation_yvgcl"),
 &"RESET": SubResource("Animation_u2c62")
 }
 
-[node name="TempLight" type="Node2D"]
+[node name="TempLight" type="Node2D" unique_id=1818453409]
 script = ExtResource("1_4knbj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=453867317]
 visible = false
 texture = ExtResource("2_iuqvo")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1438909149]
 energy = 0.0
 shadow_enabled = true
 texture = ExtResource("3_d7dwf")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=522021712]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_1i6al")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=569460185]
+libraries/ = SubResource("AnimationLibrary_1i6al")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

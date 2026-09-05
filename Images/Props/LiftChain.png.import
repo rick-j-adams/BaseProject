@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cthfaf2fmjg8f"
-path="res://.godot/imported/loadingSplash.png-44060cf0eca15c47362cf71b6080b813.ctex"
+uid="uid://ddv38d75jgumd"
+path="res://.godot/imported/LiftChain.png-691ac19906faf98e1f75a3967a47beee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/System/loadingSplash.png"
-dest_files=["res://.godot/imported/loadingSplash.png-44060cf0eca15c47362cf71b6080b813.ctex"]
+source_file="res://Images/Props/LiftChain.png"
+dest_files=["res://.godot/imported/LiftChain.png-691ac19906faf98e1f75a3967a47beee.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cthfaf2fmjg8f"
-path="res://.godot/imported/loadingSplash.png-44060cf0eca15c47362cf71b6080b813.ctex"
+uid="uid://cypamk64rqrrq"
+path="res://.godot/imported/LiftBack.png-7a4a7e6a6a907d0c2baf9e06f1f60548.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/System/loadingSplash.png"
-dest_files=["res://.godot/imported/loadingSplash.png-44060cf0eca15c47362cf71b6080b813.ctex"]
+source_file="res://Images/Props/LiftBack.png"
+dest_files=["res://.godot/imported/LiftBack.png-7a4a7e6a6a907d0c2baf9e06f1f60548.ctex"]
 
 [params]
 

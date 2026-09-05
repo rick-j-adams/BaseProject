@@ -10,9 +10,13 @@ var currentState:STATE = STATE.CLOSED
 @onready var animationPlayer :AnimationPlayer = $AnimationPlayer
 
 # @export var hasBattery = false
+# not 100 used for lift objective
+const LIFT_OBJECTIVE_ID = 100
 
 var inArea:bool = false
 @export var oid:int = 1
+@export var alwaysOn:bool = false
+@export var onAfterObjective:String = "none"
 
 var lockAndKeySystem:LockAndKeySystem = null
 
@@ -27,13 +31,15 @@ func _ready() -> void:
 
 
 func playIdle() ->void:
-	if hasBattery():
+	if  hasBattery():
 		animationPlayer.play("IdleBatteryIn")
 	else:
 		animationPlayer.play("IdleBatteryOut")
 	timer.stop()
 
 func _on_area_2d_body_exited(body:Node2D) -> void:
+	if userCanNotOpen():
+		return
 	if body is Dydimo:	
 		inArea=false
 		timer.start()
@@ -41,6 +47,8 @@ func _on_area_2d_body_exited(body:Node2D) -> void:
 		body.inReceptacleRange = false
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
+	if userCanNotOpen():
+			return
 	if body is Dydimo:	
 		currentState = STATE.OPENING
 		timer.start()
@@ -48,6 +56,13 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 		inArea=true
 		Globals.currentReceptacle=self
 		body.inReceptacleRange = true
+
+func userCanNotOpen() -> bool:
+	if alwaysOn:
+		return true
+	if Globals.isObjectiveDone(onAfterObjective):
+		return true
+	return false
 
 func close() -> void:
 	currentState = STATE.CLOSING
@@ -70,11 +85,20 @@ func setHasBattery(batteryState: bool) ->void:
 	# hasBattery=batteryState
 	if lockAndKeySystem !=null :
 		if hasBattery()==true:
+			if oid == LIFT_OBJECTIVE_ID:
+				Globals.setObjectiveDone("fixLift")
+			
 			lockAndKeySystem.powerOnSystem()
 		else:
+			if oid == LIFT_OBJECTIVE_ID:
+				Globals.setObjectiveUnDone("fixLift")
 			lockAndKeySystem.powerOffSystem()
 
 func hasBattery() -> bool :
+	if alwaysOn:
+		return true
+	if Globals.isObjectiveDone(onAfterObjective):
+		return true
 	for potentialItem in Globals.allResources.allPickUps.keys():
 		var itemData = Globals.allResources.allPickUps.get(potentialItem)
 		if itemData != null:

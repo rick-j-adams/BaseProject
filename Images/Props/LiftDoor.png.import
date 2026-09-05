@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cthfaf2fmjg8f"
-path="res://.godot/imported/loadingSplash.png-44060cf0eca15c47362cf71b6080b813.ctex"
+uid="uid://cx1l7qd0jb48u"
+path="res://.godot/imported/LiftDoor.png-a6aa5e30c76b0b996875e6cecc8eeb36.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/System/loadingSplash.png"
-dest_files=["res://.godot/imported/loadingSplash.png-44060cf0eca15c47362cf71b6080b813.ctex"]
+source_file="res://Images/Props/LiftDoor.png"
+dest_files=["res://.godot/imported/LiftDoor.png-a6aa5e30c76b0b996875e6cecc8eeb36.ctex"]
 
 [params]
 

@@ -18,7 +18,8 @@ enum MODES {
 	PLAY,
 	EXPAND,
 	BATTERY_RECEPTACLE,
-	FAST_TRAVEL
+	FAST_TRAVEL,
+	LIFT_SELECT
 }
 
 var currentMode : MODES = MODES.PLAY
@@ -161,6 +162,13 @@ func getAllObjectives() -> Dictionary:
 		}
 	return allResources.allObjectives
 
+func isObjectiveDone(objectiveName: String) -> bool:
+	var allObjectives = getAllObjectives()
+	if allObjectives.has(objectiveName):
+		var details = allObjectives.get(objectiveName)
+		return details.get("done")
+	return false
+
 func getCurrentObjective() -> String:
 	var allObjectives = getAllObjectives()
 	for key in allObjectives.keys():
@@ -170,6 +178,19 @@ func getCurrentObjective() -> String:
 			return key
 	return ""
 
+func setObjectiveDone(objectiveName: String) -> void:
+	var allObjectives = getAllObjectives()
+	if allObjectives.has(objectiveName):
+		var details = allObjectives.get(objectiveName)
+		details.set("done",true)
+		allObjectives[objectiveName] = details
+
+func setObjectiveUnDone(objectiveName: String) -> void:
+	var allObjectives = getAllObjectives()
+	if allObjectives.has(objectiveName):
+		var details = allObjectives.get(objectiveName)
+		details.set("done",false)
+		allObjectives[objectiveName] = details
 
 func setUpLevelsMap() -> void:
 	if allResources.allLevels.size() == 0:

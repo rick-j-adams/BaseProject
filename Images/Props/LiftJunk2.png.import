@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cthfaf2fmjg8f"
-path="res://.godot/imported/loadingSplash.png-44060cf0eca15c47362cf71b6080b813.ctex"
+uid="uid://ci0gpqff3pbd3"
+path="res://.godot/imported/LiftJunk2.png-6b259fb3bab4736fcc7c25e9befe042f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/System/loadingSplash.png"
-dest_files=["res://.godot/imported/loadingSplash.png-44060cf0eca15c47362cf71b6080b813.ctex"]
+source_file="res://Images/Props/LiftJunk2.png"
+dest_files=["res://.godot/imported/LiftJunk2.png-6b259fb3bab4736fcc7c25e9befe042f.ctex"]
 
 [params]
 

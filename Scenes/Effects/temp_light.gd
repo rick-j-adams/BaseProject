@@ -11,7 +11,8 @@ enum LightType {
 	RED_EXPLODE,
 	LIGHTNING,
 	PURPLE_LIGHTNING,
-	FLAME
+	FLAME,
+	GREEN_FADE
 }
 
 var lightType : int = LightType.WHITE_EXPLODE
@@ -49,6 +50,10 @@ func runAnimation(type:LightType) -> void:
 		animationName = "Flicker"
 		pointLight.color = Color.RED
 		waitTime = 0.1
+	elif type == LightType.GREEN_FADE:
+		animationName = "Fade"
+		pointLight.color = Color.GREEN
+		waitTime = 0.5
 	visible = true	
 	timer.wait_time=waitTime
 	timer.start()

@@ -26,4 +26,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var parent = body.get_parent()
 		if parent!=null:
 			if parent is GoodyBox:
+				parent.numberOfBits=0.5
 				goodyBoxes.append(parent)
