@@ -4264,9 +4264,9 @@ transisitionType = 2
 destinationLevel = "R002"
 destinationEntryPoint = "E2"
 
-[node name="Lift" type="Node2D" parent="." unique_id=476100166]
+[node name="Lifts" type="Node2D" parent="." unique_id=476100166]
 
-[node name="Lift" parent="Lift" unique_id=973958424 instance=ExtResource("45_ixbdl")]
+[node name="Lift" parent="Lifts" unique_id=973958424 instance=ExtResource("45_ixbdl")]
 position = Vector2(290, 2607)
 isBlocked = true
 

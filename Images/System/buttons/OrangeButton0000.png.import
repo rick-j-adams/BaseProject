@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc5cg13h3nner"
-path="res://.godot/imported/test.png-854f71ca8dfebd6e73593deefd9d2f24.ctex"
+uid="uid://dg1lu4akqeex1"
+path="res://.godot/imported/OrangeButton0000.png-c8f052b65df49063f740554eb3ecd3eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/test.png"
-dest_files=["res://.godot/imported/test.png-854f71ca8dfebd6e73593deefd9d2f24.ctex"]
+source_file="res://Images/System/buttons/OrangeButton0000.png"
+dest_files=["res://.godot/imported/OrangeButton0000.png-c8f052b65df49063f740554eb3ecd3eb.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc5cg13h3nner"
-path="res://.godot/imported/test.png-854f71ca8dfebd6e73593deefd9d2f24.ctex"
+uid="uid://wn4g2kknpft"
+path="res://.godot/imported/PeachButton0001.png-5b201f3c0465d231e0451fdf9434a5cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/test.png"
-dest_files=["res://.godot/imported/test.png-854f71ca8dfebd6e73593deefd9d2f24.ctex"]
+source_file="res://Images/System/buttons/PeachButton0001.png"
+dest_files=["res://.godot/imported/PeachButton0001.png-5b201f3c0465d231e0451fdf9434a5cd.ctex"]
 
 [params]
 

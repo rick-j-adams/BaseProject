@@ -568,20 +568,25 @@ func transitionToEntryPoint(transisitionType :TransitionArea.TRANSITION_TYPES,  
 		if transisitionType == TransitionArea.TRANSITION_TYPES.VERTICAL or transisitionType == TransitionArea.TRANSITION_TYPES.BOTH:
 			mainCharacter.position.y = newPosition.y
 		mainCamera.snapTo(mainCharacter.position)
-		
 
 func transitionToBuildable( destinationLevel:String, destinationOid:int) -> void:
 	transisitionToLevel(destinationLevel)
 	for childNode in gameWindow.level.get_children():
-		print("looking for destination")
-
 		if childNode is Level:
-			print("found destination")
 			mainCharacter.position = childNode.findBuildablePointsPosition(destinationOid)
 			mainCamera.snapTo(mainCharacter.position)
 			currentMode=MODES.PLAY
 			if mainCharacter!=null:
 				mainCharacter.backFromFastTravel()
+
+func transistionToLift(destinationLevel:String):
+	transisitionToLevel(destinationLevel)
+	for childNode in gameWindow.level.get_children():
+		if childNode is Level:
+			mainCharacter.position = childNode.findLiftPosition()
+			mainCamera.snapTo(mainCharacter.position)
+			currentMode=MODES.PLAY
+			childNode.leaveLift()
 
 func addToCullList(levelID:int) -> void:
 	var levelDetails =  allResources.allLevels.get(currentLevel)

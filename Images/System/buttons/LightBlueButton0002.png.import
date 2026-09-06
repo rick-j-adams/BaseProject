@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc5cg13h3nner"
-path="res://.godot/imported/test.png-854f71ca8dfebd6e73593deefd9d2f24.ctex"
+uid="uid://dtk8pigpngkt7"
+path="res://.godot/imported/LightBlueButton0002.png-d4dfa62e567265f01bf2020eb6ae5d9d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/test.png"
-dest_files=["res://.godot/imported/test.png-854f71ca8dfebd6e73593deefd9d2f24.ctex"]
+source_file="res://Images/System/buttons/LightBlueButton0002.png"
+dest_files=["res://.godot/imported/LightBlueButton0002.png-d4dfa62e567265f01bf2020eb6ae5d9d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc5cg13h3nner"
-path="res://.godot/imported/test.png-854f71ca8dfebd6e73593deefd9d2f24.ctex"
+uid="uid://miml0bg6i1b2"
+path="res://.godot/imported/PurpleButton0002.png-f8e0398c4a3257865cfd43a4d9f9bc52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/test.png"
-dest_files=["res://.godot/imported/test.png-854f71ca8dfebd6e73593deefd9d2f24.ctex"]
+source_file="res://Images/System/buttons/PurpleButton0002.png"
+dest_files=["res://.godot/imported/PurpleButton0002.png-f8e0398c4a3257865cfd43a4d9f9bc52.ctex"]
 
 [params]
 

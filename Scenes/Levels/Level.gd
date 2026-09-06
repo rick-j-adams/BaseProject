@@ -7,6 +7,7 @@ class_name Level
 @onready var pickUps :Node2D = $PickUps
 @onready var maskRevealAreas :Node2D = $MaskRevealAreas
 @onready var buildables :Node2D = $Buildables
+@onready var lifts :Node2D = $Lifts
 
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
@@ -76,6 +77,16 @@ func getMaskRevealDictionary() -> Dictionary:
 		levelMaskDetails = maskDetailsDictionary
 	return levelMaskDetails
 
+func findLiftPosition() -> Vector2:
+	for node in lifts.get_children():
+		if node is Lift:		
+			return node.rPointLiftCenter.global_position
+	return Vector2(0.0,0.0)
+
+func leaveLift() -> void:
+	for node in lifts.get_children():
+		if node is Lift:
+			node.playExitLift()
 
 func findEntryPointsPosition(entryPointsName:String) -> Vector2:
 	for node in entryPoints.get_children():

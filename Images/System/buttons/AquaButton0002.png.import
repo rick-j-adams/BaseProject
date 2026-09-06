@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc5cg13h3nner"
-path="res://.godot/imported/test.png-854f71ca8dfebd6e73593deefd9d2f24.ctex"
+uid="uid://c580wk7ywxx5u"
+path="res://.godot/imported/AquaButton0002.png-3d700d971253f6a6946a6967ce0abc56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/test.png"
-dest_files=["res://.godot/imported/test.png-854f71ca8dfebd6e73593deefd9d2f24.ctex"]
+source_file="res://Images/System/buttons/AquaButton0002.png"
+dest_files=["res://.godot/imported/AquaButton0002.png-3d700d971253f6a6946a6967ce0abc56.ctex"]
 
 [params]
 

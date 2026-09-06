@@ -100,6 +100,9 @@ var magnetCounter : int = 0
 var inOverseerRange = false
 var inReceptacleRange = false
 
+var liftInRange = false
+var lift : Node2D = null
+
 # ─── helpers ──────────────────────────────────────────────────────────────────
 
 func isOnFloor() -> bool:
@@ -392,6 +395,12 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 		interaction = true
 
 	if Input.is_action_just_released("ui_down") and inControl():
+		if liftInRange:
+			Globals.currentMode=Globals.MODES.LIFT_SELECT
+			if lift != null:
+				lift.playEnterLift()
+			# interaction = true
+			return true
 		if inOverseerRange:
 			fix()
 			return true
@@ -406,7 +415,6 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 			if buildableType == Buildable.BuildableType.TELEPORTER:
 				doTeleport()
 
-			print("TODO buildableType = "+str(buildableType))
 			if buildableType == Buildable.BuildableType.FAST_TRAVEL:
 				# print("Globals.MODES.FAST_TRAVEL")
 				Globals.currentMode = Globals.MODES.FAST_TRAVEL
@@ -422,6 +430,14 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 		if zapper.startZap(sprite.flip_h):
 			changeState(STATES.SHOOTING)
 	return interaction
+
+func doLiftTransitionTo(levelName: String, direction: int) -> void:
+	if lift != null:
+		lift.startLiftTransitionTo(levelName, direction)
+
+func doExitLift() -> void:
+	if lift != null:
+		lift.playExitLift()
 
 func doCameraPoints() ->void:
 	# print(str(velocity.x))

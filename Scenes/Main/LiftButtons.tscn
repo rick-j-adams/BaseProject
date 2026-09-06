@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://duxkj27qooyc"]
+
+[ext_resource type="Texture2D" uid="uid://yqlh7wk4h0vs" path="res://Images/Props/panel.png" id="1_erir8"]
+[ext_resource type="Script" uid="uid://oxdt1jgvqfe7" path="res://Scenes/Main/lift_buttons.gd" id="1_vuwlu"]
+[ext_resource type="Texture2D" uid="uid://cyue22jufyh34" path="res://Images/System/buttons/AquaButton0000.png" id="2_qhter"]
+[ext_resource type="Texture2D" uid="uid://wv152k0ncuyt" path="res://Images/System/buttons/AquaButton0001.png" id="3_2j752"]
+[ext_resource type="Texture2D" uid="uid://cw0aawxi7h4ae" path="res://Images/System/buttons/BrownButton0000.png" id="4_keeew"]
+[ext_resource type="Texture2D" uid="uid://envdmy37jf4h" path="res://Images/System/buttons/BrownButton0002.png" id="5_c0dcs"]
+[ext_resource type="Texture2D" uid="uid://dg1lu4akqeex1" path="res://Images/System/buttons/OrangeButton0000.png" id="6_mxydc"]
+[ext_resource type="Texture2D" uid="uid://86hq0ep520ql" path="res://Images/System/buttons/OrangeButton0002.png" id="7_aanux"]
+[ext_resource type="Texture2D" uid="uid://dxlt0cxg8n4tl" path="res://Images/System/buttons/PeachButton0000.png" id="8_avy5v"]
+[ext_resource type="Texture2D" uid="uid://car0rts57htc3" path="res://Images/System/buttons/PeachButton0002.png" id="9_04gkn"]
+[ext_resource type="Texture2D" uid="uid://b6gyfv7mh3ebh" path="res://Images/System/buttons/PinkButton0000.png" id="10_vuwlu"]
+[ext_resource type="Texture2D" uid="uid://bk4ey4pk1jp6c" path="res://Images/System/buttons/PinkButton0002.png" id="11_g7p0y"]
+[ext_resource type="Texture2D" uid="uid://cjq5g31ndhxse" path="res://Images/System/buttons/LightBlueButton0000.png" id="12_xdlem"]
+[ext_resource type="Texture2D" uid="uid://dtk8pigpngkt7" path="res://Images/System/buttons/LightBlueButton0002.png" id="13_af5ps"]
+[ext_resource type="Texture2D" uid="uid://t5tkilppjubq" path="res://Images/System/buttons/YellowButton0000.png" id="14_om2cl"]
+[ext_resource type="Texture2D" uid="uid://o6m2togof87o" path="res://Images/System/buttons/YellowButton0002.png" id="15_d6xoj"]
+[ext_resource type="Texture2D" uid="uid://b5p0owbywiqfi" path="res://Images/System/buttons/PurpleButton0000.png" id="16_peld0"]
+[ext_resource type="Texture2D" uid="uid://miml0bg6i1b2" path="res://Images/System/buttons/PurpleButton0002.png" id="17_ajnfn"]
+[ext_resource type="Texture2D" uid="uid://jr0hf7lacryk" path="res://Images/System/buttons/DarkBlueButton0000.png" id="18_belut"]
+[ext_resource type="Texture2D" uid="uid://ccge2nyjm3t6d" path="res://Images/System/buttons/DarkBlueButton0002.png" id="19_cuh8q"]
+[ext_resource type="Texture2D" uid="uid://dj8ax6yvmxkp5" path="res://Images/System/buttons/DarkGreyButton0000.png" id="20_tkaim"]
+[ext_resource type="Texture2D" uid="uid://deehg4l5gyta" path="res://Images/System/buttons/ButtonSelector.png" id="22_g7p0y"]
+
+[node name="LiftButtons" type="Control" unique_id=713640949]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vuwlu")
+
+[node name="Sprite2DPanel" type="Sprite2D" parent="." unique_id=1510554182]
+texture = ExtResource("1_erir8")
+
+[node name="TouchButtons" type="Node2D" parent="." unique_id=792535680]
+
+[node name="TouchScreenButtonAqua" type="TouchScreenButton" parent="TouchButtons" unique_id=23777745]
+position = Vector2(-45, 66)
+texture_normal = ExtResource("2_qhter")
+texture_pressed = ExtResource("3_2j752")
+
+[node name="TouchScreenButtonBrown" type="TouchScreenButton" parent="TouchButtons" unique_id=1371101606]
+position = Vector2(-45, 28)
+texture_normal = ExtResource("4_keeew")
+texture_pressed = ExtResource("5_c0dcs")
+
+[node name="TouchScreenButtonOrange" type="TouchScreenButton" parent="TouchButtons" unique_id=236996174]
+position = Vector2(11, 29)
+texture_normal = ExtResource("6_mxydc")
+texture_pressed = ExtResource("7_aanux")
+
+[node name="TouchScreenButtonPeach" type="TouchScreenButton" parent="TouchButtons" unique_id=1283744225]
+position = Vector2(-45, -15)
+texture_normal = ExtResource("8_avy5v")
+texture_pressed = ExtResource("9_04gkn")
+
+[node name="TouchScreenButtonPink" type="TouchScreenButton" parent="TouchButtons" unique_id=1177996388]
+position = Vector2(11, -14)
+texture_normal = ExtResource("10_vuwlu")
+texture_pressed = ExtResource("11_g7p0y")
+
+[node name="TouchScreenButtonLightBlue" type="TouchScreenButton" parent="TouchButtons" unique_id=1339197719]
+position = Vector2(-45, -56)
+texture_normal = ExtResource("12_xdlem")
+texture_pressed = ExtResource("13_af5ps")
+
+[node name="TouchScreenButtonYellow" type="TouchScreenButton" parent="TouchButtons" unique_id=1146146112]
+position = Vector2(11, -55)
+texture_normal = ExtResource("14_om2cl")
+texture_pressed = ExtResource("15_d6xoj")
+
+[node name="TouchScreenButtonPurple" type="TouchScreenButton" parent="TouchButtons" unique_id=2060407578]
+position = Vector2(-45, -101)
+texture_normal = ExtResource("16_peld0")
+texture_pressed = ExtResource("17_ajnfn")
+
+[node name="TouchScreenButtonDarkBlue" type="TouchScreenButton" parent="TouchButtons" unique_id=383316202]
+position = Vector2(11, -100)
+texture_normal = ExtResource("18_belut")
+texture_pressed = ExtResource("19_cuh8q")
+
+[node name="GreyedButtons" type="Node2D" parent="." unique_id=1475625066]
+
+[node name="Sprite2DGreyButton1" type="Sprite2D" parent="GreyedButtons" unique_id=135839330]
+position = Vector2(27, 2)
+texture = ExtResource("20_tkaim")
+
+[node name="Sprite2DGreyButton2" type="Sprite2D" parent="GreyedButtons" unique_id=147084533]
+position = Vector2(27, -38)
+texture = ExtResource("20_tkaim")
+
+[node name="Sprite2DGreyButton3" type="Sprite2D" parent="GreyedButtons" unique_id=1927920760]
+position = Vector2(-28, -40)
+texture = ExtResource("20_tkaim")
+
+[node name="Sprite2DGreyButton4" type="Sprite2D" parent="GreyedButtons" unique_id=222642553]
+position = Vector2(27, -84)
+texture = ExtResource("20_tkaim")
+
+[node name="Sprite2DGreyButton5" type="Sprite2D" parent="GreyedButtons" unique_id=423611837]
+position = Vector2(-29, -85)
+texture = ExtResource("20_tkaim")
+
+[node name="Sprite2DSelector" type="Sprite2D" parent="." unique_id=144966722]
+position = Vector2(27, 45)
+texture = ExtResource("22_g7p0y")
+
+[connection signal="released" from="TouchButtons/TouchScreenButtonAqua" to="." method="_on_touch_screen_button_aqua_released"]
+[connection signal="released" from="TouchButtons/TouchScreenButtonBrown" to="." method="_on_touch_screen_button_brown_released"]
+[connection signal="released" from="TouchButtons/TouchScreenButtonOrange" to="." method="_on_touch_screen_button_orange_released"]
+[connection signal="released" from="TouchButtons/TouchScreenButtonPeach" to="." method="_on_touch_screen_button_peach_released"]
+[connection signal="released" from="TouchButtons/TouchScreenButtonPink" to="." method="_on_touch_screen_button_pink_released"]
+[connection signal="released" from="TouchButtons/TouchScreenButtonLightBlue" to="." method="_on_touch_screen_button_light_blue_released"]
+[connection signal="released" from="TouchButtons/TouchScreenButtonYellow" to="." method="_on_touch_screen_button_yellow_released"]
+[connection signal="released" from="TouchButtons/TouchScreenButtonPurple" to="." method="_on_touch_screen_button_purple_released"]
+[connection signal="released" from="TouchButtons/TouchScreenButtonDarkBlue" to="." method="_on_touch_screen_button_dark_blue_released"]
