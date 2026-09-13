@@ -181,6 +181,7 @@ func getNumberOfParts() -> float:
 	return 0.4
 
 func die(body:Node2D):
+	Globals.playAudioAt(global_position, "pop")
 	state = STATES.DYING	
 	# set_collision_layer_value(1, false)
 	set_collision_layer_value(1, false)

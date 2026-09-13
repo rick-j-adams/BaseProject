@@ -156,3 +156,6 @@ func _on_fix_timer_timeout() -> void:
 
 func requestLight() -> void:
 	Globals.requestTempLight(global_position, TempLight.LightType.LIGHTNING)
+
+func requestStaticSound() -> void:
+	Globals.playAudioAt(global_position, "static")

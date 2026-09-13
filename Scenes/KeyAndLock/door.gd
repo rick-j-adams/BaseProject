@@ -88,3 +88,19 @@ func _on_timer_timeout() -> void:
 	if doorState == DOOR_STATES.CLOSING:
 		setClosed()
 		
+
+func playOpenDoorSound() -> void:
+	if doorType == DOOR_TYPE.ELECTRIC_DOOR:
+		Globals.playAudioAt(global_position, "bugzapper")
+	elif doorType == DOOR_TYPE.BULKHEAD_DOOR:
+		Globals.playAudioAt(global_position, "doorOpen")
+	else:
+		Globals.playAudioAt(global_position, "doorOpen")
+
+func playCloseDoorSound() -> void:
+	if doorType == DOOR_TYPE.ELECTRIC_DOOR:
+		Globals.playAudioAt(global_position, "bugzapper")
+	elif doorType == DOOR_TYPE.BULKHEAD_DOOR:
+		Globals.playAudioAt(global_position, "doorClose")
+	else:
+		Globals.playAudioAt(global_position, "doorClose")

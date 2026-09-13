@@ -109,6 +109,7 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 				animationPlayer.play("PickUp")
 				pickingUp = true
 				body.addPickUp(pickUpType)
+				Globals.playAudioAt(global_position, "pickupkey1")	
 
 func setInventoryItem(value: bool) -> void:
 	inventoryItem = value

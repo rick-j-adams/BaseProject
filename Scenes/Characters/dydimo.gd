@@ -209,17 +209,27 @@ func doAnimation(onFloor: bool):
 		STATES.FALLING:
 			if onFloor:
 				if currentAnimation == "Falling" or currentAnimation == "Rising":
+					
 					currentAnimation = "Land"
 					shakeStrength = 0.3
 					if lastYForce > 1000:
 						shakeStrength = 0.5
 						Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "LandSpark")
+						Globals.playAudioAt(global_position, "spark")
+						# Globals.playAudioAt(global_position, "metalPunch")
 					if lastYForce > 1200:
 						shakeStrength = 0.8
 						Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "LandSpark")
+						Globals.playAudioAt(global_position, "spark")
+						# Globals.playAudioAt(global_position, "metalPunch")
+
 					if lastYForce > 1400:
 						shakeStrength = 1.0
 						Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "LandSpark")
+						Globals.playAudioAt(global_position, "spark")
+						# Globals.playAudioAt(global_position, "metalPunch")
+
+					
 				elif animationPlayer.is_playing() == false:
 					if currentAnimation == "Land":
 						changeState(STATES.IDLE)
@@ -242,6 +252,12 @@ func doAnimation(onFloor: bool):
 		lastAnimation = currentAnimation
 
 # ─── state machine ────────────────────────────────────────────────────────────
+func doLanding() -> void:
+	if lastYForce > 500 and isOnFloor():  
+		currentAnimation = "Land"
+		Globals.playAudioAt(global_position, "bop")
+	if lastYForce > 1000 and isOnFloor():  
+		Globals.playAudioAt(global_position, "bop")
 
 func changeState(newState: STATES):
 	if state == newState:
@@ -257,10 +273,12 @@ func changeState(newState: STATES):
 			currentIdleTime = 0.0
 		if state == STATES.IDLE and newState == STATES.WALKING:
 			currentAnimation = "WalkStart"
+			Globals.playAudioAt(global_position, "startMoving")
 		if state == STATES.WALKING and newState == STATES.IDLE:
 			currentAnimation = "WalkStop"
 			if magnetCounter <=0 :
 				Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "StopSpark")
+				# Globals.playAudioAt(global_position, "skid")
 		if state == STATES.IDLE and newState == STATES.PREJUMP:
 			currentAnimation = "Spring"
 			currentJumpForce = 0.0
@@ -370,12 +388,16 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 		changeDirection(false)
 		calcAcceleration(delta, 1, currentSpeed, isNowOnFloor)
 		interaction = true
+		# Globals.playAudioAt(global_position, "traintrack")
+
 
 	elif Input.is_action_pressed("ui_left") and inControl():
 		changeState(STATES.WALKING)
 		changeDirection(true)
 		calcAcceleration(delta, -1, currentSpeed, isNowOnFloor)
 		interaction = true
+		# Globals.playAudioAt(global_position, "traintrack")
+
 
 	# else:
 
@@ -502,6 +524,7 @@ func _process(delta: float) -> void:
 	if not interaction and isNowOnFloor:
 		doIdle(delta)
 
+	doLanding()
 	lastYForce = yForce
 	lastBlowUp = blowUp
 	Globals.lastPosition = global_position
@@ -596,11 +619,12 @@ func doRotate(delta: float):
 
 func doJump(isNowOnFloor: bool):
 	if isNowOnFloor or (Globals.isPickUpOn(PickUp.PickUpType.JUMP2) and jumpCounter < 1) or Globals.isPickUpOn(PickUp.PickUpType.JETPACK):
+		Globals.playAudioAt(global_position, "jump")
 		if Globals.isPickUpOn(PickUp.PickUpType.JUMP2) and jumpCounter < 2:
 			currentJumpForce = jumpPower
 			if (!isNowOnFloor):
 				Globals.moveSparkEffect(underside.global_position, rotation, sprite.flip_h, "Smoke")
-
+			
 		if Globals.isPickUpOn(PickUp.PickUpType.JETPACK):
 			currentJumpForce = jumpPower / 2
 		if (!isNowOnFloor):
@@ -718,6 +742,7 @@ func doCameraShake(delta: float):
 func takeDamage(amount: float, sourceDirection: Vector2,explosion: bool) -> void:
 	if not invulnerable and inControl(): 
 		animationPlayer.play("Damage")
+		Globals.playAudioAt(global_position, "metalPunch")
 		hitTimer.start()
 		invulnerable = true
 		# Apply knockback		
@@ -756,6 +781,7 @@ func doDeath() -> void:
 	else:	
 		animationPlayer.play("Death2")
 	Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "Smoke")
+	Globals.playAudioAt(global_position,"death")
 
 
 func _on_dying_timer_timeout() -> void:
@@ -799,6 +825,7 @@ func fix() -> void:
 	Globals.uiCancel()
 
 func explode() -> void:
+	Globals.playAudioAt(global_position, "pop")
 	sprite.visible = false
 	Globals.movePuffMachine(global_position, 0.05, 0.5)
 	Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "RedBloom")
@@ -841,4 +868,6 @@ func launchInAir() -> void:
 	if launchInAirAmount<miniValue:
 		launchInAirAmount=miniValue
 	yForce = launchInAirAmount
-	print("launchInAir:"+str(yForce))
+	
+func playTracks() -> void:
+	Globals.playAudioAt(global_position, "tracks")

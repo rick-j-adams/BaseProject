@@ -32,6 +32,7 @@ func getLevelLimts () -> Array:
 	return [left,top,right,bottom ]
 
 func resetLevel() -> void:
+	playAmbience()
 	for node in pickUps.get_children():
 		if node is PickUp:
 			var pickUpDetails = Globals.allResources.allPickUps.get(node.pickUpType)
@@ -46,7 +47,6 @@ func resetLevel() -> void:
 				for cid in  levelDetails.get("culled"):
 					if cid == node.levelId:
 						node.queue_free()
-	print("resetLevel")
 	for node in buildables.get_children():
 		print("Globals.currentLevel = "+str(Globals.currentLevel))
 		if node is Buildable:
@@ -60,7 +60,8 @@ func resetLevel() -> void:
 					node.setUpBuildable(buildableDetails)
 
 
-
+func playAmbience() -> void:
+	Globals.playAmbienceAudio("ambience1")
 	# allLevelsBuildables
 				 
 # PickUp.PickUpType.JUMP: {"category": "expansion", "pickedUp"		

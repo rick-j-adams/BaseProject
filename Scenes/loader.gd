@@ -133,6 +133,35 @@ var currentloadState = LOAD_STATES.SCENES
 	"click" : "res://Audio/click.ogg",
 	"batteryon" : "res://Audio/batteryon.ogg",
 	"batteryoff" : "res://Audio/batteryoff.ogg",
+	"powerUp" : "res://Audio/powerUp.ogg",
+	"ambience1" : "res://Audio/dragon-studio-creepy-industrial-sounds-ambience-482892.ogg",
+	"bossHorn" : "res://Audio/BossHorn.ogg",
+	"bossHorn2" : "res://Audio/BossHorn2.ogg",
+	"jump" : "res://Audio/magiaz-jump-cartoon-439679.ogg",
+	"spark" : "res://Audio/freesound_community-match-sizzle-02-104778.ogg",
+	"pop" : "res://Audio/universfield-balloon-burst-383750.ogg",
+	"metalPunch" : "res://Audio/universfield-metal-punch-142334.ogg",
+	"traintrack" : "res://Audio/train-track-friction-sound-331009.ogg",
+	"boltdrop" : "res://Audio/boltdrop.ogg",
+	"bop" : "res://Audio/Bop.ogg",
+	"thud" : "res://Audio/Thud.ogg",
+	"pickupkey1" : "res://Audio/pickupkey1.ogg",
+	"pickupkey2" : "res://Audio/pickupkey2.ogg",
+	"death" : "res://Audio/freesound_community-dead-robot-01-82175.ogg",
+	"startMoving" : "res://Audio/startMoving.ogg",
+	"smash" : "res://Audio/smash.ogg",
+	"skid" : "res://Audio/skid.ogg",
+	"bugzapper" : "res://Audio/freesound_community-bug-zapper-47300.ogg",
+	"hitdeck" : "res://Audio/hitdeck.ogg",
+	"liftOpen" : "res://Audio/LiftOpen.ogg",
+	"liftMove" : "res://Audio/LiftMove.ogg",
+	"doorOpen" : "res://Audio/DoorOpen.ogg",
+	"doorClose" : "res://Audio/DoorClose.ogg",
+	"static" : "res://Audio/static.ogg",
+	"tracks" : "res://Audio/tracks.ogg",
+
+
+
 }
 
 @onready var loadMapGD :Dictionary  = {

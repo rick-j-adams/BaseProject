@@ -56,6 +56,9 @@ var gameWindow : Node = null
 
 var transitionMask : TransistionMask = null
 var interfaceAudio : AudioStreamPlayer2D = null
+var audioAmbiencePlayer : AudioStreamPlayer = null
+var audioStreamPlayer2DList : Array[AudioStreamPlayer2D] = []
+
 
 var sceneMap: Dictionary = {}
 var imageMap: Dictionary = {}
@@ -439,6 +442,26 @@ func getTextureByName(textureName:String) -> Texture2D:
 	var texture:Texture2D = imageMap.get(textureName)
 	return texture		
 
+func getAudioPlayers() -> Array[AudioStreamPlayer2D]:
+	if audioStreamPlayer2DList.size() == 0:
+		for i in range(4):
+			var audioPlayer:AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+			audioStreamPlayer2DList.append(audioPlayer)
+			if mainScene != null:
+				mainScene.add_child(audioPlayer)
+	
+	return audioStreamPlayer2DList
+
+func playAudioAt(localPostion: Vector2, audioName: String) -> void:
+	for audioPlay in getAudioPlayers():
+		if not audioPlay.playing:
+			audioPlay.global_position = localPostion
+			var audio = audioMap.get(audioName)
+			if audioName != null:
+				audioPlay.stream =  audio
+				audioPlay.play()
+				return
+
 func playInterfaceAudio(localPostion: Vector2, audioName: String) -> void:
 	if interfaceAudio !=null: 
 		interfaceAudio.global_position = localPostion
@@ -446,6 +469,13 @@ func playInterfaceAudio(localPostion: Vector2, audioName: String) -> void:
 		if audioName != null:
 			interfaceAudio.stream =  audio
 			interfaceAudio.play()
+
+func playAmbienceAudio(audioName: String) -> void:
+	if audioAmbiencePlayer != null:
+		var audio = audioMap.get(audioName)
+		if audio != null:
+			audioAmbiencePlayer.stream = audio
+			audioAmbiencePlayer.play()
 
 func getGameProperyNoDefault(propertyName:String) -> Variant:
 	var value:Variant = allResources.gamesValues.get(propertyName)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dcgmiqmop582s"]
+[gd_scene format=3 uid="uid://dcgmiqmop582s"]
 
 [ext_resource type="Script" uid="uid://c8u8jsmwudb1d" path="res://Scenes/Characters/dydimo.gd" id="1_2324m"]
 [ext_resource type="Texture2D" uid="uid://d1fac0jajjh2h" path="res://Images/Character/DydimoSpriteSheet.png" id="1_tvnxl"]
@@ -857,6 +857,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [41, 42, 43, 44, 45, 46]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"playTracks"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_33vpy"]
 resource_name = "WalkStart"
@@ -962,154 +976,152 @@ _data = {
 &"WindUpFire": SubResource("Animation_pumqm")
 }
 
-[node name="Dydimo" type="CharacterBody2D"]
+[node name="Dydimo" type="CharacterBody2D" unique_id=1450619377]
 floor_stop_on_slope = false
 floor_max_angle = 0.872665
 floor_snap_length = 10.0
 script = ExtResource("1_2324m")
 
-[node name="CollisionShape2DHead" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2DHead" type="CollisionShape2D" parent="." unique_id=972277947]
 position = Vector2(10, -30)
 shape = SubResource("CircleShape2D_2324m")
 
-[node name="CollisionShape2DBody" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2DBody" type="CollisionShape2D" parent="." unique_id=1617278296]
 position = Vector2(5, 32)
 scale = Vector2(1, 0.926911)
 shape = SubResource("CapsuleShape2D_m0oep")
 
-[node name="CollisionShape2DTrack" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2DTrack" type="CollisionShape2D" parent="." unique_id=1424220643]
 position = Vector2(-7, 59)
 rotation = 1.54033
 shape = SubResource("CapsuleShape2D_eblft")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ifd3n")
-}
-autoplay = "Birth"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=565121270]
+libraries/ = SubResource("AnimationLibrary_ifd3n")
+autoplay = &"Birth"
 
-[node name="RayCast2DFront" type="RayCast2D" parent="."]
+[node name="RayCast2DFront" type="RayCast2D" parent="." unique_id=862716260]
 position = Vector2(21, 59)
 target_position = Vector2(0, 35)
 
-[node name="RayCast2DBack" type="RayCast2D" parent="."]
+[node name="RayCast2DBack" type="RayCast2D" parent="." unique_id=1276959075]
 position = Vector2(-41, 58)
 target_position = Vector2(0, 35)
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=432439601]
 position = Vector2(559, -266)
 energy = 0.5
 texture = ExtResource("3_m0oep")
 
-[node name="RayCast2DFacing" type="RayCast2D" parent="."]
+[node name="RayCast2DFacing" type="RayCast2D" parent="." unique_id=822970630]
 position = Vector2(26, 59)
 rotation = 0.228029
 target_position = Vector2(26.2312, -1.98105)
 
-[node name="RayCast2DFacingBack" type="RayCast2D" parent="."]
+[node name="RayCast2DFacingBack" type="RayCast2D" parent="." unique_id=93347219]
 position = Vector2(-42, 59)
 target_position = Vector2(-23, 6)
 
-[node name="RPoint" type="Node2D" parent="."]
+[node name="RPoint" type="Node2D" parent="." unique_id=1143847988]
 position = Vector2(-8, 75)
 script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
-[node name="RPointRight" type="Node2D" parent="."]
+[node name="RPointRight" type="Node2D" parent="." unique_id=180111283]
 position = Vector2(64, 32)
 script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
-[node name="RPointLeft" type="Node2D" parent="."]
+[node name="RPointLeft" type="Node2D" parent="." unique_id=311723210]
 position = Vector2(-82, 32)
 script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
-[node name="UPoint" type="Node2D" parent="."]
+[node name="UPoint" type="Node2D" parent="." unique_id=195833899]
 position = Vector2(9, -71)
 script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
-[node name="HitTimer" type="Timer" parent="."]
+[node name="HitTimer" type="Timer" parent="." unique_id=1097601426]
 wait_time = 0.3
 one_shot = true
 
-[node name="DyingTimer" type="Timer" parent="."]
+[node name="DyingTimer" type="Timer" parent="." unique_id=264125273]
 wait_time = 3.0
 one_shot = true
 
-[node name="BirthTimer" type="Timer" parent="."]
+[node name="BirthTimer" type="Timer" parent="." unique_id=1043156995]
 
-[node name="MagTimer" type="Timer" parent="."]
+[node name="MagTimer" type="Timer" parent="." unique_id=1804256323]
 wait_time = 0.3
 
-[node name="FastTravelTimer" type="Timer" parent="."]
+[node name="FastTravelTimer" type="Timer" parent="." unique_id=877583922]
 wait_time = 0.5
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=2138715007]
 shadow_enabled = true
 shadow_filter = 1
 texture = ExtResource("5_vurtd")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=844399410]
 color = Color(0.834614, 0.834614, 0.834614, 1)
 
-[node name="MidPoint" type="Node2D" parent="."]
+[node name="MidPoint" type="Node2D" parent="." unique_id=232795823]
 script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
-[node name="Sprite2D2" type="Sprite2D" parent="MidPoint"]
+[node name="Sprite2D2" type="Sprite2D" parent="MidPoint" unique_id=1825546953]
 visible = false
 position = Vector2(-13, -36)
 texture = ExtResource("5_kdu8k")
 hframes = 4
 vframes = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="MidPoint"]
+[node name="Sprite2D" type="Sprite2D" parent="MidPoint" unique_id=1593447209]
 position = Vector2(-13, -3)
 texture = ExtResource("1_tvnxl")
 hframes = 10
 vframes = 10
 
-[node name="SparepartsHead" parent="MidPoint" instance=ExtResource("6_1b5e8")]
+[node name="SparepartsHead" parent="MidPoint" unique_id=463331343 instance=ExtResource("6_1b5e8")]
 collision_layer = 4
 collision_mask = 4
 showOnStart = false
 
-[node name="SparepartsBody" parent="MidPoint" instance=ExtResource("6_1b5e8")]
+[node name="SparepartsBody" parent="MidPoint" unique_id=63003822 instance=ExtResource("6_1b5e8")]
 collision_layer = 8
 collision_mask = 8
 partsType = 1
 showOnStart = false
 
-[node name="SparepartsLarm" parent="MidPoint" instance=ExtResource("6_1b5e8")]
+[node name="SparepartsLarm" parent="MidPoint" unique_id=970029065 instance=ExtResource("6_1b5e8")]
 collision_layer = 16
 collision_mask = 16
 partsType = 2
 showOnStart = false
 
-[node name="SparepartsRarm2" parent="MidPoint" instance=ExtResource("6_1b5e8")]
+[node name="SparepartsRarm2" parent="MidPoint" unique_id=2039190270 instance=ExtResource("6_1b5e8")]
 collision_layer = 32
 collision_mask = 32
 partsType = 3
 showOnStart = false
 
-[node name="SparepartsTracks" parent="MidPoint" instance=ExtResource("6_1b5e8")]
+[node name="SparepartsTracks" parent="MidPoint" unique_id=1969827521 instance=ExtResource("6_1b5e8")]
 collision_layer = 64
 collision_mask = 64
 partsType = 4
 showOnStart = false
 
-[node name="Zapper" parent="." instance=ExtResource("7_q8jek")]
+[node name="Zapper" parent="." unique_id=1168408823 instance=ExtResource("7_q8jek")]
 
-[node name="CameraPoints" type="Node2D" parent="."]
+[node name="CameraPoints" type="Node2D" parent="." unique_id=390461945]
 
-[node name="RPointCamRight" type="Node2D" parent="CameraPoints"]
+[node name="RPointCamRight" type="Node2D" parent="CameraPoints" unique_id=855448247]
 position = Vector2(500, 0)
 script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
-[node name="RPointCamLeft" type="Node2D" parent="CameraPoints"]
+[node name="RPointCamLeft" type="Node2D" parent="CameraPoints" unique_id=62573807]
 position = Vector2(-500, 0)
 script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"

@@ -22,6 +22,7 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 				
 
 func destroy():
+	Globals.playAudioAt(global_position, "thud")
 	animationPlayer.play("Die")
 	destroyed = true
 	removeTimer.start()

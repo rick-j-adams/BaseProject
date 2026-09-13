@@ -25,7 +25,7 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 
 func doDamage() -> void:
 	Globals.movePuffMachine(global_position, 0.05, 0.2)
-	Globals.playInterfaceAudio(global_position, "crash")
+	Globals.playAudioAt(global_position, "crash")
 	if dydimoInRange != null:
 		Globals.moveSparkEffect(dydimoInRange.global_position, dydimoInRange.rotation, dydimoInRange.sprite.flip_h, "TeleportSpark")
 		dydimoInRange.takeDamage(damage, underside.global_position,true)

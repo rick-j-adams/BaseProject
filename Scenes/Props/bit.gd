@@ -114,12 +114,15 @@ func moveBit(setPosition: Vector2) -> void:
 	canGrab=false
 	grabTimer.wait_time=0.5
 	grabTimer.start()
+	Globals.playAudioAt(global_position, "boltdrop")	
+
 
 func pickUp() -> void:
 	Globals.createPuff(global_position)
 	Globals.moveSparkEffect(global_position, 0, false, "VolumeBloom")
 	stand_by()
 	var bits = Globals.getGamePropery(BITS)
+	Globals.playAudioAt(global_position, "pickupkey2")	
 	bits += 1
 	if bits > Globals.getMaxHealth():
 		bits = Globals.getMaxHealth()

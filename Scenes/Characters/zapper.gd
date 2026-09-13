@@ -64,6 +64,8 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 			if parentNode is GoodyBox:
 				parentNode.destroy()
 
+func requestZapper() -> void:
+	Globals.playAudioAt(global_position, "bugzapper")
 
 func _on_timer_timeout() -> void:
 	isOn = false

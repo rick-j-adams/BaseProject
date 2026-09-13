@@ -82,3 +82,8 @@ func _on_timer_timeout() -> void:
 	Globals.transistionToLift(transitionToLevel)
 
 	
+func playDoorSound() -> void:
+	Globals.playAudioAt(global_position, "liftOpen")
+
+func playDoorMoveSound() -> void:
+	Globals.playAudioAt(global_position, "liftMove")

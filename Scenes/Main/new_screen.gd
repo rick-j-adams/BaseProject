@@ -16,10 +16,12 @@ func changePickUp(pickUpName:String)->void:
 
 func showWarning()->void:
 	animationPlayerWarn.play(WARNING)
+	Globals.playInterfaceAudio(global_position, "noSound")
 
 func growMaxBattery(amount:int)->void:
 	var animationName = GROW + str(amount)
 	animationPlayerGrowBattertMax.play(animationName)
+	Globals.playInterfaceAudio(global_position, "powerUp")
 
 func growBattery(amount:int)->void:
 	var animationName = GROW + str(amount)

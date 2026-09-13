@@ -47,7 +47,8 @@ func playSpinAnimation():
 	elif partsType == PartsType.RIGHT_ARM:
 		animationPlayer.play("Spin4")
 	elif partsType == PartsType.TRACKS:
-		animationPlayer.play("Spin5")		
+		animationPlayer.play("Spin5")	
+	
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
 	if body.is_in_group("actor"):
@@ -57,6 +58,7 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 				destroy()
 
 func reset():
+	Globals.playAudioAt(global_position, "boltdrop")	
 	playSpinAnimation()
 	velocity = Vector2.ZERO
 	destroyed = false

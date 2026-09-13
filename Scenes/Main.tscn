@@ -1,21 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://y14ak2xm0sgi"]
+[gd_scene format=3 uid="uid://y14ak2xm0sgi"]
 
 [ext_resource type="Script" uid="uid://c628ghmulranr" path="res://Scenes/main.gd" id="1_38f12"]
 [ext_resource type="PackedScene" uid="uid://2ycfgcde0rex" path="res://Scenes/Loader.tscn" id="2_32v5j"]
 [ext_resource type="PackedScene" uid="uid://bc08f4uf6las2" path="res://Scenes/TransistionMask.tscn" id="3_gis86"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=1814524315]
 script = ExtResource("1_38f12")
 
-[node name="MainView" type="Node" parent="."]
+[node name="MainView" type="Node" parent="." unique_id=1013179035]
 
-[node name="Loader" parent="MainView" instance=ExtResource("2_32v5j")]
+[node name="Loader" parent="MainView" unique_id=1997436672 instance=ExtResource("2_32v5j")]
 
-[node name="TransistionMask" type="Node2D" parent="."]
+[node name="TransistionMask" type="Node2D" parent="." unique_id=228584199]
 z_index = 4096
 
-[node name="TransistionMask" parent="TransistionMask" instance=ExtResource("3_gis86")]
+[node name="TransistionMask" parent="TransistionMask" unique_id=1677951719 instance=ExtResource("3_gis86")]
+position = Vector2(168, -323)
 
-[node name="Interface" type="Node" parent="."]
+[node name="Interface" type="Node" parent="." unique_id=1208653388]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Interface"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Interface" unique_id=723887561]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Interface" unique_id=1393091106]
