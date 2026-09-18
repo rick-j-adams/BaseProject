@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://5fgib33nmcje"]
+[gd_scene format=3 uid="uid://5fgib33nmcje"]
 
 [ext_resource type="Script" uid="uid://brbmtqsnngjj4" path="res://Scenes/Main/game_window.gd" id="1_dbpy3"]
 [ext_resource type="PackedScene" uid="uid://bf0if5w2l0v7k" path="res://Scenes/TestLevel/TestLevel.tscn" id="2_x77s8"]
@@ -61,23 +61,21 @@ _data = {
 &"RESET": SubResource("Animation_dnpmq")
 }
 
-[node name="GameWindow" type="Node2D"]
+[node name="GameWindow" type="Node2D" unique_id=1203107621]
 script = ExtResource("1_dbpy3")
 
-[node name="Level" type="Node2D" parent="."]
+[node name="Level" type="Node2D" parent="." unique_id=1537616286]
 
-[node name="TestLevel" parent="Level" instance=ExtResource("2_x77s8")]
+[node name="TestLevel" parent="Level" unique_id=446691224 instance=ExtResource("2_x77s8")]
 
-[node name="NewHud" parent="." instance=ExtResource("3_1bovn")]
+[node name="NewHud" parent="." unique_id=1370741752 instance=ExtResource("3_1bovn")]
 
-[node name="TouchOne" parent="." instance=ExtResource("4_0rvuu")]
+[node name="TouchOne" parent="." unique_id=159364357 instance=ExtResource("4_0rvuu")]
 
-[node name="Dydimo" parent="." instance=ExtResource("5_wh14y")]
+[node name="Dydimo" parent="." unique_id=1625234076 instance=ExtResource("5_wh14y")]
 position = Vector2(213, 217)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_5u676")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1597908204]
+libraries/ = SubResource("AnimationLibrary_5u676")
 
-[node name="MainCamera" parent="." instance=ExtResource("6_dnpmq")]
+[node name="MainCamera" parent="." unique_id=1359713000 instance=ExtResource("6_dnpmq")]

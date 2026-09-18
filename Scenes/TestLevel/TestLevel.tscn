@@ -4248,27 +4248,24 @@ metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 position = Vector2(-1973, 141)
 scale = Vector2(2, 2)
 transisitionType = 2
-destinationLevel = "R002"
 destinationEntryPoint = "E3"
 
 [node name="TransitionArea2" parent="ExitPoints" unique_id=1983245722 instance=ExtResource("38_elur0")]
 position = Vector2(-1978, 1519)
 scale = Vector2(2, 2)
 transisitionType = 2
-destinationLevel = "R002"
 destinationEntryPoint = "E4"
 
 [node name="TransitionArea3" parent="ExitPoints" unique_id=666539929 instance=ExtResource("38_elur0")]
 position = Vector2(5563, 1549)
 scale = Vector2(2, 2)
 transisitionType = 2
+destinationEntryPoint = "E2"
 
 [node name="TransitionArea4" parent="ExitPoints" unique_id=1392500151 instance=ExtResource("38_elur0")]
 position = Vector2(5593, -671)
 scale = Vector2(2, 2)
 transisitionType = 2
-destinationLevel = "R002"
-destinationEntryPoint = "E2"
 
 [node name="Lifts" type="Node2D" parent="." unique_id=476100166]
 

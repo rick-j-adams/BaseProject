@@ -97,6 +97,7 @@ var mainCharacter = null
 
 var currentLevel:String = "XXXX"
 var currentReceptacle: BatteryReceptacleWallMount = null
+var transitioning : bool = false
 
 func setUpPicksUpMap() -> void:
 	if allResources.allPickUps.size() == 0:
@@ -198,8 +199,11 @@ func setObjectiveUnDone(objectiveName: String) -> void:
 func setUpLevelsMap() -> void:
 	if allResources.allLevels.size() == 0:
 		allResources.allLevels = {
-			"R001" : {"sceneName":"test", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
-			"R002" : {"sceneName":"test", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  }
+			"R001" : {"sceneName":"R001", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
+			"R002" : {"sceneName":"R002", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
+			"R003" : {"sceneName":"R003", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
+			"R004" : {"sceneName":"test", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  }
+
 		}
 
 
@@ -539,7 +543,7 @@ func loadRestartLevel() ->void :
 		
 	var lastLoadPosition =  getGameProperyNoDefault(LASTPOSITIONKEY)
 	if lastLoadPosition == null:
-		lastLoadPosition  = Vector2(222.0,173.0 ) 
+		lastLoadPosition  = Vector2(471.0,-133.0 ) #TODO find correct starting position for new game
 		setGamePropery(LASTPOSITIONKEY, lastLoadPosition)
 	transisitionToLevel(lastLoadLevel )
 	mainCharacter.position = lastLoadPosition
@@ -589,8 +593,11 @@ func transisitionToLevel(levelName :String) -> void:
 		
 		
 func transitionToEntryPoint(transisitionType :TransitionArea.TRANSITION_TYPES,  destinationLevel:String, destinationEntryPoint:String) -> void:
+	if transitioning:
+		return
+	transitioning = true
 	transisitionToLevel(destinationLevel)
-	
+	print("transitionToEntryPoint:"+str(destinationLevel)+":"+str(destinationEntryPoint))
 	for childNode in gameWindow.level.get_children():
 		var newPosition = childNode.findEntryPointsPosition(destinationEntryPoint)
 		if transisitionType == TransitionArea.TRANSITION_TYPES.HORIZONTAL or transisitionType == TransitionArea.TRANSITION_TYPES.BOTH:
@@ -598,6 +605,7 @@ func transitionToEntryPoint(transisitionType :TransitionArea.TRANSITION_TYPES,  
 		if transisitionType == TransitionArea.TRANSITION_TYPES.VERTICAL or transisitionType == TransitionArea.TRANSITION_TYPES.BOTH:
 			mainCharacter.position.y = newPosition.y
 		mainCamera.snapTo(mainCharacter.position)
+	transitioning = false
 
 func transitionToBuildable( destinationLevel:String, destinationOid:int) -> void:
 	transisitionToLevel(destinationLevel)
