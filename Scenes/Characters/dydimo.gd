@@ -823,6 +823,9 @@ func fix() -> void:
 	objective.set("done",true)
 	Globals.uiShowCase()	
 	Globals.uiCancel()
+	#save new position
+	Globals.setGamePropery(Globals.LASTPOSITIONKEY, global_position)
+	Globals.setGamePropery(Globals.LASTLEVELKEY, Globals.currentLevel)
 
 func explode() -> void:
 	Globals.playAudioAt(global_position, "pop")
