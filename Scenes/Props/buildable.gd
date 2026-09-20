@@ -16,7 +16,7 @@ enum BuildableType {
 
 @export var isOn := false	
 @export var isBroken :bool = true
-@export var mapAreaName = ""
+@export var mapAreaName :Map.SECTIONS = Map.SECTIONS.REFUSE
 
 @onready var sprite :Sprite2D = $Sprite2D
 @onready var animationPlayer :AnimationPlayer = $AnimationPlayer
@@ -117,7 +117,7 @@ func working () ->BuildableType:
 	if not isBroken and isOn: 
 		animationPlayer.play("Working")	
 		if 	buildableType == BuildableType.MAP_MACHINE:
-			pass #TODO add map details
+			clearAreaMap()
 		if 	buildableType == BuildableType.FAST_TRAVEL:
 			Globals.fastTravelOid=fastTravelOid
 			return buildableType
@@ -155,7 +155,12 @@ func setUseable():
 		animationPlayer.play("Ready")
 	if buildableType == BuildableType.TELEPORTER:
 		Globals.mainCharacter.canTeleport = true
+		
 	#saveBuildableState()
+func clearAreaMap():
+	if buildableType == BuildableType.MAP_MACHINE:
+		if Globals.hud!=null:
+			Globals.hud.showMapSection(mapAreaName)
 
 func setUnUseable():
 	animationPlayer.play("Idle")

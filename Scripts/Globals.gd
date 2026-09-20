@@ -204,7 +204,10 @@ func setUpLevelsMap() -> void:
 			"R003" : {"sceneName":"R003", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
 			"R004" : {"sceneName":"R004", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
 			"R005" : {"sceneName":"R005", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
-			"R006" : {"sceneName":"R006", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  }
+			"R006" : {"sceneName":"R006", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
+			"R007" : {"sceneName":"R007", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
+			"R008" : {"sceneName":"R008", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
+			"R009" : {"sceneName":"R009", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  }
 
 		}
 
@@ -574,6 +577,7 @@ func transisitionToLevel(levelName :String) -> void:
 			if newSceneName!=null:
 				if transitionMask !=null:
 					transitionMask.playTransistion()
+				
 				var newSceneNode:PackedScene = sceneMap.get(newSceneName)
 				# print("newSceneNode:"+str(newSceneNode))
 				if newSceneNode!=null:
@@ -608,6 +612,7 @@ func transitionToEntryPoint(transisitionType :TransitionArea.TRANSITION_TYPES,  
 			mainCharacter.position.y = newPosition.y
 		mainCamera.snapTo(mainCharacter.position)
 	transitioning = false
+	
 
 func transitionToBuildable( destinationLevel:String, destinationOid:int) -> void:
 	transisitionToLevel(destinationLevel)

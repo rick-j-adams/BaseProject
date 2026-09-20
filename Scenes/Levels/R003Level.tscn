@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://b3xh08v4oi0jq" path="res://Scenes/Props/BreakableWall.tscn" id="34_qgi2i"]
 [ext_resource type="PackedScene" uid="uid://c788bd0xuifl6" path="res://Scenes/Props/HiddenAreaMask.tscn" id="35_5373y"]
 [ext_resource type="Texture2D" uid="uid://cdywlw0qgkxqn" path="res://Images/Props/pipe2.png" id="36_5un1c"]
+[ext_resource type="PackedScene" uid="uid://bo4eym23rta43" path="res://Images/Character/EnemyParts/Smasher.tscn" id="36_vmctx"]
 [ext_resource type="PackedScene" uid="uid://bikhhuw81nhfs" path="res://Scenes/Props/pipe.tscn" id="37_o35su"]
 [ext_resource type="Texture2D" uid="uid://cl4c7rqpy75po" path="res://Images/Props/vent8.png" id="38_tofra"]
 [ext_resource type="Texture2D" uid="uid://b5w8a1hvwtyx7" path="res://Images/Props/struct1.png" id="39_iknxe"]
@@ -3785,6 +3786,7 @@ metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 environment = SubResource("Environment_k2qbn")
 
 [node name="MaskRevealAreas" type="Node2D" parent="." unique_id=1128970295]
+visible = false
 
 [node name="MaskRevealArea1" parent="MaskRevealAreas" unique_id=264424048 instance=ExtResource("3_vo0df")]
 position = Vector2(-6042, -6036)
@@ -4269,14 +4271,20 @@ isOn = true
 
 [node name="PickUp1" parent="PickUps" unique_id=1059370732 instance=ExtResource("31_fsx0f")]
 position = Vector2(3199, -655)
-pickUpType = 22
+pickUpType = 23
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1994181942]
 
 [node name="Stinger" parent="Enemies" unique_id=1733837660 instance=ExtResource("32_kuaot")]
-position = Vector2(-4890, -2930)
+position = Vector2(-283, -2388)
+levelId = 5
+health = 1.0
+flying = true
+
+[node name="Stinger2" parent="Enemies" unique_id=1147715154 instance=ExtResource("32_kuaot")]
+position = Vector2(2411, -3804)
 levelId = 4
-health = 2.0
+health = 1.0
 flying = true
 
 [node name="Box6" parent="Enemies" unique_id=2060036119 instance=ExtResource("33_ritnv")]
@@ -4310,6 +4318,31 @@ scale = Vector2(-1, 1)
 [node name="HiddenAreaMask" parent="Enemies" unique_id=823932208 instance=ExtResource("35_5373y")]
 position = Vector2(-3588, -2086)
 scale = Vector2(-1, 1)
+
+[node name="Smasher" parent="Enemies" unique_id=807055543 instance=ExtResource("36_vmctx")]
+position = Vector2(-588, -260)
+levelId = 1
+health = 1.0
+
+[node name="Smasher4" parent="Enemies" unique_id=963993332 instance=ExtResource("36_vmctx")]
+position = Vector2(2530, -2197)
+levelId = 2
+health = 1.0
+
+[node name="Smasher5" parent="Enemies" unique_id=456480169 instance=ExtResource("36_vmctx")]
+position = Vector2(3095, -2641)
+levelId = 6
+health = 1.0
+
+[node name="Smasher2" parent="Enemies" unique_id=1185062236 instance=ExtResource("36_vmctx")]
+position = Vector2(2709, -1088)
+levelId = 3
+health = 1.0
+
+[node name="Smasher3" parent="Enemies" unique_id=2042551081 instance=ExtResource("36_vmctx")]
+position = Vector2(-1383, -1866)
+levelId = 4
+health = 1.0
 
 [node name="Decoy" type="Node2D" parent="." unique_id=1209300732]
 
@@ -4358,12 +4391,14 @@ switchState = 1
 position = Vector2(-274, -253)
 oid = 3
 buildableType = 3
+repairCostInBits = 2.0
 
 [node name="Buildable2" parent="Buildables" unique_id=1641677927 instance=ExtResource("44_f3rop")]
 position = Vector2(3230, -3708)
 oid = 4
 buildableType = 4
 fastTravelOid = 4
+repairCostInBits = 2.0
 
 [node name="Incline1" type="Sprite2D" parent="." unique_id=369674295]
 position = Vector2(-4349, -4406)

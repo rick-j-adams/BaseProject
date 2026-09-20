@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://dl0yna6w7oumh" path="res://Scenes/Props/Box.tscn" id="33_0ufbf"]
 [ext_resource type="PackedScene" uid="uid://b3xh08v4oi0jq" path="res://Scenes/Props/BreakableWall.tscn" id="34_j3vd8"]
 [ext_resource type="PackedScene" uid="uid://c788bd0xuifl6" path="res://Scenes/Props/HiddenAreaMask.tscn" id="35_njtiw"]
+[ext_resource type="PackedScene" uid="uid://bo4eym23rta43" path="res://Images/Character/EnemyParts/Smasher.tscn" id="36_kkojj"]
 [ext_resource type="Texture2D" uid="uid://cdywlw0qgkxqn" path="res://Images/Props/pipe2.png" id="36_u5bec"]
 [ext_resource type="PackedScene" uid="uid://bikhhuw81nhfs" path="res://Scenes/Props/pipe.tscn" id="37_5m3fy"]
 [ext_resource type="Texture2D" uid="uid://cl4c7rqpy75po" path="res://Images/Props/vent8.png" id="38_eta2b"]
@@ -4124,6 +4125,10 @@ motion_scale = Vector2(0.55, 0.55)
 position = Vector2(2517, 3026)
 texture = ExtResource("16_4pg0o")
 
+[node name="Littlerubbish2" type="Sprite2D" parent="Parallax2DMidBack/ParallaxBackground/ParallaxLayer" unique_id=452460695]
+position = Vector2(-2404, 3027)
+texture = ExtResource("16_4pg0o")
+
 [node name="Parallax2DBackWall" type="Parallax2D" parent="." unique_id=381107405]
 light_mask = 2
 scroll_offset = Vector2(205, 0)
@@ -4209,7 +4214,6 @@ destinationEntryPoint = "E4"
 [node name="TransitionArea2" parent="ExitPoints" unique_id=1983245722 instance=ExtResource("25_6o2nf")]
 position = Vector2(-5480, 4870)
 scale = Vector2(2, 2)
-transisitionType = 2
 destinationLevel = "R007"
 destinationEntryPoint = "E4"
 
@@ -4255,8 +4259,8 @@ pickUpType = 1
 [node name="Enemies" type="Node2D" parent="." unique_id=1994181942]
 
 [node name="Stinger" parent="Enemies" unique_id=1733837660 instance=ExtResource("32_15c4n")]
-position = Vector2(-4000, -2936)
-levelId = 4
+position = Vector2(-2567, 3803)
+levelId = 25
 health = 2.0
 flying = true
 
@@ -4291,6 +4295,41 @@ scale = Vector2(-1, 1)
 [node name="HiddenAreaMask" parent="Enemies" unique_id=823932208 instance=ExtResource("35_njtiw")]
 position = Vector2(-3588, -2086)
 scale = Vector2(-1, 1)
+
+[node name="Smasher" parent="Enemies" unique_id=1810444456 instance=ExtResource("36_kkojj")]
+position = Vector2(-1209, 4994)
+levelId = 15
+health = 1.0
+
+[node name="Smasher2" parent="Enemies" unique_id=1722931672 instance=ExtResource("36_kkojj")]
+position = Vector2(73, 4985)
+levelId = 16
+health = 1.0
+
+[node name="Smasher3" parent="Enemies" unique_id=85838085 instance=ExtResource("36_kkojj")]
+position = Vector2(1134, 4994)
+levelId = 17
+health = 1.0
+
+[node name="Smasher4" parent="Enemies" unique_id=926006567 instance=ExtResource("36_kkojj")]
+position = Vector2(2591, 4727)
+levelId = 18
+health = 1.0
+
+[node name="Smasher5" parent="Enemies" unique_id=1880185542 instance=ExtResource("36_kkojj")]
+position = Vector2(1824, 4033)
+levelId = 19
+health = 1.0
+
+[node name="Smasher6" parent="Enemies" unique_id=922838924 instance=ExtResource("36_kkojj")]
+position = Vector2(-1066, 4221)
+levelId = 20
+health = 1.0
+
+[node name="Smasher7" parent="Enemies" unique_id=1707398717 instance=ExtResource("36_kkojj")]
+position = Vector2(-2869, 2176)
+levelId = 21
+health = 1.0
 
 [node name="Decoy" type="Node2D" parent="." unique_id=1209300732]
 

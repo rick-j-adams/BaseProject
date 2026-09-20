@@ -1,338 +1,338 @@
-[gd_scene load_steps=5 format=3 uid="uid://clal205ols17i"]
+[gd_scene format=3 uid="uid://clal205ols17i"]
 
 [ext_resource type="Script" uid="uid://b2q5oe3h5j0o8" path="res://Scenes/Map/map_room.gd" id="1_jhhd5"]
-[ext_resource type="Texture2D" uid="uid://e5sj060bswl6" path="res://Images/Map/testMap.png" id="2_qm2bf"]
+[ext_resource type="Texture2D" uid="uid://du7xrjjdwr7sn" path="res://Images/Map/R001Map.png" id="2_qm2bf"]
 [ext_resource type="Texture2D" uid="uid://xeh11sfepoxm" path="res://Images/Map/MapMasker.png" id="3_mys41"]
 [ext_resource type="Texture2D" uid="uid://dsc5atnd5oya6" path="res://Images/Map/redSquare.png" id="3_qm2bf"]
 
-[node name="MapRoom" type="Node2D"]
+[node name="MapRoom" type="Node2D" unique_id=173453138]
 script = ExtResource("1_jhhd5")
 
-[node name="Sprite2DRoomMap" type="Sprite2D" parent="."]
+[node name="Sprite2DRoomMap" type="Sprite2D" parent="." unique_id=2077781110]
 texture = ExtResource("2_qm2bf")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1603151788]
 visible = false
 texture = ExtResource("3_qm2bf")
 
-[node name="Maskers" type="Node2D" parent="."]
+[node name="Maskers" type="Node2D" parent="." unique_id=841668281]
 
-[node name="Masker1" type="Sprite2D" parent="Maskers"]
+[node name="Masker1" type="Sprite2D" parent="Maskers" unique_id=738702315]
 visible = false
 position = Vector2(-112, -112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker2" type="Sprite2D" parent="Maskers"]
+[node name="Masker2" type="Sprite2D" parent="Maskers" unique_id=1850899208]
 visible = false
 position = Vector2(-80, -112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker3" type="Sprite2D" parent="Maskers"]
+[node name="Masker3" type="Sprite2D" parent="Maskers" unique_id=390528543]
 visible = false
 position = Vector2(-48, -112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker4" type="Sprite2D" parent="Maskers"]
+[node name="Masker4" type="Sprite2D" parent="Maskers" unique_id=2059541910]
 visible = false
 position = Vector2(-16, -112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker5" type="Sprite2D" parent="Maskers"]
+[node name="Masker5" type="Sprite2D" parent="Maskers" unique_id=1345883656]
 visible = false
 position = Vector2(16, -112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker6" type="Sprite2D" parent="Maskers"]
+[node name="Masker6" type="Sprite2D" parent="Maskers" unique_id=1157982738]
 visible = false
 position = Vector2(48, -112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker7" type="Sprite2D" parent="Maskers"]
+[node name="Masker7" type="Sprite2D" parent="Maskers" unique_id=135810794]
 visible = false
 position = Vector2(80, -112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker8" type="Sprite2D" parent="Maskers"]
+[node name="Masker8" type="Sprite2D" parent="Maskers" unique_id=117005552]
 visible = false
 position = Vector2(112, -112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker9" type="Sprite2D" parent="Maskers"]
+[node name="Masker9" type="Sprite2D" parent="Maskers" unique_id=1997859375]
 visible = false
 position = Vector2(-112, -80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker10" type="Sprite2D" parent="Maskers"]
+[node name="Masker10" type="Sprite2D" parent="Maskers" unique_id=211006072]
 visible = false
 position = Vector2(-80, -80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker11" type="Sprite2D" parent="Maskers"]
+[node name="Masker11" type="Sprite2D" parent="Maskers" unique_id=1812744188]
 visible = false
 position = Vector2(-48, -80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker12" type="Sprite2D" parent="Maskers"]
+[node name="Masker12" type="Sprite2D" parent="Maskers" unique_id=141106949]
 visible = false
 position = Vector2(-16, -80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker13" type="Sprite2D" parent="Maskers"]
+[node name="Masker13" type="Sprite2D" parent="Maskers" unique_id=1628028621]
 visible = false
 position = Vector2(16, -80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker14" type="Sprite2D" parent="Maskers"]
+[node name="Masker14" type="Sprite2D" parent="Maskers" unique_id=816288433]
 visible = false
 position = Vector2(48, -80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker15" type="Sprite2D" parent="Maskers"]
+[node name="Masker15" type="Sprite2D" parent="Maskers" unique_id=1887709982]
 visible = false
 position = Vector2(80, -80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker16" type="Sprite2D" parent="Maskers"]
+[node name="Masker16" type="Sprite2D" parent="Maskers" unique_id=1359454932]
 visible = false
 position = Vector2(112, -80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker17" type="Sprite2D" parent="Maskers"]
+[node name="Masker17" type="Sprite2D" parent="Maskers" unique_id=1203683938]
 visible = false
 position = Vector2(-112, -48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker18" type="Sprite2D" parent="Maskers"]
+[node name="Masker18" type="Sprite2D" parent="Maskers" unique_id=1495339849]
 visible = false
 position = Vector2(-80, -48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker19" type="Sprite2D" parent="Maskers"]
+[node name="Masker19" type="Sprite2D" parent="Maskers" unique_id=1664889106]
 visible = false
 position = Vector2(-48, -48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker20" type="Sprite2D" parent="Maskers"]
+[node name="Masker20" type="Sprite2D" parent="Maskers" unique_id=1738107931]
 visible = false
 position = Vector2(-16, -48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker21" type="Sprite2D" parent="Maskers"]
+[node name="Masker21" type="Sprite2D" parent="Maskers" unique_id=1509244280]
 visible = false
 position = Vector2(16, -48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker22" type="Sprite2D" parent="Maskers"]
+[node name="Masker22" type="Sprite2D" parent="Maskers" unique_id=790319372]
 visible = false
 position = Vector2(48, -48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker23" type="Sprite2D" parent="Maskers"]
+[node name="Masker23" type="Sprite2D" parent="Maskers" unique_id=190349640]
 visible = false
 position = Vector2(80, -48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker24" type="Sprite2D" parent="Maskers"]
+[node name="Masker24" type="Sprite2D" parent="Maskers" unique_id=1089991703]
 visible = false
 position = Vector2(112, -48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker25" type="Sprite2D" parent="Maskers"]
+[node name="Masker25" type="Sprite2D" parent="Maskers" unique_id=391845613]
 visible = false
 position = Vector2(-112, -16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker26" type="Sprite2D" parent="Maskers"]
+[node name="Masker26" type="Sprite2D" parent="Maskers" unique_id=1116843318]
 visible = false
 position = Vector2(-80, -16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker27" type="Sprite2D" parent="Maskers"]
+[node name="Masker27" type="Sprite2D" parent="Maskers" unique_id=909772053]
 visible = false
 position = Vector2(-48, -16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker28" type="Sprite2D" parent="Maskers"]
+[node name="Masker28" type="Sprite2D" parent="Maskers" unique_id=442168065]
 visible = false
 position = Vector2(-16, -16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker29" type="Sprite2D" parent="Maskers"]
+[node name="Masker29" type="Sprite2D" parent="Maskers" unique_id=448078947]
 visible = false
 position = Vector2(16, -16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker30" type="Sprite2D" parent="Maskers"]
+[node name="Masker30" type="Sprite2D" parent="Maskers" unique_id=1896044148]
 visible = false
 position = Vector2(48, -16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker31" type="Sprite2D" parent="Maskers"]
+[node name="Masker31" type="Sprite2D" parent="Maskers" unique_id=462279717]
 visible = false
 position = Vector2(80, -16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker32" type="Sprite2D" parent="Maskers"]
+[node name="Masker32" type="Sprite2D" parent="Maskers" unique_id=472976670]
 visible = false
 position = Vector2(112, -16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker33" type="Sprite2D" parent="Maskers"]
+[node name="Masker33" type="Sprite2D" parent="Maskers" unique_id=637906151]
 visible = false
 position = Vector2(-112, 16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker34" type="Sprite2D" parent="Maskers"]
+[node name="Masker34" type="Sprite2D" parent="Maskers" unique_id=1834941791]
 visible = false
 position = Vector2(-80, 16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker35" type="Sprite2D" parent="Maskers"]
+[node name="Masker35" type="Sprite2D" parent="Maskers" unique_id=1706085928]
 visible = false
 position = Vector2(-48, 16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker36" type="Sprite2D" parent="Maskers"]
+[node name="Masker36" type="Sprite2D" parent="Maskers" unique_id=1127047713]
 visible = false
 position = Vector2(-16, 16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker37" type="Sprite2D" parent="Maskers"]
+[node name="Masker37" type="Sprite2D" parent="Maskers" unique_id=596481446]
 visible = false
 position = Vector2(16, 16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker38" type="Sprite2D" parent="Maskers"]
+[node name="Masker38" type="Sprite2D" parent="Maskers" unique_id=671478487]
 visible = false
 position = Vector2(48, 16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker39" type="Sprite2D" parent="Maskers"]
+[node name="Masker39" type="Sprite2D" parent="Maskers" unique_id=2058938950]
 visible = false
 position = Vector2(80, 16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker40" type="Sprite2D" parent="Maskers"]
+[node name="Masker40" type="Sprite2D" parent="Maskers" unique_id=1418541943]
 visible = false
 position = Vector2(112, 16)
 texture = ExtResource("3_mys41")
 
-[node name="Masker41" type="Sprite2D" parent="Maskers"]
+[node name="Masker41" type="Sprite2D" parent="Maskers" unique_id=349856603]
 visible = false
 position = Vector2(-112, 48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker42" type="Sprite2D" parent="Maskers"]
+[node name="Masker42" type="Sprite2D" parent="Maskers" unique_id=616846603]
 visible = false
 position = Vector2(-80, 48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker43" type="Sprite2D" parent="Maskers"]
+[node name="Masker43" type="Sprite2D" parent="Maskers" unique_id=1457955774]
 visible = false
 position = Vector2(-48, 48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker44" type="Sprite2D" parent="Maskers"]
+[node name="Masker44" type="Sprite2D" parent="Maskers" unique_id=824350795]
 visible = false
 position = Vector2(-16, 48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker45" type="Sprite2D" parent="Maskers"]
+[node name="Masker45" type="Sprite2D" parent="Maskers" unique_id=776411827]
 visible = false
 position = Vector2(16, 48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker46" type="Sprite2D" parent="Maskers"]
+[node name="Masker46" type="Sprite2D" parent="Maskers" unique_id=1242709755]
 visible = false
 position = Vector2(48, 48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker47" type="Sprite2D" parent="Maskers"]
+[node name="Masker47" type="Sprite2D" parent="Maskers" unique_id=1187524511]
 visible = false
 position = Vector2(80, 48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker48" type="Sprite2D" parent="Maskers"]
+[node name="Masker48" type="Sprite2D" parent="Maskers" unique_id=1819632857]
 visible = false
 position = Vector2(112, 48)
 texture = ExtResource("3_mys41")
 
-[node name="Masker49" type="Sprite2D" parent="Maskers"]
+[node name="Masker49" type="Sprite2D" parent="Maskers" unique_id=1936992634]
 visible = false
 position = Vector2(-112, 80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker50" type="Sprite2D" parent="Maskers"]
+[node name="Masker50" type="Sprite2D" parent="Maskers" unique_id=560945320]
 visible = false
 position = Vector2(-80, 80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker51" type="Sprite2D" parent="Maskers"]
+[node name="Masker51" type="Sprite2D" parent="Maskers" unique_id=1352591915]
 visible = false
 position = Vector2(-48, 80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker52" type="Sprite2D" parent="Maskers"]
+[node name="Masker52" type="Sprite2D" parent="Maskers" unique_id=348505526]
 visible = false
 position = Vector2(-16, 80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker53" type="Sprite2D" parent="Maskers"]
+[node name="Masker53" type="Sprite2D" parent="Maskers" unique_id=1878612899]
 visible = false
 position = Vector2(16, 80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker54" type="Sprite2D" parent="Maskers"]
+[node name="Masker54" type="Sprite2D" parent="Maskers" unique_id=1236324177]
 visible = false
 position = Vector2(48, 80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker55" type="Sprite2D" parent="Maskers"]
+[node name="Masker55" type="Sprite2D" parent="Maskers" unique_id=957660635]
 visible = false
 position = Vector2(80, 80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker56" type="Sprite2D" parent="Maskers"]
+[node name="Masker56" type="Sprite2D" parent="Maskers" unique_id=498065099]
 visible = false
 position = Vector2(112, 80)
 texture = ExtResource("3_mys41")
 
-[node name="Masker57" type="Sprite2D" parent="Maskers"]
+[node name="Masker57" type="Sprite2D" parent="Maskers" unique_id=1117188250]
 visible = false
 position = Vector2(-112, 112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker58" type="Sprite2D" parent="Maskers"]
+[node name="Masker58" type="Sprite2D" parent="Maskers" unique_id=1590064640]
 visible = false
 position = Vector2(-80, 112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker59" type="Sprite2D" parent="Maskers"]
+[node name="Masker59" type="Sprite2D" parent="Maskers" unique_id=1460535973]
 visible = false
 position = Vector2(-48, 112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker60" type="Sprite2D" parent="Maskers"]
+[node name="Masker60" type="Sprite2D" parent="Maskers" unique_id=85233675]
 visible = false
 position = Vector2(-16, 112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker61" type="Sprite2D" parent="Maskers"]
+[node name="Masker61" type="Sprite2D" parent="Maskers" unique_id=1157272193]
 visible = false
 position = Vector2(16, 112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker62" type="Sprite2D" parent="Maskers"]
+[node name="Masker62" type="Sprite2D" parent="Maskers" unique_id=186195655]
 visible = false
 position = Vector2(48, 112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker63" type="Sprite2D" parent="Maskers"]
+[node name="Masker63" type="Sprite2D" parent="Maskers" unique_id=982655733]
 visible = false
 position = Vector2(80, 112)
 texture = ExtResource("3_mys41")
 
-[node name="Masker64" type="Sprite2D" parent="Maskers"]
+[node name="Masker64" type="Sprite2D" parent="Maskers" unique_id=97652172]
 visible = false
 position = Vector2(112, 112)
 texture = ExtResource("3_mys41")

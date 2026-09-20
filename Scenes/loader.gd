@@ -29,9 +29,10 @@ var currentloadState = LOAD_STATES.SCENES
 	"R003": "res://Scenes/Levels/R003Level.tscn",
 	"R004": "res://Scenes/Levels/R004Level.tscn",
 	"R005": "res://Scenes/Levels/R005Level.tscn",
-	"R006": "res://Scenes/Levels/R006Level.tscn"
-
-
+	"R006": "res://Scenes/Levels/R006Level.tscn",
+	"R007": "res://Scenes/Levels/R007Level.tscn",
+	"R008": "res://Scenes/Levels/R0008Level.tscn",
+	"R009": "res://Scenes/Levels/R009Level.tscn",
 
 }
 
@@ -125,7 +126,12 @@ var currentloadState = LOAD_STATES.SCENES
 	"pin" : "res://Images/Props/Pin.png",
 	"mapmachine" : "res://Images/Props/mapmachine.png",
 	"fasttravel" : "res://Images/Props/FastTraveller.png",
-	"fan" : "res://Images/Props/Fan.png"
+	"fan" : "res://Images/Props/Fan.png",
+	"R001Map" : "res://Images/Map/R001Map.png",
+	"R002Map" : "res://Images/Map/R002Map.png",
+	"R003Map" : "res://Images/Map/R003Map.png",
+	"R004Map" : "res://Images/Map/R004Map.png",
+
 
 
 }

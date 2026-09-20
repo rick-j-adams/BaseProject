@@ -4345,19 +4345,19 @@ health = 1.0
 [node name="Stinger" parent="Enemies" unique_id=1733837660 instance=ExtResource("33_1r810")]
 position = Vector2(-4942, -2459)
 levelId = 4
-health = 2.0
+health = 1.0
 flying = true
 
 [node name="Stinger2" parent="Enemies" unique_id=26392256 instance=ExtResource("33_1r810")]
 position = Vector2(-1663, -2278)
 levelId = 4
-health = 2.0
+health = 1.0
 flying = true
 
 [node name="Stinger3" parent="Enemies" unique_id=1803713300 instance=ExtResource("33_1r810")]
 position = Vector2(-2211, -928)
 levelId = 4
-health = 2.0
+health = 1.0
 flying = true
 
 [node name="Box" parent="Enemies" unique_id=698723255 instance=ExtResource("34_3yycv")]
@@ -4430,9 +4430,18 @@ scale = Vector2(-1, 1)
 
 [node name="WalkSmasher" parent="Enemies" unique_id=526508824 instance=ExtResource("37_r4nlx")]
 position = Vector2(-409, 1057)
+levelId = 7
+health = 1.0
 
 [node name="WalkSmasher2" parent="Enemies" unique_id=2009543911 instance=ExtResource("37_r4nlx")]
 position = Vector2(-1977, 1186)
+levelId = 8
+health = 1.0
+
+[node name="WalkSmasher3" parent="Enemies" unique_id=849302073 instance=ExtResource("37_r4nlx")]
+position = Vector2(-2070, -294)
+levelId = 9
+health = 1.0
 
 [node name="Decoy" type="Node2D" parent="." unique_id=1209300732]
 

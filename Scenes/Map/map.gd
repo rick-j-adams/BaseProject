@@ -68,7 +68,12 @@ func setPosition() -> void:
 		sprite.position = mapRoom.position + scaledPostion
 		camera2DViewPort.position = sprite.position
 
-
+func showMapSection(sectionType:Map.SECTIONS) -> void:
+	print("showMapSection:"+str(sectionType))
+	for node in mapRooms.get_children():
+		if node is MapRoom:
+			if node.roomsection == sectionType:
+				node.revealAllMasks()
 
 func zoomin():
 	zoomPointer=zoomPointer+1

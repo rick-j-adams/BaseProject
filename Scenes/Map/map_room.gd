@@ -9,12 +9,14 @@ class_name MapRoom
 @onready var sprite2DRoomMap :Sprite2D = $Sprite2DRoomMap
 @onready var maskRevealAreas :Node2D = $Maskers
 
+const KEY_NAME : String = "Map"
 
 func _ready() -> void:
 	setupRoom()
 
 func setupRoom():
 	sprite2DRoomMap.modulate = Map.sectionColor.get(roomsection)
+	sprite2DRoomMap.texture = Globals.imageMap.get(roomName+KEY_NAME)
 
 
 func doMaskReveals() ->void:
@@ -34,3 +36,6 @@ func doMaskReveals() ->void:
 			node.visible = false
 		count=count+1
 		
+func revealAllMasks() -> void:
+	for node in maskRevealAreas.get_children():
+		node.visible = true

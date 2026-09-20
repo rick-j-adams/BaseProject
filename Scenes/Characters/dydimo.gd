@@ -103,6 +103,8 @@ var inReceptacleRange = false
 var liftInRange = false
 var lift : Node2D = null
 
+var transisitioning : bool = false
+
 # ─── helpers ──────────────────────────────────────────────────────────────────
 
 func isOnFloor() -> bool:
@@ -143,6 +145,11 @@ func startBirth():
 	sparePartLarm.destroy()
 	sparePartRarm.destroy()
 	sparePartTracks.destroy()
+
+	# if Globals.transitionMask !=null:
+	# 	if Globals.mainCharacter!=null:
+	# 		Globals.transitionMask.global_position = Globals.mainCharacter.global_position
+	# 		Globals.transitionMask.playTransistion()
 
 
 # ─── animation ────────────────────────────────────────────────────────────────
@@ -436,7 +443,7 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 			var buildableType = buildableArea.working () 
 			if buildableType == Buildable.BuildableType.TELEPORTER:
 				doTeleport()
-
+							
 			if buildableType == Buildable.BuildableType.FAST_TRAVEL:
 				# print("Globals.MODES.FAST_TRAVEL")
 				Globals.currentMode = Globals.MODES.FAST_TRAVEL

@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://dl0yna6w7oumh" path="res://Scenes/Props/Box.tscn" id="33_n8tx2"]
 [ext_resource type="PackedScene" uid="uid://b3xh08v4oi0jq" path="res://Scenes/Props/BreakableWall.tscn" id="34_p80pu"]
 [ext_resource type="PackedScene" uid="uid://c788bd0xuifl6" path="res://Scenes/Props/HiddenAreaMask.tscn" id="35_y5nxy"]
+[ext_resource type="PackedScene" uid="uid://bo4eym23rta43" path="res://Images/Character/EnemyParts/Smasher.tscn" id="36_h4kew"]
 [ext_resource type="Texture2D" uid="uid://cdywlw0qgkxqn" path="res://Images/Props/pipe2.png" id="36_nk07y"]
 [ext_resource type="PackedScene" uid="uid://bikhhuw81nhfs" path="res://Scenes/Props/pipe.tscn" id="37_2cpiu"]
 [ext_resource type="Texture2D" uid="uid://cl4c7rqpy75po" path="res://Images/Props/vent8.png" id="38_desld"]
@@ -4315,7 +4316,13 @@ pickUpType = 1
 
 [node name="Stinger" parent="Enemies" unique_id=1733837660 instance=ExtResource("32_l2boe")]
 position = Vector2(-3459, 925)
-levelId = 4
+levelId = 7
+health = 2.0
+flying = true
+
+[node name="Stinger2" parent="Enemies" unique_id=983369726 instance=ExtResource("32_l2boe")]
+position = Vector2(-2097, -259)
+levelId = 8
 health = 2.0
 flying = true
 
@@ -4350,6 +4357,26 @@ scale = Vector2(-1, 1)
 [node name="HiddenAreaMask" parent="Enemies" unique_id=823932208 instance=ExtResource("35_y5nxy")]
 position = Vector2(-3588, -2086)
 scale = Vector2(-1, 1)
+
+[node name="Smasher" parent="Enemies" unique_id=907936405 instance=ExtResource("36_h4kew")]
+position = Vector2(-1519, 509)
+levelId = 10
+health = 1.0
+
+[node name="Smasher2" parent="Enemies" unique_id=1633942515 instance=ExtResource("36_h4kew")]
+position = Vector2(-919, 55)
+levelId = 11
+health = 1.0
+
+[node name="Smasher3" parent="Enemies" unique_id=843707339 instance=ExtResource("36_h4kew")]
+position = Vector2(-2203, -905)
+levelId = 12
+health = 1.0
+
+[node name="Smasher4" parent="Enemies" unique_id=1746531405 instance=ExtResource("36_h4kew")]
+position = Vector2(955, 184)
+levelId = 13
+health = 1.0
 
 [node name="Decoy" type="Node2D" parent="." unique_id=1209300732]
 

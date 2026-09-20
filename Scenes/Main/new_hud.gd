@@ -429,6 +429,11 @@ func chekForSelectedItem()->void:
 					showSelectdePickUp()
 					selectedItem.HighlightPickUp()
 
+
+func showMapSection(sectionType:Map.SECTIONS) -> void:
+	map.showMapSection(sectionType)
+
+
 func inventoryInput() -> void:
 	if bagState == BAG_STATES.OPEN and Input.is_action_just_pressed("ui_up"):
 		map.zoomin()
