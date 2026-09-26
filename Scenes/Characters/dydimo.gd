@@ -753,7 +753,7 @@ func takeDamage(amount: float, sourceDirection: Vector2,explosion: bool) -> void
 		hitTimer.start()
 		invulnerable = true
 		# Apply knockback		
-		var knockbackForce: Vector2 = (global_position - sourceDirection).normalized() * 500
+		var knockbackForce: Vector2 = (global_position - sourceDirection).normalized() * 600
 		Globals.moveSparkEffect(global_position, rotation, sprite.flip_h, "NeckSpark")
 		Globals.movePuffMachine(global_position, 0.05, 1)
 		Globals.moveBitMachine(upperside.global_position, 0.05, (0.05 *amount))
@@ -769,6 +769,7 @@ func takeDamage(amount: float, sourceDirection: Vector2,explosion: bool) -> void
 			else:
 				doDeath()
 		Globals.setGamePropery(BITS, bits)
+		launchInAir()
 
 func inControl() -> bool:
 	return not birthing and not dying and not magneting

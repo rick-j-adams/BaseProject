@@ -4271,7 +4271,7 @@ transisitionType = 2
 destinationLevel = "R003"
 
 [node name="TransitionArea4" parent="ExitPoints" unique_id=1392500151 instance=ExtResource("25_lkblg")]
-position = Vector2(885, 1985)
+position = Vector2(885, 2124)
 scale = Vector2(2, 2)
 transisitionType = 2
 destinationLevel = "R005"

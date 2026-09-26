@@ -137,6 +137,7 @@ var currentloadState = LOAD_STATES.SCENES
 }
 
 @onready var loadMapAudio :Dictionary  = {
+	"bonk" : "res://Audio/bonk.ogg",
 	"scaryAmbience" : "res://Audio/TitleAmbience.ogg",
 	"fissIn" : "res://Audio/StartUpFissInSound.ogg",
 	"select": "res://Audio/select.ogg",
@@ -173,6 +174,7 @@ var currentloadState = LOAD_STATES.SCENES
 	"doorClose" : "res://Audio/DoorClose.ogg",
 	"static" : "res://Audio/static.ogg",
 	"tracks" : "res://Audio/tracks.ogg",
+	"boss1Music" : "res://Audio/ihatetuesdays-video-game-boss-fiight-259885.ogg"
 
 
 

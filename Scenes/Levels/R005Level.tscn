@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://borloe0ws66jj" path="res://Scenes/Props/Magenet.tscn" id="26_sson7"]
 [ext_resource type="PackedScene" uid="uid://dyyd5mxxfudvp" path="res://Scenes/Characters/Crusher.tscn" id="27_npfcj"]
 [ext_resource type="PackedScene" uid="uid://l2pxeyhy2x13" path="res://Scenes/Props/Spareparts.tscn" id="28_ydg71"]
+[ext_resource type="PackedScene" uid="uid://dhsu3gfk4x4c4" path="res://Images/Character/Noga.tscn" id="29_ux6oe"]
 [ext_resource type="PackedScene" uid="uid://6rgcxyb4d6ua" path="res://Scenes/Characters/Overseer.tscn" id="29_xujfi"]
 [ext_resource type="PackedScene" uid="uid://dik1hc88oxcxa" path="res://Scenes/Props/Fan.tscn" id="30_e083h"]
 [ext_resource type="PackedScene" uid="uid://b5015kg4u7scx" path="res://Scenes/PickUps/PickUp.tscn" id="31_1xqit"]
@@ -4329,14 +4330,17 @@ position = Vector2(-2922, -2184)
 position = Vector2(-2385, -3093)
 
 [node name="Spareparts" parent="Interactive" unique_id=34091544 instance=ExtResource("28_ydg71")]
-position = Vector2(-230, 4836)
+position = Vector2(898, 4998)
+
+[node name="Noga" parent="Interactive/Spareparts" unique_id=169535064 instance=ExtResource("29_ux6oe")]
+position = Vector2(-637, 129)
 
 [node name="Spareparts2" parent="Interactive" unique_id=1252735046 instance=ExtResource("28_ydg71")]
 position = Vector2(-1542, 5034)
 partsType = 1
 
 [node name="Spareparts3" parent="Interactive" unique_id=1132048107 instance=ExtResource("28_ydg71")]
-position = Vector2(-1285, 4732)
+position = Vector2(907, 4988)
 partsType = 4
 
 [node name="Spareparts4" parent="Interactive" unique_id=1381993536 instance=ExtResource("28_ydg71")]
