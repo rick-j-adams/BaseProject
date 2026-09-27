@@ -25,6 +25,26 @@ roomName = "R003"
 position = Vector2(-386, 877)
 roomName = "R004"
 
+[node name="MapRoom5" parent="MapRooms" unique_id=1932155201 instance=ExtResource("2_lcs11")]
+position = Vector2(-387, 847)
+roomName = "R005"
+
+[node name="MapRoom6" parent="MapRooms" unique_id=1621417121 instance=ExtResource("2_lcs11")]
+position = Vector2(-482, 845)
+roomName = "R006"
+
+[node name="MapRoom7" parent="MapRooms" unique_id=760006386 instance=ExtResource("2_lcs11")]
+position = Vector2(-706, 845)
+roomName = "R007"
+
+[node name="MapRoom8" parent="MapRooms" unique_id=861312516 instance=ExtResource("2_lcs11")]
+position = Vector2(-834, 847)
+roomName = "R008"
+
+[node name="MapRoom9" parent="MapRooms" unique_id=2059979946 instance=ExtResource("2_lcs11")]
+position = Vector2(-867, 846)
+roomName = "R009"
+
 [node name="Camera2DViewPort" type="Camera2D" parent="." unique_id=1178827856]
 position = Vector2(-767, 904)
 zoom = Vector2(4, 4)

@@ -131,7 +131,11 @@ var currentloadState = LOAD_STATES.SCENES
 	"R002Map" : "res://Images/Map/R002Map.png",
 	"R003Map" : "res://Images/Map/R003Map.png",
 	"R004Map" : "res://Images/Map/R004Map.png",
-
+	"R005Map" : "res://Images/Map/R005Map.png",
+	"R006Map" : "res://Images/Map/R006Map.png",
+	"R007Map" : "res://Images/Map/R007Map.png",
+	"R008Map" : "res://Images/Map/R008Map.png",
+	"R009Map" : "res://Images/Map/R009Map.png",
 
 
 }

@@ -3885,7 +3885,7 @@ position = Vector2(6060, -2550)
 maskNumber = 24
 
 [node name="MaskRevealArea25" parent="MaskRevealAreas" unique_id=807172912 instance=ExtResource("3_ugtgr")]
-position = Vector2(-6039, -807)
+position = Vector2(-6039, -804)
 maskNumber = 25
 
 [node name="MaskRevealArea26" parent="MaskRevealAreas" unique_id=1323160539 instance=ExtResource("3_ugtgr")]
@@ -3922,7 +3922,7 @@ isOn = true
 maskNumber = 32
 
 [node name="MaskRevealArea33" parent="MaskRevealAreas" unique_id=1887667865 instance=ExtResource("3_ugtgr")]
-position = Vector2(-6042, 933)
+position = Vector2(-6042, 934)
 maskNumber = 33
 
 [node name="MaskRevealArea34" parent="MaskRevealAreas" unique_id=1886125309 instance=ExtResource("3_ugtgr")]
@@ -4387,20 +4387,8 @@ isOn = true
 [node name="PickUps" type="Node2D" parent="." unique_id=2020510122]
 
 [node name="PickUp1" parent="PickUps" unique_id=1059370732 instance=ExtResource("32_5rtnc")]
-position = Vector2(-567, -63)
+position = Vector2(-272, -73)
 pickUpType = 1
-
-[node name="PickUp4" parent="PickUps" unique_id=444048741 instance=ExtResource("32_5rtnc")]
-position = Vector2(-430, -71)
-pickUpType = 3
-
-[node name="PickUp5" parent="PickUps" unique_id=1955281901 instance=ExtResource("32_5rtnc")]
-position = Vector2(-296, -66)
-pickUpType = 37
-
-[node name="PickUp6" parent="PickUps" unique_id=841466683 instance=ExtResource("32_5rtnc")]
-position = Vector2(-111, -78)
-pickUpType = 12
 
 [node name="PickUp2" parent="PickUps" unique_id=575062253 instance=ExtResource("32_5rtnc")]
 position = Vector2(1576, -68)
@@ -4470,7 +4458,7 @@ position = Vector2(3208, 608)
 levelId = 13
 
 [node name="Box5" parent="Enemies" unique_id=1787030567 instance=ExtResource("35_512wb")]
-position = Vector2(-1458, 604)
+position = Vector2(-907, 605)
 levelId = 14
 
 [node name="Box6" parent="Enemies" unique_id=2060036119 instance=ExtResource("35_512wb")]
@@ -4539,7 +4527,7 @@ hasPower = false
 
 [node name="BatteryReceptacleWallMount" parent="LocksAndKeys/LockAndKeySystem2" unique_id=68664091 instance=ExtResource("45_w7jha")]
 position = Vector2(579, 212)
-oid = 2
+oid = 112
 
 [node name="Switch" parent="LocksAndKeys/LockAndKeySystem2" unique_id=263864533 instance=ExtResource("46_sy6vo")]
 z_index = 1

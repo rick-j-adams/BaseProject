@@ -12,7 +12,7 @@ func _on_body_entered(body:Node2D) -> void:
 		var levelMaskDetails:Dictionary = Globals.getUpMaskRevealsForLevel()
 		var thisMasksDetail = levelMaskDetails.get(maskNumber)
 		if thisMasksDetail is Array:
-			if len(thisMasksDetail) ==2 :
+			if len(thisMasksDetail) == 2 :
 				if thisMasksDetail[0]:
 					thisMasksDetail[1] = true
 

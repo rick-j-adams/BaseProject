@@ -1098,6 +1098,7 @@ shape = SubResource("RectangleShape2D_n6mkt")
 [connection signal="body_exited" from="Area2DRight" to="." method="_on_area_2d_right_body_exited"]
 [connection signal="body_entered" from="Area2DLeft" to="." method="_on_area_2d_left_body_entered"]
 [connection signal="body_exited" from="Area2DLeft" to="." method="_on_area_2d_left_body_exited"]
+[connection signal="body_entered" from="Area2DInRange" to="." method="_on_area_2d_in_range_body_entered"]
 [connection signal="body_exited" from="Area2DInRange" to="." method="_on_area_2d_in_range_body_exited"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
 [connection signal="timeout" from="FixTimer" to="." method="_on_fix_timer_timeout"]

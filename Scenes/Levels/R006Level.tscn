@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cph47m5c82xah" path="res://Images/Tiles/greenplate-64-8x8.png" id="5_r50jo"]
 [ext_resource type="Texture2D" uid="uid://1mpc0ffcfc2v" path="res://Images/Tiles/background1-8x8.png" id="6_d7j15"]
 [ext_resource type="Texture2D" uid="uid://bxujlxx188ne4" path="res://Images/Tiles/plates8x8-small.png" id="7_d8qu2"]
+[ext_resource type="Texture2D" uid="uid://dyv2805touldd" path="res://Images/Props/silverPanel.png" id="8_12b0y"]
 [ext_resource type="Texture2D" uid="uid://dppnkjebo58vj" path="res://Images/Tiles/Wall64x128.png" id="8_xt61g"]
 [ext_resource type="Texture2D" uid="uid://cmm2ttjgh38ej" path="res://Images/Tiles/WallGrillRusted64x128.png" id="9_80wkx"]
 [ext_resource type="Texture2D" uid="uid://dasm0gwhcv80g" path="res://Images/Tiles/Wall1Rusted64x128.png" id="10_1r4xw"]
@@ -3789,7 +3790,7 @@ environment = SubResource("Environment_k2qbn")
 visible = false
 
 [node name="MaskRevealArea1" parent="MaskRevealAreas" unique_id=264424048 instance=ExtResource("3_12b0y")]
-position = Vector2(-6042, -6036)
+position = Vector2(-6042, -6034)
 
 [node name="MaskRevealArea2" parent="MaskRevealAreas" unique_id=123726989 instance=ExtResource("3_12b0y")]
 position = Vector2(-4313, -6036)
@@ -3892,32 +3893,27 @@ position = Vector2(-4310, -807)
 maskNumber = 26
 
 [node name="MaskRevealArea27" parent="MaskRevealAreas" unique_id=83468334 instance=ExtResource("3_12b0y")]
-position = Vector2(-2583, -807)
+position = Vector2(-2583, -804)
 maskNumber = 27
 
 [node name="MaskRevealArea28" parent="MaskRevealAreas" unique_id=902998291 instance=ExtResource("3_12b0y")]
 position = Vector2(-854, -807)
-isOn = true
 maskNumber = 28
 
 [node name="MaskRevealArea29" parent="MaskRevealAreas" unique_id=880687019 instance=ExtResource("3_12b0y")]
 position = Vector2(875, -807)
-isOn = true
 maskNumber = 29
 
 [node name="MaskRevealArea30" parent="MaskRevealAreas" unique_id=789191396 instance=ExtResource("3_12b0y")]
 position = Vector2(2604, -807)
-isOn = true
 maskNumber = 30
 
 [node name="MaskRevealArea31" parent="MaskRevealAreas" unique_id=811331383 instance=ExtResource("3_12b0y")]
 position = Vector2(4331, -807)
-isOn = true
 maskNumber = 31
 
 [node name="MaskRevealArea32" parent="MaskRevealAreas" unique_id=142157821 instance=ExtResource("3_12b0y")]
 position = Vector2(6060, -807)
-isOn = true
 maskNumber = 32
 
 [node name="MaskRevealArea33" parent="MaskRevealAreas" unique_id=1887667865 instance=ExtResource("3_12b0y")]
@@ -3934,39 +3930,36 @@ maskNumber = 35
 
 [node name="MaskRevealArea36" parent="MaskRevealAreas" unique_id=201827706 instance=ExtResource("3_12b0y")]
 position = Vector2(-857, 933)
-isOn = true
 maskNumber = 36
 
 [node name="MaskRevealArea37" parent="MaskRevealAreas" unique_id=509797429 instance=ExtResource("3_12b0y")]
 position = Vector2(872, 933)
-isOn = true
 maskNumber = 37
 
 [node name="MaskRevealArea38" parent="MaskRevealAreas" unique_id=1581856245 instance=ExtResource("3_12b0y")]
 position = Vector2(2601, 933)
-isOn = true
 maskNumber = 38
 
 [node name="MaskRevealArea39" parent="MaskRevealAreas" unique_id=1561704585 instance=ExtResource("3_12b0y")]
 position = Vector2(4328, 933)
-isOn = true
 maskNumber = 39
 
 [node name="MaskRevealArea40" parent="MaskRevealAreas" unique_id=1660105537 instance=ExtResource("3_12b0y")]
 position = Vector2(6057, 933)
-isOn = true
 maskNumber = 40
 
 [node name="MaskRevealArea41" parent="MaskRevealAreas" unique_id=1720766108 instance=ExtResource("3_12b0y")]
-position = Vector2(-6042, 2676)
+position = Vector2(-6042, 2677)
 maskNumber = 41
 
 [node name="MaskRevealArea42" parent="MaskRevealAreas" unique_id=1915111963 instance=ExtResource("3_12b0y")]
 position = Vector2(-4313, 2676)
+isOn = true
 maskNumber = 42
 
 [node name="MaskRevealArea43" parent="MaskRevealAreas" unique_id=1884210277 instance=ExtResource("3_12b0y")]
 position = Vector2(-2586, 2676)
+isOn = true
 maskNumber = 43
 
 [node name="MaskRevealArea44" parent="MaskRevealAreas" unique_id=1940419081 instance=ExtResource("3_12b0y")]
@@ -3976,22 +3969,18 @@ maskNumber = 44
 
 [node name="MaskRevealArea45" parent="MaskRevealAreas" unique_id=900799247 instance=ExtResource("3_12b0y")]
 position = Vector2(872, 2676)
-isOn = true
 maskNumber = 45
 
 [node name="MaskRevealArea46" parent="MaskRevealAreas" unique_id=1834482431 instance=ExtResource("3_12b0y")]
 position = Vector2(2601, 2676)
-isOn = true
 maskNumber = 46
 
 [node name="MaskRevealArea47" parent="MaskRevealAreas" unique_id=39189989 instance=ExtResource("3_12b0y")]
 position = Vector2(4328, 2676)
-isOn = true
 maskNumber = 47
 
 [node name="MaskRevealArea48" parent="MaskRevealAreas" unique_id=1392522457 instance=ExtResource("3_12b0y")]
 position = Vector2(6057, 2676)
-isOn = true
 maskNumber = 48
 
 [node name="MaskRevealArea49" parent="MaskRevealAreas" unique_id=570402003 instance=ExtResource("3_12b0y")]
@@ -4000,22 +3989,27 @@ maskNumber = 49
 
 [node name="MaskRevealArea50" parent="MaskRevealAreas" unique_id=1184632523 instance=ExtResource("3_12b0y")]
 position = Vector2(-4310, 4419)
+isOn = true
 maskNumber = 50
 
 [node name="MaskRevealArea51" parent="MaskRevealAreas" unique_id=577382036 instance=ExtResource("3_12b0y")]
 position = Vector2(-2583, 4419)
+isOn = true
 maskNumber = 51
 
 [node name="MaskRevealArea52" parent="MaskRevealAreas" unique_id=603812392 instance=ExtResource("3_12b0y")]
 position = Vector2(-854, 4419)
+isOn = true
 maskNumber = 52
 
 [node name="MaskRevealArea53" parent="MaskRevealAreas" unique_id=171731579 instance=ExtResource("3_12b0y")]
 position = Vector2(875, 4419)
+isOn = true
 maskNumber = 53
 
 [node name="MaskRevealArea54" parent="MaskRevealAreas" unique_id=238420733 instance=ExtResource("3_12b0y")]
 position = Vector2(2604, 4419)
+isOn = true
 maskNumber = 54
 
 [node name="MaskRevealArea55" parent="MaskRevealAreas" unique_id=1559602133 instance=ExtResource("3_12b0y")]
@@ -4067,6 +4061,10 @@ position = Vector2(11, -2)
 tile_map_data = PackedByteArray("AACw//b/AAAAAAAAAAD//wAAAgABAAEAAAD+/wAAAgAAAAMAAAD+////AgAAAAIAAAD/////AgABAAIAAAAAAP//AgADAAAAAAAAAAAAAgADAAMAAACr/y4AAgACAAEAAACr/y8AAgACAAEAAACr/zAAAgACAAEAAACr/zEAAgACAAEAAACr/zIAAgACAAEAAACr/zMAAgACAAEAAACr/zQAAgACAAEAAACr/zUAAgACAAEAAACr/zYAAgACAAEAAACr/zcAAgAAAAMAAACs/zcAAgABAAEAAACt/zcAAgABAAEAAACu/zcAAgABAAEAAACv/zcAAgABAAEAAACw/zcAAgABAAEAAACx/zcAAgABAAEAAACy/zcAAgABAAEAAACz/zcAAgADAAMAAACr/y0AAgAAAAIAAACs/y0AAgADAAAAAACs/y4AAgACAAAAAACt/y4AAgABAAIAAACu/y4AAgABAAIAAACv/y4AAgABAAIAAACw/y4AAgABAAIAAACz/y8AAgADAAIAAACz/zAAAgADAAIAAACz/zEAAgADAAIAAACz/zIAAgADAAIAAACz/zMAAgADAAIAAACz/zQAAgADAAIAAACz/zUAAgADAAIAAACz/zYAAgADAAIAAACy/zYAAgAHAAcAAACy/zUAAgAFAAMAAACx/zUAAgAAAAUAAACx/zYAAgAAAAUAAACw/zYAAgAGAAQAAACv/zYAAgABAAcAAACu/zYAAgAGAAYAAACt/zYAAgAHAAIAAACt/zUAAgABAAQAAACs/zUAAgAAAAUAAACs/zQAAgAHAAYAAACt/zQAAgAFAAUAAACu/zQAAgAFAAIAAACv/zQAAgADAAUAAACw/zQAAgACAAYAAACx/zQAAgAFAAQAAACy/zQAAgAEAAIAAACw/zUAAgAEAAQAAACv/zUAAgACAAUAAACu/zUAAgAHAAQAAACs/zYAAgAHAAQAAACy/zMAAgAGAAEAAACx/zMAAgAFAAIAAACw/zMAAgAEAAUAAACv/zMAAgAGAAAAAACu/zMAAgAHAAcAAACt/zMAAgACAAYAAACs/zMAAgAGAAMAAACs/zIAAgAFAAUAAACt/zIAAgAEAAAAAACu/zIAAgAAAAYAAACv/zIAAgAFAAQAAACw/zIAAgAHAAYAAACx/zIAAgAGAAMAAACy/zIAAgAHAAYAAACy/zEAAgAFAAQAAACx/zEAAgAEAAMAAACw/zEAAgAGAAMAAACv/zEAAgAFAAUAAACu/zEAAgABAAYAAACs/zEAAgAAAAQAAACt/zEAAgAHAAYAAACs/zAAAgAEAAQAAACt/zAAAgADAAYAAACu/zAAAgAFAAcAAACv/zAAAgAHAAQAAACw/zAAAgAHAAQAAACx/zAAAgAHAAUAAACy/zAAAgACAAUAAACs/y8AAgAEAAUAAACt/y8AAgAFAAUAAACu/y8AAgAAAAYAAACv/y8AAgAAAAYAAACw/y8AAgAFAAcAAACx/y8AAgAAAAQAAACy/y8AAgAAAAYAAACy/y4AAgABAAIAAACz/y4AAgACAAIAAACx/y4AAgABAAIAAAA=")
 tile_set = SubResource("TileSet_vva6v")
 y_sort_origin = -1
+
+[node name="SilverPanel" type="Sprite2D" parent="Wall" unique_id=34003660]
+position = Vector2(2517, 4946)
+texture = ExtResource("8_12b0y")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2051256226]
 position = Vector2(592, -86)
@@ -4244,17 +4242,20 @@ position = Vector2(-2385, -3093)
 position = Vector2(-1329, -1946)
 
 [node name="Overseer" parent="Interactive" unique_id=1826309007 instance=ExtResource("29_s2yel")]
-position = Vector2(-1541, -2453)
+position = Vector2(-1104, -2452)
 
 [node name="Fan" parent="Interactive" unique_id=803018014 instance=ExtResource("30_8uf6v")]
 position = Vector2(-1162, -2387)
 isOn = true
 
+[node name="Overseer2" parent="Interactive" unique_id=966154217 instance=ExtResource("29_s2yel")]
+position = Vector2(2532, 4985)
+
 [node name="PickUps" type="Node2D" parent="." unique_id=2020510122]
 
 [node name="PickUp1" parent="PickUps" unique_id=1059370732 instance=ExtResource("31_0240d")]
-position = Vector2(-2461, -2350)
-pickUpType = 1
+position = Vector2(2852, 5006)
+pickUpType = 3
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1994181942]
 
@@ -4312,7 +4313,12 @@ levelId = 17
 health = 1.0
 
 [node name="Smasher4" parent="Enemies" unique_id=926006567 instance=ExtResource("36_kkojj")]
-position = Vector2(2591, 4727)
+position = Vector2(1329, 4293)
+levelId = 18
+health = 1.0
+
+[node name="Smasher8" parent="Enemies" unique_id=65289502 instance=ExtResource("36_kkojj")]
+position = Vector2(2931, 4740)
 levelId = 18
 health = 1.0
 

@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://d2pasyl8kiu3h" path="res://Images/Character/nogaBoss.png" id="1_o0y1u"]
 [ext_resource type="Script" uid="uid://dbbrhmyet7xy6" path="res://Scenes/point.gd" id="2_hxsl7"]
 [ext_resource type="Texture2D" uid="uid://cmdfu61lqpg4i" path="res://Images/Effects/zapper.png" id="3_fbjle"]
+[ext_resource type="PackedScene" uid="uid://dl0yna6w7oumh" path="res://Scenes/Props/Box.tscn" id="5_iklay"]
+[ext_resource type="PackedScene" uid="uid://b5015kg4u7scx" path="res://Scenes/PickUps/PickUp.tscn" id="6_112ug"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0huwv"]
 size = Vector2(21, 24)
@@ -1081,6 +1083,32 @@ tracks/2/keys = {
 "update": 1,
 "values": [Vector2(1, 1), Vector2(-1, 1), Vector2(1, 1), Vector2(-1, 1)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"destroyBoxes"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node2D/PickUp:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.65, 0.89974004, 1.3953692, 1.5010566, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1379, 154), Vector2(-1607, -329), Vector2(-2045, -93), Vector2(-2098, -129), Vector2(-2177, -93)]
+}
 
 [sub_resource type="Animation" id="Animation_wga4i"]
 resource_name = "Intro"
@@ -1134,6 +1162,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/PickUp:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1379, 154)]
 }
 
 [sub_resource type="Animation" id="Animation_1av0r"]
@@ -2111,6 +2151,22 @@ wait_time = 10.0
 
 [node name="TimerHitTimer" type="Timer" parent="." unique_id=543316568]
 wait_time = 0.5
+
+[node name="Node2D" type="Node2D" parent="." unique_id=125784582]
+
+[node name="PickUp" parent="Node2D" unique_id=1158294730 instance=ExtResource("6_112ug")]
+position = Vector2(-1379, 154)
+
+[node name="Box1" parent="Node2D" unique_id=1713006997 instance=ExtResource("5_iklay")]
+position = Vector2(-1849, -141)
+
+[node name="Box2" parent="Node2D" unique_id=194894013 instance=ExtResource("5_iklay")]
+position = Vector2(-1852, -244)
+
+[node name="RPoint" type="Node2D" parent="Node2D" unique_id=733517775]
+position = Vector2(-1676, -91)
+script = ExtResource("2_hxsl7")
+metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
 [connection signal="body_entered" from="Sprite2DNoga/RPointLight1/Area2DWeakPoint1" to="." method="_on_area_2d_weak_point_1_body_entered"]
 [connection signal="body_entered" from="Sprite2DNoga/RPointLight2/Area2DWeakPoint2" to="." method="_on_area_2d_weak_point_2_body_entered"]

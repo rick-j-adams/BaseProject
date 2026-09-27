@@ -110,6 +110,9 @@ func _on_area_2d_in_range_body_exited(body:Node2D) -> void:
 		if body is Dydimo:
 			resetAllAnimationTree()
 			animationTree.set("parameters/conditions/unemerge", true)
+			if Globals.mainCamera != null:
+				Globals.mainCamera.cancelPeak()
+			
 
 
 
@@ -159,3 +162,8 @@ func requestLight() -> void:
 
 func requestStaticSound() -> void:
 	Globals.playAudioAt(global_position, "static")
+
+func _on_area_2d_in_range_body_entered(body: Node2D) -> void:
+	if Globals.mainCamera != null:
+		if body is Dydimo:
+			Globals.mainCamera.peakAt(global_position, 2.0)

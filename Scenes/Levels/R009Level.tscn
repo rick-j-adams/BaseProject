@@ -4903,6 +4903,7 @@ metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 environment = SubResource("Environment_k2qbn")
 
 [node name="MaskRevealAreas" type="Node2D" parent="." unique_id=1128970295]
+visible = false
 
 [node name="MaskRevealArea1" parent="MaskRevealAreas" unique_id=264424048 instance=ExtResource("3_1lmja")]
 position = Vector2(-6042, -6036)
@@ -5023,21 +5024,18 @@ maskNumber = 29
 
 [node name="MaskRevealArea30" parent="MaskRevealAreas" unique_id=789191396 instance=ExtResource("3_1lmja")]
 position = Vector2(2604, -807)
-isOn = true
 maskNumber = 30
 
 [node name="MaskRevealArea31" parent="MaskRevealAreas" unique_id=811331383 instance=ExtResource("3_1lmja")]
 position = Vector2(4331, -807)
-isOn = true
 maskNumber = 31
 
 [node name="MaskRevealArea32" parent="MaskRevealAreas" unique_id=142157821 instance=ExtResource("3_1lmja")]
 position = Vector2(6060, -807)
-isOn = true
 maskNumber = 32
 
 [node name="MaskRevealArea33" parent="MaskRevealAreas" unique_id=1887667865 instance=ExtResource("3_1lmja")]
-position = Vector2(-6042, 933)
+position = Vector2(-6042, 934)
 maskNumber = 33
 
 [node name="MaskRevealArea34" parent="MaskRevealAreas" unique_id=1886125309 instance=ExtResource("3_1lmja")]
@@ -5060,17 +5058,14 @@ maskNumber = 37
 
 [node name="MaskRevealArea38" parent="MaskRevealAreas" unique_id=1581856245 instance=ExtResource("3_1lmja")]
 position = Vector2(2601, 933)
-isOn = true
 maskNumber = 38
 
 [node name="MaskRevealArea39" parent="MaskRevealAreas" unique_id=1561704585 instance=ExtResource("3_1lmja")]
 position = Vector2(4328, 933)
-isOn = true
 maskNumber = 39
 
 [node name="MaskRevealArea40" parent="MaskRevealAreas" unique_id=1660105537 instance=ExtResource("3_1lmja")]
 position = Vector2(6057, 933)
-isOn = true
 maskNumber = 40
 
 [node name="MaskRevealArea41" parent="MaskRevealAreas" unique_id=1720766108 instance=ExtResource("3_1lmja")]
@@ -5097,17 +5092,14 @@ maskNumber = 45
 
 [node name="MaskRevealArea46" parent="MaskRevealAreas" unique_id=1834482431 instance=ExtResource("3_1lmja")]
 position = Vector2(2601, 2676)
-isOn = true
 maskNumber = 46
 
 [node name="MaskRevealArea47" parent="MaskRevealAreas" unique_id=39189989 instance=ExtResource("3_1lmja")]
 position = Vector2(4328, 2676)
-isOn = true
 maskNumber = 47
 
 [node name="MaskRevealArea48" parent="MaskRevealAreas" unique_id=1392522457 instance=ExtResource("3_1lmja")]
 position = Vector2(6057, 2676)
-isOn = true
 maskNumber = 48
 
 [node name="MaskRevealArea49" parent="MaskRevealAreas" unique_id=570402003 instance=ExtResource("3_1lmja")]

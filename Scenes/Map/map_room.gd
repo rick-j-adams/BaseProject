@@ -37,5 +37,17 @@ func doMaskReveals() ->void:
 		count=count+1
 		
 func revealAllMasks() -> void:
-	for node in maskRevealAreas.get_children():
-		node.visible = true
+	var levelMaskDetails:Dictionary = Globals.getUpMaskRevealsForGivenLevel(roomName)
+	if levelMaskDetails == null:
+		return
+	var count = 1
+	for node in maskRevealAreas.get_children():	
+		var thisMasksDetail = levelMaskDetails.get(count)
+		if thisMasksDetail[0]:
+			node.visible = false
+			thisMasksDetail[1] = true
+		count=count+1
+	var levelDetails = Globals.allResources.allLevels.get(roomName)
+	if levelDetails != null :
+		levelDetails.set( "visited" , true)
+				

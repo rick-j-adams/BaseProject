@@ -14,7 +14,9 @@ var currentState : STATES = STATES.INTRO
 @onready var rPointLight1 :RPoint  = $Sprite2DNoga/RPointLight1
 @onready var rPointLight2 :RPoint  = $Sprite2DNoga/RPointLight2
 @onready var zapSprite :Sprite2D  = $Sprite2DNoga/Sprite2DZapper
-
+@onready var rPointfinal : RPoint = $Node2D/RPoint
+@onready var box1: GoodyBox = $Node2D/Box1
+@onready var box2: GoodyBox = $Node2D/Box2
 
 @onready var timer :Timer = $Timer
 @onready var timerHitTimer :Timer = $TimerHitTimer
@@ -181,11 +183,24 @@ func doDeath() -> void:
 	animationPlayerMovement.play("Run"+str(rand))
 	animationPlayerZapp.play("off")
 	timer.wait_time = Globals.get_rand_between(0.8,1.0)
+	watchFinalDeath()
 
 func finalDeath() -> void:
 	animationPlayerFrames.play("Die")
 	animationPlayerMovement.play("Die")
 	animationPlayerZapp.play("Die")
+	
+	timer.stop()
+
+func destroyBoxes() ->void:
+	box1.destroy()
+	box2.destroy()
+
+func watchFinalDeath():
+	if Globals.mainCamera != null :
+		Globals.mainCamera.peakAt(rPointfinal.global_position, 2.0)
+		Globals.playAudioAt(rPointLight1.global_position, "crash")
+	Globals.playAmbienceAudio("ambience1")
 
 func _on_area_2d_body_dmg_1_body_entered(body: Node2D) -> void:
 	if body is Dydimo:
