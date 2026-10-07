@@ -1117,12 +1117,12 @@ showOnStart = false
 [node name="CameraPoints" type="Node2D" parent="." unique_id=390461945]
 
 [node name="RPointCamRight" type="Node2D" parent="CameraPoints" unique_id=855448247]
-position = Vector2(500, 0)
+position = Vector2(500, -128)
 script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
 [node name="RPointCamLeft" type="Node2D" parent="CameraPoints" unique_id=62573807]
-position = Vector2(-500, 0)
+position = Vector2(-500, -128)
 script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 

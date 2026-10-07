@@ -169,6 +169,7 @@ func getAllObjectives() -> Dictionary:
 
 func isObjectiveDone(objectiveName: String) -> bool:
 	var allObjectives = getAllObjectives()
+	# print("Checking objective: " + objectiveName)
 	if allObjectives.has(objectiveName):
 		var details = allObjectives.get(objectiveName)
 		return details.get("done")

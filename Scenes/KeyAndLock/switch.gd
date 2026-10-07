@@ -57,18 +57,26 @@ func _on_timer_timeout() -> void:
 		switchState = SWITCH_STATE.UNPOWERED
 
 func signalToParent(switchOn:bool) -> void :
+	print("Switch: " + str(switchType) + " signal to parent: " + str(switchOn))
 	if lockAndKeySystem != null:
 		if switchOn:
 			lockAndKeySystem.switchOn()
 		else:
 			lockAndKeySystem.switchOff()
 
+func switchIsPowered() -> bool:
+	if lockAndKeySystem != null:
+		return lockAndKeySystem.systemHasPower()
+	elif switchState == SWITCH_STATE.POWERED:
+		return true
+	return false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if switchState != SWITCH_STATE.POWERED:
+	if not switchIsPowered():
 		return 
 	if body is Dydimo:
 		inArea=true
+		print("Switch: " + str(switchType) + " in area: " + str(inArea))
 		if switchType == SWITCH_TYPE.SCANNER or switchType == SWITCH_TYPE.PLATE  or  switchType == SWITCH_TYPE.PROX :
 			if not needsSecurity or (needsSecurity and Globals.isPickUpOn(PickUp.PickUpType.SECURITY)):
 				signalToParent(true)
@@ -76,7 +84,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if switchState != SWITCH_STATE.POWERED:
+	if not switchIsPowered():
 		return 
 	if body is Dydimo:
 		inArea=true

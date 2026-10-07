@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dvyl2oh73xgrv"]
+
+[ext_resource type="Texture2D" uid="uid://ifoimhnvsdh4" path="res://Images/Backgrounds/cycloid2.png" id="1_c3ci7"]
+[ext_resource type="Script" uid="uid://dpwkrojjiivc2" path="res://Scenes/Props/cycloid.gd" id="1_y0h23"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_c3ci7"]
+polygon = PackedVector2Array(-416, 281, -347, 270, -284, 247, -242, 223, -207, 200, -155, 159, -104, 114, -57, 68, 4, 6, 76, -62, 138, -115, 188, -154, 237, -183, 270, -202, 325, -222, 386, -230, 416, -231, 416, 288, -416, 288)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3alo"]
+size = Vector2(657, 611)
+
+[node name="Cycloid" type="StaticBody2D" unique_id=588462477]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_y0h23")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1593875511]
+texture = ExtResource("1_c3ci7")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1607307763]
+polygon = PackedVector2Array(-416, 276, -361, 268, -348, 264, -310, 250, -287, 241, -215, 199, -162, 157, -110, 112, -62, 66, 1, 2, 46, -42, 75, -69, 119, -107, 169, -147, 194, -165, 242, -193, 266, -206, 303, -220, 325, -227, 377, -234, 416, -236, 416, 288, -416, 288)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1693101050]
+occluder = SubResource("OccluderPolygon2D_c3ci7")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=751094464]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1670456767]
+position = Vector2(-5.5, -50.5)
+shape = SubResource("RectangleShape2D_g3alo")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

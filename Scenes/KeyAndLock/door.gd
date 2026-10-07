@@ -25,6 +25,12 @@ func _ready() -> void:
 	# if doorState == DOOR_STATES.CLOSED:
 	# 	setClosed()
 	setUpType()
+
+func hasSystemPower()->bool:
+	if lockAndKeySystem != null:
+		return lockAndKeySystem.systemHasPower()
+	else:
+		return hasPower
 	
 
 func getDoorTexture() ->Texture2D :
@@ -38,17 +44,18 @@ func getDoorTexture() ->Texture2D :
 func setUpType() -> void:
 	sprite2D.texture = getDoorTexture()
 	
-	if not hasPower and flippedPower: 
+	if not hasSystemPower() and flippedPower: 
 		doorState=DOOR_STATES.CLOSED
 		openDoor()
-	if hasPower  and flippedPower: 
+	if hasSystemPower()  and flippedPower: 
 		doorState=DOOR_STATES.OPEN
 		closeDoor()
 
 func openDoor() ->void:
+	print("Door: " + str(doorType) + " openDoor() called. hasPower: " + str(hasPower) + " flippedPower: " + str(flippedPower) + " doorState: " + str(doorState))
 	if doorState != DOOR_STATES.CLOSED:
 		return
-	if hasPower or (not hasPower and flippedPower) :
+	if hasSystemPower() or (not hasSystemPower() and flippedPower) :
 		doorState = DOOR_STATES.OPENING
 		animationPlayer.play("Opening")
 		timer.start()
@@ -56,7 +63,7 @@ func openDoor() ->void:
 func closeDoor() ->void:
 	if doorState != DOOR_STATES.OPEN:
 		return
-	if hasPower or (not hasPower and flippedPower) :
+	if hasSystemPower() or (not hasSystemPower() and flippedPower) :
 		doorState = DOOR_STATES.CLOSING
 		animationPlayer.play("Closing")
 		timer.start()
