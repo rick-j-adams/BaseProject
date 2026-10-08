@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cmdfu61lqpg4i" path="res://Images/Effects/zapper.png" id="3_fbjle"]
 [ext_resource type="PackedScene" uid="uid://dl0yna6w7oumh" path="res://Scenes/Props/Box.tscn" id="5_iklay"]
 [ext_resource type="PackedScene" uid="uid://b5015kg4u7scx" path="res://Scenes/PickUps/PickUp.tscn" id="6_112ug"]
+[ext_resource type="PackedScene" uid="uid://bl3kqfijxtbkt" path="res://Scenes/Props/RubbishBit.tscn" id="7_112ug"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0huwv"]
 size = Vector2(21, 24)
@@ -44,6 +45,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [13, 23, 23, 24]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"kickUpRubbish"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_y6t8v"]
@@ -151,14 +166,17 @@ tracks/8/path = NodePath(".")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0.2, 0.8),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.2, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
 "method": &"requestRedLight1"
 }, {
 "args": [],
 "method": &"requestRedLight2"
+}, {
+"args": [],
+"method": &"kickUpRubbish"
 }]
 }
 
@@ -610,9 +628,12 @@ tracks/8/path = NodePath(".")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"kickUpRubbish"
+}, {
 "args": [],
 "method": &"requestRedLight2"
 }]
@@ -620,7 +641,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id="Animation_iklay"]
 resource_name = "RunAway"
-length = 0.6
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -717,10 +738,24 @@ tracks/7/keys = {
 "update": 1,
 "values": [1.5132004, 1.1100295]
 }
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.76666665),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"kickUpRubbish"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_112ug"]
 resource_name = "RunAwayLef"
-length = 0.6
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -816,6 +851,20 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [1.1100295, 1.1100295]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"kickUpRubbish"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_8ulu4"]
@@ -1046,7 +1095,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_4vrok"]
 resource_name = "Die"
-length = 1.5999999999999999
+length = 1.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1191,6 +1240,17 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-660, 256), Vector2(-660, -256)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
 
 [sub_resource type="Animation" id="Animation_ommij"]
 resource_name = "Rise1"
@@ -1287,7 +1347,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_ejbqq"]
 resource_name = "FireDie"
-length = 1.5999999999999999
+length = 1.6
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1991,7 +2051,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_lfawh"]
 resource_name = "TakeDamge"
-length = 0.19999999999999998
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -2167,6 +2227,23 @@ position = Vector2(-1852, -244)
 position = Vector2(-1676, -91)
 script = ExtResource("2_hxsl7")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
+
+[node name="Rubbish" type="Node2D" parent="." unique_id=262217899]
+
+[node name="RubbishBit" parent="Rubbish" unique_id=1680073870 instance=ExtResource("7_112ug")]
+position = Vector2(969, 89)
+
+[node name="RubbishBit2" parent="Rubbish" unique_id=882113118 instance=ExtResource("7_112ug")]
+position = Vector2(933, 128)
+
+[node name="RubbishBit3" parent="Rubbish" unique_id=869194720 instance=ExtResource("7_112ug")]
+position = Vector2(996, 122)
+
+[node name="RubbishBit4" parent="Rubbish" unique_id=1594153742 instance=ExtResource("7_112ug")]
+position = Vector2(968, 154)
+
+[node name="RubbishBit5" parent="Rubbish" unique_id=1256197472 instance=ExtResource("7_112ug")]
+position = Vector2(965, 121)
 
 [connection signal="body_entered" from="Sprite2DNoga/RPointLight1/Area2DWeakPoint1" to="." method="_on_area_2d_weak_point_1_body_entered"]
 [connection signal="body_entered" from="Sprite2DNoga/RPointLight2/Area2DWeakPoint2" to="." method="_on_area_2d_weak_point_2_body_entered"]

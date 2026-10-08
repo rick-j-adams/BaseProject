@@ -178,9 +178,9 @@ var currentloadState = LOAD_STATES.SCENES
 	"doorClose" : "res://Audio/DoorClose.ogg",
 	"static" : "res://Audio/static.ogg",
 	"tracks" : "res://Audio/tracks.ogg",
-	"boss1Music" : "res://Audio/ihatetuesdays-video-game-boss-fiight-259885.ogg"
-
-
+	"boss1Music" : "res://Audio/ihatetuesdays-video-game-boss-fiight-259885.ogg",
+	"can" : "res://Audio/can.ogg",
+	"rubbish" : "res://Audio/rubbish.ogg",
 
 }
 

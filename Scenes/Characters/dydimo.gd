@@ -879,6 +879,15 @@ func launchInAir() -> void:
 	if launchInAirAmount<miniValue:
 		launchInAirAmount=miniValue
 	yForce = launchInAirAmount
-	
+
+func launchHighInAir() -> void:
+	#minimum new launch value is -1000 acconting for current force 
+	var miniValue  = -2000
+	var launchInAirAmount =  yForce + miniValue
+	if launchInAirAmount<miniValue:
+		launchInAirAmount=miniValue
+	yForce = launchInAirAmount
+
 func playTracks() -> void:
 	Globals.playAudioAt(global_position, "tracks")
+

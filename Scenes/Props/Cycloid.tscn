@@ -26,7 +26,6 @@ occluder = SubResource("OccluderPolygon2D_c3ci7")
 [node name="Area2D" type="Area2D" parent="." unique_id=751094464]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1670456767]
-position = Vector2(-5.5, -50.5)
 shape = SubResource("RectangleShape2D_g3alo")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

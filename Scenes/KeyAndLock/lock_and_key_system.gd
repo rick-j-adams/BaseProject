@@ -51,7 +51,6 @@ func powerOffSystem() -> void:
 func switchOn() -> void:
 	
 	if systemHasPower():
-		print("systemHasPower on")
 		if door != null:
 			door.openDoor()
 

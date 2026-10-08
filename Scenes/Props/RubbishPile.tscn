@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://mt8iynhsv3sr"]
+
+[ext_resource type="PackedScene" uid="uid://bl3kqfijxtbkt" path="res://Scenes/Props/RubbishBit.tscn" id="1_b6mlb"]
+[ext_resource type="Script" uid="uid://thnql0hy8gok" path="res://Scenes/Props/rubbish_pile.gd" id="1_vc5sr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3alo"]
+size = Vector2(35, 37)
+
+[node name="RubbishPile" type="Node2D" unique_id=1116618707]
+script = ExtResource("1_vc5sr")
+
+[node name="Pile" type="Node2D" parent="." unique_id=269785501]
+
+[node name="RubbishBit" parent="Pile" unique_id=1680073870 instance=ExtResource("1_b6mlb")]
+
+[node name="RubbishBit2" parent="Pile" unique_id=761649603 instance=ExtResource("1_b6mlb")]
+position = Vector2(-24, 0)
+
+[node name="RubbishBit3" parent="Pile" unique_id=200611404 instance=ExtResource("1_b6mlb")]
+position = Vector2(25, 0)
+
+[node name="RubbishBit4" parent="Pile" unique_id=1806070061 instance=ExtResource("1_b6mlb")]
+position = Vector2(-16, -13)
+
+[node name="RubbishBit5" parent="Pile" unique_id=1676373216 instance=ExtResource("1_b6mlb")]
+position = Vector2(14, -12)
+
+[node name="RubbishBit6" parent="Pile" unique_id=1997806914 instance=ExtResource("1_b6mlb")]
+position = Vector2(1, -28)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1824516598]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1894586238]
+position = Vector2(2, -6)
+shape = SubResource("RectangleShape2D_g3alo")
+
+[node name="Timer" type="Timer" parent="." unique_id=1324132108]
+wait_time = 2.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

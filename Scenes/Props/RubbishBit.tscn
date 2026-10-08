@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bl3kqfijxtbkt"]
+
+[ext_resource type="Script" uid="uid://cytowg1vr7fv1" path="res://Scenes/Props/rubbish_bit.gd" id="1_qc0cg"]
+[ext_resource type="Texture2D" uid="uid://bbn5i6857m5gl" path="res://Images/Props/RubbishBits.png" id="2_emkm3"]
+
+[node name="RubbishBit" type="Node2D" unique_id=1680073870]
+script = ExtResource("1_qc0cg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2116830031]
+texture = ExtResource("2_emkm3")
+hframes = 5
+vframes = 5
+
+[node name="Timer" type="Timer" parent="." unique_id=723477315]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

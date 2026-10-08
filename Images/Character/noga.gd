@@ -18,6 +18,9 @@ var currentState : STATES = STATES.INTRO
 @onready var box1: GoodyBox = $Node2D/Box1
 @onready var box2: GoodyBox = $Node2D/Box2
 
+@onready var rubbish: Node2D = $Rubbish 
+
+
 @onready var timer :Timer = $Timer
 @onready var timerHitTimer :Timer = $TimerHitTimer
 
@@ -40,7 +43,7 @@ func _process(delta: float) -> void:
 	if currentState == STATES.SEARCHING:
 		if seenLeft :
 			fireLeft()
-		if seenRight:
+		if seenRight and timer.time_left > 0.8:
 			fireRight()
 
 
@@ -83,7 +86,6 @@ func hideAway(facing:String) -> void:
 func search() -> void:
 	animationPlayerFrames.play("LookRight")
 	currentState=STATES.SEARCHING
-	print("to STATES.SEARCHING")
 	timer.wait_time= Globals.get_rand_between(0.8,1.0)
 
 func rise() -> void:
@@ -91,7 +93,6 @@ func rise() -> void:
 	animationPlayerMovement.play("Rise"+str(rand))
 	animationPlayerZapp.play("off")	
 	currentState=STATES.RISING
-	print("to STATES.RISING (at)"+str(rand))
 	timer.wait_time= Globals.get_rand_between(1.0,1.1)
 
 func startIntro()-> void:
@@ -99,7 +100,6 @@ func startIntro()-> void:
 	animationPlayerMovement.play("Intro")
 	animationPlayerZapp.play("off")
 	currentState=STATES.HIDDEN
-	print("to STATES.HIDDEN")
 	Globals.playAudioAt(global_position, "bossHorn2")
 	Globals.playAmbienceAudio("boss1Music")
 	timer.wait_time= Globals.get_rand_between(1.0,5.0)
@@ -167,7 +167,7 @@ func doTakeDamage(body:Dydimo)->void:
 	Globals.playAudioAt(global_position, "bonk")
 	animationPlayerTakeDamge.play("TakeDamge")
 	body.shakeStrength=2
-	body.launchInAir()
+	body.launchHighInAir()
 	takenDamge=true
 	timerHitTimer.start()
 	Globals.movePuffMachine(global_position, 0.05, 0.5)
@@ -230,3 +230,12 @@ func _on_timer_hit_timer_timeout() -> void:
 func _on_area_2d_dmg_body_entered(body: Node2D) -> void:
 	if body is Dydimo:
 		doLightningDamge(body)
+
+func kickUpRubbish() -> void:
+	Globals.playAudioAt(global_position, "can")
+	if Globals.mainCharacter != null :
+		Globals.mainCharacter.shakeStrength=2
+		
+	for rubbishItem in rubbish.get_children():
+			if rubbishItem is RubbishBit:
+				rubbishItem.kickRubbishFrom(rPointLight1.global_position)

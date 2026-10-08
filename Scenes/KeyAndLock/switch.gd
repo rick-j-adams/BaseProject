@@ -57,7 +57,6 @@ func _on_timer_timeout() -> void:
 		switchState = SWITCH_STATE.UNPOWERED
 
 func signalToParent(switchOn:bool) -> void :
-	print("Switch: " + str(switchType) + " signal to parent: " + str(switchOn))
 	if lockAndKeySystem != null:
 		if switchOn:
 			lockAndKeySystem.switchOn()
