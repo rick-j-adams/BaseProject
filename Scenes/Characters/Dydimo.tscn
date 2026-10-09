@@ -1126,6 +1126,10 @@ position = Vector2(-500, -128)
 script = ExtResource("4_eblft")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=282400659]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="DyingTimer" to="." method="_on_dying_timer_timeout"]
 [connection signal="timeout" from="BirthTimer" to="." method="_on_birth_timer_timeout"]

@@ -409,6 +409,13 @@ func movePuffMachine(setPosition:Vector2, setCooldown: float, setDuration: float
 		if not puffMachine.isOn:
 			puffMachine.createPuffMMachine(setPosition, setCooldown, setDuration)
 
+func recallAllBits():
+	if bitPool.size() == 0:
+		setUpBitPool()
+	for bit in bitPool:
+		if bit.isOn:
+			bit.stand_by()
+
 func moveBitMachine(setPosition:Vector2, setCooldown: float, setDuration: float):
 	if bitMachine == null:
 		bitMachine = sceneMap.get("bitMachine").instantiate()
@@ -571,6 +578,7 @@ func transisitionToLevel(levelName :String) -> void:
 	if gameWindow != null:
 		setUpLevelsMap()		
 		if levelName!=currentLevel:
+			recallAllBits()
 			for childNode in gameWindow.level.get_children():
 				childNode.queue_free()
 			var levelDetails =  allResources.allLevels.get(levelName)
@@ -605,7 +613,6 @@ func transitionToEntryPoint(transisitionType :TransitionArea.TRANSITION_TYPES,  
 		return
 	transitioning = true
 	transisitionToLevel(destinationLevel)
-	print("transitionToEntryPoint:"+str(destinationLevel)+":"+str(destinationEntryPoint))
 	for childNode in gameWindow.level.get_children():
 		var newPosition = childNode.findEntryPointsPosition(destinationEntryPoint)
 		if transisitionType == TransitionArea.TRANSITION_TYPES.HORIZONTAL or transisitionType == TransitionArea.TRANSITION_TYPES.BOTH:

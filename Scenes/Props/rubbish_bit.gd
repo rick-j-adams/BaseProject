@@ -64,6 +64,7 @@ func kickRubbishFrom(newPosition: Vector2) -> void:
 	timer.start()
 	visible = true
 	global_position = newPosition
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

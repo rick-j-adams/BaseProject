@@ -19,6 +19,8 @@ class_name Dydimo
 @onready var dyingTimer :Timer = $DyingTimer
 @onready var birthTimer :Timer = $BirthTimer
 @onready var magnetTimer :Timer = $MagTimer
+@onready var coyoteTimer :Timer = $CoyoteTimer
+
 @onready var fastTravelTimer :Timer = $FastTravelTimer
 
 @onready var canvasModulate :CanvasModulate  = $CanvasModulate
@@ -61,7 +63,7 @@ var state : STATES = STATES.BIRTH
 
 var currentAnimation : String = "Birth"
 var lastAnimation : String = ""
-var wasOnFloor : bool = true
+var wasOnFloor : bool = false
 
 var acceleration : float = 1000.0
 var breakForce : float = 2000.0
@@ -411,7 +413,7 @@ func handleInput(delta: float, currentSpeed: float, isNowOnFloor: bool) -> bool:
 	# 	decelerate(delta, sign(xForce), currentSpeed, isNowOnFloor)
 
 	if Input.is_action_just_pressed("ui_up") and inControl():
-		if (isNowOnFloor and Globals.isPickUpOn(PickUp.PickUpType.JUMP) )or (Globals.isPickUpOn(PickUp.PickUpType.JUMP2) and jumpCounter < 2) or Globals.isPickUpOn(PickUp.PickUpType.JETPACK):
+		if ((isNowOnFloor ) and Globals.isPickUpOn(PickUp.PickUpType.JUMP) )or (Globals.isPickUpOn(PickUp.PickUpType.JUMP2) and jumpCounter < 2) or Globals.isPickUpOn(PickUp.PickUpType.JETPACK):
 			changeState(STATES.PREJUMP)
 			springing = true
 			interaction = true
@@ -535,6 +537,11 @@ func _process(delta: float) -> void:
 	lastYForce = yForce
 	lastBlowUp = blowUp
 	Globals.lastPosition = global_position
+	if not wasOnFloor and not isNowOnFloor and not coyoteTimer.is_stopped():
+		coyoteTimer.start()	
+		coyoteTimer.wait_time = 0.2
+	wasOnFloor=isNowOnFloor
+	
 
 # ─── forces ───────────────────────────────────────────────────────────────────
 func setExternalForce(newXForce: float, newYForce: float):
@@ -625,7 +632,7 @@ func doRotate(delta: float):
 # ─── jump ─────────────────────────────────────────────────────────────────────
 
 func doJump(isNowOnFloor: bool):
-	if isNowOnFloor or (Globals.isPickUpOn(PickUp.PickUpType.JUMP2) and jumpCounter < 1) or Globals.isPickUpOn(PickUp.PickUpType.JETPACK):
+	if isNowOnFloor or (jumpCounter == 0 and not coyoteTimer.is_stopped()) or (Globals.isPickUpOn(PickUp.PickUpType.JUMP2) and jumpCounter < 1) or Globals.isPickUpOn(PickUp.PickUpType.JETPACK):
 		Globals.playAudioAt(global_position, "jump")
 		if Globals.isPickUpOn(PickUp.PickUpType.JUMP2) and jumpCounter < 2:
 			currentJumpForce = jumpPower
@@ -634,7 +641,7 @@ func doJump(isNowOnFloor: bool):
 			
 		if Globals.isPickUpOn(PickUp.PickUpType.JETPACK):
 			currentJumpForce = jumpPower / 2
-		if (!isNowOnFloor):
+		if (!isNowOnFloor and jumpCounter>0 ):
 				Globals.moveSparkEffect(underside.global_position, rotation, sprite.flip_h, "RedBloom")
 
 		springing = false
@@ -890,4 +897,3 @@ func launchHighInAir() -> void:
 
 func playTracks() -> void:
 	Globals.playAudioAt(global_position, "tracks")
-
