@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cuun4haktrf"]
+
+[ext_resource type="Texture2D" uid="uid://mavk4n1kmxac" path="res://Images/Backgrounds/rampon.png" id="1_3fuqb"]
+
+[node name="Rampon" type="StaticBody2D" unique_id=658062449]
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1770803941]
+texture = ExtResource("1_3fuqb")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1162305705]
+polygon = PackedVector2Array(-160, 146, -99, 138, -53, 120, -31, 109, 11, 80, 53, 31, 73, -25, 77, -38, 82, -94, 83, -161, 160, -161, 160, 160, -160, 160)

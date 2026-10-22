@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://nlu660hulev8"]
+
+[ext_resource type="Texture2D" uid="uid://tgl40h781abv" path="res://Images/Backgrounds/stairs.png" id="1_b0axx"]
+[ext_resource type="Texture2D" uid="uid://b2lfpko75qvll" path="res://Images/Backgrounds/stairsRails.png" id="2_jldvc"]
+
+[node name="Stairs" type="StaticBody2D" unique_id=1829715422]
+collision_layer = 3
+collision_mask = 3
+
+[node name="Stairs" type="Sprite2D" parent="." unique_id=626637547]
+texture = ExtResource("1_b0axx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1631111766]
+polygon = PackedVector2Array(-96, 82, -70.81424, 54.524624, -41, 22, -7, -12, 25, -45, 96, -45, 96, 96, -96, 96)
+
+[node name="Railing" type="Sprite2D" parent="." unique_id=260037626]
+z_index = 1
+texture = ExtResource("2_jldvc")

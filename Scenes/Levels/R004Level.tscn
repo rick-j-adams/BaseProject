@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://kx6yo2esm5kd" path="res://Images/Props/refuse2.png" id="12_y5o02"]
 [ext_resource type="Texture2D" uid="uid://co32dby7748cp" path="res://Images/Props/refuse3.png" id="13_h5gxx"]
 [ext_resource type="Texture2D" uid="uid://bhlxpoeqr0dtw" path="res://Images/Props/refuse4.png" id="14_4t72o"]
+[ext_resource type="Texture2D" uid="uid://ciifqk61fcn0x" path="res://Images/Walls/ExtraLargePanelRust3.png" id="15_4nyqu"]
 [ext_resource type="Texture2D" uid="uid://n0eare76akra" path="res://Images/Walls/LargePanelRust3.png" id="15_jy6ac"]
 [ext_resource type="Texture2D" uid="uid://clnsmfvcelws5" path="res://Images/Backgrounds/rubbish/bigrubbish.png" id="15_t7vmh"]
 [ext_resource type="Texture2D" uid="uid://6078fy62e8jh" path="res://Images/Walls/LargePanelRust2.png" id="16_0bbec"]
@@ -4090,6 +4091,14 @@ texture = ExtResource("14_4t72o")
 
 [node name="Walls" type="Node2D" parent="." unique_id=982916976]
 position = Vector2(6060, 6162)
+
+[node name="ExytaLargePanel19" type="Sprite2D" parent="Walls" unique_id=933458870]
+position = Vector2(-11508, -7332)
+texture = ExtResource("15_4nyqu")
+
+[node name="ExytaLargePanel20" type="Sprite2D" parent="Walls" unique_id=419203970]
+position = Vector2(-11507, -7870)
+texture = ExtResource("15_4nyqu")
 
 [node name="Plate1" type="Sprite2D" parent="Walls" unique_id=506684978]
 position = Vector2(-9263, -7528)

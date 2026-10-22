@@ -538,8 +538,8 @@ func _process(delta: float) -> void:
 	lastBlowUp = blowUp
 	Globals.lastPosition = global_position
 	if not wasOnFloor and not isNowOnFloor and not coyoteTimer.is_stopped():
+		coyoteTimer.wait_time = 0.5
 		coyoteTimer.start()	
-		coyoteTimer.wait_time = 0.2
 	wasOnFloor=isNowOnFloor
 	
 
