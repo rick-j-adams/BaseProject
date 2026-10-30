@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://d1i8ik7cnkqqv"]
+
+[ext_resource type="Script" uid="uid://dkwjrnlx5r04b" path="res://Scenes/Props/vent_section.gd" id="1_avp57"]
+[ext_resource type="Texture2D" uid="uid://cxv6qmt7hm4lq" path="res://Images/Walls/Vents/Vent1.png" id="1_clxs1"]
+[ext_resource type="Texture2D" uid="uid://rb66ou24mori" path="res://Images/Walls/Vents/VentFloor.png" id="2_avp57"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3alo"]
+size = Vector2(320, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_avp57"]
+polygon = PackedVector2Array(-190, 190, 191, 190, -1, 196)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5gq3f"]
+polygon = PackedVector2Array(-190, -189, 189, -189, 0, -197)
+
+[node name="VentSection" type="Node2D" unique_id=1498729127]
+script = ExtResource("1_avp57")
+
+[node name="Sprite2DBackWall" type="Sprite2D" parent="." unique_id=679855940]
+texture = ExtResource("1_clxs1")
+
+[node name="Sprite2DFloor" type="Sprite2D" parent="." unique_id=1391638038]
+position = Vector2(0, 194)
+texture = ExtResource("2_avp57")
+
+[node name="Sprite2DCeiling" type="Sprite2D" parent="." unique_id=2060442003]
+position = Vector2(0, -193)
+rotation = 3.1415927
+texture = ExtResource("2_avp57")
+
+[node name="StaticBody2DFloor" type="StaticBody2D" parent="." unique_id=682214322]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2DFloor" unique_id=707589615]
+polygon = PackedVector2Array(-190, 189, 189, 188, -1, 199)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1497234555]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=970776030]
+polygon = PackedVector2Array(-190, -189, 189, -189, 0, -198)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1347869790]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=766508548]
+position = Vector2(-3, 177)
+shape = SubResource("RectangleShape2D_g3alo")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1586620789]
+occluder = SubResource("OccluderPolygon2D_avp57")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="." unique_id=383858542]
+occluder = SubResource("OccluderPolygon2D_5gq3f")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

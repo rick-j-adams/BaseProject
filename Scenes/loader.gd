@@ -33,6 +33,7 @@ var currentloadState = LOAD_STATES.SCENES
 	"R007": "res://Scenes/Levels/R007Level.tscn",
 	"R008": "res://Scenes/Levels/R0008Level.tscn",
 	"R009": "res://Scenes/Levels/R009Level.tscn",
+	"ENG001": "res://Scenes/Levels/ENG001Level.tscn",
 
 }
 
@@ -127,6 +128,16 @@ var currentloadState = LOAD_STATES.SCENES
 	"mapmachine" : "res://Images/Props/mapmachine.png",
 	"fasttravel" : "res://Images/Props/FastTraveller.png",
 	"fan" : "res://Images/Props/Fan.png",
+	"WallVent1" : "res://Images/Walls/Vents/Vent1.png",
+	"WallVent2" : "res://Images/Walls/Vents/Vent2.png",
+	"WallVent3" : "res://Images/Walls/Vents/Vent3.png",
+	"WallVent4" : "res://Images/Walls/Vents/Vent4.png",
+	"WallVent5" : "res://Images/Walls/Vents/Vent5.png",
+	"WallVent6" : "res://Images/Walls/Vents/Vent6.png",
+	"WallVent7" : "res://Images/Walls/Vents/VentShaft.png",
+	"WallVentGrill" : "res://Images/Walls/Vents/VentGrillFloor.png",
+	"WallVentFloor" : "res://Images/Walls/Vents/VentFloor.png",
+	"WallVentFloor2" : "res://Images/Walls/Vents/VentGrillFloor.png",
 	"R001Map" : "res://Images/Map/R001Map.png",
 	"R002Map" : "res://Images/Map/R002Map.png",
 	"R003Map" : "res://Images/Map/R003Map.png",
@@ -181,6 +192,7 @@ var currentloadState = LOAD_STATES.SCENES
 	"boss1Music" : "res://Audio/ihatetuesdays-video-game-boss-fiight-259885.ogg",
 	"can" : "res://Audio/can.ogg",
 	"rubbish" : "res://Audio/rubbish.ogg",
+	"ventflex" : "res://Audio/ventflex.ogg",
 
 }
 

@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bh4x86ka4g3vn"]
+
+[ext_resource type="Script" uid="uid://c70a1uvhi7gre" path="res://Scenes/Props/vent_front.gd" id="1_h3dje"]
+[ext_resource type="Texture2D" uid="uid://c0gsf6vgi0fin" path="res://Images/Walls/Vents/Vent4.png" id="2_6fcke"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3alo"]
+size = Vector2(2821, 362)
+
+[node name="VentFront" type="Node2D" unique_id=1486698644]
+script = ExtResource("1_h3dje")
+
+[node name="FrontCovers" type="Node2D" parent="." unique_id=2088098943]
+
+[node name="Sprite2D" type="Sprite2D" parent="FrontCovers" unique_id=1417608929]
+texture = ExtResource("2_6fcke")
+
+[node name="Sprite2D2" type="Sprite2D" parent="FrontCovers" unique_id=2096187092]
+position = Vector2(380, 0)
+texture = ExtResource("2_6fcke")
+
+[node name="Sprite2D3" type="Sprite2D" parent="FrontCovers" unique_id=1788446650]
+position = Vector2(759, 0)
+texture = ExtResource("2_6fcke")
+
+[node name="Sprite2D4" type="Sprite2D" parent="FrontCovers" unique_id=1139544804]
+position = Vector2(1140, 0)
+texture = ExtResource("2_6fcke")
+
+[node name="Sprite2D5" type="Sprite2D" parent="FrontCovers" unique_id=202689964]
+position = Vector2(1520, 0)
+texture = ExtResource("2_6fcke")
+
+[node name="Sprite2D6" type="Sprite2D" parent="FrontCovers" unique_id=513933392]
+position = Vector2(1900, 0)
+texture = ExtResource("2_6fcke")
+
+[node name="Sprite2D7" type="Sprite2D" parent="FrontCovers" unique_id=999996701]
+position = Vector2(2279, 0)
+texture = ExtResource("2_6fcke")
+
+[node name="Sprite2D8" type="Sprite2D" parent="FrontCovers" unique_id=1851636797]
+position = Vector2(2660, 0)
+texture = ExtResource("2_6fcke")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=769972670]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=375089609]
+position = Vector2(1329.5, -1)
+shape = SubResource("RectangleShape2D_g3alo")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

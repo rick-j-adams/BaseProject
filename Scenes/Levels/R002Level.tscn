@@ -4182,23 +4182,23 @@ position = Vector2(871, -4913)
 texture = ExtResource("22_r2cim")
 
 [node name="PipeLongBend" type="Sprite2D" parent="TileMapLayer/midwall" unique_id=2092566364]
-position = Vector2(-3585, -3536)
+position = Vector2(-2965, -4686)
 texture = ExtResource("15_r0yph")
 
 [node name="PipeLongHorizonal" type="Sprite2D" parent="TileMapLayer/midwall" unique_id=692454260]
-position = Vector2(-3807, -3627)
+position = Vector2(-3187, -4777)
 texture = ExtResource("16_xr08x")
 
 [node name="PipeLongVertical" type="Sprite2D" parent="TileMapLayer/midwall" unique_id=158715239]
-position = Vector2(-3715, -3432)
+position = Vector2(-3095, -4582)
 texture = ExtResource("17_5w05a")
 
 [node name="PipeShortHorizontal" type="Sprite2D" parent="TileMapLayer/midwall" unique_id=527281716]
-position = Vector2(-3737, -3598)
+position = Vector2(-3117, -4748)
 texture = ExtResource("18_qrcl4")
 
 [node name="PipeLongVertical2" type="Sprite2D" parent="TileMapLayer/midwall" unique_id=1604147407]
-position = Vector2(-3754, -3329)
+position = Vector2(-3134, -4479)
 texture = ExtResource("17_5w05a")
 
 [node name="Pipes" type="Sprite2D" parent="TileMapLayer/midwall" unique_id=620506762]
@@ -4895,7 +4895,7 @@ position = Vector2(-2084, -164)
 position = Vector2(-2055, -162)
 
 [node name="PipeValve" type="Sprite2D" parent="." unique_id=125289260]
-position = Vector2(-4756, -493)
+position = Vector2(-3884, -248)
 texture = ExtResource("54_2qb00")
 
 [node name="PipeShortVertical" type="Sprite2D" parent="." unique_id=741811977]
@@ -4903,7 +4903,7 @@ position = Vector2(-4426, -491)
 texture = ExtResource("55_17km5")
 
 [node name="PipeLongBend" type="Sprite2D" parent="." unique_id=311670240]
-position = Vector2(-4905, -370)
+position = Vector2(-4080, -214)
 texture = ExtResource("15_r0yph")
 
 [node name="PipeLongBend2" type="Sprite2D" parent="." unique_id=136920442]
@@ -4911,7 +4911,7 @@ position = Vector2(-4779, -1555)
 texture = ExtResource("15_r0yph")
 
 [node name="PipeLongVertical" type="Sprite2D" parent="." unique_id=72148631]
-position = Vector2(-4631, -372)
+position = Vector2(-3853, -137)
 texture = ExtResource("17_5w05a")
 
 [node name="Vent" type="Sprite2D" parent="." unique_id=1777533750]

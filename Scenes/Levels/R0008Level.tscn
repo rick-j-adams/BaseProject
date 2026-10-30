@@ -3787,7 +3787,6 @@ metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 environment = SubResource("Environment_k2qbn")
 
 [node name="MaskRevealAreas" type="Node2D" parent="." unique_id=1128970295]
-visible = false
 
 [node name="MaskRevealArea1" parent="MaskRevealAreas" unique_id=264424048 instance=ExtResource("3_ns32m")]
 position = Vector2(-6042, -6036)
@@ -4156,12 +4155,12 @@ shape = SubResource("RectangleShape2D_bl2o2")
 [node name="EntryPoints" type="Node2D" parent="." unique_id=966885595]
 
 [node name="E1" type="Node2D" parent="EntryPoints" unique_id=1684010887]
-position = Vector2(-1749, 3960)
+position = Vector2(-1749, 3963)
 script = ExtResource("2_234ay")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
 [node name="E2" type="Node2D" parent="EntryPoints" unique_id=1175144292]
-position = Vector2(-894, 3568)
+position = Vector2(-906, 3580)
 script = ExtResource("2_234ay")
 metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 
@@ -4189,7 +4188,7 @@ metadata/_custom_type_script = "uid://dbbrhmyet7xy6"
 [node name="ExitPoints" type="Node2D" parent="." unique_id=1311284492]
 
 [node name="TransitionArea1" parent="ExitPoints" unique_id=1561361256 instance=ExtResource("25_j1w1l")]
-position = Vector2(-5435, -890)
+position = Vector2(-4785, 6629)
 scale = Vector2(2, 2)
 transisitionType = 2
 destinationEntryPoint = "E3"
@@ -4203,7 +4202,7 @@ destinationEntryPoint = "E4"
 boostUp = true
 
 [node name="TransitionArea3" parent="ExitPoints" unique_id=666539929 instance=ExtResource("25_j1w1l")]
-position = Vector2(264, -1409)
+position = Vector2(2041, 6681)
 scale = Vector2(2, 2)
 transisitionType = 2
 destinationLevel = "R003"
@@ -4234,6 +4233,9 @@ position = Vector2(-1541, -2453)
 [node name="Fan" parent="Interactive" unique_id=803018014 instance=ExtResource("30_uqtjx")]
 position = Vector2(-1162, -2387)
 isOn = true
+
+[node name="RubbishPile" parent="Interactive" unique_id=1116618707 instance=ExtResource("47_ns32m")]
+position = Vector2(-1706, -1963)
 
 [node name="PickUps" type="Node2D" parent="." unique_id=2020510122]
 
@@ -4344,7 +4346,7 @@ scale = Vector2(-1, 1)
 position = Vector2(-1229, 4303)
 scale = Vector2(-1, 1)
 
-[node name="RubbishPile1" parent="." unique_id=1116618707 instance=ExtResource("47_ns32m")]
+[node name="RubbishPile1" parent="." unique_id=458540359 instance=ExtResource("47_ns32m")]
 position = Vector2(-1545, 3738)
 
 [node name="RubbishPile3" parent="." unique_id=887854656 instance=ExtResource("47_ns32m")]

@@ -1,8 +1,25 @@
+@tool
 extends StaticBody2D
 
 class_name Cycloid
 
+enum TYPES { STEALPLATE, GRILL}
+
+var textureMap = {
+	TYPES.STEALPLATE : "res://Images/Backgrounds/cycloid2.png",
+	TYPES.GRILL : "res://Images/Backgrounds/cycloid2.png"
+}
+
+@export var type : TYPES = TYPES.STEALPLATE :
+	set(value):
+		type = value
+		if type == TYPES.STEALPLATE:
+			$Sprite2D.texture = load("res://Images/Backgrounds/cycloid2.png")
+		elif type == TYPES.GRILL:
+			$Sprite2D.texture = load("res://Images/Backgrounds/cycloid2-B.png")
+
 @onready var collisionPolygon2D : CollisionPolygon2D = $CollisionPolygon2D
+
 
 
 func _ready() -> void:

@@ -209,7 +209,8 @@ func setUpLevelsMap() -> void:
 			"R006" : {"sceneName":"R006", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
 			"R007" : {"sceneName":"R007", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
 			"R008" : {"sceneName":"R008", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
-			"R009" : {"sceneName":"R009", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  }
+			"R009" : {"sceneName":"R009", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
+			"ENG001" : {"sceneName":"ENG001", "visited":false, "culled": [], "levelMasks": {}, "receptacles" : {}  },
 
 		}
 
