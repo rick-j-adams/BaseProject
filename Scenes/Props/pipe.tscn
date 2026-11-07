@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bikhhuw81nhfs"]
+[gd_scene format=3 uid="uid://bikhhuw81nhfs"]
 
 [ext_resource type="Script" uid="uid://d0ctdmq2k3hv0" path="res://Scenes/Props/pipe.gd" id="1_2i6fy"]
 [ext_resource type="PackedScene" uid="uid://l2pxeyhy2x13" path="res://Scenes/Props/Spareparts.tscn" id="2_78tg3"]
@@ -55,23 +55,21 @@ _data = {
 &"RESET": SubResource("Animation_vp3hp")
 }
 
-[node name="Pipe" type="Node2D"]
+[node name="Pipe" type="Node2D" unique_id=78651830]
 script = ExtResource("1_2i6fy")
 
-[node name="Spareparts" parent="." instance=ExtResource("2_78tg3")]
+[node name="Spareparts" parent="." unique_id=620158693 instance=ExtResource("2_78tg3")]
 destroyed = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1580782614]
 texture = ExtResource("3_80ny4")
 hframes = 2
 vframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_xr47i")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1247575133]
+libraries/ = SubResource("AnimationLibrary_xr47i")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1769251186]
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://nlu660hulev8"]
 
 [ext_resource type="Texture2D" uid="uid://tgl40h781abv" path="res://Images/Backgrounds/stairs.png" id="1_b0axx"]
+[ext_resource type="Script" uid="uid://ccxmuhjm4vyob" path="res://Scenes/Props/stairs.gd" id="1_i4w8w"]
 [ext_resource type="Texture2D" uid="uid://b2lfpko75qvll" path="res://Images/Backgrounds/stairsRails.png" id="2_jldvc"]
 
 [node name="Stairs" type="StaticBody2D" unique_id=1829715422]
 collision_layer = 3
 collision_mask = 3
+script = ExtResource("1_i4w8w")
 
 [node name="Stairs" type="Sprite2D" parent="." unique_id=626637547]
 texture = ExtResource("1_b0axx")

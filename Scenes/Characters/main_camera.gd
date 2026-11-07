@@ -80,6 +80,14 @@ func peakAt(position: Vector2, holdDuration: float = 1.0) -> void:
 	peakHoldDuration = maxf(holdDuration, 0.0)
 	peakTimerStarted = false
 
+func peakUntilCanceled(position: Vector2) -> void:
+	timer.stop()
+	currentMode = MODES.PEAK
+	returningFromPeak = false
+	peakTarget = position
+	peakHoldDuration = 99999999
+	peakTimerStarted = false
+
 func cancelPeak() -> void:
 	if currentMode != MODES.PEAK:
 		return

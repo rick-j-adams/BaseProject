@@ -36,9 +36,10 @@ func exit(body: Node2D) -> void:
 		dydimoInRange = null
 
 	if body.is_in_group("spareparts"):
-		sparePart.converyerCount=sparePart.converyerCount-1
-		if sparePart.converyerCount <= 0:
-			sparePart.velocity.x = 0
+		if sparePart != null:
+			sparePart.converyerCount=sparePart.converyerCount-1
+			if sparePart.converyerCount <= 0:
+				sparePart.velocity.x = 0
 		sparePart = null
 
 func enter(body:Node2D) -> void:
@@ -84,4 +85,3 @@ func _on_area_2ddd_body_exited(body:Node2D) -> void:
 
 func _on_area_2ddd_body_entered(body:Node2D) -> void:
 	enter(body)
-

@@ -4511,14 +4511,34 @@ position = Vector2(-1419, -744)
 [node name="ConveyerBelt" parent="ConveyerBelt" unique_id=1771535670 instance=ExtResource("21_h2in6")]
 position = Vector2(256, 0)
 
-[node name="ConveyerBelt3" parent="ConveyerBelt" unique_id=1100058719 instance=ExtResource("22_4d27d")]
-position = Vector2(768, -256)
-
 [node name="ConveyerBelt2" parent="ConveyerBelt" unique_id=1305760391 instance=ExtResource("23_xvs3m")]
 position = Vector2(512, 0)
 
-[node name="ConveyerBelt3" parent="." unique_id=706144304 instance=ExtResource("24_nfig6")]
-position = Vector2(-897, -1005)
+[node name="ConveyerBelt3" parent="ConveyerBelt" unique_id=1100058719 instance=ExtResource("22_4d27d")]
+position = Vector2(758, -251)
+
+[node name="ConveyerBelt4" parent="ConveyerBelt" unique_id=706144304 instance=ExtResource("24_nfig6")]
+position = Vector2(512, -256)
+
+[node name="ConveyerBelt2" parent="." unique_id=2062728863 instance=ExtResource("20_1ptc8")]
+position = Vector2(4883, 2902)
+clockwise = true
+
+[node name="ConveyerBelt" parent="ConveyerBelt2" unique_id=845078613 instance=ExtResource("21_h2in6")]
+position = Vector2(256, 0)
+clockwise = true
+
+[node name="ConveyerBelt2" parent="ConveyerBelt2" unique_id=492452959 instance=ExtResource("23_xvs3m")]
+position = Vector2(512, 0)
+clockwise = true
+
+[node name="ConveyerBelt3" parent="ConveyerBelt2" unique_id=608525410 instance=ExtResource("22_4d27d")]
+position = Vector2(758, -251)
+clockwise = true
+
+[node name="ConveyerBelt4" parent="ConveyerBelt2" unique_id=1820542528 instance=ExtResource("24_nfig6")]
+position = Vector2(512, -256)
+clockwise = true
 
 [node name="DeathZones" type="Node2D" parent="." unique_id=316733677]
 

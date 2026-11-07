@@ -34,6 +34,8 @@ var currentloadState = LOAD_STATES.SCENES
 	"R008": "res://Scenes/Levels/R0008Level.tscn",
 	"R009": "res://Scenes/Levels/R009Level.tscn",
 	"ENG001": "res://Scenes/Levels/ENG001Level.tscn",
+	"ENG002": "res://Scenes/Levels/ENG002Level.tscn",
+	"ENG003": "res://Scenes/Levels/ENG003.tscn",
 
 }
 

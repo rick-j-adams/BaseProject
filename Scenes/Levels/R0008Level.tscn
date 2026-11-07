@@ -47,6 +47,7 @@
 [ext_resource type="Texture2D" uid="uid://81meqcve0xth" path="res://Images/Backgrounds/cycloid1.png" id="45_yolyk"]
 [ext_resource type="PackedScene" uid="uid://dvyl2oh73xgrv" path="res://Scenes/Props/Cycloid.tscn" id="46_234ay"]
 [ext_resource type="PackedScene" uid="uid://mt8iynhsv3sr" path="res://Scenes/Props/RubbishPile.tscn" id="47_ns32m"]
+[ext_resource type="PackedScene" uid="uid://bxf5tr2bjirds" path="res://Scenes/Effects/HoldCameraPosition.tscn" id="48_n5en6"]
 
 [sub_resource type="Environment" id="Environment_k2qbn"]
 background_mode = 3
@@ -4391,5 +4392,14 @@ position = Vector2(-656, 3733)
 [node name="RubbishPile2" parent="." unique_id=2009800959 instance=ExtResource("47_ns32m")]
 position = Vector2(-1599.0001, 3716)
 rotation = 0.8656833
+
+[node name="HoldCameraPosition" parent="." unique_id=1780846007 instance=ExtResource("48_n5en6")]
+position = Vector2(-905, 3764)
+
+[node name="HoldCameraPosition2" parent="." unique_id=2018544316 instance=ExtResource("48_n5en6")]
+position = Vector2(-1558, 3764)
+
+[node name="HoldCameraPosition3" parent="." unique_id=77770888 instance=ExtResource("48_n5en6")]
+position = Vector2(-257, 3764)
 
 [connection signal="body_entered" from="DeathZones/Area2D" to="." method="_on_area_2d_body_entered"]

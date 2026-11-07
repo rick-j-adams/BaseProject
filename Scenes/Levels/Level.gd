@@ -9,25 +9,29 @@ class_name Level
 @onready var buildables :Node2D = $Buildables
 @onready var lifts :Node2D = $Lifts
 
+const MINFLOAT = -1.79769e308
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
+	if body is SpareParts:
+		body.destroy()
 	if body.is_in_group("actor"):
 		if body is Dydimo:
 			body.explode()
 
 func getLevelLimts () -> Array:
-	var left:float= 0 
-	var top :float= 0 
-	var right:float = 0 
-	var bottom:float =0
+	var left:float= MINFLOAT
+	var top :float= MINFLOAT
+	var right:float = MINFLOAT
+	var bottom:float = MINFLOAT
 	for node in entryPoints.get_children():
-		if node.global_position.x < left :
+		
+		if left==MINFLOAT or node.global_position.x < left :
 			left=node.global_position.x
-		if node.global_position.x > right :
+		if right==MINFLOAT or node.global_position.x > right :
 			right=node.global_position.x
-		if node.global_position.y < top :
+		if top==MINFLOAT or node.global_position.y < top :
 			top=node.global_position.y
-		if node.global_position.y > bottom :
+		if bottom==MINFLOAT or node.global_position.y > bottom :
 			bottom=node.global_position.y
 	return [left,top,right,bottom ]
 

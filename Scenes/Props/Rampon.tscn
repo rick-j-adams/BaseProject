@@ -1,13 +1,21 @@
 [gd_scene format=3 uid="uid://cuun4haktrf"]
 
 [ext_resource type="Texture2D" uid="uid://mavk4n1kmxac" path="res://Images/Backgrounds/rampon.png" id="1_3fuqb"]
+[ext_resource type="Script" uid="uid://dqe1rg7v2mi0o" path="res://Scenes/Props/rampon.gd" id="1_ispia"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2vo1c"]
+polygon = PackedVector2Array(-160, 155, -96, 144, -23, 114, 18, 83, 56, 40, 83, -25, 90, -85, 91, -161, 159, -161, 160, 160, -160, 160)
 
 [node name="Rampon" type="StaticBody2D" unique_id=658062449]
 collision_layer = 3
 collision_mask = 3
+script = ExtResource("1_ispia")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1770803941]
 texture = ExtResource("1_3fuqb")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1162305705]
 polygon = PackedVector2Array(-160, 146, -99, 138, -53, 120, -31, 109, 11, 80, 53, 31, 73, -25, 77, -38, 82, -94, 83, -161, 160, -161, 160, 160, -160, 160)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1115207902]
+occluder = SubResource("OccluderPolygon2D_2vo1c")
